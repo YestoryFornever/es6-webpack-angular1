@@ -2,7 +2,7 @@
 
 .navbar {
   height: 4rem;
-  background-color: $primaryColor;
+  background-color: $defaultBgDark;
   padding: 1rem;
 
   .nav-links,
@@ -11,12 +11,12 @@
   }
 
   .logo {
-    color: $lightTextColor;
+    color: $defaultTextLight;
     margin-right: 50%;
   }
 
   .nav-links span {
-    color: $lightTextColor;
+    color: $defaultTextLight;
     font-size: 1.6rem;
   }
 }
