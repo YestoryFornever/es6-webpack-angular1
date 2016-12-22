@@ -10,11 +10,15 @@ div#altarea{
 	.leftblock,.rightblock{
 		height:2.4rem;
 		line-height:2.4rem;
+		color:$defaultTextLight;
 	}
 	.leftblock{
 		float:left;
 	}
 	.rightblock{
 		float:right;
+	}
+	#nav{
+		width: 30rem;
 	}
 }
