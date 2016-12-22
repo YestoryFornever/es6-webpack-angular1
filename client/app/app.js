@@ -1,5 +1,4 @@
 import 'normalize.css';
-import jquery from 'jquery';
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import Common from './common/common';
