@@ -5,3 +5,16 @@ pageheader{
 	height:4.8rem;
 	display:block;
 }
+
+div#altarea{
+	.leftblock,.rightblock{
+		height:2.4rem;
+		line-height:2.4rem;
+	}
+	.leftblock{
+		float:left;
+	}
+	.rightblock{
+		float:right;
+	}
+}
