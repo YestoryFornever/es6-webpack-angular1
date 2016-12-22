@@ -1,8 +1,12 @@
 @import "../common";
 
-pagenav {
+.pagenav{
 	background-color: $defaultBgDark;
 	height:2.4rem;
 	line-height:2.4rem;
 	display:block;
+}
+
+ul.nav li{
+	display:inline-block;
 }

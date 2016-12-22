@@ -1,12 +1,15 @@
 @import "../common";
 
-pageheader{
+.pageheader{
 	background-color: $defaultBgDark;
 	height:4.8rem;
 	display:block;
 }
 
 div#altarea{
+	#logo{
+		margin:0 1rem;
+	}
 	.leftblock,.rightblock{
 		height:2.4rem;
 		line-height:2.4rem;
@@ -19,6 +22,6 @@ div#altarea{
 		float:right;
 	}
 	#nav{
-		width: 30rem;
+		width: 32rem;
 	}
 }
