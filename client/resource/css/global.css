@@ -1,0 +1,12 @@
+* {margin: 0; padding: 0;}
+html {
+	font-family: sans-serif;
+	line-height: 1.15;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	font-size:10px;
+}
+body {
+	margin: 0;
+	font-size:10px;
+}

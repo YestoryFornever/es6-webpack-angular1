@@ -8,3 +8,20 @@
 	bottom:0;
 	font-size:1.6rem;
 }
+::selection {
+	background:#c30e2e; 
+	color:#eee;
+}
+::-moz-selection {
+	background:#c30e2e; 
+	color:#eee;
+}
+::-webkit-selection {
+	background:#c30e2e; 
+	color:#eee;
+}
+a,a:active,a:hover{
+	color:#337ab7;
+	text-decoration: none;
+	cursor: pointer;
+}

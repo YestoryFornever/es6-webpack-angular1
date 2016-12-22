@@ -1,7 +1,8 @@
 @import '../common';
 
-pagetab {
+.pagetab {
 	height:2.4rem;
 	line-height:2.4rem;
 	display:block;
+	color:$defaultTextLight;
 }
