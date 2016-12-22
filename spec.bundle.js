@@ -9,6 +9,8 @@
 */
 
 import angular from 'angular';
+import jquery from 'jquery';
+import bootstrap from 'bootstrap';
 
 // Built by the core Angular team for mocking dependencies
 import mocks from 'angular-mocks';
