@@ -2,7 +2,7 @@ class ChatroomController {
 	constructor($stateParams) {
 		this.name = 'chatroom';
 		this.$stateParams = $stateParams;
-		this.name = $stateParams.id;
+		this.name = $stateParams.id || 'chatroom';
 	}
 }
 ChatroomController.$inject = ['$stateParams'];
