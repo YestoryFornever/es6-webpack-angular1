@@ -18,7 +18,7 @@
 			<div class="col-md-8">
 				<ul class="phones">
 					<li ng-repeat="phone in $ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp">
-						<span>{{phone.name}}</span>
+						<a ui-sref="home.chatroom.detail({id:phone.name})">{{phone.name}}</a>
 						<p>{{phone.snippet}}</p>
 					</li>
 				</ul>
