@@ -1,9 +1,11 @@
+import $ from '../../../jquery-vendor.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import pagenavComponent from './pagenav.component';
 
 let pagenavModule = angular.module('pagenav', [
-  uiRouter
+	uiRouter
 ])
 
 .component('pagenav', pagenavComponent)

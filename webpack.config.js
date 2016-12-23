@@ -9,6 +9,7 @@ module.exports = {
 		loaders: [
 			{ test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
 			{ test: /\.html$/, loader: 'raw' },
+			{ test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' },//需引入url-loader/file-loader
 			{ test: /\.(scss|sass)$/, loader: 'style!css!sass' },
 			{ test: /\.css$/, loader: 'style!css' }
 		]
