@@ -1,5 +1,4 @@
-import $ from '../../../jquery-vendor.js';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import $ from '../../../jquery-vendor.js';
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import pagenavComponent from './pagenav.component';

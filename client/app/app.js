@@ -1,4 +1,5 @@
 import 'normalize.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import Common from './common/common';

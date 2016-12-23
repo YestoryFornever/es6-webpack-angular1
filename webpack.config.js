@@ -15,12 +15,6 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new webpack.ProvidePlugin({
-			jQuery: 'jquery',
-			$: 'jquery',
-			jquery: 'jquery'
-		}),
-
 		// Injects bundles in your index.html instead of wiring all manually.
 		// It also adds hash to all injected assets so we don't have problems
 		// with cache purging during deployment.
