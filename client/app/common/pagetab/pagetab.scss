@@ -1,5 +1,15 @@
 @import '../common';
 
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+	background-color:$defaultBgLight;
+}
+.nav>li>a{
+	padding:3px 15px;
+}
+.nav>li>a:hover{
+	border-color: #eee #eee $defaultBgLight;
+}
+
 .pagetab {
 	height:2.4rem;
 	line-height:2.4rem;

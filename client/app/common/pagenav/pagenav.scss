@@ -1,5 +1,8 @@
 @import "../common";
 
+.navbar-nav > li > a {padding-top:5px !important; padding-bottom:5px !important;}
+.navbar {min-height:32px !important; margin-bottom: 0;}
+
 .pagenav{
 	background-color: $defaultBgDark;
 	height:2.4rem;
