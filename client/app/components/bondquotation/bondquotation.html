@@ -20,8 +20,8 @@
 					<li ng-repeat="phone in $ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp">
 						<a ui-sref="home.chatroom.detail({id:phone.name})">{{phone.name}}</a>
 						<p>{{phone.snippet}}</p>
-						<p>{{phone.check | checkmark}}</p>
-						<p>{{$ctrl.p1(phone.no)}}</p>
+						<p>{{phone.check | checkmarkFilter}}</p>
+						<p>{{$ctrl.minus(phone.no)}}</p>
 					</li>
 				</ul>
 			</div>

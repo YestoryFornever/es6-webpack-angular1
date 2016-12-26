@@ -5,8 +5,8 @@ import Err from './error/error';
 import Calculator from './calculator/calculator';
 import Chatroom from './chatroom/chatroom';
 import Bondquotation from './bondquotation/bondquotation';
-import Checkmarkfilter from '../common/filters/checkmark';
-import Plusservice from '../common/services/plus';
+import CheckmarkFilter from '../common/filters/checkmark.filter';
+import PlusService from '../common/services/plus.service';
 
 let componentModule = angular.module('app.components', [
 	Login,
@@ -15,8 +15,8 @@ let componentModule = angular.module('app.components', [
 	Calculator,
 	Chatroom,
 	Bondquotation,
-	Checkmarkfilter,
-	Plusservice
+	CheckmarkFilter,
+	PlusService
 ])
 .name;
 

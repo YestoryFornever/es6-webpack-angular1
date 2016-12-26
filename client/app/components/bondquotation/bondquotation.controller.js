@@ -22,10 +22,10 @@ class BondquotationController {
 			}
 		];
 		this.orderProp = 'name';
-		this.p1 = function(no){
-			return plus.myFn(++no);
+		this.minus = function(no){
+			return plus.minus(++no);
 		}
 	}
 }
-BondquotationController.$inject = ['$http','plus'];
+BondquotationController.$inject = ['$http','plusService'];
 export default BondquotationController;

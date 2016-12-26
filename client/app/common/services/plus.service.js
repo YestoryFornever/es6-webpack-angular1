@@ -1,6 +1,11 @@
-let plusservice = function(){
-	this.myFn = function(x) {
+import angular from 'angular';
+
+let plusServiceModule = angular.module('plusService', [])
+.service('plusService',function(){
+	this.minus = function(x) {
 		return parseInt(x)-1;
 	}
-}
-export default plusservice;
+})
+.name;
+
+export default plusServiceModule;
