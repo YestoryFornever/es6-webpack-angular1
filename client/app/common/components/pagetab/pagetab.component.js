@@ -4,7 +4,9 @@ import './pagetab.scss';
 
 let pagetabComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+  	test:'@'
+  },
   template,
   controller
 };
