@@ -1,10 +1,12 @@
 class BondquotationController {
 	constructor($http, $timeout, plus) {
-		this.name = 'bondquotation';
-		this.orderProp = 'name';
 		this.$http = $http;
 		this.$timeout = $timeout;
 		this.plus = plus;
+	}
+	$onInit(){
+		this.name = 'bondquotation';
+		this.orderProp = 'name';
 		this.phones = [
 			{
 				name: '茶花女',
@@ -26,16 +28,16 @@ class BondquotationController {
 			}
 		];
 		this.updateClock();
-	};
+	}
 	minus(no){
 		return this.plus.minus(++no);
-	};
+	}
 	updateClock(){
 		this.clock = new Date();
 		this.$timeout(()=>{
 			this.updateClock();
 		},1000);
-	};
+	}
 }
 BondquotationController.$inject = ['$http','$timeout','plusService'];
 export default BondquotationController;
