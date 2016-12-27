@@ -1,7 +1,7 @@
 class PageheaderController {
-  constructor() {
-    this.name = 'pageheader';
-  }
+	constructor() {
+		this.name = 'pageheader';
+	}
 }
 
 export default PageheaderController;

@@ -2,8 +2,7 @@ import angular from 'angular';
 
 let getTabsServiceModule = angular.module('getTabsService', [])
 .service('getTabsService',function(){
-	this.getTabs = function() {
-		return [
+	this.tabs = [
 			{
 				routeState:'home',
 				routeLabel:'Home',
@@ -25,6 +24,8 @@ let getTabsServiceModule = angular.module('getTabsService', [])
 				routeClass:''
 			}
 		];
+	this.getTabs = function() {
+		return this.tabs;
 	}
 })
 .name;
