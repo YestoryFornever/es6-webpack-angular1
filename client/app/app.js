@@ -1,7 +1,13 @@
 import 'normalize.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'angular-material/angular-material.min.css';
+
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
+import 'angular-animate/angular-animate.min.js';
+import 'angular-aria/angular-aria.min.js';
+import ngMaterial from 'angular-material';
+
 import Common from './common/common';
 import Components from './components/components';
 import AppComponent from './app.component';
@@ -9,7 +15,8 @@ import AppComponent from './app.component';
 angular.module('app', [
 		uiRouter,
 		Common,
-		Components
+		Components,
+		ngMaterial
 	])
 	.config(($locationProvider) => {
 		"ngInject";
