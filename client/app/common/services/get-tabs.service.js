@@ -22,6 +22,11 @@ let getTabsServiceModule = angular.module('getTabsService', [])
 				routeState:'home.calculator',
 				routeLabel:'计算器',
 				routeClass:''
+			},
+			{
+				routeState:'home.ui',
+				routeLabel:'material UI',
+				routeClass:''
 			}
 		];
 	this.getTabs = function() {

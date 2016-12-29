@@ -3,7 +3,7 @@ import uiRouter from 'angular-ui-router';
 import pageheaderComponent from './pageheader.component';
 
 let pageheaderModule = angular.module('pageheader', [
-  uiRouter
+	uiRouter
 ])
 
 .component('pageheader', pageheaderComponent)
