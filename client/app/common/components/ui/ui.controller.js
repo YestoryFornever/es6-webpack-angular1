@@ -1,14 +1,32 @@
+import bottomSheetGridTemplate from './templates/bottom-sheet-grid-template.html';
+import GridBottomSheetCtrl from './templates/bottom-sheet-grid.controller.js';
 class UiController {
-	constructor($timeout, $q, $log) {
+	constructor($timeout, $q, $log, $mdBottomSheet) {
 		this.$timeout = $timeout;
 		this.$q = $q;
 		this.$log = $log;
+		this.$mdBottomSheet = $mdBottomSheet;
 		this.name = 'ui';
 		this.simulateQuery = false;
 		this.noCache = true;
 		this.isDisabled = false;
 		this.states = this.loadAll();
 	}
+	showGridBottomSheet() {
+		this.alert = '';
+		var $mdBottomSheet = this.$mdBottomSheet;
+		$mdBottomSheet.show({
+			//template: '<md-bottom-sheet>Hello!</md-bottom-sheet>'
+			//parent: angular.element(document.getElementById('xxx')), //定义生效的父节点
+			template:bottomSheetGridTemplate,
+			controller:[ '$mdBottomSheet', GridBottomSheetCtrl],
+			controllerAs:"$bsctrl",
+			clickOutsideToClose: true
+		}).then((clickedItem) => {
+			this.$log.debug( clickedItem.name + ' clicked!');
+		});
+	}
+	//md-autocomplete
 	newState(state) {
 		alert("Sorry! You'll need to create a Constitution for " + state + " first!");
 	}
@@ -50,5 +68,5 @@ class UiController {
 		};
 	}
 }
-UiController.$inject = ['$timeout', '$q', '$log'];
+UiController.$inject = ['$timeout', '$q', '$log', '$mdBottomSheet'];
 export default UiController;
