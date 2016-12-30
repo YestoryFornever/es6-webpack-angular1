@@ -1,11 +1,12 @@
 import bottomSheetGridTemplate from './templates/bottom-sheet-grid-template.html';
 import GridBottomSheetCtrl from './templates/bottom-sheet-grid.controller.js';
 class UiController {
-	constructor($timeout, $q, $log, $mdBottomSheet) {
+	constructor($timeout, $q, $log, $mdBottomSheet, $mdToast) {
 		this.$timeout = $timeout;
 		this.$q = $q;
 		this.$log = $log;
 		this.$mdBottomSheet = $mdBottomSheet;
+		this.$mdToast = $mdToast;
 		this.name = 'ui';
 		this.simulateQuery = false;
 		this.noCache = true;
@@ -23,7 +24,12 @@ class UiController {
 			controllerAs:"$bsctrl",
 			clickOutsideToClose: true
 		}).then((clickedItem) => {
-			this.$log.debug( clickedItem.name + ' clicked!');
+			this.$mdToast.show(
+				this.$mdToast.simple()
+					.textContent(clickedItem['name'] + ' clicked!')
+					.position('top right')
+					.hideDelay(30000)
+			);
 		});
 	}
 	//md-autocomplete
@@ -68,5 +74,5 @@ class UiController {
 		};
 	}
 }
-UiController.$inject = ['$timeout', '$q', '$log', '$mdBottomSheet'];
+UiController.$inject = ['$timeout', '$q', '$log', '$mdBottomSheet', '$mdToast'];
 export default UiController;
