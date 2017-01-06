@@ -1,12 +1,13 @@
 import bottomSheetGridTemplate from './templates/bottom-sheet-grid-template.html';
 import GridBottomSheetCtrl from './templates/bottom-sheet-grid.controller.js';
 class UiController {
-	constructor($timeout, $q, $log, $mdBottomSheet, $mdToast) {
+	constructor($timeout, $q, $log, $mdBottomSheet, $mdToast, $mdDialog) {
 		this.$timeout = $timeout;
 		this.$q = $q;
 		this.$log = $log;
 		this.$mdBottomSheet = $mdBottomSheet;
 		this.$mdToast = $mdToast;
+		this.$mdDialog = $mdDialog;
 		this.name = 'ui';
 		this.simulateQuery = false;
 		this.noCache = true;
@@ -73,6 +74,21 @@ class UiController {
 			return (state.value.indexOf(lowercaseQuery) === 0);
 		};
 	}
+	showAlert(ev) {
+		// Appending dialog to document.body to cover sidenav in docs app
+		// Modal dialogs should fully cover application
+		// to prevent interaction outside of dialog
+		this.$mdDialog.show(
+			this.$mdDialog.alert()
+				//parent(angular.element(document.querySelector('#popupContainer')))
+				.clickOutsideToClose(true)
+				.title('This is an alert title')
+				.textContent('You can specify some description text in here.')
+				.ariaLabel('Alert Dialog Demo')
+				.ok('Got it!')
+				.targetEvent(ev)
+		);
+	}
 }
-UiController.$inject = ['$timeout', '$q', '$log', '$mdBottomSheet', '$mdToast'];
+UiController.$inject = ['$timeout', '$q', '$log', '$mdBottomSheet', '$mdToast', '$mdDialog'];
 export default UiController;
