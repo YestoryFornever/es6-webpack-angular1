@@ -3,14 +3,15 @@ import GridBottomSheetCtrl from './templates/bottom-sheet-grid.controller.js';
 var echarts = require('echarts');
 
 class UiController {
-	constructor($timeout, $q, $log, $mdBottomSheet, $mdToast, $mdDialog) {
+	constructor($timeout, $q, $log, $mdBottomSheet, $mdToast, $mdDialog, $stateParams) {
+		this.$stateParams = $stateParams;
+		this.name = $stateParams.id || 'ui';
 		this.$timeout = $timeout;
 		this.$q = $q;
 		this.$log = $log;
 		this.$mdBottomSheet = $mdBottomSheet;
 		this.$mdToast = $mdToast;
 		this.$mdDialog = $mdDialog;
-		this.name = 'ui';
 		this.simulateQuery = false;
 		this.noCache = true;
 		this.isDisabled = false;
@@ -108,5 +109,5 @@ class UiController {
 		);
 	}
 }
-UiController.$inject = ['$timeout', '$q', '$log', '$mdBottomSheet', '$mdToast', '$mdDialog'];
+UiController.$inject = ['$timeout', '$q', '$log', '$mdBottomSheet', '$mdToast', '$mdDialog','$stateParams',];
 export default UiController;

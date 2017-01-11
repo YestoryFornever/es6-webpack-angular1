@@ -3,11 +3,11 @@ import angular from 'angular';
 let getTabsServiceModule = angular.module('getTabsService', [])
 .service('getTabsService',function(){
 	this.tabs = [
-			{
+			/*{
 				routeState:'home',
 				routeLabel:'Home',
 				routeClass:'active'
-			},
+			},*/
 			{
 				routeState:'home.bondquotation',
 				routeLabel:'债券报价',
@@ -26,6 +26,11 @@ let getTabsServiceModule = angular.module('getTabsService', [])
 			{
 				routeState:'home.ui',
 				routeLabel:'material UI',
+				routeClass:''
+			},
+			{
+				routeState:'home.test',
+				routeLabel:'测试页签',
 				routeClass:''
 			}
 		];

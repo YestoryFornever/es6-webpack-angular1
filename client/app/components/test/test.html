@@ -1,0 +1,31 @@
+<div class="o-v-a">
+	<p>{{ $ctrl.name }}</p>
+	<button type="button" class="btn btn-default">boostrap</button>
+	<input type="text" ng-model="$ctrl.name" class="form-control">
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4">
+				<p>Search: <input ng-model="$ctrl.query" class="form-control"/></p>
+				<p>Sort by: 
+					<select ng-model="$ctrl.orderProp" class="form-control">
+						<option value="name">name</option>
+						<option value="snippet">snippet</option>
+					</select>
+				</p>
+			</div>
+			<br>
+			<div class="col-md-8">
+				<ul class="phones">
+					<li ng-repeat="phone in $ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp">
+						<a ui-sref="home.ui.detail({id:phone.name})">{{phone.name}}</a>
+						<p>{{phone.snippet}}</p>
+						<p>{{phone.check | checkmarkFilter}}</p>
+						<p>{{$ctrl.minus(phone.no)}}</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+		{{$ctrl.clock}}
+	</div>
+</div>

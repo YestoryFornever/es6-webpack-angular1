@@ -17,14 +17,6 @@ let bondquotationModule = angular.module('bondquotation', [
 				}
 			}
 		})
-		.state('home.chatroom.detail', {
-			url: '/{id}',
-			views: {
-				'main@home': {
-					component: 'chatroom'
-				}
-			}
-		});
 })
 .component('bondquotation', bondquotationComponent)
 
