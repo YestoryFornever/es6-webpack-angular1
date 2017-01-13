@@ -1,32 +1,59 @@
 @import '../../common/css/common';
-
+h1,h2,h3,h4,h5,h6{margin: 0; padding: 0;}
 .o-v-a{
 	aside.hallSidebar{
-		background:$primaryBg;
 		width:30rem;
 		float:right;
 		height:100%;
 		div#_header_{
 			height:6%;
 		}
+		section.card{
+			border-width:0 .1rem .1rem .1rem;
+			border-style:solid;
+			border-color:#dddddd;
+			margin-right:.2rem;
+			position: relative;
+			header.title{
+				height:3rem;
+				background:$defaultBgDark;
+				color:$defaultTextLight;
+				h4{
+					height:3rem;
+					line-height:3rem;
+					margin-left:.6rem;
+				}
+			}
+			main#settleChart{
+				width:30rem;
+				height:20rem;
+				background:$primaryBg;
+				position: absolute;
+				top:3rem;
+				left:0;
+				right:0;
+				bottom:0;
+			}
+		}
 		section#bondInfo{
 			height:46%;
-			background:$successBg;
 		}
 		div#_gap_{
-			height:2%;
+			height:1%;
 		}
 		section#settlement{
 			height:46%;
-			background:$warnBg;
 		}
 	}
-	main.hallTable{
+	div.hallTable{
 		margin-right:30rem;
 		height:100%;
 		header#condition{
 			height:6%;
 			background:$dangerBg;
+		}
+		main{
+			height:93%;
 		}
 	}
 }

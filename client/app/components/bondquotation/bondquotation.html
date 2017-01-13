@@ -1,11 +1,21 @@
 <div class="o-v-a">
 	<aside class="hallSidebar">
 		<div id="_header_"></div>
-		<section id="bondInfo">1</section>
+		<section class="card" id="bondInfo">
+			<header class="title">
+				<h4>债券信息</h4>
+			</header>
+		</section>
 		<div id="_gap_"></div>
-		<section id="settlement">2</section>
+		<section class="card" id="settlement">
+			<header class="title">
+				<h4>计算行情</h4>
+			</header>
+			<main id="settleChart"></main>
+		</section>
 	</aside>
-	<main class="hallTable">
+	<div class="hallTable">
 		<header id="condition">{{ $ctrl.name }}</header>
-	</main>
+		<main></main>
+	</div>
 </div>
