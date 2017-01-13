@@ -1,5 +1,32 @@
 @import '../../common/css/common';
 
-bondquotation {
-	color: #000;
+.o-v-a{
+	aside.hallSidebar{
+		background:$primaryBg;
+		width:30rem;
+		float:right;
+		height:100%;
+		div#_header_{
+			height:6%;
+		}
+		section#bondInfo{
+			height:46%;
+			background:$successBg;
+		}
+		div#_gap_{
+			height:2%;
+		}
+		section#settlement{
+			height:46%;
+			background:$warnBg;
+		}
+	}
+	main.hallTable{
+		margin-right:30rem;
+		height:100%;
+		header#condition{
+			height:6%;
+			background:$dangerBg;
+		}
+	}
 }
