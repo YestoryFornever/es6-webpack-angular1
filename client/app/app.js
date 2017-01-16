@@ -9,6 +9,7 @@ import 'angular-animate/angular-animate.min.js';
 import 'angular-aria/angular-aria.min.js';
 import ngMaterial from 'angular-material';
 import uiBootstrap from 'angular-ui-bootstrap';
+import uiSlimscroll from 'angular-slimscroll';
 
 import Common from './common/common';
 import Components from './components/components';
@@ -19,7 +20,8 @@ angular.module('app', [
 		Common,
 		Components,
 		ngMaterial,
-		uiBootstrap
+		uiBootstrap,
+		'ngSlimScroll'
 	])
 	.config(($locationProvider) => {
 		"ngInject";
