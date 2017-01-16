@@ -2,22 +2,22 @@
 
 .pagenav{
 	background-color: $defaultBgDark;
-	height:2.4rem;
-	line-height:2.4rem;
+	height:2.2rem;
+	line-height:2.2rem;
 	display:block;
 	.navbar{
-		min-height:2.4rem !important; 
+		min-height:2.2rem !important; 
 		margin-bottom: 0;
 		ul.nav.navbar-nav{
 			li{
-				height:1rem;
-			 	display:inline-block;
-			 	a {
-			 		height:1rem;
-			 		padding-top:.5rem !important;
-			 		padding-bottom:.5rem !important;
-			 	}
+				height:2.2rem;
+				display:inline-block;
+				a {
+					height:2.2rem;
+					padding-top:.3rem !important;
+					padding-bottom:.3rem !important;
+				}
 			}
 		}
-	}	
+	}
 }
