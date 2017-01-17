@@ -21,7 +21,8 @@ class BondquotationController {
 		});
 		window.onresize = function(){
 			myChart.resize();
-		}
+		};
+		this.tableH = '3';
 	}
 	$onInit(){
 	}
