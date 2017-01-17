@@ -19,7 +19,6 @@ class BondquotationController {
 				data: [5, 20, 36, 10, 10, 20]
 			}]
 		});
-
 		window.onresize = function(){
 			myChart.resize();
 		}
