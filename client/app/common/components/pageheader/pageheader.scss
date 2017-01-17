@@ -1,27 +1,27 @@
 @import "../../css/common";
 
 .navbar-header{
-	min-height:2.4rem !important;
+	min-height:$headerH/2 !important;
 	>a.navbar-brand {
-		padding-top:.5rem !important; 
-		padding-bottom:5px !important; 
+		padding-top:.05rem !important; 
+		padding-bottom:.5px !important; 
 		height:auto;
 	}
 }
 
 .pageheader{
 	background-color: $defaultBgDark;
-	height:4.8rem;
+	height:$headerH;
 	display:block;
 }
 
 div#altarea{
 	#logo{
-		margin:0 1rem;
+		margin:0 .1rem;
 	}
 	.leftblock,.rightblock{
-		height:2.4rem;
-		line-height:2.4rem;
+		height:$headerH/2;
+		line-height:$headerH/2;
 		color:$defaultTextLight;
 	}
 	.leftblock{
@@ -31,6 +31,6 @@ div#altarea{
 		float:right;
 	}
 	#nav{
-		width: 21rem;
+		width: 3rem;
 	}
 }

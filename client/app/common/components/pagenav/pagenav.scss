@@ -2,20 +2,20 @@
 
 .pagenav{
 	background-color: $defaultBgDark;
-	height:2.2rem;
-	line-height:2.2rem;
+	height:.22rem;
+	line-height:.22rem;
 	display:block;
 	.navbar{
-		min-height:2.2rem !important; 
+		min-height:.22rem !important; 
 		margin-bottom: 0;
 		ul.nav.navbar-nav{
 			li{
-				height:2.2rem;
+				height:.22rem;
 				display:inline-block;
 				a {
-					height:2.2rem;
-					padding-top:.3rem !important;
-					padding-bottom:.3rem !important;
+					height:.22rem;
+					padding-top:.03rem !important;
+					padding-bottom:.03rem !important;
 				}
 			}
 		}

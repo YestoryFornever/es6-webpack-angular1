@@ -2,8 +2,8 @@
 
 .pagefooter{
 	background-color: $defaultBgDark;
-	height:2rem;
-	line-height:2rem;
-	display:block;
+	height: $footerH;
+	line-height: $footerH;
+	display: block;
 	color: $defaultTextLight;
 }

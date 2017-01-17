@@ -4,75 +4,86 @@ h1,h2,h3,h4,h5,h6{
 	padding: 0;
 }
 .o-v-a{
+	$cardW:3.6rem;
 	aside.hallSidebar{
-		width:30rem;
+		width:$cardW;
 		float:right;
 		height:100%;
-		div#_header_{
-			height:6%;
-		}
-		section.card{
-			border-width:0 .1rem .1rem .1rem;
-			border-style:solid;
-			border-color:#dddddd;
-			margin-right:.2rem;
-			position: relative;
-			header.title{
-				height:3rem;
-				background:$defaultBgDark;
-				color:$defaultTextLight;
-				h4{
-					height:3rem;
-					line-height:3rem;
-					margin-left:.6rem;
+		position:relative;
+		div#_body_{
+			position:absolute;
+			top:.3rem;
+			left:0;
+			right:0;
+			bottom:0;
+			section.card{
+				border-width:0 .01rem .01rem .01rem;
+				border-style: solid;
+				border-color: #dddddd;
+				margin-right: .02rem;
+				position: relative;
+				header.title{
+					height:.3rem;
+					background:$defaultBgDark;
+					color:$defaultTextLight;
+					h4{
+						height:.3rem;
+						line-height:.3rem;
+						margin-left:.06rem;
+					}
+				}
+				main#settleChart{
+					width:2.8rem;
+					height:1.8rem;
+					background:$primaryBg;
+					position: absolute;
+					top:.3rem;
+					left:0;
+					right:0;
+					bottom:0;
 				}
 			}
-			main#settleChart{
-				width:28rem;
-				height:18rem;
-				background:$primaryBg;
-				position: absolute;
-				top:3rem;
-				left:0;
-				right:0;
-				bottom:0;
+			section#bondInfo{
+				height:49%;
 			}
-		}
-		section#bondInfo{
-			height:46%;
-		}
-		div#_gap_{
-			height:1%;
-		}
-		section#settlement{
-			height:46%;
+			div#_gap_{
+				height:1%;
+			}
+			section#settlement{
+				height:49%;
+			}
 		}
 	}
 	div.hallTable{
-		margin-right:30rem;
+		margin-right:$cardW;
 		height:100%;
+		position:relative;
 		header#condition{
-			height:6%;
+			height:.3rem;
 			background:$defaultBgLight;
 			position:relative;
-			z-index: 1;
+			z-index: 100;//>99(scroll)
 			.panel-group {
 				margin-bottom: 0;
 				.panel{
 					border-radius: 0;
 					.panel-heading {
-						padding: .5rem 1.5rem;
+						padding: .05rem .15rem;
 						border-radius: 0;
 					}
 					.panel-body {
-						height:40rem;
-						padding:1rem 1rem 0 1rem;
+						height:4rem;
+						padding:.1rem .1rem 0 .1rem;
 					}
 				}
 			}
 		}
 		main{
-			height:93%;
+			position:absolute;
+			top:.3rem;
+			bottom:0;
+			left:0;
+			right:0;
 		}
 	}
 }

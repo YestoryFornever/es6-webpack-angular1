@@ -1,15 +1,15 @@
 @import '../../css/common';
 
 .pagetab {
-	height:2.4rem;
-	line-height:2.4rem;
+	height:$headerH/2;
+	line-height:$headerH/2;
 	display:block;
 	color:$defaultTextLight;
 	ul.nav.nav-tabs{
-		border-bottom:1px solid #1c2b36;
+		border-bottom:.1px solid #1c2b36;
 		>li{
 			>a{
-				padding:.2rem 1.5rem;
+				padding:.02rem .15rem;
 			}
 			>a:hover{
 				border-color: #eee #eee $defaultBgLight;
