@@ -4,6 +4,7 @@ class BondquotationController {
 		this.name = "债券报价";
 		// 基于准备好的dom，初始化echarts实例
 		var myChart = echarts.init(document.getElementById('settleChart'));
+
 		// 绘制图表
 		myChart.setOption({
 			title: { text: '结算行情' },
@@ -18,6 +19,10 @@ class BondquotationController {
 				data: [5, 20, 36, 10, 10, 20]
 			}]
 		});
+
+		window.onresize = function(){
+			myChart.resize();
+		}
 	}
 	$onInit(){
 	}
