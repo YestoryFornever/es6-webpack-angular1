@@ -22,7 +22,7 @@
 		</aside>
 		<div id="list">
 			<div id="search">
-				<input type="text" placeholder="หัห๗" ng-model="$ctrl.query" class="form-control">
+				<input type="text" placeholder="ๆ็ดข" ng-model="$ctrl.query" class="form-control">
 			</div>
 			<ul class="items">
 				<li ng-repeat="item in $ctrl.items | filter:$ctrl.query">
@@ -52,25 +52,25 @@
 				<div id="fnarea">
 					<span id="emoticon">
 						<i class="fa fa-smile-o" aria-hidden="true"></i>
-						ฑํว้
+						่กจๆ…
 					</span>
 					<span id="card">
 						<i class="fa fa-credit-card" aria-hidden="true"></i>
-						ทขหอร๛ฦฌ
+						ๅ‘้€ๅ็
 					</span>
 					<span id="quoto">
 						<i class="fa fa-plus" aria-hidden="true"></i>
-						ทขหอฑจผÛ
+						ๅ‘้€ๆฅไปท
 					</span>
 					<span id="history" ng-click="$ctrl.toggleChatHistory()">
 						<i class="fa fa-history" aria-hidden="true"></i>
-						า้ผÛผวยผ
+						่ฎฎไปท่ฎฐๅฝ•
 					</span>
 				</div>
 				<textarea name="" id="inputarea" ng-model="$ctrl.message"></textarea>
 				<div id="btnarea">
-					<md-button class="md-raised md-primary" ng-click="$ctrl.sendMsg()">ทขหอ</md-button>
-					<md-button class="md-raised" ng-click="$ctrl.login()">นุฑี</md-button>
+					<md-button class="md-raised md-primary" ng-click="$ctrl.sendMsg()">ๅ‘้€</md-button>
+					<md-button class="md-raised" ng-click="$ctrl.login()">ๅ…ณ้—ญ</md-button>
 				</div>
 			</div>
 		</main>

@@ -1,3 +1,162 @@
-<div>
+<!-- <div>
 	<p>{{ $ctrl.name }}</p>
+</div> -->
+<!-- 现券报价 -->
+<div class="bondprice">
+	<div class="header">
+		<h3>现券报价</h3>
+	</div>
+<!-- 交易方向 -->
+	<div class="main">
+		<div class="trade">
+			<div class="trade_content">
+				<div class="trade_content_left">
+					<!-- <h3>交易方向</h3> -->
+					<label for="" style="font-size:0.14rem;">交易方向</label>
+					 <div class="btn-group">
+				        <label class="btn btn-primary" ng-model="checkModel.left" uib-btn-checkbox>卖出</label>
+				       <!--  <label class="btn btn-primary" ng-model="checkModel.middle" uib-btn-checkbox>Middle</label> -->
+				        <label class="btn btn-primary" ng-model="checkModel.right" uib-btn-checkbox>买入</label>
+				    </div>
+				</div>
+				<div class="trade_content_right">
+					<button class="btn btn-primary">添加债券</button>
+					<button class="btn">债券搜索</button>
+					<button class="btn">客户经理代挂</button>
+				</div>
+			</div>
+			<!-- table -->
+			<div class="table_code">
+				<main>
+						<div class="scroll-body" slim-scroll>
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>序号</th>
+											<th>债券代码</th>
+											<th>债券简称</th>
+											<th>金额（万）</th>
+											<th>收益率</th>
+											<th>净价(元)</th>
+											<th>匿名</th>
+											<th>备注</th>
+											<th>操作</th>
+											
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>160210.IB</td>
+											<td>16国开10</td>
+											<td>4000</td>
+											<td>3.12%</td>
+											<td>99.98</td>
+											<td><input type="checkbox"></td>
+											<td>司表格单元格</td>
+											<td><i class="fa fa-times" ></i></td>
+										</tr> 
+										<tr>
+											<td>2</td>
+											<td> <div style=""><i class="fa fa-search"></i><input type="text" style="outline:none;border:none; width:90%; background:#F2F2F2;"placeholder="请输入债券代码"></div></td>
+											<td></td>
+											<td>3000</td>
+											<td>3.12%</td>
+											<td>299.98</td>
+											<td><input type="checkbox"></td>
+											<td></td>
+											<td><i class="fa fa-times" ></i></td>
+										</tr> 
+										
+									</tbody>
+							 	</table>
+							</div>
+						</div>
+				</main>
+			</div>
+			<!-- 发布 -->
+			<div class="footer" >
+				<button class="btn  btn-primary">发 布</button>
+			</div>
+			
+		</div>
+		<!-- 右侧 -->
+		<div class="tradetype">
+			<div class="tradetype_search">
+					<div class="tradetype_search_one">
+						<span>债券类型 </span>
+						<select name="" id="" style="width:50%; ">
+							<option value="">全部</option>
+							<option value="">1</option>
+						</select>
+					</div>
+					<div class="tradetype_search_one">
+						<span>评级 </span>
+						<select name="" id="" style="width:70%;">
+							<option value="">全部</option>
+							<option value="">1</option>
+						</select>
+					</div>
+					<div class="tradetype_search_one">
+						<span>票面 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<select name="" id="" style="width:50%; ">
+							<option value="">全部</option>
+							<option value="">1</option>
+						</select>
+					</div>
+					<div class="tradetype_search_one">
+						<span>期限</span><span style="background:#FFCC99;padding-left:5px;padding-right:5px;" ng-if="true">Y</span>
+						<span style="background:#FFCC99;padding-left:5px;padding-right:5px;" ng-if="false">N</span><input type="text" style="">至<input type="text">
+
+					</div>
+				
+			</div>
+			<!-- 表格 -->
+				<div class="tradetype_table">
+					<main>
+						<div class="scroll-body" slim-scroll>
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr style="background:#666666;">
+											<th><span>债券代码</span></th>
+											<th><span>债券简称</span></th>
+											<th><span>收益率</span></th>
+											<th><span>剩余期限</span></th>
+											<th><span>评级</span></th>
+											<th><span>操作</span></th>
+											
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											
+											<td>160210.IB</td>
+											<td>16国开10</td>
+											<td>3.12%</td>
+											<td>99.98Y</td>
+											<td>AAA</td>
+											<td><i class="fa fa-times" ></i></td>
+										</tr> 
+										<tr>
+											<td>160210.IB</td>
+											<td>16国开10</td>
+											<td>3.12%</td>
+											<td>99.98Y</td>
+											<td>AAA</td>
+											
+											<td><i class="fa fa-times" ></i></td>
+										</tr> 
+										
+									</tbody>
+							 	</table>
+							</div>
+						</div>
+				</main>
+
+				</div>
+
+		</div>
+	</div>
 </div>

@@ -6,7 +6,10 @@
 			</div>
 		</div>
 		<div id="nav" class="leftblock">
-			<pagenav></pagenav>
+			<pagenav 
+				on-add-tab="$ctrl.addTab()" 
+				on-delete-tab="$ctrl.deleteTab()">
+			</pagenav>
 		</div>
 		<div id="qrcode" class="leftblock"></div>
 		<div id="tag" class="rightblock"></div>

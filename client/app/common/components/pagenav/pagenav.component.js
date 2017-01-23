@@ -3,10 +3,13 @@ import controller from './pagenav.controller';
 import './pagenav.scss';
 
 let pagenavComponent = {
-  restrict: 'E',
-  bindings: {},
-  template,
-  controller
+	restrict: 'E',
+	bindings: {
+		onAddTab:'&',
+		onDeleteTab:'&'
+	},
+	template,
+	controller
 };
 
 export default pagenavComponent;
