@@ -3,7 +3,7 @@ import uiRouter from 'angular-ui-router';
 import pagefooterComponent from './pagefooter.component';
 
 let pagefooterModule = angular.module('pagefooter', [
-  uiRouter
+	uiRouter
 ])
 
 .component('pagefooter', pagefooterComponent)

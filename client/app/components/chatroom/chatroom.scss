@@ -1,5 +1,208 @@
 @import '../../common/css/common';
-
-chatroom {
-	color: #000;
+.md-button.md-default-theme.md-primary.md-raised, .md-button.md-primary.md-raised, .md-button.md-default-theme.md-primary.md-fab, .md-button.md-primary.md-fab{
+	background-color:$primaryBg;
+}
+.md-button.md-default-theme.md-primary.md-raised:not([disabled]):hover, .md-button.md-primary.md-raised:not([disabled]):hover, .md-button.md-default-theme.md-primary.md-fab:not([disabled]):hover, .md-button.md-primary.md-fab:not([disabled]):hover{
+	background-color:$primaryBg;
+}
+div#chatroom{
+	background: #fff;
+	margin:.1rem;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	border-radius: .05rem;
+	-moz-border-radius: .05rem;
+	-webkit-border-radius: .05rem;
+	border:1px solid $primaryBg;
+	$asideW: .6rem;
+	$listW: 3rem;
+	>*{
+		height:100%;
+	}
+	aside{
+		float:left;
+		width: $asideW;
+		background: $primaryBg;
+		border-top-left-radius: .04rem;
+		-moz-border-top-left-radius: .04rem;
+		-webkit-border-top-left-radius: .04rem;
+		border-bottom-left-radius: .04rem;
+		-moz-border-bottom-left-radius: .04rem;
+		-webkit-border-bottom-left-radius: .04rem;
+		ul{
+			li{
+				height:$asideW;
+				line-height:$asideW;
+				text-align:center;
+				font-size:.2rem;
+				a{
+					color:#fff;
+					text-shadow:.02rem .02rem .02rem #555;
+					display:block;
+					width:100%;
+					height:100%;
+				}
+				a:active,a:focus,a.actived{
+					color:$primaryBg;
+					text-shadow:.04rem .04rem .04rem #444;
+					background:#e0f1ef;
+					border-left:.04rem solid #53cfc1;
+				}
+			}
+			li:first-child{
+				height:.1rem;
+			}
+		}
+	}
+	div#list{
+		float:left;
+		width: $listW;
+		#search{
+			width:100%;
+			padding:.04rem;
+			border-bottom: 1px solid $primaryBg;
+			input{
+				width:100%;
+				border:0;
+				height:.26rem;
+				outline:none;
+			}
+		}
+		ul.items{
+			li{
+				height:.6rem;
+				border-bottom: 1px solid $primaryBg;
+				padding: .1rem;
+				div.portrait{
+					float:left;
+					width:.4rem;
+					height:.4rem;
+					line-height:.4rem;
+					background: #ccc;
+					border-radius: .4rem;
+					-moz-border-radius: .4rem;
+					-webkit-border-radius: .4rem;
+					img{
+						width:.4rem;
+						height:.4rem;
+					}
+				}
+				div.des{
+					margin-left:.5rem;
+					>span{
+						display:inline-block;
+					}
+					span.item-name{
+						font-size:.16rem;
+					}
+					span.item-time{
+						font-size:.12rem;
+						color:#333;
+						float:right;
+					}
+					div.item-snippet{
+						font-size:.12rem;
+					}
+				}
+			}
+		}
+	}
+	main{
+		border-left:1px solid $primaryBg;
+		margin-left: $asideW+$listW;
+		position:relative;
+		$sendareaH: 36%;
+		>*{
+			width:100%;
+			position:absolute;
+		}
+		div#chatcontent{
+			top:0;
+			bottom:$sendareaH;
+			overflow-y:auto;
+			ul#chat_content{
+				li{
+					background-color:#e0f1ef;
+				}
+				li.mine{
+					text-align:right;
+					background-color:transparent;
+				}
+			}
+		}
+		div#sendarea{
+			bottom:0;
+			height:$sendareaH;
+			min-height:2rem;
+			border-top:1px solid $primaryBg;
+			>*{
+				display:block;
+				position:absolute;
+				left:0;
+				right:0;
+			}
+			$fnAreaH: .3rem;
+			$btnAreaH: .5rem;
+			#fnarea{
+				top:0;
+				height:$fnAreaH;
+				/* background:$dangerBg; */
+				>span{
+					display: inline-block;
+					height: .3rem;
+					line-height: .3rem;
+					margin:0 .04rem;
+					cursor:pointer;
+				}
+				span#history{
+					float:right;
+				}
+			}
+			textarea#inputarea{
+				font-size:.14rem;
+				top:$fnAreaH;
+				bottom:$btnAreaH;
+				width: inherit;
+				resize: none;
+				border: 0;
+				padding:.04rem;
+				/* background:$primaryBg; */
+			}
+			#btnarea{
+				bottom:0;
+				height:$btnAreaH;
+				/* background: $warnBg; */
+				button{
+					float:right;
+					height:.3rem;
+					margin:.1rem;
+				}
+			}
+		}
+	}
+	div#chat_history{
+		display:none;//chatchat
+	}
+}
+div#chatroom.show-chat-history{//chatchat
+	$chatHistoryW: 3rem;
+	main{
+		border-right:1px solid $primaryBg;
+		margin-right: $chatHistoryW;
+		div#sendarea{
+			#fnarea{
+				span#history{
+					color:$primaryText;
+				}
+			}
+		}
+	}
+	div#chat_history{
+		float:right;
+		width: $chatHistoryW;
+		display:block;
+	}
 }

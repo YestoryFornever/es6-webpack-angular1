@@ -63,57 +63,20 @@ h1,h2,h3,h4,h5,h6{
 			background:$defaultBgLight;
 			position:relative;
 			z-index: 100;//>99(scroll)
-			.btn{
-					    padding: .03rem .06rem;
-				}
-			div#_body_{
-				// max-height:8rem;
-				overflow: hidden;
-				section{
-					padding: 0;
-				}
-				
-				.padd10{
-					padding-top: .1rem ;
-					clear: both;
-					.tit{
-						// padding:0 .1rem;
-						min-width: .7rem;
+			.panel-group {
+				margin-bottom: 0;
+				.panel{
+					border-radius: 0;
+					.panel-heading {
+						padding: .05rem .15rem;
+						border-radius: 0;
+					}
+					.panel-body {
+						height:4rem;
+						padding:.1rem .1rem 0 .1rem;
 					}
 				}
 			}
-			// .panel-group {
-			// 	margin-bottom: 0;
-			// 	.panel{
-			// 		border-radius: 0;
-			// 		.panel-heading {
-			// 			padding: .05rem .15rem;
-			// 			border-radius: 0;
-			// 		}
-			// 		.panel-body {
-			// 			// height:4rem;
-			// 			padding:0.1rem 0.1rem 0 .1rem;
-			// 		}
-			// 		div#_body_{
-			// 			// max-height:8rem;
-			// 			overflow: hidden;
-			// 			section{
-			// 				padding: 0;
-			// 			}
-			// 			.btn{
-			// 				    padding: .03rem .06rem;
-			// 			}
-			// 			.padd10{
-			// 				padding-top: .1rem ;
-			// 				clear: both;
-			// 				.tit{
-			// 					// padding:0 .1rem;
-			// 					min-width: .7rem;
-			// 				}
-			// 			}
-			// 		}
-			// 	}
-			// }
 		}
 		main{
 			position:absolute;
@@ -123,14 +86,6 @@ h1,h2,h3,h4,h5,h6{
 			right:0;
 			div#testSlimScroll{
 				height:100%;
-			}
-			thead i{
-				float: right;
-			}
-			i.pulRight{
-				position: absolute;
-				left: .3rem;
-				top:0;
 			}
 		}
 	}

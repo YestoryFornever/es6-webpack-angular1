@@ -1,15 +1,32 @@
-<div class="pagenav">
-	<nav class="navbar navbar-inverse" role="navigation">
-		<ul class="nav navbar-nav">
-			<li>
-				<a ui-sref="home.bondquotation">债券报价</a>
-			</li>
-			<li>
-				<a ui-sref="home.chatroom">聊天室</a>
-			</li>
-			<li>
-				<a ui-sref="home.calculator">计算器</a>
-			</li>
-		</ul>
-	</nav>
+<div class="nav">
+	<ul id="nav">
+		<li>
+			<a href="javascript:void(0)">About</a>
+			<ul>
+				<li><a href="javascript:void(0)">About Us</a></li>
+				<li><a href="javascript:void(0)">About Team</a></li>
+				<li>
+					<a href="javascript:void(0)">About You</a>
+					<ul class="xd">
+						<li><a href="javascript:void(0)">More About Us</a></li>
+						<li><a href="javascript:void(0)">More About Team</a></li>
+						<li><a href="javascript:void(0)">More About You</a>
+							<ul class="xd">
+								<li><a>Article</a></li>
+								<li><a>Pics</a></li>
+								<li><a>Error</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li><a href="javascript:void(0)">债券报价</a>
+			<ul>
+				<li><a ui-sref="home.bondquotation">债券报价</a></li>
+				<li><a ui-sref="home.chatroom">消息中心</a></li>
+				<li><a ui-sref="home.calculator">计算器</a></li>
+			</ul>
+		</li>
+	</ul>
 </div>

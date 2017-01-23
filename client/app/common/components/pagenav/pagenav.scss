@@ -1,23 +1,62 @@
 @import "../../css/common";
 
-.pagenav{
-	background-color: $defaultBgDark;
-	height:.22rem;
-	line-height:.22rem;
-	display:block;
-	.navbar{
-		min-height:.22rem !important; 
-		margin-bottom: 0;
-		ul.nav.navbar-nav{
+/*Menu*/
+div.nav{
+	height:.3rem;
+}
+/* for ie6 */
+* html #nav li ul li {
+	display: inline;
+}
+#nav {
+	background: $primaryBg;
+	float: left;
+	margin: 0; padding: 0;
+	border-bottom: none;
+	li{
+		float: left;
+		z-index: 1000;
+		list-style: none;
+		position: relative;
+		a{
+			float: left;
+			padding: 0rem .2rem;
+			text-decoration: none;
+			color: white;
+			background: $primaryBg;
+		}
+		a:hover{
+			background: $primaryText;
+		}
+		ul{
+			display: none;
+			position: absolute;
+			left: 0;
+			top: 100%;
+			padding: 0; 
+			margin: 0;
 			li{
-				height:.22rem;
-				display:inline-block;
-				a {
-					height:.22rem;
-					padding-top:.03rem !important;
-					padding-bottom:.03rem !important;
+				z-index:1001;
+				float: none;
+				a{
+					z-index:1001;
+					float: none;
+					width: 1.5rem;
+					display: block;
+				}
+				a:hover{
+					
 				}
 			}
+		}
+		ul.xd{
+			top:0;
+			left:100%;
+		}
+	}
+	li:hover{
+		>ul{
+			display: block;
 		}
 	}
 }

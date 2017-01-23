@@ -6,4 +6,7 @@
 	line-height: $footerH;
 	display: block;
 	color: $defaultTextLight;
+	span#clock{
+		float:right;
+	}
 }

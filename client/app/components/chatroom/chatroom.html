@@ -1,3 +1,78 @@
-<div>
-	<p>{{ $ctrl.name }}</p>
+<div class="o-v-a">
+	<div id="chatroom" ng-class="{'show-chat-history': $ctrl.showChatHistory}">
+		<aside>
+			<ul>
+				<li></li>
+				<li>
+					<a href="javascript:void(0);">
+						<i class="fa fa-user" aria-hidden="true"></i>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);">
+						<i class="fa fa-users" aria-hidden="true"></i>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);">
+						<i class="fa fa-ticket" aria-hidden="true"></i>
+					</a>
+				</li>
+			</ul>
+		</aside>
+		<div id="list">
+			<div id="search">
+				<input type="text" placeholder="搜索" ng-model="$ctrl.query" class="form-control">
+			</div>
+			<ul class="items">
+				<li ng-repeat="item in $ctrl.items | filter:$ctrl.query">
+					<div class="portrait">
+						<img ng-src="{{item.image}}" alt="">
+					</div>
+					<div class="des">
+						<span class="item-name">{{item.name}}</span>
+						<span class="item-time">{{item.time}}</span>
+						<div class="item-snippet">{{item.snippet}}</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div id="chat_history">
+			{{bargain}}
+		</div>
+		<main>
+			<div id="chatcontent">
+				<ul id="chat_content">
+					<li ng-repeat="chat in $ctrl.chatcontent" ng-class="{mine:{{chat.type}}!='1'}">
+						{{chat.message}}
+					</li>
+				</ul>
+			</div>
+			<div id="sendarea">
+				<div id="fnarea">
+					<span id="emoticon">
+						<i class="fa fa-smile-o" aria-hidden="true"></i>
+						表情
+					</span>
+					<span id="card">
+						<i class="fa fa-credit-card" aria-hidden="true"></i>
+						发送名片
+					</span>
+					<span id="quoto">
+						<i class="fa fa-plus" aria-hidden="true"></i>
+						发送报价
+					</span>
+					<span id="history" ng-click="$ctrl.toggleChatHistory()">
+						<i class="fa fa-history" aria-hidden="true"></i>
+						议价记录
+					</span>
+				</div>
+				<textarea name="" id="inputarea" ng-model="$ctrl.message"></textarea>
+				<div id="btnarea">
+					<md-button class="md-raised md-primary" ng-click="$ctrl.sendMsg()">发送</md-button>
+					<md-button class="md-raised" ng-click="$ctrl.login()">关闭</md-button>
+				</div>
+			</div>
+		</main>
+	</div>
 </div>

@@ -3,10 +3,10 @@ import controller from './pagefooter.controller';
 import './pagefooter.scss';
 
 let pagefooterComponent = {
-  restrict: 'E',
-  bindings: {},
-  template,
-  controller
+	restrict: 'E',
+	bindings: {},
+	template,
+	controller
 };
 
 export default pagefooterComponent;

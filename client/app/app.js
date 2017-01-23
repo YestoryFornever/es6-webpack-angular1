@@ -14,6 +14,7 @@ import uiSlimscroll from 'angular-slimscroll';
 
 import Common from './common/common';
 import Components from './components/components';
+
 import AppComponent from './app.component';
 
 angular.module('app', [

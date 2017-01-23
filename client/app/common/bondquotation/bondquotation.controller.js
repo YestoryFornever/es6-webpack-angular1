@@ -1,7 +1,7 @@
 var echarts = require('echarts');
 class BondquotationController {
 	constructor() {
-		this.name ="债券报价";
+		this.name = "债券报价";
 		// 基于准备好的dom，初始化echarts实例
 		var myChart = echarts.init(document.getElementById('settleChart'));
 
@@ -23,11 +23,9 @@ class BondquotationController {
 			myChart.resize();
 		};
 		this.tableH = '3';
-		
 	}
 	$onInit(){
 	}
-	
 }
 BondquotationController.$inject = ['$http'];
 export default BondquotationController;
