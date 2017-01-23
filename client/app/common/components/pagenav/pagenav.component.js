@@ -5,8 +5,8 @@ import './pagenav.scss';
 let pagenavComponent = {
 	restrict: 'E',
 	bindings: {
-		onAddTab:'&',
-		onDeleteTab:'&'
+		nav:'<',
+		onAddTab:'&'
 	},
 	template,
 	controller

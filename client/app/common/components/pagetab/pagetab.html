@@ -1,8 +1,7 @@
 <div class="pagetab">
 	<ul class="nav nav-sm nav-tabs">
-		<li ng-repeat="nav in $ctrl.navs" class="{{nav.routeClass}}">
-			<a ui-sref="{{nav.routeState}}">{{nav.routeLabel}}</a>
+		<li ng-repeat="tab in $ctrl.tabs" class="{{tab.routeClass}}">
+			<a ui-sref="{{tab.routeState}}">{{tab.routeLabel}}</a>
 		</li>
-		<!-- <li>{{$ctrl.test}}</li> -->
 	</ul>
 </div>

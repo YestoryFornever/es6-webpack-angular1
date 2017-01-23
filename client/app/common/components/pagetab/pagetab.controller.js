@@ -1,32 +1,14 @@
 class PagetabController {
-	constructor(tabs) {
-		this.tabs = tabs;
-		this.tabs2 = [
-			{ title:'Dynamic Title 1', content:'Dynamic content 1' },
-			{ title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
-		]
-		this.model = {
-			name: 'Tabs'
-		}
-	}
+	constructor() {}
 	$onInit(){
 		this.name = 'pagetab';
-		this.navs = this.tabs.getTabs();
 	}
-	$onChanges(){
-		//
+	/*$onChanges(){}
+	$doCheck(){
+		console.log(this.tabs);
 	}
-	$postLink(){
-		//
-	}
-	$onDestroy(){
-		//
-	}
-	alertMe(){
-		setTimeout(function() {
-			$window.alert('You\'ve selected the alert tab!');
-		});
-	}
+	$postLink(){}
+	$onDestroy(){}*/
 }
-PagetabController.$inject = ['getTabsService'];
+// PagetabController.$inject = ['getTabsService'];
 export default PagetabController;

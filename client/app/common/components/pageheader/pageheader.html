@@ -6,9 +6,7 @@
 			</div>
 		</div>
 		<div id="nav" class="leftblock">
-			<pagenav 
-				on-add-tab="$ctrl.addTab()" 
-				on-delete-tab="$ctrl.deleteTab()">
+			<pagenav on-add-tab="$ctrl.addTab(nav)" >
 			</pagenav>
 		</div>
 		<div id="qrcode" class="leftblock"></div>
@@ -18,5 +16,5 @@
 		<div id="complain" class="rightblock"></div>
 		<div style="clear:both;"></div>
 	</div>
-	<pagetab test="xxx"></pagetab>
+	<pagetab tabs="$ctrl.tabs"></pagetab>
 </div>

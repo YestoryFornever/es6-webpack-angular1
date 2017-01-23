@@ -52,7 +52,7 @@ class ChatroomController {
 			}
 		];
 	}
-	$onChanges(changesObj){
+	/*$onChanges(changesObj){
 		console.log("changesObj:"+changesObj);
 	}
 	$doCheck(){
@@ -63,7 +63,7 @@ class ChatroomController {
 	}
 	$postLink(){
 		console.log('postLink:');
-	}
+	}*/
 	toggleChatHistory(){
 		// console.log(this.showChatHistory);
 		this.showChatHistory = !this.showChatHistory;
