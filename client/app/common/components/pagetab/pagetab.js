@@ -5,7 +5,7 @@ import uiRouter from 'angular-ui-router';
 import pagetabComponent from './pagetab.component';
 
 let pagetabModule = angular.module('pagetab', [
-  uiRouter
+	uiRouter
 ])
 
 .component('pagetab', pagetabComponent)

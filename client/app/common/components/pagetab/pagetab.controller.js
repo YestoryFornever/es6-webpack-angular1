@@ -3,10 +3,23 @@ class PagetabController {
 	$onInit(){
 		this.name = 'pagetab';
 	}
-	/*$onChanges(){}
-	$doCheck(){
+	setActive(tab){
+		angular.forEach(this.tabs,function(item){
+			let arr = item.routeClass.split(" ");
+			let index = arr.indexOf('active');
+			if(index>-1){
+				arr.splice(index,1);
+			}
+			item.routeClass = arr.join(" ");
+		});
+		if(tab){
+			tab.routeClass+=" active";
+		}
+	}
+	/*$doCheck(){
 		console.log(this.tabs);
 	}
+	$onChanges(){}
 	$postLink(){}
 	$onDestroy(){}*/
 }

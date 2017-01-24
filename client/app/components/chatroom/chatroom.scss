@@ -126,10 +126,12 @@ div#chatroom{
 			ul#chat_content{
 				li{
 					background-color:#e0f1ef;
+					padding:0 0 0 .1rem;
 				}
 				li.mine{
 					text-align:right;
 					background-color:transparent;
+					padding:0 .1rem 0 0;
 				}
 			}
 		}

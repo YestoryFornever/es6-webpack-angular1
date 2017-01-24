@@ -4,8 +4,8 @@ class PageheaderController {
 		this.name = 'pageheader';
 		this.tabs = [{
 			routeState:"home.bondquotation",
-			routeLabel:"Õ®È¯±¨¼Û",
-			routeClass:"",
+			routeLabel:"å€ºåˆ¸æŠ¥ä»·",
+			routeClass:"active",
 		}];
 	}
 	addTab(nav) {
@@ -13,14 +13,24 @@ class PageheaderController {
 		let tmp = {
 			routeState:nav.rstate,
 			routeLabel:nav.rlabel,
-			routeClass:nav.rclass
+			routeClass:(nav.rclass+" active")
 		};
 		let tmparr = [];
 		for(let elem of this.tabs.values()){
 			tmparr.push(elem.routeLabel);
 		}
-		!tmparr.includes(tmp.routeLabel) &&	this.tabs.push(tmp);
-		this.tabs.length>5 && this.tabs.shift(); 
+		if(!tmparr.includes(tmp.routeLabel)){
+			angular.forEach(this.tabs,function(item){
+				let arr = item.routeClass.split(" ");
+				let index = arr.indexOf('active');
+				if(index>-1){
+					arr.splice(index,1);
+				}
+				item.routeClass = arr.join(" ");
+			});
+			this.tabs.push(tmp);
+		}		
+		this.tabs.length>5 && this.tabs.shift();
 	}
 	deleteTab() {
 		console.info('delete');
