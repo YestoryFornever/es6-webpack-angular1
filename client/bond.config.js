@@ -16,11 +16,11 @@ class GLOBAL{
 	constructor(){
 		this.isPro = false;
 		this.JH = {
-			'Content-Type'?:?'application/json;charset=utf-8',
+			'Content-Type'聽:聽'application/json;charset=utf-8',
 			'terminal' : '2'
 		};
 		this.FH = {
-			'Content-Type'?:?'application/json;charset=utf-8',
+			'Content-Type'聽:聽'application/json;charset=utf-8',
 			'terminal' : '2'
 		}
 		this.UUID = PRIVATECONFIG.Guid();
@@ -31,7 +31,7 @@ class GLOBAL{
 	}
 	setUSERINFO(userinfo){
 		this.USERINFO = userinfo;
-		this.JH["lid"] = this.FH["lid"] = userinfo.lid;//头信息添加lid
+		this.JH["lid"] = this.FH["lid"] = userinfo.lid;//澶翠俊鎭坊鍔爈id
 	}
 };
 module.exports = new GLOBAL;
