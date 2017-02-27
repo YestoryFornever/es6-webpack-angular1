@@ -4,7 +4,7 @@ class LoginController {
 		this.$stateParams = $stateParams;
 		this.loginService = loginService;
 		this.$http = $http;
-		this.name = 'µÇÂ¼';
+		this.name = 'ç™»å½•';
 		/*this.account = '15811111111';
 		this.password = '123qwe';*/
 		this.account = '15652598188';
@@ -21,7 +21,7 @@ class LoginController {
 		promise.then((data)=>{
 			// debugger;
 			if(data.status !== 200 || !data.data){
-				alert(data.statusText||'·şÎñÆ÷Òì³£');
+				alert(data.statusText||'æœåŠ¡å™¨å¼‚å¸¸');
 				return;
 			}
 			if(data.data.status === "200003"){
@@ -32,7 +32,7 @@ class LoginController {
 				this.$state.go('home');
 			}
 		},(data)=>{
-			console.warn("ÓÃ»§µÇÂ¼Òì³£");
+			console.warn("ç”¨æˆ·ç™»å½•å¼‚å¸¸");
 		});
 	}
 	register(){
@@ -40,7 +40,7 @@ class LoginController {
 		promise.then((data)=>{
 			// debugger;
 		},(data)=>{
-			console.warn("ÓÃ»§×¢²áÒì³£");
+			console.warn("ç”¨æˆ·æ³¨å†Œå¼‚å¸¸");
 		});
 	}
 	generate(){
@@ -48,7 +48,7 @@ class LoginController {
 		promise.then((data)=>{
 			// debugger;
 		},(data)=>{
-			console.warn("»ñÈ¡ÑéÖ¤ÂëÒì³£");
+			console.warn("è·å–éªŒè¯ç å¼‚å¸¸");
 		}); 
 	}
 }
