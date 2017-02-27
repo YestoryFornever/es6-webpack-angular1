@@ -1,0 +1,126 @@
+<div class="o-v-a">
+    <aside class="hallSidebar">
+        <div id="_body_">
+            <section class="card" id="bondInfo">
+                <header class="title">
+                    <span>债券信息</span>
+                </header>
+                <main id="BondMain">
+                    <div class="tit">{{$ctrl.bondDetail.bondShrtnm}}</div>
+                    <div class="cont_l" >
+                        <div class="col">
+                            <span>剩余期限：</span>
+                            <span>{{$ctrl.bondDetail.rsdtrm}}</span>
+                        </div>
+                        <div class="col">
+                            <span>债券类型：</span>
+                            <span>{{$ctrl.bondDetail.creditType}}</span>
+                        </div>
+                        <div class="col">
+                            <span>固定利率：</span>
+                            <span>{{$ctrl.bondDetail.bondRate}}</span>
+                        </div>
+                        <div class="col">
+                            <span>距下一付息日：</span>
+                            <span>{{$ctrl.bondDetail.nextPayInterestDate}}</span>
+                        </div>
+                        <div class="col">
+                            <span>发行规模(亿)：</span>
+                            <span>{{$ctrl.bondDetail.issueAmount}}</span>
+                        </div>
+                        <div class="col">
+                            <span>交易市场：</span>
+                            <span>{{$ctrl.bondDetail.marketType}}</span>
+                        </div>
+                    </div>
+                    <div class="cont_r" >
+                        <div class="col">
+                            <span>到期日：</span>
+                            <span>{{$ctrl.bondDetail.maturedDay}}</span>
+                        </div>
+                        <div class="col">
+                            <span>票息类型：</span>
+                            <span>{{$ctrl.bondDetail.rateType}}</span>
+                        </div>
+                        <div class="col">
+                            <span>久期：</span>
+                            <span>{{$ctrl.bondDetail.rmclDuration}}</span>
+                        </div>
+                        <div class="col">
+                            <span>期限(年)：</span>
+                            <span>{{$ctrl.bondDetail.enterMaturity}}</span>
+                        </div>
+                        <div class="col">
+                            <span>发行价格(元)：</span>
+                            <span>{{$ctrl.bondDetail.issuePrice}}</span>
+                        </div>
+                        <div class="col">
+                            <span>评级：</span>
+                            <span>AAA/---</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="tit_l">发行人：</div>
+                        <div class="textOverHidden">{{$ctrl.bondDetail.name }}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="tit_l">主承销商：</div>
+                        <span class="textOverHidden">{{$ctrl.bondDetail.underwriterName}}</span>
+                    </div>
+                    <div class="mar_T10"><a class="pull-right" href="javascript:void(0);">更多</a><div style="clear: both;"></div></div>
+                </main>
+            </section>
+            <div id="_gap_"></div>
+            <section class="card" id="settlement">
+                <header class="title">
+                    <span>计算行情</span>
+                </header>
+                <main id="settleChart"></main>
+            </section>
+        </div>
+    </aside>
+    <div class="hallTable">
+        <!-- <header id="condition">
+            <label type="button" class="btn btn-default" >我的报价</label>
+        </header> -->
+        <main>
+            <div class="scroll-body" slim-scroll>
+                <div class="table-responsive">
+                    <table class="table table-bordered ">
+                        <thead>
+                            <tr>
+                                <th>卖出<i class="fa fa-sort-asc  fa-lg"></i></th>
+                                <th>债券代码<i class="fa fa-sort-asc  fa-lg"></i></th>
+                                <th>债券简称<i class="fa fa-sort-desc  fa-lg"></i></th>
+                                <th>金额（万元）<i class="fa fa-sort-desc  fa-lg"></i></th>
+                                <th>收益率<i class="fa fa-sort-desc  fa-lg"></i></th>
+                                <th>净价（元）<i class="fa fa-sort-desc  fa-lg"></i></th>
+                                <th>剩余期限<i class="fa fa-sort-desc  fa-lg"></i></th>
+                                <th>主/债评级<i class="fa fa-sort-desc  fa-lg"></i></th>
+                                <th>挂牌类型<i class="fa fa-sort-desc  fa-lg"></i></th>
+                                <th>状态<i class="fa fa-sort-desc  fa-lg"></i></th>
+                                <th>操作<i class="fa fa-sort-desc  fa-lg"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>表格单元格</td>
+                                <td>表格单元格</td>
+                                <td>表格单元格</td>
+                                <td>表格单元格</td>
+                                <td>表格单元格</td>
+                                <td>表格单元格</td>
+                                <td>表格单元格</td>
+                                <td>表格单元格</td>
+                                <td>表格单元格</td>
+                                <td>表格单元格</td>
+                                <td>表格单元格</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

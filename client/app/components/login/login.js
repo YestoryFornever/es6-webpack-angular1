@@ -1,9 +1,11 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import loginComponent from './login.component';
+import loginService from './login.service';
 
 let loginModule = angular.module('login', [
-	uiRouter
+	uiRouter,
+	loginService
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {
@@ -13,7 +15,7 @@ let loginModule = angular.module('login', [
 
 	$stateProvider
 		.state('login',{
-			url:'/login',
+			url:'/',
 			component: 'login'
 		})
 })

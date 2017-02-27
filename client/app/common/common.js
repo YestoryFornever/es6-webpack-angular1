@@ -1,17 +1,11 @@
 import angular from 'angular';
-import PageHeader from './components/pageheader/pageheader';
-import PageNav from './components/pagenav/pagenav';
-import PageTab from './components/pagetab/pagetab';
-import PageFooter from './components/pagefooter/pagefooter';
-
-import GetTabsService from './services/get-tabs.service';
-
+import inputNumModule from './components/inputNum/inputNum';
+import mutiSelectModule from './components/mutiSelect/mutiSelect';
+import bondTrialModule from './components/bondTrial/bondTrial';
 let commonModule = angular.module('app.common', [
-	PageHeader,
-	PageNav,
-	PageTab,
-	PageFooter,
-	GetTabsService
+	inputNumModule,
+	mutiSelectModule,
+	bondTrialModule
 ])
 
 .name;

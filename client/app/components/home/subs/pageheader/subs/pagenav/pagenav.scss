@@ -1,0 +1,63 @@
+@import "../../../../../../common/css/common";
+
+/*Menu*/
+div.nav{
+	height:$navH;
+	ul.navul {
+		background: $bgDefaultDarkA;
+		float: left;
+		margin: 0; padding: 0;
+		border-bottom: none;
+		li{
+			float: left;
+			z-index: 1000;
+			list-style: none;
+			position: relative;
+			a{
+				float: left;
+				padding: 0rem .2rem;
+				text-decoration: none;
+				color: $textDefault;
+				background: $bgDefaultDarkA;
+			}
+			a:hover{
+				background: $bgDefaultDarkB;
+				color:$textFrameActive;
+			}
+			ul{
+				display: none;
+				position: absolute;
+				left: 0;
+				top: 100%;
+				padding: 0; 
+				margin: 0;
+				li{
+					z-index:1001;
+					float: none;
+					a{
+						z-index:1001;
+						float: none;
+						width: 1.5rem;
+						display: block;
+					}
+					a:hover{
+						
+					}
+				}
+			}
+			ul.xd{
+				top:0;
+				left:100%;
+			}
+		}
+		li:hover{
+			>ul{
+				display: block;
+			}
+		}
+	}
+}
+/* for ie6 */
+* html #nav li ul li {
+	display: inline;
+}

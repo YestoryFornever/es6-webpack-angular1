@@ -1,0 +1,39 @@
+<ul class="barginlist">
+	<li ng-repeat="bargain in $ctrl.bargainlist"  ng-class="{fold:bargain.fold}">
+		<div class="bondShrtnm" ng-click="$ctrl.togglelist(bargain)">
+			<div class="bondShrtnm-left">{{bargain.bondShrtnm}}[{{bargain.bondCd}}]</div>
+			<div class="bondShrtnm-right">
+				<span class="bondShrtnm-right-num">{{bargain.negtNum}}</span>条议价
+				<span class="bondShrtnm-right-icon">&nbsp;</span>
+			</div>
+		</div>
+		<ul class="items">
+			<li ng-repeat="item in bargain.negtprcList" ng-click="$ctrl.changeUser(item)">
+				<div class="drc" ng-class="{drc8:item.drc=='8',drc9:item.drc=='9',drc2:item.drc=='2',drc3:item.drc=='3'}"></div>
+				<div class="detail">
+					<div class="negtprc-title">
+						<h4 class="negtprc-orgname">{{item.organizationShortName}}-{{item.userName}}</h4>
+						<span class="negtprc-mark">{{item.bestFlag}}{{user.friendsFlag}}</span>
+					</div>
+					<div>
+						<ul class="negtprc-detail">
+							<li ng-repeat="detail in item.negtprcDtlList">
+								<span class="negtprc-detail-drc mine" ng-if="detail.drc=='4'">我&emsp;报</span>
+								<span class="negtprc-detail-drc" ng-if="detail.drc=='5'">对方议</span>
+								<span class="negtprc-detail-drc" ng-if="detail.drc=='6'">对方报</span>
+								<span class="negtprc-detail-drc mine" ng-if="detail.drc=='7'">我&emsp;议</span>
+								<span class="negtprc-detail-symbol">:</span>
+								<span class="negtprc-detail-num">{{detail.num}}</span>
+									<span class="negtprc-detail-symbol">|</span>
+								<span class="negtprc-detail-yldrto">{{detail.yldrto}}</span>
+									<span class="negtprc-detail-symbol">|</span>
+								<span class="negtprc-detail-netprc">{{detail.netprc}}</span>
+							</li>
+						</ul>
+						<span class="negtprc-time">{{item.time|date:"HH:mm:ss"}}</span>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</li>
+</ul>

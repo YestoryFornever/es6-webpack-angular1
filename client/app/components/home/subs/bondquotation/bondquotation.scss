@@ -1,0 +1,396 @@
+@import '../../../../common/css/common';
+h1,h2,h3,h4,h5,h6{
+	margin: 0; 
+	padding: 0;
+}
+
+input{
+	border:none;
+	background:none;
+	font-size: 0.12rem;
+	padding:0.04rem 0.1rem;
+	height:20px;
+	border:1px solid #ccc;
+	border-radius:5px;
+	// color:$inputPlaceColor;
+}
+
+.btn:hover{
+	color:$textF;
+}
+.btn-primary,.btn-primary:hover,.btn-primary.focus,.btn-primary.active,.btn-primary.visited{
+	background-color:$btnPrimary;
+	border:none;
+}
+.btn-default,.btn-default:hover,.btn-default.focus,.btn-default.active,.btn-default.visited{
+	background-color:$bgDefaultLightC;
+	color:$textD;
+	border:none;
+}
+$borderColor:#36474f;
+.bg{
+	background:url(../../../../../resource/images/btn_person.png) no-repeat center;
+}
+
+$inputPlaceColor:#ccc
+::-webkit-input-placeholder { /* WebKit browsers */
+color: $inputPlaceColor;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+color: $inputPlaceColor;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+color: $inputPlaceColor;
+}
+::-ms-input-placeholder { /* Internet Explorer 10+ */
+color: $inputPlaceColor;
+}
+
+.btn{
+	font-size: 12px;
+	text-align: center;
+	vertical-align: middle;
+}
+// @media screen and (max-width: 1370px) { /*当屏幕尺寸小于1370px时，应用下面的CSS样式*/
+//   .wid12 {
+//     width:100%;
+//   }
+//   #_body_.well{
+//   	padding: 0.1rem;
+//   	// overflow-y: ;
+//   	height: 4.7rem;
+//   }
+// }
+.o-v-a{
+	$cardW:27.43%;
+	$tableW:71.83%;
+	$marginL:0.74%;
+	$marginR:$cardW+$marginL;
+	$marginW:0.06rem;
+	font-size:0.12rem;
+	overflow:hidden;
+	margin:$marginW;
+	position:static!important;
+	aside.hallSidebar{
+		width:$cardW;
+		margin-left: $marginL;
+		float:right;
+		div#_body_{
+			top:0;
+			left:0;
+			right:0;
+			bottom:0;
+			section.card{
+				border-width:0 0.01rem 0.01rem 0.01rem;
+				border-style: solid;
+				border-color: #dddddd;
+				position: relative;
+
+
+				$titleH:0.32rem;
+				$titMarL:0.12rem;
+				header.title{
+					height:$titleH;
+					line-height: $titleH;
+					background:$bgDefaultDarkA;
+					color:$textDefault;
+					span{
+						line-height:$titleH;
+						margin-left:$titMarL;
+					}
+				}
+				main#settleChart{
+					width:3.7rem;
+					height:2.1rem;
+					background:$primaryBg;
+					position: absolute;
+					top:.3rem;
+					left:0;
+					right:0;
+					bottom:0;
+				}
+			}
+			section#bondInfo.card{
+				// min-height:2.5rem;
+				main#BondMain {
+					padding: 0.1rem;
+					height: 2.8rem;
+					.cont_l,.cont_r{
+						width:50% ;
+						float:left;
+					}
+					.tit{
+						// margin-bottom:0.2rem;
+						line-height: 0.18rem;
+						height: 0.3rem;
+						font-size:0.18rem;
+						color:#ffeb62;
+					}
+					.col{
+						width: 100%;
+						display: inline-block;
+						line-height: 0.22rem;
+						height: 0.22rem;
+						overflow: hidden;
+						span{
+							line-height: 0.22rem;
+						}
+						.tit_l{
+							display: inline-block;
+							float:left;
+						}
+						.textOverHidden{
+							display: inline-block;
+							width: 80%;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							white-space: nowrap;
+						}
+					}
+					.mar_T10{
+						margin-top: 0.16rem;
+						text-align: right;
+						line-height: 0.16rem;
+						height:0.16rem;
+					}
+				}
+			}
+			div#_gap_{
+				height:0.1rem;
+			}
+			section#settlement{
+				height:2.7rem;
+			}
+		}
+	}
+	div.hallTable{
+		position: static!important;
+		// width:$tableW;
+		// float:left;
+		margin-right:$marginR;
+		height:100%;
+		$headerH:0.32rem;
+		$wrapW:0.1rem;
+		header#condition{
+			height:$headerH;
+			background:$bgDefaultLightA;
+			.head{
+				height: $headerH;
+				// line-height: 0.32rem;
+				.mar_L10{
+					margin-left: 0.1rem;
+					padding:0.04rem 0.2rem;
+					border-radius: 0.2rem;
+				}
+			}
+			.btn{
+				padding: .03rem .06rem;
+			}
+			#_body_{
+				padding:$wrapW;
+			}
+			.titSearch{
+				float: right;
+				position: relative;
+				width:2rem;
+				#searchSelect{
+					position: absolute;
+					z-index: 100;
+					right: 0;
+					width:2.45rem;
+					border: 1px solid #ccc;
+					li{
+						height: 0.3rem;
+						background: #ccc;
+						line-height: 0.3rem;
+						padding-left: 0.1rem;
+						span{
+							margin-right: 0.1rem;
+						}
+					}
+				}
+				label{
+					position: absolute;
+					z-index: 1;
+					right:.05rem;
+					top:.07rem;
+					font-size:14px;
+				}
+				input{
+					width:100%;
+					border-radius: 0.24rem;
+					padding-right: 0.25rem;
+					height: 0.24rem;
+					color:#667882;
+				}
+			}
+			div#_body_{
+				// display: none;
+				$height20:0.2rem;
+				$titMinWidth:0.5rem;
+				section{
+					padding: 0;
+				}
+				.mar_T14{
+					margin-top: 0.14rem;
+				}
+				.padd10{
+					// padding-top: .1rem ;
+					margin-bottom: 0.06rem;
+					clear: both;
+					.spacePlace{
+						display: inline-block;
+						margin-bottom: 0.06px;
+						height: 0.2rem;
+					}
+					.btn{
+						padding:0 0.06rem;
+						height: 0.2rem;
+					}
+					.tit{
+						min-width: $titMinWidth;
+						line-height: $height20;
+						text-align: right;
+						margin-right: $height20;
+					}
+				}
+				.peoplePro{
+					position: relative;
+					width:1.9rem;
+					display:inline-block;
+					label{
+						position: absolute;
+						z-index: 1;
+						right: 0.05rem;
+						top:5px;
+					}
+					input{
+						width: 100%;
+						padding-right: 0.25rem;
+						height: 0.2rem;
+					}
+				}
+				
+			}
+		}
+		main{
+			// min-height: 3.3rem;
+			// max-height:6rem;
+
+			// display: none;
+			// position:relative;
+			border:1px solid #ccc;
+			// top:$headerH;
+			// bottom:0;
+			// left:0;
+			// right:0;
+			// td,th{
+			// 	border-left:1px solid #ccc;
+			// }
+			table{
+
+				// height: 100%;
+				// overflow-y: scroll;
+			}
+			div#testSlimScroll{
+				height:100%;
+
+			}
+			thead i{
+				float: right;
+			}
+			i.pulRight{
+				// position: absolute;
+				left: .3rem;
+				top:0;
+			}
+		}
+	}
+}
+.v-o-a{
+	div#_body_.collapse{
+		height: 2.9rem;
+		// display:block;
+	}
+	td.care{
+		background: url(../../../../../resource/images/btn_star_select.png) no-repeat center;
+
+	}
+	td.noCare{
+		background: url(../../../../../resource/images/btn_star_normal.png) no-repeat center;
+	}
+}
+
+
+
+.modal-dialog{
+	// height:6rem;
+	width:8rem;
+	margin-top:0;
+	position:relative;
+	z-index:1000;
+	.modal-content{
+		height:6.2rem;
+		position:relative;
+
+		.modal-body{
+			height: 4.9rem;
+			width:8rem;
+			float:left;
+			padding-left:0;
+			padding-right:0;
+			.cont{
+				width:100%;
+				border-top:1px solid #ccc;
+				label {
+					font-weight:500;
+				}
+				.marT10{
+					margin-top:10px;
+				}
+				p.input-group{
+					margin:0;
+				}
+				.cont_l,.cont_r{
+					width:48%;
+					display: inline-block;
+					margin-bottom:  10px ;
+				}
+				.tit{
+					display:inline-block;
+					width:1.2rem;
+					text-align: right;
+					margin-right: 20px;
+				}
+				.titSearch{
+					position: relative;
+					input{
+						padding:0px 20px;
+					}
+					.ser,.clear{
+						position: absolute;
+						top:.08rem;
+					}
+					.ser{
+						left:.03rem;
+
+					}
+					.clear{
+						right:5px;
+					}
+				}
+			}
+			.borT0{
+				border-top:none;
+				margin-top:0;
+			}
+		}
+		.modal-footer{
+			height: .4rem;
+			position:absolute;
+			left:3rem;
+			bottom:0px;
+			border:none;
+		}
+	}
+}

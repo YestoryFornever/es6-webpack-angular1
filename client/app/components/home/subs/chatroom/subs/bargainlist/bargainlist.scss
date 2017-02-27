@@ -1,0 +1,133 @@
+@import '../../../../../../common/css/common';
+
+bargainlist {
+	ul.barginlist{
+		>li{
+			border-bottom: 1px solid $borderDefault;
+			div.bondShrtnm{
+				$liH:.6rem;
+				border-bottom: 1px solid $borderDefault;
+				height:$liH;
+				padding:0 .15rem 0 .1rem;
+				div.bondShrtnm-left{
+					float:left;
+					height:$liH;
+					line-height:$liH;
+					font-size:.16rem;
+					color:$textHighlight;
+				}
+				div.bondShrtnm-right{
+					float:right;
+					height:$liH;
+					line-height:$liH;
+					font-size:.12rem;
+					color:$textB;
+					span.bondShrtnm-right-num{
+						color:$textI;
+						margin-right:.02rem;
+					}
+					span.bondShrtnm-right-icon{
+						background-image:url('../../../../../../../resource/images/btn_arrow_packup2_normal.png');
+						background-repeat: no-repeat;
+						background-position: center;
+						background-size:.16rem .1rem;
+						width:.16rem;
+						height:.1rem;
+						line-height:.1rem;
+						display:inline-block;
+						margin-left:.08rem;
+					}
+				}
+			}
+			ul.items{
+				>li{
+					$drcW:.6rem;
+					height:$drcW;
+					line-height:$drcW;
+					div.drc{
+						float:left;
+						width:$drcW;
+						height:$drcW;
+						line-height:$drcW;
+						background-repeat:no-repeat;
+						background-position:center;
+					}
+					div.drc.drc8{
+						background-image:url('../../../../../../../resource/images/icon_hebuy.png');
+					}
+					div.drc.drc9{
+						background-image:url('../../../../../../../resource/images/icon_hesale.png');
+					}
+					div.drc.drc2{
+						background-image:url('../../../../../../../resource/images/icon_ibuy.png');
+					}
+					div.drc.drc3{
+						background-image:url('../../../../../../../resource/images/icon_isale.png');
+					}
+					div.detail{
+						margin-left:$drcW;
+						font-size:.12rem;
+						padding:.1rem 0;
+						margin-right:.15rem;
+						position:relative;
+						div.negtprc-title{
+							h4.negtprc-orgname{
+								color:$textD;
+								font-size:.12rem;
+							}
+							span.negtprc-mark{
+
+							}
+						}
+						$detalLiH:.16rem;
+						ul.negtprc-detail{
+							width:2rem;
+							>li{
+								font-size:.12rem;
+								height:$detalLiH;
+								line-height:$detalLiH;
+								span{
+									display:inline-block;
+									overflow:hidden;
+									vertical-align: middle;
+								}
+								span.negtprc-detail-num,span.negtprc-detail-yldrto,span.negtprc-detail-netprc{
+									width:.4rem;
+									word-break:keep-all;/* 不换行 */ 
+									white-space:nowrap;/* 不换行 */ 
+									overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */ 
+									//text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/ 
+								}
+								span.negtprc-detail-drc{
+									color:$textI;
+								}
+								span.negtprc-detail-drc.mine{
+									color:$textH;
+								}
+							}
+						}
+						span.negtprc-time{
+							height:$detalLiH;
+							line-height:$detalLiH;
+							position:absolute;
+							bottom:.08rem;
+							right:0;
+						}
+					}
+				}
+			}
+		}
+		>li.fold{
+			div.bondShrtnm{
+				div.bondShrtnm-right{
+					span.bondShrtnm-right-icon{
+						background-image:url('../../../../../../../resource/images/btn_arrow_unfold2_normal.png');
+					}
+				}
+			}
+			ul.items{
+				display:none;
+			}
+		}
+	}
+}

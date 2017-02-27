@@ -1,0 +1,42 @@
+<!-- <div>
+	<p>{{ $ctrl.name }}</p>
+</div> -->
+<!-- 下拉选择 -->
+<div class="ourSelect"  >
+	<input type="text" class="one" uib-tooltip="{{$ctrl.info}}" placeholder="{{$ctrl.placeholder}}" ng-focus='isCollapsed=true'  ng-model='$ctrl.info' >
+	<span class="pull-right">
+        <i class=" glyphicon" ng-click="isCollapsed = !isCollapsed" ng-class="{'glyphicon-chevron-down': isCollapsed, 'glyphicon-chevron-right': !isCollapsed}"></i>
+    </span>
+	<div class="tree"  uib-collapse="!isCollapsed" >
+	  	<ul class="scroll-body one" slim-scroll>
+		    <li ng-class="closed" ng-repeat='list1 in $ctrl.data.data'>
+		      	<div class="one" ng-click="isCollapsed2 = !isCollapsed2" ng-click='$ctrl.ourStopPropagation($event)'>
+		      		<!-- {{list1.checked}} -->
+		        	<input type="checkbox"  ng-model='list1.checked'  ng-click='$ctrl.ourStopPropagation($event)' ng-class="{intermediate: $ctrl.isList1Class(list1)}" ng-change="$ctrl.allChecked(list1)" />
+		        	<span>{{list1.label}}</span>
+		        	<span class="pull-right marR5">
+				        <i class=" glyphicon" ng-class="{'glyphicon-chevron-down': isCollapsed2, 'glyphicon-chevron-right': !isCollapsed2}"></i>
+				    </span>
+		      	</div>
+				<ul>
+			        <li uib-collapse="!isCollapsed2" ng-repeat='list2 in list1.children'>
+			        	<div class="two" ng-click="isCollapsed3 = !isCollapsed3" >
+				          	<input type="checkbox"  ng-model='list2.checked' ng-change="$ctrl.list2Checked(list2, list1)" ng-click='$ctrl.ourStopPropagation($event)'/>
+				            <span >{{list2.label}}</span>
+				            <span class="pull-right marR5" ng-if='list2 && list2.children.length>0 ' >
+						        <i class="glyphicon"  ng-class="{'glyphicon-chevron-down': isCollapsed3, 'glyphicon-chevron-right': !isCollapsed3}"></i>
+						    </span>
+				        </div>
+				        <ul>
+				        	<li class="three" uib-collapse="!isCollapsed3"  ng-repeat='list3 in list2.children'>
+				        		<input type="checkbox"  ng-model='list3.checked' ng-change="$ctrl.list3Checked(list3,list2, list1)" />
+				            	<span >{{list3.label}}</span>
+				        	</li>
+				        </ul>
+
+			        </li>
+		       </ul>
+		    </li>
+	  	</ul>
+	</div>
+</div>

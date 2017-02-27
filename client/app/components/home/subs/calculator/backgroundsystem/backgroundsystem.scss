@@ -1,0 +1,100 @@
+@import '../../../../../common/css/common';
+h1,h2,h3,h4,h5,h6{
+	margin: 0; 
+	padding: 0;
+}
+.a-P{
+	height:100%;
+	overflow:auto;
+	font-size:0.14rem;
+	.header_nav{
+		height:.4rem;
+		line-height:0.4rem;
+		border-bottom:.01rem solid #666;
+		background:green;
+			span{
+				font-size:.16rem;
+				padding-left:.1rem;
+			}
+	}
+	.header_look{
+		height:3.2rem;
+		margin:.1rem;
+		padding:.1rem .1rem;
+		border:.01rem solid #666;
+
+			.header_one{
+				height:1rem;
+				width:100%;
+				border-bottom:.01rem solid #666;
+				//background:yellow;
+					span{
+						display:block;
+						height:.5rem;
+						line-height:.5rem;
+						width:100%;
+						//background:blue;
+
+							input{
+									display:inline-block;
+									height:.25rem;
+									width:1.5rem;
+									//border-radius:0.08rem;
+									border:.01rem solid #777;
+							}
+					}
+					
+			}
+			
+			
+	}
+		
+	.list{
+			width:120%;
+			padding-left: .15rem;
+			overflow-y:auto;
+				.filter{
+					height:.4rem;
+					line-height:.4rem;
+					width:85%;
+					background:#D7D7D7;
+					margin-bottom:.1rem;
+					span{
+						font-size:.14rem;
+						font-weight:600;
+					}
+					button{
+						margin-left:50%;
+					}
+					a{
+						padding-left:.1rem;
+					}
+				}
+				.talk_left{
+					th{
+						font-size:.12rem;
+					}
+
+				}
+		}
+	//弹窗
+	.select-user{
+		height:4rem;
+		width:4rem;
+		.modal_main{ 
+			height:3rem;
+			padding:.2rem;
+			background:red;
+			p{
+				dispaly:inline-block;
+				height:.3rem;
+				line-height:.3rem;
+				input{
+					width:2.5rem;
+					margin-left:.2rem;
+				}
+			}
+		}
+	}
+	
+}

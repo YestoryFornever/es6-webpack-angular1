@@ -1,0 +1,189 @@
+<div class="o-v-a">
+	<div id="chatroom" ng-class="{'show-chat-history': $ctrl.showChatHistory}">
+		<aside>
+			<ul>
+				<li></li>
+				<li>
+					<a ui-sref="home.chatroom.friendslist" ui-sref-active="actived">
+						<i class="fa fa-user" aria-hidden="true"></i>
+					</a>
+				</li>
+				<li>
+					<a ui-sref="home.chatroom.groupslist" ui-sref-active="actived">
+						<i class="fa fa-users" aria-hidden="true"></i>
+					</a>
+				</li>
+				<li>
+					<a ui-sref="home.chatroom.bargainlist" ui-sref-active="actived">
+						<i class="fa fa-ticket" aria-hidden="true"></i>
+					</a>
+				</li>
+			</ul>
+		</aside>
+		<div id="list" style="height:100%;">
+			<div ui-view="list" friend="$ctrl.friend" change-friend="$ctrl.changeFriend(friend)"></div>
+		</div>
+		<div class="bargain-all-history">
+			{{bargain}}
+			<header></header>
+			<ul>
+				<li ng-repeat="bond in $ctrl.bargainHistory">
+					{{bond.bondShrtnm}}
+					{{bond.bondCd}}
+					{{bond.drc}}
+					{{bond.num}}
+					{{bond.yldrto}}
+					{{bond.crclMkt}}
+				</li>
+			</ul>
+		</div>
+		<main>
+			<div id="chatcontent">
+				<div class="friend-tips">您正在和{{$ctrl.friend.userName}}聊天</div>
+				<div class="bargain" ng-class="{fold:$ctrl.bargainfold}">
+					<div class="info">
+						<div class="abbr">{{$ctrl.curBargain.organizationShortName}}-{{$ctrl.curBargain.userName}}
+						{{$ctrl.curBargain.dic}}
+						</div>
+						<div class="bond">
+							{{$ctrl.curBargain.bondShrtnm}}[{{$ctrl.curBargain.bondCd}}]
+							{{$ctrl.curBargain.yldrto}}/{{$ctrl.curBargain.netprc}}
+						</div>
+						<div class="level">评级{{$ctrl.curBargain.sbjRtg}}/{{$ctrl.curBargain.dbtitmRtg}}</div>
+					</div>
+					<div class="operate">
+						<table>
+							<thead>
+								<th>收益率</th>
+								<th>净价</th>
+								<th>数量</th>
+								<th>结算金额</th>
+							</thead>
+							<tbody>
+								<tr>
+									<td><input type="text" ng-model="$ctrl.curBargainDetail.yield"></td>
+									<td><input type="text" ng-model="$ctrl.curBargainDetail.netprc"></td>
+									<td><input type="text" ng-model="$ctrl.curBargainDetail.num"></td>
+									<td><input type="text" ng-model="$ctrl.curBargainDetail.setamt"></td>
+								</tr>
+							</tbody>
+						</table>
+						<div>
+							<button type="button" ng-click="$ctrl.addBargainDetail()">议价</button>
+							交易倒计时:
+							<button type="button" ng-click="$ctrl.reject()">拒绝</button>
+							<button type="button" ng-click="$ctrl.deal()">交易</button>
+							<button type="button" ng-click="$ctrl.closeBargainDrop()">CLOSE</button>
+						</div>
+					</div>
+					<ul class="bargain-cur-history">
+						<li ng-repeat="item in $ctrl.curBargain.negtprcDtlList">
+							{{item.drc}}{{item.yldrto}}{{item.netprc}}{{item.num}}{{item.setamt}}
+						</li>
+					</ul>
+				</div>
+				<ul id="chat_content">
+					<li ng-repeat="chat in $ctrl.chatcontent" ng-class="{itext:chat.type=='itext',otext:chat.type=='otext',iquote:chat.type=='iquote',oquote:chat.type=='oquote'}">
+						<div class="text-dialog" ng-if="chat.type=='itext'">
+							<div class="text-dialog-head">
+								<img ng-src="{{$ctrl.curBargainDetail.iconUrl}}" alt="">
+							</div>
+							<div class="arrow"><div class="cutoff"></div></div>
+							<span class="text-dialog-message" ng-bind="chat.message"></span>
+						</div>
+						<div class="text-dialog" ng-if="chat.type=='otext'">
+							<span class="text-dialog-message" ng-bind="chat.message"></span>
+							<div class="arrow"><div class="cutoff"></div></div>
+							<div class="text-dialog-head">
+								<img ng-src="{{$ctrl.curBargainDetail.iconUrl}}" alt="">
+							</div>
+						</div>
+						<div class="quote-dialog" ng-if="chat.type=='iquote'">
+							<div class="text-dialog-head">
+								<img ng-src="{{$ctrl.curBargainDetail.iconUrl}}" alt="">
+							</div>
+							<div class="arrow"><div class="cutoff"></div></div>
+							<div class="quote-dialog-pop">
+								<div class="quote-tips"><span>{{chat.message.drc}}</span><span>4:52</span></div>
+								<div class="contents">
+									<span>简称{{chat.message.bondShrtnm}}</span>
+									<table>
+										<thead>
+											<th>价格</th>
+											<th>数量</th>
+										</thead>
+										<tbody>
+											<tr>
+												<td>{{chat.message.yldrto}}/{{chat.message.netprc}}</td>
+												<td>{{chat.message.num}}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="btns">
+									<div ng-click="$ctrl.openBargainDrop()">议价</div>
+									<div ng-click="$ctrl.addBargainDetail()">交易</div>
+									<div ng-click="$ctrl.addBargainDetail()">拒绝</div>
+								</div>
+							</div>
+						</div>
+						<div class="quote-dialog" ng-if="chat.type=='oquote'">
+							<div class="quote-dialog-pop">
+								<div class="quote-tips"><span>{{chat.message.drc}}</span><span>4:52</span></div>
+								<div class="contents">
+									<span>简称{{chat.message.bondShrtnm}}</span>
+									<table>
+										<thead>
+											<th>价格</th>
+											<th>数量</th>
+										</thead>
+										<tbody>
+											<tr>
+												<td>{{chat.message.yldrto}}/{{chat.message.netprc}}</td>
+												<td>{{chat.message.num}}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="btns">
+									<div ng-click="$ctrl.addBargainDetail()">议价</div>
+									<div ng-click="$ctrl.addBargainDetail()">交易</div>
+									<div ng-click="$ctrl.addBargainDetail()">拒绝</div>
+								</div>
+							</div>
+							<div class="arrow"><div class="cutoff"></div></div>
+							<div class="text-dialog-head">
+								<img ng-src="{{$ctrl.curBargainDetail.iconUrl}}" alt="">
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div id="sendarea">
+				<div id="fnarea">
+					<span id="emoticon">
+						<i class="fa fa-smile-o" aria-hidden="true"></i>
+						表情
+					</span>
+					<span id="card">
+						<i class="fa fa-credit-card" aria-hidden="true"></i>
+						发送名片
+					</span>
+					<span id="quoto" ng-click="$ctrl.sendQuote()">
+						<i class="fa fa-plus" aria-hidden="true"></i>
+						发送报价
+					</span>
+					<span id="history" ng-click="$ctrl.toggleChatHistory()">
+						<i class="fa fa-history" aria-hidden="true"></i>
+						议价记录
+					</span>
+				</div>
+				<textarea name="" id="inputarea" ng-model="$ctrl.message" placeholder="请输入会话"></textarea>
+				<div id="btnarea">
+					<md-button class="md-raised md-primary" ng-click="$ctrl.sendMsg()">发送</md-button>
+					<md-button class="md-raised" ng-click="$ctrl.test()">关闭</md-button>
+				</div>
+			</div>
+		</main>
+	</div>
+</div>

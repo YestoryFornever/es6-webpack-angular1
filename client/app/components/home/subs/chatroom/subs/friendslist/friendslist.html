@@ -1,0 +1,15 @@
+<div id="search">
+	<input type="text" placeholder="搜索" ng-model="$ctrl.query" class="form-control">
+</div>
+<ul class="items">
+	<li ng-repeat="item in $ctrl.items | filter:$ctrl.query">
+		<div class="portrait">
+			<img ng-src="{{item.image}}" alt="">
+		</div>
+		<div class="des">
+			<span class="item-name">{{item.name}}</span>
+			<span class="item-time">{{item.time}}</span>
+			<div class="item-snippet">{{item.snippet}}</div>
+		</div>
+	</li>
+</ul>

@@ -1,0 +1,77 @@
+@import '../../css/common';
+
+mutiSelect {
+	color: #000;
+}
+.ourSelect{
+	position: relative;
+	width:inherit;
+	height:inherit;
+	// min-width:200px;
+	min-height:35px;
+	padding:5px 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	transition: all 0.6s;
+	.marR5{
+		margin-right: 5px;
+	}
+	input.one{
+		border:none;
+		background: none;
+		width: 90%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	div.tree {
+		position:absolute;
+		z-index: 1;
+		height: 1.6rem;
+		top:35px;
+		left:0px;
+		width:100%;
+		background: #eee;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		transition: all 0.6s;
+		-moz-transition: all 0.6s;	/* Firefox 4 */
+		-webkit-transition: all 0.6s;	/* Safari 和 Chrome */
+		-o-transition: all 0.6s;	/* Opera */
+
+		.intermediate {
+		  opacity: 0.3;
+		}
+		ul{
+			padding: 0;
+			margin: 0;
+			width:100%;
+			height: 100%;
+			div{
+				padding-left: .1rem;
+			  	border-bottom: 1px solid #ccc;
+			}
+			li {
+			  	cursor: pointer;
+			  	padding:0;
+			  	border: none;
+			  	border-bottom: 1px solid #ccc;
+			}
+
+		}
+		div.two{
+			padding-left: .2rem;
+		}
+		ul.one{
+			max-height: 2rem;
+		}
+		li.three{
+			padding-left: .3rem;
+		}
+		input[type=checkbox]{
+		    width: 16px;
+		    height: 16px;
+		    outline: none;
+		}
+	}
+}

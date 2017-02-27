@@ -1,12 +1,16 @@
 @import "common/css/common";
 .app {
-	background-color: $defaultBgLight;
+	color:$textDefault;
+	background-color: $bgDefaultLightA;
 	position:fixed;
 	top:0;
 	left:0;
 	right:0;
 	bottom:0;
-	font-size:.16rem;
+	font-size:.14rem;
+	>div[ui-view]{
+		height:100%;
+	}
 }
 button:focus {outline:0;}
 ::selection {

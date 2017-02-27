@@ -2,8 +2,25 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import homeComponent from './home.component';
 
+import PageHeader from './subs/pageheader/pageheader';
+import PageFooter from './subs/pagefooter/pagefooter';
+
+import Calculator from './subs/calculator/calculator';
+import Chatroom from './subs/chatroom/chatroom';
+import Bondquotation from './subs/bondquotation/bondquotation';
+
+import MineBond from './subs/minebond/minebond';
+
 let homeModule = angular.module('home', [
 	uiRouter,
+	PageHeader,
+	PageFooter,
+
+	Calculator,
+	Chatroom,
+	Bondquotation,
+	MineBond
+
 ])
 
 .config(($stateProvider, $urlRouterProvider) => {
@@ -11,7 +28,7 @@ let homeModule = angular.module('home', [
 
 	$stateProvider
 		.state('home', {
-			url: '/',
+			url: '/home',
 			views: {
 				'': {
 					component: 'home'

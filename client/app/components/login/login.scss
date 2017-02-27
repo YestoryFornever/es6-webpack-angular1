@@ -1,5 +1,194 @@
 @import '../../common/css/common';
 
 login {
-	color: #000;
+	background:#3a3c48;
+	display:block;
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	height:100vh;
+	div#wrap{
+		height:100vh;
+		overflow:auto;
+		$headLRW:16vw;//3.18rem;
+		div.bgbanner{
+			background-image:url('../../../app/components/login/images/img_login_bg.jpg');
+			background-repeat: no-repeat;
+			height:100vh;
+			position:relative;
+			img#laptop{
+				width:39vw;
+				height:54vh;
+				position:absolute;
+				top:26vh;
+				left:9vw;
+			}
+			header{
+				height:6vh;
+				div.header-left{
+					float:left;
+					margin-left:$headLRW;
+					margin-top:1vh;
+				}
+				div.header-right{
+					width:27vw;
+					float:right;
+					margin-right:$headLRW;
+					>*{
+						color:#fff;
+					}
+					a{
+						margin-right:2vw;
+						line-height:6vh;
+						font-size:.94vw;
+					}
+					a:hover,a:active{
+						color:#5999e9;
+						text-decoration: none;
+					}
+					button#register{
+						font-size:.8vw;
+						margin-left:2vw;
+						padding:.3vw 1.3vw;
+						background:#5a99e9;
+						float:right;
+						margin-top:1.4vh;
+					}
+				}
+			}
+			main{
+				height:94vh;
+				div#dialog{
+					color:#fff;
+					text-align:center;
+					position:absolute;
+					top:28vh;
+					right:$headLRW;
+					// background:lavender;
+					width:30vw;
+					height:50vh;
+					div#login{
+						font-size:4vh;//.36rem;
+						margin-left:14%;
+					}
+					div.login-tr{
+						width:100%;
+						height:16.6%;
+						font-size:1.8vh;
+						span.login-tr-icon{
+							float:left;
+							display:block;
+							width:12%;
+							height:80%;
+							img{
+								$iconW:4vh;
+								width:$iconW;
+								height:$iconW;
+								margin-top:1vh;
+							}
+						}
+						div.login-tr-input{
+							margin-left:14%;
+							height:80%;
+							input{
+								height:100%;
+								width:100%;
+								border:none;
+								color:#fff;
+								background-color: rgba(255,255,255,.2);
+								padding-left:.08rem;
+								border:1px solid #c1b8b1;
+								border-radius: .04rem;
+								-moz-border-radius: .04rem;
+								-webkit-border-radius: .04rem;
+							}
+							button#loginbtn{
+								font-size:2.4vh;
+								background-color: #5999e9;
+								width:100%;
+								height:100%;
+								border:none;
+								border-radius: .04rem;
+								-moz-border-radius: .04rem;
+								-webkit-border-radius: .04rem;
+							}
+						}
+						a{
+							margin:0 1vh;
+							color:#fff;
+						}
+					}
+				}
+			}
+		}
+		footer{
+			height:32vh;
+			width:100%;
+			font-size:1.7vh;
+			overflow:hidden;
+			>div.footer-con{
+				margin:8vh $headLRW;
+				overflow:hidden;
+				dl{
+					margin-right:4vw;
+					float:left;
+					dt{
+						width:3.4vw;
+						height:6vw;
+						float:left;
+						background-repeat: no-repeat;
+						background-size:2.4vw 2.4vw;
+						background-position: 0 50%;
+						border-right:1px #50525a solid;
+					}
+					dd{
+						float:left;
+						padding-left:1vw;
+						p{
+							color:#a0a3b2;
+							padding:1vh 0;
+							margin:0;
+							a{
+								color:#a0a3b2;
+								text-decoration:none;
+								cursor:pointer;
+							}
+						}
+					}
+				}
+				dl.footer-about dt{
+					background-image:url('../../../app/components/login/images/icon_footer_about.png');
+				}
+				dl.footer-wechat{
+					dt{
+						background-image:url('../../../app/components/login/images/icon_footer_wechat.png');
+					}
+					dd.dd2 div{
+						height:6vw;
+						background:url('../../../app/components/login/images/img_footer_QRcode.png') no-repeat left center;
+						background-size:6vw 6vw;
+						padding-left:8vw; 
+						p{
+							padding-top:1vh;
+						}
+					}
+				}
+				dl.footer-connect{
+					dt{
+						background-image:url('../../../app/components/login/images/icon_footer_connect.png');
+					}
+					dd{
+						p{
+							padding-top:1vh;
+						}
+						p:last-child{
+							padding-left:2vw;
+						}
+					}
+				}
+			}
+		}
+	}
 }

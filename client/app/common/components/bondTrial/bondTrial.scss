@@ -1,0 +1,85 @@
+@import '../../css/common';
+
+bondTrial {
+	// color: #000;
+}
+.yellow{
+	color:$textG
+}
+.modal-dialog{
+	// height:6rem;
+	width:8rem;
+	// margin-top:-1.3rem;
+	position:relative;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	margin:auto;
+	z-index:1000;
+	.modal-content{
+		height:6.2rem;
+		position:relative;
+		background: none;
+		.modal-body{
+			height: 4.9rem;
+			width:8rem;
+			float:left;
+			padding-left:0;
+			padding-right:0;
+			.cont{
+				width:100%;
+				border-top:1px solid #ccc;
+				label {
+					font-weight:500;
+				}
+				.marT10{
+					margin-top:10px;
+				}
+				p.input-group{
+					margin:0;
+				}
+				.cont_l,.cont_r{
+					width:48%;
+					display: inline-block;
+					margin-bottom:  10px ;
+				}
+				.tit{
+					display:inline-block;
+					width:1.2rem;
+					text-align: right;
+					margin-right: 20px;
+				}
+				.titSearch{
+					position: relative;
+					input{
+						padding:0px 20px;
+					}
+					.ser,.clear{
+						position: absolute;
+						top:.08rem;
+					}
+					.ser{
+						left:.03rem;
+
+					}
+					.clear{
+						right:5px;
+					}
+				}
+			}
+			.borT0{
+				border-top:none;
+				margin-top:0;
+			}
+		}
+		.modal-footer{
+			height: .4rem;
+			position:absolute;
+			left:3rem;
+			bottom:0px;
+			border:none;
+		}
+	}
+}
+

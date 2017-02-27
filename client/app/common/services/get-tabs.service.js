@@ -24,8 +24,28 @@ let getTabsServiceModule = angular.module('getTabsService', [])
 			routeClass:''
 		},
 		{
+			routeState:'home.minebond',
+			routeLabel:'我的报价',
+			routeClass:''
+		},
+		{
 			routeState:'home.acoupondetails',
 			routeLabel:'个券详情',
+			routeClass:''
+		},
+		{
+			routeState:'home.cashoffer',
+			routeLabel:'现券报价弹窗',
+			routeClass:''
+		},
+		{
+			routeState:'home.backgroundsystem',
+			routeLabel:'后台管理',
+			routeClass:''
+		},
+		{
+			routeState:'home.backsystem',
+			routeLabel:'后台管理_债券报价',
 			routeClass:''
 		}
 	];

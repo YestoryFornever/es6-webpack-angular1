@@ -1,0 +1,263 @@
+<!-- 现券报价 -->
+<div class="bondprice">
+	<div class="header">
+		<h3>现券报价</h3>
+	</div>
+<!-- 交易方向 -->
+	<div class="main">
+		<div class="trade">
+			<div class="trade_content">
+				<div class="trade_content_left">
+					<label for="" style="font-size:0.14rem;">交易方向</label>
+					<div class="btn-group">
+				        <label class="btn " ng-model="$ctrl.addBatchBondQuoteInfo.drc" uib-btn-checkbox btn-checkbox-true="-1" >卖出</label>
+				       <!--  <label class="btn " ng-model="checkModel.middle" uib-btn-checkbox>Middle</label> -->
+				        <label class="btn " ng-model="$ctrl.addBatchBondQuoteInfo.drc" uib-btn-checkbox btn-checkbox-ture="1" >买入</label>
+				    </div>
+				</div>
+				<div class="trade_content_right">
+					<button class="btn ">添加债券</button>
+					<button class="btn">债券搜索</button>
+					<button class="btn">客户经理代挂</button>
+				</div>
+			</div>
+			<!-- table -->
+			<div class="table_code">
+				<main>
+						<div class="scroll-body" slim-scroll>
+							<div class="table-responsive">
+								<table class="table table-bordered ">
+									<thead>
+										<tr>
+											<th>序号</th>
+											<th>债券代码</th>
+											<th>债券简称</th>
+											<th>金额（万）</th>
+											<th>收益率</th>
+											<th>净价(元)</th>
+											<th>匿名</th>
+											<th>备注</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody ng-repeat='item in $ctrl.tbodyArr'>
+										<!-- <tr>
+											<td>{{$index+1}}</td>
+											<td>160210.IB</td>
+											<td>16国开10</td>
+											<td>4000</td>
+											<td>3.12%</td>
+											<td>99.98</td>
+											<td><input type="checkbox"></td>
+											<td>司表格单元格</td>
+											<td><i class="fa fa-times" ></i></td>
+										</tr>  -->
+										<tr>
+											<td style="width:.39rem">
+												<input type="checkbox" >
+											</td>
+											<td style="width:.46rem">
+												<input type="text" >
+											</td>
+											<td style="width:.90rem">
+												<input type="text" ng-model='$ctrl.selected' uib-typeahead="n.keyword for n in $.ctrl.getLocation($viewValue)" ypeahead-loading="loadingLocations" typeahead-no-results="noResults">
+											</td>
+											<td style="width:1.17rem">
+												<input type="text" >
+											</td>
+											<td style="width:.66rem">
+												<input type="text" >
+											</td>
+											<td style="width:.67rem">
+												<input type="text">
+											</td>
+											<td style="width:.71rem">
+												<input type="text" >
+											</td>
+											<td style="width:.57rem">
+												<input type="checkbox" >
+											</td>
+											<td style="width:1.43rem">
+												<input type="text" >
+											</td>
+											<td style="width:.68rem">
+												<input type="checkbox" >
+											</td>
+										</tr>
+									</tbody>
+							 	</table>
+							</div>
+						</div>
+				</main>
+			</div>
+			<!-- 发布 -->
+			<div class="footer" >
+				<button class="btn  " ng-click='$ctrl.addBatchBondQuote()'>发 布</button>
+			</div>
+			<!-- 报价修改弹窗 -->
+
+	<div class="modal-dialog " style="height:800px; display: none">
+     	<div class="modal-content"  style="height:700px;position:relative;">
+     		
+	     		<div class="modal-header ng-scope">
+	            	<p class="modal-title" id="modal-title">修改报价 <i  style="padding-left:470px;"class="fa fa-times" aria-hidden="true"></i></p>
+
+	        	</div>
+	        	
+	        <div class="modal-body ng-scope" id="modal-body" style="height: 420px;width: 598px;float:left;">
+	        	
+		           <div class="direction"style="height:60px;width:400px;border:1px solid #666;line-height:60px;">
+		           		<label for="" style="font-size:0.14rem;padding-left:10px;">方向</label>
+						 <div class="btn-group" style="padding-left:140px;">
+					        <label class="btn btn-primary" ng-model="checkModel.left" uib-btn-checkbox>买入</label>
+					       <!--  <label class="btn btn-primary" ng-model="checkModel.middle" uib-btn-checkbox>Middle</label> -->
+					        <label class="btn btn-primary" ng-model="checkModel.right" uib-btn-checkbox>卖出</label>
+					</div>
+	         </div>
+	           <!-- 债券代码/简称 -->
+	           	<div class="one" style="height:60px;width:400px;border-bottom:1px solid #666;line-height:60px;">
+	           		<span style="color:red;padding-left:10px;">*</span><span>债券代码/简称</span><input type="text" value="反显,不可修改" style="width:240px;height:50px;border:none;outline:none;margin-left:20px;">
+	            </div>
+	           	<!-- 数量 -->
+	            <div class="one" style="height:60px;width:400px;border-bottom:1px solid #666;line-height:60px;position:relative;">
+	            	<span style="color:red;padding-left:10px;">*</span><span>数量</span><input type="number"  style="margin-left:54px;width:240px;height:50px;border:none;outline:none;"><span style=" display:inline-block;height:50px;width:50px;line-height:50px;position:absolute;right:0px;bottom:0px;text-align:center;">万</span>
+	            </div>
+	            <!-- 收益率 -->
+	            <div class="one" style="height:60px;width:400px;border-bottom:1px solid #666;line-height:60px;position:relative;">
+	            	<span style="color:red;padding-left:10px;">*</span><span>债收益率</span><input type="number"  style="margin-left:22px;width:240px;height:50px;border:none;outline:none;"><span style=" display:inline-block;height:50px;width:50px;line-height:50px;position:absolute;right:0px;bottom:0px;text-align:center;">万</span>
+	            </div>
+	            <!-- 净价 -->
+	            <div class="one" style="height:60px;width:400px;border-bottom:1px solid #666;line-height:60px;position:relative;">
+	            	<span style="color:red;padding-left:10px;">*</span><span>净价</span><input type="number"  style="margin-left:54px;width:280px;height:50px;border:none;outline:none;">
+	            	
+	            </div>
+
+					<!-- 是否匿名 -->
+	            <div class="one" style="height:60px;width:400px;border-bottom:1px solid #666;line-height:60px;position:relative;">
+	            	<span style="padding-left:10px;">是否匿名</span><span style=" display:inline-block;height:50px;width:50px;line-height:50px;position:absolute;right:0px;bottom:0px;text-align:center;"><i    class="fa fa-toggle-on"></i></span>
+	            	<!-- <input type="number"  style="margin-left:54px;width:280px;height:50px;border:none;outline:none;"> -->
+	            </div>
+	            <!-- 备注 -->
+	            <div class="" style="height:120px;width:400px; position:relative;">
+	            	<p for="" style="color:#666666;padding-left:10px;">备注</p>
+					<textarea name="" id="" cols="6" rows="10" style="height:100px;width:400px;" placeholder="提示文字"></textarea>
+					<span style="display:block;height:20px;width:60px;position:absolute;left:340px;bottom:0px;color:#666666;text-align:center;">0/50</span>
+	            </div>
+		        <div class="modal-footer ng-scope" style="height: 60px; margin-top:30px;border-top:1px solid #666;;overflow:hidden;overflow:hidden;"	>
+		            <button type="button" class="btn btn-primary" type="button" ng-click="$ctrl.ok()">取消</button>
+		            <button  type="button" class="btn " type="button" ng-click="$ctrl.cancel()">确定</button>
+		            <!-- btn-warning -->
+		        </div>
+	     </div>
+	 </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+		<!-- 右侧 -->
+		<div class="tradetype">
+			<div class="tradetype_search">
+					<div class="tradetype_search_one">
+						<span>债券类型 </span>
+						<select name="" id="" style="width:50%; ">
+							<option value="">全部</option>
+							<option value="">1</option>
+						</select>
+					</div>
+					<div class="tradetype_search_one">
+						<span>评级 </span>
+						<select name="" id="" style="width:70%;">
+							<option value="">全部</option>
+							<option value="">1</option>
+						</select>
+					</div>
+					<div class="tradetype_search_one">
+						<span>票面 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+						<select name="" id="" style="width:50%; ">
+							<option value="">全部</option>
+							<option value="">1</option>
+						</select>
+					</div>
+					<div class="tradetype_search_one">
+						<span>期限</span><span style="background:#FFCC99;padding-left:5px;padding-right:5px;" ng-if="true">Y</span>
+						<span style="background:#FFCC99;padding-left:5px;padding-right:5px;" ng-if="false">N</span><input type="text" style="">至<input type="text">
+
+					</div>
+				
+			</div>
+			<!-- 表格 -->
+				<div class="tradetype_table">
+					<main>
+						<div class="scroll-body" slim-scroll>
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr style="background:#666666;">
+											<th><span>债券代码</span></th>
+											<th><span>债券简称</span></th>
+											<th><span>收益率</span></th>
+											<th><span>剩余期限</span></th>
+											<th><span>评级</span></th>
+											<th><span>操作</span></th>
+											
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											
+											<td>160210.IB</td>
+											<td>16国开10</td>
+											<td>3.12%</td>
+											<td>99.98Y</td>
+											<td>AAA</td>
+											<td><i class="fa fa-times" ></i></td>
+										</tr> 
+										<tr>
+											<td>160210.IB</td>
+											<td>16国开10</td>
+											<td>3.12%</td>
+											<td>99.98Y</td>
+											<td>AAA</td>
+											
+											<td><i class="fa fa-times" ></i></td>
+										</tr> 
+										
+									</tbody>
+							 	</table>
+							</div>
+						</div>
+				</main>
+
+				</div>
+
+		</div>
+	</div>
+</div>

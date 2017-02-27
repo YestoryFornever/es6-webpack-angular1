@@ -1,0 +1,493 @@
+<div class="o-v-a">
+    <aside class="hallSidebar">
+        <div id="_body_">
+            <section class="card" id="bondInfo">
+                <header class="title">
+                    <span>债券信息</span>
+                </header>
+                <main id="BondMain">
+                    <div class="tit">{{$ctrl.bondDetail.bondShrtnm}}</div>
+                    <div class="cont_l" >
+                        <div class="col">
+                            <span>剩余期限：</span>
+                            <span>{{$ctrl.bondDetail.rsdtrm}}</span>
+                        </div>
+                        <div class="col">
+                            <span>债券类型：</span>
+                            <span>{{$ctrl.bondDetail.creditType}}</span>
+                        </div>
+                        <div class="col">
+                            <span>固定利率：</span>
+                            <span>{{$ctrl.bondDetail.bondRate}}</span>
+                        </div>
+                        <div class="col">
+                            <span>距下一付息日：</span>
+                            <span>{{$ctrl.bondDetail.nextPayInterestDate}}</span>
+                        </div>
+                        <div class="col">
+                            <span>发行规模(亿)：</span>
+                            <span>{{$ctrl.bondDetail.issueAmount}}</span>
+                        </div>
+                        <div class="col">
+                            <span>交易市场：</span>
+                            <span>{{$ctrl.bondDetail.marketType}}</span>
+                        </div>
+                    </div>
+                    <div class="cont_r" >
+                        <div class="col">
+                            <span>到期日：</span>
+                            <span>{{$ctrl.bondDetail.maturedDay}}</span>
+                        </div>
+                        <div class="col">
+                            <span>票息类型：</span>
+                            <span>{{$ctrl.bondDetail.rateType}}</span>
+                        </div>
+                        <div class="col">
+                            <span>久期：</span>
+                            <span>{{$ctrl.bondDetail.rmclDuration}}</span>
+                        </div>
+                        <div class="col">
+                            <span>期限(年)：</span>
+                            <span>{{$ctrl.bondDetail.enterMaturity}}</span>
+                        </div>
+                        <div class="col">
+                            <span>发行价格(元)：</span>
+                            <span>{{$ctrl.bondDetail.issuePrice}}</span>
+                        </div>
+                        <div class="col">
+                            <span>评级：</span>
+                            <span>AAA/---</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="tit_l">发行人：</div>
+                        <div class="textOverHidden">{{$ctrl.bondDetail.name }}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="tit_l">主承销商：</div>
+                        <span class="textOverHidden">{{$ctrl.bondDetail.underwriterName}}</span>
+                    </div>
+                    <div class="mar_T10"><a class="pull-right" href="javascript:void(0);">更多</a><div style="clear: both;"></div></div>
+                </main>
+            </section>
+            <div id="_gap_"></div>
+            <section class="card" id="settlement">
+                <header class="title">
+                    <span>计算行情</span>
+                </header>
+                <main id="settleChart"></main>
+                <div style="clear: both;"></div>
+            </section>
+        </div>
+    </aside>
+    <div class="hallTable">
+        <header id="condition">
+            <div class="head">
+                <label  class="btn btn-primary mar_L10" ><span ng-click='$ctrl.getQueryQuoteList("A")'>全部</span></label>
+                <label  class="btn btn-default mar_L10"><span  ng-click='$ctrl.getQueryQuoteList("B")'>我的报价</span></label>
+                <!-- <label  class="btn btn-default mar_L10" ><span ng-click="$ctrl.openDialog()">债券试算</span></label> -->
+                <label  class="btn btn-default mar_L10" ng-repeat='item in $ctrl.queryScmList' ng-click='$ctrl.getQueryQuoteList(item.scmid)'>
+                    <span>{{item.scmNm}}</span>&nbsp;&nbsp;
+                    <img src="../../../../../resource/images/btn_clear2_normal.png" ng-click='$ctrl.deleteScm(item.scmid)'>
+                    <!-- <span style="margin-left: 20px;"><i class="fa fa-times" aria-hidden="true"></i></span> -->
+                </label>
+                <span class="mar_L10" style="vertical-align: middle;margin-left:15px;"><i class="fa fa-plus"></i></span>
+                <span ng-click="isCollapsed = !isCollapsed" class="btn  pull-right">
+                    <i class=" glyphicon" ng-class="{'glyphicon-chevron-down': !isCollapsed, 'glyphicon-chevron-right': isCollapsed}"></i>
+                </span>
+                <!-- 搜索框 -->
+                <div class="titSearch">
+
+                    <!-- <input type="text"
+                        ng-model="$ctrl.selected"
+                        uib-typeahead="list.name as list.name for   in  $ctrl.queryQuoteList($viewValue) "
+                        placeholder="债券代码或简称" > -->
+                     <input type="text"
+                        ng-model="$ctrl.customSelected"
+                        uib-typeahead="list as list.bondShrtnm for list in  $ctrl.queryQuoteList()"
+                        typeahead-template-url="customTemplate.html"
+                        typeahead-show-hint="false"
+                        placeholder="">
+                    <label class="glyphicon glyphicon-search " aria-hidden="true" ng-click='$ctrl.search()'></label>
+                </div>
+            </div>
+            <div id="_body_"  uib-collapse="!isCollapsed">
+                        <div class="btn-group pull-right btnSave">
+                            <label class="btn pull-right" style="margin:0 10px;">取消</label>
+                            <label class="btn btn-primary pull-right"><span  ng-click="$ctrl.addScm()">保存</span></label>
+                        </div>
+                        <section class=" col-lg-6 wid12">
+                            <div class="padd10 form-inline">
+                                <span class="tit pull-left">自选方案</span>
+                                <input  type="text" ng-model='$ctrl.addScmInfo.scmNm' required placeholder="请输入方案名称" >
+                            </div>
+                            <div class="padd10">
+                                <span class="tit pull-left">方向</span>
+                                <div class="btn-group">
+                                    <label class="btn btn-primary" ng-model="$ctrl.addScmInfo.drc" uib-btn-checkbox btn-checkbox-true="-1" >买入</label>
+                                    <label class="btn btn-primary" ng-model="$ctrl.addScmInfo.drc" uib-btn-checkbox  btn-checkbox-true="1">卖出</label>
+                                </div>
+                            </div>
+                            <div class="padd10">
+                                <span class="tit pull-left">债券类型</span>
+                                <label class="btn pull-left"  ng-model="$ctrl.addScmInfo.bondTp" uib-btn-checkbox btn-checkbox-true="''" >全部</label>
+                                <div class="btn-group">
+                                        <label class="btn" ng-model="$ctrl.bondTp.bondTp1" uib-btn-checkbox btn-checkbox-true="1" btn-checkbox-false="''">利率债</label>
+                                        <label class="btn" ng-model="$ctrl.bondTp.bondTp2" uib-btn-checkbox btn-checkbox-true="2">国债</label>
+                                        <label class="btn" ng-model="$ctrl.bondTp.bondTp3" uib-btn-checkbox btn-checkbox-true="3">央票</label>
+                                        <label class="btn" ng-model="$ctrl.bondTp.bondTp4" uib-btn-checkbox btn-checkbox-true="4">政金债</label>
+                                        <label class="btn" ng-model="$ctrl.bondTp.bondTp5" uib-btn-checkbox btn-checkbox-true="5">地方债</label>
+                                        <div class="spacePlace"></div><br>
+                                        <label class="btn" ng-model="$ctrl.bondTp.bondTp6" uib-btn-checkbox btn-checkbox-true="6">信用债</label>
+                                        <label class="btn" ng-model="$ctrl.bondTp.bondTp7" uib-btn-checkbox btn-checkbox-true="7">短融</label>
+                                        <label class="btn" ng-model="$ctrl.bondTp.bondTp8" uib-btn-checkbox btn-checkbox-true="8">中票</label>
+                                        <label class="btn" ng-model="$ctrl.bondTp.bondTp9" uib-btn-checkbox btn-checkbox-true="9">企业债</label>
+                                        <label class="btn" ng-model="$ctrl.bondTp.bondTp11" uib-btn-checkbox btn-checkbox-true="11">PPN</label>
+                                        <label class="btn" ng-model="$ctrl.bondTp.bondTp10" uib-btn-checkbox btn-checkbox-true="10">公司债</label>
+                                        <label class="btn" ng-model="$ctrl.bondTp.bondTp99" uib-btn-checkbox btn-checkbox-true="99">其他</label>
+                                </div>
+                            </div>
+                            <div class="padd10">
+                                <span class="tit pull-left">主体评级</span>
+                                <div class=" btn-group">
+                                    <label class="btn" ng-model="$ctrl.addScmInfo.sbjRtg" uib-btn-checkbox btn-checkbox-true="''">全部</label>
+                                    <label class="btn" ng-model="$ctrl.sbjRtg.sbjRtg1" uib-btn-checkbox btn-checkbox-true="1">AAA</label>
+                                    <label class="btn" ng-model="$ctrl.sbjRtg.sbjRtg2" uib-btn-checkbox btn-checkbox-true="2">AA+</label>
+                                    <label class="btn" ng-model="$ctrl.sbjRtg.sbjRtg3" uib-btn-checkbox btn-checkbox-true="3">AA</label>
+                                    <label class="btn" ng-model="$ctrl.sbjRtg.sbjRtg4" uib-btn-checkbox btn-checkbox-true="4">AA-</label>
+                                    <label class="btn" ng-model="$ctrl.sbjRtg.sbjRtg5" uib-btn-checkbox btn-checkbox-true="5">&nbsp;A&nbsp;</label>
+                                    <label class="btn" ng-model="$ctrl.sbjRtg.sbjRtg99" uib-btn-checkbox btn-checkbox-true="99">其他</label>
+                                </div>
+
+                            </div>
+                            <div class="padd10 mar_T14">
+                                <span class="tit pull-left">债项评级</span>
+                                <div class="btn-group">
+                                    <label class="btn" ng-model="$ctrl.addScmInfo.dbtitmRtg" uib-btn-checkbox btn-checkbox-true="''">全部</label>
+                                    <label class="btn" ng-model="$ctrl.dbtitmRtg.dbtitmRtg1" uib-btn-checkbox btn-checkbox-true="1">AAA</label>
+                                    <label class="btn" ng-model="$ctrl.dbtitmRtg.dbtitmRtg2" uib-btn-checkbox btn-checkbox-true="2">A-1</label>
+                                    <label class="btn" ng-model="$ctrl.dbtitmRtg.dbtitmRtg3" uib-btn-checkbox btn-checkbox-true="3">AA+</label>
+                                    <label class="btn" ng-model="$ctrl.dbtitmRtg.dbtitmRtg4" uib-btn-checkbox btn-checkbox-true="4">AA</label>
+                                    <label class="btn" ng-model="$ctrl.dbtitmRtg.dbtitmRtg5" uib-btn-checkbox btn-checkbox-true="5">AA-</label>
+                                    <label class="btn" ng-model="$ctrl.dbtitmRtg.dbtitmRtg6" uib-btn-checkbox btn-checkbox-true="6">&nbsp;A+&nbsp;</label>
+                                    <label class="btn" ng-model="$ctrl.dbtitmRtg.dbtitmRtg99" uib-btn-checkbox btn-checkbox-true="99">其他</label>
+                                </div>
+                            </div>
+                            
+                            <div class="padd10">
+                                <span class="tit pull-left">含权</span>
+                                <div class="btn-group">
+                                    <label class="btn" ng-model="$ctrl.addScmInfo.wrght" uib-btn-checkbox btn-checkbox-true="''">全部</label>
+                                    <label class="btn" ng-model="$ctrl.wrght.wrght1" uib-btn-checkbox btn-checkbox-true="1">含权</label>
+                                    <label class="btn" ng-model="$ctrl.wrght.wrght2" uib-btn-checkbox btn-checkbox-true="2">不含权</label>
+                                </div>
+                            </div>
+                            <div class="padd10">
+                                <span class="tit pull-left">流通市场</span>
+                                <div class=" btn-group">
+                                    <label class="btn btn-primary"  ng-model="$ctrl.addScmInfo.crclMkt" uib-btn-checkbox btn-checkbox-true="''">全部</label>
+                                    <label class="btn" ng-click='$ctrl.aaa()' ng-model="$ctrl.checkModel.left" uib-btn-checkbox btn-checkbox-true="99" btn-checkbox-false="''">银行间</label>
+                                    <label class="btn" ng-click='$ctrl.aaa()' ng-model="$ctrl.checkModel.middle" uib-btn-checkbox btn-checkbox-true="999" btn-checkbox-false="''">上交所</label>
+                                    <label class="btn" ng-click='$ctrl.aaa()' ng-model="$ctrl.checkModel.right" uib-btn-checkbox btn-checkbox-true="9" btn-checkbox-false="''">深交所</label>
+                                </div>
+                            </div>
+                            <div class="padd10 form-inline">
+                                <span class="tit pull-left">行业</span>
+                                <select class="form-control" >
+                                    <option value="">1</option>
+                                    <option value="">2</option>
+                                    <option value="">3</option>
+                                    <option value="">4</option>
+
+                                </select>
+                                <span><i class="fa fa-times" aria-hidden="true"></i></span>
+                            </div>
+                            <div class="padd10 form-inline">
+                                <span class="tit pull-left ">年份</span>
+                                <select class="form-control " ng-model="$ctrl.addScmInfo.yr">
+                                    <option value="">2016</option>
+                                    <option value="">2017</option>
+                                    <option value="">2018</option>
+                                    <option value="">2019</option>
+                                    <option value="">2020</option>
+                                    <option value="">2021</option>
+                                    <option value="">2022</option>
+                                    <option value="">2023</option>
+                                </select>
+                                <span><i class="fa fa-times" aria-hidden="true"></i></span>
+                            </div>
+                        </section>
+                        <section class=" col-lg-6 wid12">
+                            <div class="padd10 form-inline">
+                                <span class="tit pull-left">收益率%</span>
+                                <input type="text" placeholder="请输入内容">
+                                <input type="text" placeholder="请输入内容">
+                            </div>
+                            <div class="padd10 form-inline">
+                                <span class="tit pull-left">估值BP差</span>
+                                <input type="text" placeholder="请输入内容">
+                                <input type="text" placeholder="请输入内容">
+                            </div>
+                            <div class="padd10 form-inline">
+                                <span class="tit pull-left">剩余期限</span>
+                                <label class="btn pull-left"  ng-model="$ctrl.addScmInfo.crclMkt" uib-btn-checkbox btn-checkbox-true="''">全部</label>
+                                <div class=" btn-group">
+                                    <label class="btn">&lt;3M</label>
+                                    <label class="btn">3-6M</label>
+                                    <label class="btn">6-9M</label>
+                                    <label class="btn">9-12M</label>
+                                    <label class="btn">1-3Y</label>
+                                    <label class="btn">3-5Y</label>
+                                    <label class="btn">5-10Y</label>
+                                    <label class="btn">&gt;10Y</label>
+                                    <div class="spacePlace"></div><br>
+                                    <label  class="btn" ng-click='$ctrl.changeStarus($event)'> D</label>
+                                </div>
+                            </div>
+                            <div class="padd10 mar_T14">
+                                <span class="tit pull-left">发行人</span>
+                                <!-- 搜索框 -->
+                                <div class=" peoplePro">
+                                    <input type="text" placeholder="债券代码或简称" >
+                                    <label class="fa fa-times" aria-hidden="true"></label>
+                                    <!-- <span ng-click='$ctrl.clearSeach($event)'><i class="fa fa-times" aria-hidden="true"></i></span> -->
+                                </div>
+                            </div>
+                            <div class="padd10">
+                                <span class="tit pull-left">发行企业</span>
+                                <div class="btn-group">
+                                    <label class="btn"  ng-model="$ctrl.addScmInfo.issuEntp" uib-btn-checkbox btn-checkbox-true="''">全部</label>
+                                    <label class="btn">央企</label>
+                                    <label class="btn">国企</label>
+                                    <label class="btn">民企</label>
+                                    <label class="btn">其他</label>
+                                </div>
+                            </div>
+                            <div class="padd10">
+                                <span class="tit pull-left">担保</span>
+                                <div class="wrap btn-group">
+                                    <label class="btn"  ng-model="$ctrl.addScmInfo.wrnt" uib-btn-checkbox btn-checkbox-true="''">全部</label>
+                                    <label class="btn">担保人</label>
+                                    <label class="btn">担保物</label>
+                                    <label class="btn">无担保</label>
+                                </div>
+                            </div>
+                            <div class="padd10">
+                                <span class="tit pull-left">票息</span>
+                                 <div class="btn-group">
+                                    <label class="btn"  ng-model="$ctrl.addScmInfo.face" uib-btn-checkbox btn-checkbox-true="''">全部</label>
+                                    <label class="btn">浮息</label>
+                                    <label class="btn">固息</label>
+                                </div>
+                            </div>
+                            <div class="padd10 form-inline">
+                                <span class="tit pull-left">地区</span>
+                                <select class="form-control" ng-model="$ctrl.addScmInfo.rgon">
+                                    <option value="">1</option>
+                                    <option value="">2</option>
+                                    <option value="">3</option>
+                                    <option value="">4</option>
+                                </select>
+                                <span><i class="fa fa-times" aria-hidden="true"></i></span>
+                            </div>
+                        </section>
+                        <!-- 债券报价筛选条件 -->
+                    <!-- > -->
+            </div>
+            <!-- <div style="clear:both"></div> -->
+        </header>
+
+        <main>
+            <!-- <div class="scroll-body" slim-scroll> -->
+                <!-- <div class="table-responsive"> -->
+                    <table class="table ">
+                    <thead>
+                        <tr>
+                            <th ng-click='$ctrl.changeStatus()' ng-if='$ctrl.sendQueryQuoteListInfo.queryFlag !="B"'>
+                                <img ng-if= '$ctrl.sendQueryQuoteListInfo.wthrFcs == false ' src="../../../../../resource/images/btn_star_normal.png"  >
+                                <img ng-if= '$ctrl.sendQueryQuoteListInfo.wthrFcs == true' src="../../../../../resource/images/btn_star_select.png"  >
+                            </th>
+                            <th>债券代码</th>
+                            <th>债券简称</th>
+                            <th>数量（万元）</th>
+                            <th>方向</th>
+                            <th>收益率
+                                <!-- <img src="../../../" alt=""> -->
+                            </th>
+                            <th>净价（元）</th>
+                            <th>剩余期限</th>
+                            <th>主/债评级</th>
+                            <th>挂牌方</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <!-- <div style="height: 100%;overflow:scroll"> -->
+                    <tbody ng-repeat='item in $ctrl.QueryQuoteList' style="border: none">
+                        <tr ng-click='$ctrl.getDetail(item.bondid)' ng-if='$ctrl.sendQueryQuoteListInfo.queryFlag !="B"'>
+                            <td ng-click='$ctrl.addCare(item,$event)'>
+                                <img ng-if= 'item.wthrFcs == false ' src="../../../../../resource/images/btn_star_normal.png" alt="">
+                                <img ng-if= 'item.wthrFcs == true' src="../../../../../resource/images/btn_star_select.png" alt="">
+                            </td>
+                            <td>{{item.bondCd}}</td>
+                            <td>{{item.bondShrtnm}}</td>
+                            <td>{{item.num}}</td>
+                            <td>{{item.drc}}</td>
+                            <td>{{item.yldrto}}</td>
+                            <td>{{item.netprc}}</td>
+                            <td>{{item.rsdtrm}}</td>
+                            <td>{{item.sbjRtg}}/{{item.dbtitmRtg}}</td>
+                            <td ng-if='item.wthrAnon=="0"'>{{item.organizationShortName}}-{{item.userName}}</td>
+                            <td ng-if='item.wthrAnon=="1"'><img src="../../../../../resource/images/btn_person.png" alt=""></td>
+                            <td >
+                                <img  src="../../../../../resource/images/btn_chat_normal.png" alt="">&nbsp;&nbsp;
+                                <img src="../../../../../resource/images/btn_calculator_normal.png" alt="">
+                            </td>
+                        </tr>
+                    </tbody>
+                    <!-- </div> -->
+                    </table>
+                <!-- </div> -->
+            <!-- </div> -->
+        </main>
+    </div>
+</div>
+
+<!-- 弹窗 -->
+
+<div class="modal-dialog " style="display: none;">
+    <div class="modal-content"  >
+        <div class="modal-header ng-scope">
+            <p class="modal-title" id="modal-title">债券试算 
+                <i class="fa fa-times pull-right" aria-hidden="true" ng-click="$ctrl.closeDialog()"></i>
+            </p>
+        </div>
+        <div class="modal-body ng-scope clearfix" id="modal-body" >
+            <div class="cont borT0">
+                <div class="cont_l form-inline">
+                    <span class="tit">债券代码:</span>
+                    <div class="form-group form-inline titSearch"  >
+                        <label  class="ser"><i class="glyphicon glyphicon-search"></i></label>
+                        <input type="text" class="form-control " placeholder="债券代码" >
+                        <span ng-click='$ctrl.clearSeach($event)'><i class="fa fa-times clear" aria-hidden="true"></i></span>
+                    </div>
+                </div>
+                <div class="cont_r">
+                    <span class="tit">债券简称:</span>
+                    <span class="content">12华茂债</span>
+                </div>
+                <div class="cont_l form-inline">
+                    <span class="tit">剩余期限:</span>
+                    <span class="content">145D</span>
+                </div>
+                <div class="cont_r">
+                    <span class="tit">主/债评级:</span>
+                    <span class="content">--/AA</span>
+                </div>
+                <div class="cont_l form-inline">
+                    <span class="tit">票面利率(%):</span>
+                    <span class="content">6.3</span>
+                </div>
+                <div class="cont_r">
+                    <span class="tit">票息类型:</span>
+                    <span class="content">固定利率</span>
+                </div>
+            </div>
+            <div class="cont">
+                <div class="cont_l form-inline marT10">
+                    <span class="tit">债券代码:</span>
+                    <p class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="$ctrl.popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="$ctrl.open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </p>
+                </div>
+                <div class="cont_r">
+                    <span class="tit">债券简称:</span>
+                    <span class="content">
+                        <label for="t0"><input type="radio" name='t0'>&nbsp;T+1</label>
+                        <label for="t0"><input type="radio" name='t0'>&nbsp;T+0</label>
+                    </span>
+                </div>
+                <div class="cont_l form-inline">
+                    <span class="tit">结算日期:</span>
+                    <span class="content">2016-11-19</span>
+                </div>
+                <div class="cont_r">
+                    <span class="tit">&nbsp;</span>
+                    <span class="content">&nbsp;</span>
+                </div>
+                <div class="cont_l form-inline">
+                    <span class="tit">数量(万):</span>
+                    <span class="content form-inline"><input type="text" class="form-control"></span>
+                </div>
+                <div class="cont_r">
+                    <span class="tit">结算金额:</span>
+                    <span class="content">10,348,190.00</span>
+                </div>
+            </div>
+            <div class="cont">
+                <div class="cont_l form-inline marT10">
+                    <span class="tit">到期收益率(%):</span>
+                    <span class="content form-inline"><input type="text"  class="form-control" placeholder="请输入内容"></span>
+                </div>
+                <div class="cont_r">
+                    <span class="tit">计息天数:</span>
+                    <span class="content">4.61Y</span>
+                </div>
+                <div class="cont_l form-inline marT10">
+                    <span class="tit">行权收益率(%):</span>
+                    <span class="content form-inline"><input type="text"  class="form-control" placeholder="请输入内容"></span>
+                </div>
+                <div class="cont_r">
+                    <span class="tit">应计利息:</span>
+                    <span class="content">3.866301</span>
+                </div>
+                <div class="cont_l form-inline marT10">
+                    <span class="tit">净价(元):</span>
+                    <span class="content form-inline"><input type="text"  class="form-control" placeholder="请输入内容"></span>
+                </div>
+                <div class="cont_r">
+                    <span class="tit">兑付日:</span>
+                    <span class="content">2017-04-12</span>
+                </div>
+                <div class="cont_l form-inline marT10">
+                    <span class="tit">全价(元):</span>
+                    <span class="content form-inline"><input type="text"  class="form-control" placeholder="请输入内容"></span>
+                </div>
+                <div class="cont_r">
+                    <span class="tit">行权日:</span>
+                    <span class="content">---</span>
+                </div>
+            </div>
+            <div class="cont">
+                <div class="cont_l marT10">
+                    <span class="tit">麦氏久期:</span>
+                    <span class="content">0.3890</span>
+                </div>
+                <div class="cont_r">
+                    <span class="tit">PVBP:</span>
+                    <span class="content">0.0039</span>
+                </div>
+                <div class="cont_l marT10">
+                    <span class="tit">修正久期:</span>
+                    <span class="content">0.3636</span>
+                </div>
+                <div class="cont_r">
+                    <span class="tit">凸性:</span>
+                    <span class="content">0.0039</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="customTemplate.html">
+    <a data-id="{{match.model.bondid}}">
+        <span>{{match.model.bondCd}}</span>
+        <span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span>
+        <span>{{match.model.sbjRtg}}</span>
+        <span>{{match.model.rsdtrm}}</span>
+    </a>
+</script>

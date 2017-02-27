@@ -1,0 +1,53 @@
+@import '../../../../../../common/css/common';
+
+friendslist {
+	#search{
+		width:100%;
+		padding:.04rem;
+		border-bottom: 1px solid $borderDefault;
+		input{
+			width:100%;
+			border:0;
+			height:.26rem;
+			outline:none;
+		}
+	}
+	ul.items{
+		li{
+			height:.6rem;
+			border-bottom: 1px solid $borderDefault;
+			padding: .1rem;
+			div.portrait{
+				float:left;
+				width:.4rem;
+				height:.4rem;
+				line-height:.4rem;
+				background: #ccc;
+				border-radius: .4rem;
+				-moz-border-radius: .4rem;
+				-webkit-border-radius: .4rem;
+				img{
+					width:.4rem;
+					height:.4rem;
+				}
+			}
+			div.des{
+				margin-left:.5rem;
+				>span{
+					display:inline-block;
+				}
+				span.item-name{
+					font-size:.16rem;
+				}
+				span.item-time{
+					font-size:.12rem;
+					color:$textDefault;
+					float:right;
+				}
+				div.item-snippet{
+					font-size:.12rem;
+				}
+			}
+		}
+	}
+}

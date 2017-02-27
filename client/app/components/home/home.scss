@@ -13,8 +13,9 @@
 	top:0;
 }
 .pagepanel{
-	top:$headerH;
+	top:$navH+$tabH;
 	bottom:$footerH;
+	background:$bgDefaultDarkB;
 	.mainpanel{
 		position:absolute;left:0;right:0;top:0;bottom:0;
 		.o-v-a{//子页面加滚动条

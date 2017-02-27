@@ -1,0 +1,26 @@
+<div class="pageheader">
+	<div id="altarea">
+		<div id="logo" class="leftblock">
+			<div class="navbar-header">
+				<a class="navbar-brand" ui-sref="home">
+					<img src="../../../../../../resource/images/logo02.png" alt="">
+				</a>
+			</div>
+		</div>
+		<div id="nav" class="leftblock">
+			<pagenav on-add-tab="$ctrl.addTab(nav)" >
+			</pagenav>
+		</div>
+		<div id="qrcode" class="leftblock">手机版</div>
+
+		<div id="complain" class="rightblock">我要吐槽</div>
+		<div id="coin" class="rightblock">金币</div>
+		<div id="menu" class="rightblock">
+			您好
+			<button ng-click="$ctrl.logout()">注销</button>
+		</div>
+		<div id="tag" class="rightblock">挂牌</div>
+		<div style="clear:both;"></div>
+	</div>
+	<pagetab tabs="$ctrl.tabs"></pagetab>
+</div>

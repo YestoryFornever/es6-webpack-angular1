@@ -1,0 +1,93 @@
+@import '../../../../common/css/common';
+
+
+.ourInputNum{
+	position:relative;
+	input{
+		display: inline;
+		border-radius: 5px;
+		padding:5px 10px;
+		background: none;
+		outline-style: blue;
+		border:1px solid #ccc;
+
+	}
+	span{
+		display:block;
+		position:absolute;
+		right:.1rem;
+		height: .1rem;
+		width:.15rem;
+		overflow: hidden;
+		// background: red;
+		text-align: center;
+		vertical-align: middle;
+
+		i{
+			position: absolute;
+			left:0.03rem;
+			// z-index: -1;
+		}
+	}
+	.up{
+		top:0px;
+	}
+	.down{
+		top:8px;
+		i{
+			top:-0.04rem;
+		}
+	}
+}
+
+
+.ourSelect{
+	position: relative;
+	width:200px;
+	height:35px;
+	padding:5px 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	.tree {
+		position:absolute;
+		height: 1.6rem;
+		top:35px;
+		left:0px;
+		width:100%;
+		transition: all 0.6s;
+		-moz-transition: all 0.6s;	/* Firefox 4 */
+		-webkit-transition: all 0.6s;	/* Safari 和 Chrome */
+		-o-transition: all 0.6s;	/* Opera */
+
+		.intermediate {
+		  opacity: 0.3;
+		}
+		ul{
+			padding: 0;
+			margin: 0;
+			li {
+			  	cursor: pointer;
+			  	padding-left: .05rem;
+			  	border: 1px solid #ccc;
+			}
+			.one{
+				// position: absolute;
+			}
+			.second{
+				padding-left:.2rem;
+				border-top: none;
+			}
+
+		}
+		input[type=checkbox]{
+		    width: 16px;
+		    height: 16px;
+		    outline: none;
+		}
+	}
+}
+
+
+
+
+

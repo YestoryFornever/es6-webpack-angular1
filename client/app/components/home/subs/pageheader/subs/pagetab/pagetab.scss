@@ -1,0 +1,64 @@
+@import "../../../../../../common/css/common";
+
+.pagetab {
+	height:$tabH;
+	line-height:$tabH;
+	display:block;
+	color:$textDefault;
+	ul{
+		>li{
+			display:inline-block;
+			margin:0 .04rem;
+			a{
+				font-size:.14rem;
+				color: $textDefault;
+				text-decoration: none;
+				height: .2rem;
+				line-height: .2rem;
+				display: inline-block;
+				padding: 0 .04rem 0 .16rem;
+				background-color:$bgDefaultLightA;
+				border-radius: .01rem;
+				-moz-border-radius: .01rem;
+				-webkit-border-radius: .01rem;
+				span.close-tab{
+					display: inline-block;
+					padding-left: .04rem;
+				}
+			}
+			>a:hover{
+				background-color:$bgDefaultLightB;
+			}
+		}
+		>li.active{
+			a,a:focus,a:hover{
+				color:$textFrameActive;
+				background-color:$bgGold;
+			}
+		}
+		>li.drop{
+			a{
+				padding: 0 .04rem;
+			}
+		}
+	}
+	/* ul.nav.nav-tabs{
+		border-bottom:0;
+		>li{
+			>a{
+				color:$defaultTextDark;
+				padding:.04rem .15rem;
+			}
+			>a:hover{
+				border:1px solid $defaultBgLighter;
+				background-color:$defaultBgLighter;
+			}
+		}
+		>li.active{
+			a,a:focus,a:hover{
+				border:1px solid $defaultBgLight;
+				background-color:$defaultBgLight;
+			}
+		}
+	} */
+}

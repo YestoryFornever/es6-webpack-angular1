@@ -1,0 +1,13 @@
+@import '../../../../common/css/common';
+
+.o-v-a{
+	.hallSidebar{
+		header.title{
+			line-height: 0.32rem;
+		}
+	}
+	.table-hover tbody tr:hover{
+	color: blue;
+	/*background: #bfa;*/
+}
+}

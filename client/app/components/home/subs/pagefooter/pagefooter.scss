@@ -1,0 +1,13 @@
+@import "../../../../common/css/common";
+
+.pagefooter{
+	background-color: $bgDefaultDarkA;
+	height: $footerH;
+	line-height: $footerH;
+	display: block;
+	color: $textDefault;
+	span#clock{
+		float:right;
+		margin: 0 0.1rem;
+	}
+}

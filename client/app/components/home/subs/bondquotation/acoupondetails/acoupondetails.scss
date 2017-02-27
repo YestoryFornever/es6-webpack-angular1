@@ -1,0 +1,184 @@
+@import '../../../../../common/css/common';
+h1,h2,h3,h4,h5,h6{
+	margin: 0; 
+	padding: 0;
+}
+.a-c-d{
+	height:100%;
+	overflow:auto;
+	font-size:0.14rem;
+	ul{
+			list-style:none;
+			
+		}
+	div._nav{
+		height:.6rem;
+		line-height:0.6rem;
+		width:100%;
+		background:#666 ;
+		div.title_lf{
+			float:left;
+			height:100%;
+		 	width:3rem;
+		 	padding-left:.16rem;
+		 	color:#ffeb62;
+		 	font-size: 0.18rem;
+		 	font-weigth:7rem
+
+		 }
+		 div.title_rt{
+		 	height:.6rem;
+		 	width:4rem;
+		 	float:right;
+			 	.title_rt_input{
+			 	height:0.2rem;
+			 	width:2.6rem;
+			 	line-height:0.2rem;
+			 	float:left;
+			 	padding-left:0.1rem;
+			 	margin-top:0.2rem;
+			 	background:#fff;
+			 	border-radius:0.15rem;
+				 	input{
+				 	border:none;
+				 	outline:none;
+				 	height:0.2rem;
+				 	width:2.1rem;
+				 	}
+		 	}
+			 	.title_rt_tub{
+			 	height:.3rem;
+			 	width:1.1rem;
+			 	float:right;
+			 	margin-top:0.04rem;
+				 	i#fa-heart-o{
+				 	padding-left:0.2rem;
+				 	}
+			 	}
+		 }
+	}
+		div.info{
+			height:2rem;
+			margin-top:.14rem;
+			div.content{
+				height:100%;
+				width:25%;
+				float:left;
+				padding-left:.16rem;
+			
+			//margin:0.1rem 0.1rem;
+			ul{
+				list-style:none;
+				}
+			li{
+				height:.3rem;
+				}
+				}
+		}
+
+		.selector{
+			height:9rem;
+			width:100%;
+			//background:#888;
+				.selector_left{
+					width:51.4%;
+					float:left;
+					overflow-y:auto;
+					//background:green;
+					.header{
+						height:.4rem;
+						line-height:.4rem;
+						padding-left:.16rem;
+						font-size:.18rem;
+						font-weigth:7rem;
+						color:#DDD;
+						background:#333;
+					}
+					.main{
+						height:2.4rem;
+						width:100%;
+						float:left;
+						
+						margin-top:0.1rem;
+							.mainInfo{
+								padding-left:.1rem;
+								height:2rem;
+								width:50%;
+								float:left;
+								//margin:0.1rem 0.1rem;
+								li{
+								height:.3rem;
+								}
+							}
+						}
+						div.clearfixed{
+						display:block;
+						clear:both;
+						content:"";
+						visibility:hidden;
+						height:0
+					} 
+						div#business{
+						width:100%;
+						height:4rem;
+						margin-top:.3rem;
+						overflow:hidden;
+							#box{
+									//height:2rem;
+									.newBox{
+									
+										//height:0.2rem;
+										//width:3rem;
+										overflow:hidden;
+										width:100%;
+										float:left;
+										//padding-left:.16rem;
+										//text-overflow:ellipsis;
+										white-space:wrap;
+									    //word-wrap:break-word;
+									    //word-break:break-all;
+									    .newBox-left{
+									    	height:100%;
+									    	width:20%;
+									    	//background:blue;
+									    	padding-left:.16rem;
+									    	float:left;
+									    }
+									    .newBox-right{
+									    	height:100%;
+									    	width:80%;
+									    	float:left;
+									    	
+									   }
+									}
+
+							}
+							
+						}
+
+				}
+				.selector_right{
+					height:100%;
+					overflow-y:auto;
+					padding-left:.1rem;
+					#selector_right_height{
+									    	height:.4rem;
+									    	padding-left:.04rem;
+									    	line-height:.4rem;
+									    	font-size:.18rem;
+									    	font-weigth:7rem;
+									    	background:#333;
+									    	}
+									    	.tr{
+									    		height:32rem;
+									    	}
+				}
+			
+		}
+		
+		
+		
+
+	
+
+}
