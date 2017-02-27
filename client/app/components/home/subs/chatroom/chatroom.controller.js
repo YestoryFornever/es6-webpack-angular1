@@ -1,7 +1,7 @@
 var BONDCONFIG = require('../../../../../bond.config.js');
-import 'easemob-websdk/dist/strophe-1.2.8.min.js';
+/*import 'easemob-websdk/dist/strophe-1.2.8.min.js';
 var WebIM = require('easemob-websdk');
-WebIM.config = require('../../../../../resource/js/easemob/webim.config.js');
+WebIM.config = require('../../../../../resource/js/easemob/webim.config.js');*/
 
 import ModalInstanceTemplate from './subs/quote-modal/quote-modal.html';
 import ModalInstanceCtrl from './subs/quote-modal/quote-modal.controller';
