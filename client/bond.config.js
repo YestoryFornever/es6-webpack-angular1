@@ -1,7 +1,7 @@
 const PRIVATECONFIG = {
-
-	proIP:'http://11.177.15.104/',
-	devIP:'http://11.177.15.104/',
+	// proIP:'http://11.177.15.254/',
+	// devIP:'http://11.177.15.104/',
+	Host: '${serverIp}',
 	Guid:function() {
 		function s4() {
 			return Math.floor((1 + Math.random()) * 0x10000)
@@ -14,7 +14,6 @@ const PRIVATECONFIG = {
 };
 class GLOBAL{
 	constructor(){
-		this.isPro = false;
 		this.JH = {
 			'Content-Type' : 'application/json;charset=utf-8',
 			'terminal' : '2'
@@ -24,14 +23,16 @@ class GLOBAL{
 			'terminal' : '2'
 		}
 		this.UUID = PRIVATECONFIG.Guid();
-		this.USERINFO = {};
+		this.USERINFO = window.localStorage.USERINFO? JSON.parse(window.localStorage.USERINFO):{};
 	}
 	getIP(){
-		return this.isPro?PRIVATECONFIG.proIP:PRIVATECONFIG.devIP;
+		let host = PRIVATECONFIG.Host;
+		return host.indexOf('http')==0?host:'/api/';
 	}
 	setUSERINFO(userinfo){
 		this.USERINFO = userinfo;
 		this.JH["lid"] = this.FH["lid"] = userinfo.lid;//头信息添加lid
+		window.localStorage.USERINFO = JSON.stringify(userinfo);
 	}
 };
 module.exports = new GLOBAL;

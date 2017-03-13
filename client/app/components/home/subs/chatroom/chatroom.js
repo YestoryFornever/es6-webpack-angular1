@@ -22,7 +22,7 @@ let chatroomModule = angular.module('chatroom', [
 
 	$stateProvider
 		.state('home.chatroom', {
-			url: '/chatroom',
+			url: '/chatroom/?:ofrUserId&?:bondOfrid',
 			views: {
 				'main@home': {
 					component: 'chatroom'

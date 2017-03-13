@@ -37,104 +37,27 @@
 							<input type="text" ng-model="item.num">
 						</td>
 						<td style="width:.67rem">
-							<input type="text" ng-model="item.yield">
+							<input type="text" ng-model="item.yldrto">
 						</td>
 						<td style="width:.71rem">
 							<input type="text" ng-model="item.netprc">
 						</td>
 						<td style="width:.57rem">
-							<input type="checkbox" ng-model="item.wthrAnon">
+							<input type="checkbox" ng-checked="item.wthrAnon==='1'">
 						</td>
 						<td style="width:1.43rem">
 							<input type="text" ng-model="item.remark">
 						</td>
 						<td style="width:.68rem">
-							<input type="checkbox" ng-model="item.wthrListg">
+							<input type="checkbox" ng-checked="item.wthrListg==='1'">
 						</td>
 					</tr>
 				</tbody>
 		 	</table>
 		</div>
-		<div class="search-quote">
-			<header>
-				债券搜索
-			</header>
-			<div>
-				债券类型
-				<select ng-model="$instanceCtrl.searchConditions.creditType">
-					<option value="">全部</option>
-					<option value="1">利率债</option>
-					<option value="2">国债</option>
-					<option value="3">央票</option>
-					<option value="4">金融债</option>
-					<option value="5">地方债</option>
-					<option value="6">信用债</option>
-					<option value="7">短融</option>
-					<option value="8">中票</option>
-					<option value="9">企业债</option>
-					<option value="10">公司债</option>
-					<option value="11">同业存单</option>
-					<option value="99">其他</option>
-				</select>
-				期限<input type="text" ng-model="$instanceCtrl.searchConditions.termStart">
-				至<input type="text" ng-model="$instanceCtrl.searchConditions.termEnd">
-				票面
-				<select ng-model="$instanceCtrl.searchConditions.rateType">
-					<option value="">全部</option>
-					<option value="1">浮息</option>
-					<option value="2">固息</option>
-				</select>
-				评级
-				<select ng-model="$instanceCtrl.searchConditions.creditSymbol">
-					<option value="">全部</option>
-					<option value="1">AAA1</option>
-					<option value="2">AA+</option>
-					<option value="3">AA</option>
-					<option value="4">AA-</option>
-					<option value="5">A+</option>
-					<option value="99">其他</option>
-				</select>
-				<button type='button' ng-click="$instanceCtrl.searchBonds()">搜索</button>
-			</div>
-			<main>
-				<div class="table-responsive table-search-list">
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>债券代码</th>
-								<th>债券简称</th>
-								<th>收益率</th>
-								<th>剩余期限</th>
-								<th>评级</th>
-								<th>操作</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="item in $instanceCtrl.searchList">
-								<td>{{item.bondCd}}</td>
-								<td>{{item.bondShrtnm}}</td>
-								<td>{{item.yield}}</td>
-								<td>{{item.rsdtrm}}</td>
-								<td>{{item.sbjRtg}}</td>
-								<td>
-									<a ng-click="$instanceCtrl.addQuote(item)">+</a>
-								</td>
-							</tr>
-						</tbody>
-				 	</table>
-				</div>
-				<!-- <ul>
-					<li ng-repeat="item in $instanceCtrl.items">
-						<a href="#" ng-click="$event.preventDefault(); $instanceCtrl.selected.item = item">{{ item }}</a>
-					</li>
-				</ul>
-				Selected:<b>{{ $instanceCtrl.selected.item }}</b> -->
-			</main>
-		</div>
 	</div>
 	<div class="modal-footer">
 		<button class="btn btn-primary" type="button" ng-click="$instanceCtrl.ok()">确定</button>
 		<button class="btn btn-warning" type="button" ng-click="$instanceCtrl.addQuote()">添加债券</button>
-		<button class="btn btn-warning" type="button" ng-click="$instanceCtrl.cancel()">债券搜索</button>
 	</div>
 </div>

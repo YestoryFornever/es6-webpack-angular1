@@ -6,6 +6,17 @@
 	line-height: $footerH;
 	display: block;
 	color: $textDefault;
+	a.footer-msg-center{
+		background-color:$bgGold;
+		color:$textFrameActive;
+		height: $footerH;
+		line-height: $footerH;
+		width:.8rem;
+		display:inline-block;
+		float:right;
+		text-align:center;
+		text-decoration: none;
+	}
 	span#clock{
 		float:right;
 		margin: 0 0.1rem;

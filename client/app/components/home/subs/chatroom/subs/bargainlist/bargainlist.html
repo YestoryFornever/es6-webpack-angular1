@@ -13,7 +13,7 @@
 				<div class="detail">
 					<div class="negtprc-title">
 						<h4 class="negtprc-orgname">{{item.organizationShortName}}-{{item.userName}}</h4>
-						<span class="negtprc-mark">{{item.bestFlag}}{{user.friendsFlag}}</span>
+						<!-- <span class="negtprc-mark">{{item.bestFlag}}{{user.friendsFlag}}</span> -->
 					</div>
 					<div>
 						<ul class="negtprc-detail">
@@ -23,11 +23,11 @@
 								<span class="negtprc-detail-drc" ng-if="detail.drc=='6'">对方报</span>
 								<span class="negtprc-detail-drc mine" ng-if="detail.drc=='7'">我&emsp;议</span>
 								<span class="negtprc-detail-symbol">:</span>
-								<span class="negtprc-detail-num">{{detail.num}}</span>
+								<span class="negtprc-detail-num">{{detail.num|numFilter}}万</span>
 									<span class="negtprc-detail-symbol">|</span>
-								<span class="negtprc-detail-yldrto">{{detail.yldrto}}</span>
+								<span class="negtprc-detail-yldrto">{{detail.yldrto|yldrtoFilter}}%</span>
 									<span class="negtprc-detail-symbol">|</span>
-								<span class="negtprc-detail-netprc">{{detail.netprc}}</span>
+								<span class="negtprc-detail-netprc">{{detail.netprc|numPointTwoFilter}}元</span>
 							</li>
 						</ul>
 						<span class="negtprc-time">{{item.time|date:"HH:mm:ss"}}</span>

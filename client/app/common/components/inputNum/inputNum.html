@@ -2,7 +2,7 @@
 	<p>{{ $ctrl.name }}</p>
 </div> -->
 <div class="ourInputNum" >
-	<input type="text" ng-model='$ctrl.aaa' ng-pattern='$ctrl.reg'  ng-change ='$ctrl.contChange($event,".ourInputNum .up")' placeholder="{{$ctrl.xxx}}" >
+	<input type="text" ng-model='$ctrl.value' ng-pattern='$ctrl.reg'  ng-change ='$ctrl.contChange($event,".ourInputNum .up")' placeholder="{{$ctrl.xxx}}" >
 	<span class="up" ng-click='$ctrl.numChange($event,".ourInputNum .up")'><i class="fa fa-sort-asc"></i></span>
 	<span class="down" ng-click='$ctrl.numChange($event,".ourInputNum .down")'><i class="fa fa-sort-desc"></i></span>
 </div>

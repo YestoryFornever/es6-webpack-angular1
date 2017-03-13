@@ -9,7 +9,6 @@ import Calculator from './subs/calculator/calculator';
 import Chatroom from './subs/chatroom/chatroom';
 import Bondquotation from './subs/bondquotation/bondquotation';
 
-import MineBond from './subs/minebond/minebond';
 
 let homeModule = angular.module('home', [
 	uiRouter,
@@ -19,7 +18,6 @@ let homeModule = angular.module('home', [
 	Calculator,
 	Chatroom,
 	Bondquotation,
-	MineBond
 
 ])
 

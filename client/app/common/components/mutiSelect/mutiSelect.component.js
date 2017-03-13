@@ -5,12 +5,12 @@ import './mutiSelect.scss';
 let mutiSelectComponent = {
 	restrict: 'E',
 	bindings: {
-		place:'@?',
-		sourceData:'<',
-		source:'@',
+		place:'@',
+		source:"<",
+		onGetValue:"&",
 	},
 	template,
-	controller
+	controller,
 };
 
 export default mutiSelectComponent;

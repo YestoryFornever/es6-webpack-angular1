@@ -71,7 +71,7 @@ div#chatroom{
 		div#chatcontent{
 			top:0;
 			bottom:$sendareaH;
-			overflow-y:auto;
+			/* overflow-y:auto; */
 			background-color:#121f25;
 			div.friend-tips{
 				color:$textD;
@@ -81,46 +81,226 @@ div#chatroom{
 				background-image:url('../../../../../resource/images/chat_baojia_frame_title_middle.png');
 				background-repeat:repeat-x;
 			}
+			$infoH:.8rem;
 			div.bargain{
 				position:absolute;
 				top:.32rem;
-				bottom:0;
 				left:0;
 				right:0;
-				background:$bgDefaultLightB;
 				z-index:10;
+				background:$bgDefaultLightB;
 				padding:.1rem;
 				div.info{
-					height:.86rem;
+					height:$infoH;
 					font-size:.12rem;
-					border-bottom:.01rem solid #3f4d54;
+					border-bottom:.01rem solid $textF;
 					div.abbr{
 						color:$textD;
+						margin-top:.02rem 0;
+						span.drc{
+							float:right;
+							display:none;
+						}
+						span.drc.show-drc{
+							display:inline;
+						}
 					}
 					div.bond{
 						font-size:.16rem;
 						color:$textG;
+						margin:.08rem 0;
+						span{
+							float:right;
+						}
 					}
 					div.level{
 						color:$textB;
 					}
 				}
+				$operateH:.7rem;
 				div.operate{
-					height:.70rem;
-					border-bottom:.01rem solid #3f4d54;
+					height:$operateH;
+					position:relative;
+					div.input{
+						float:left;
+						text-align:center;
+						$trH:.32rem;
+						>span{
+							display:inline-block;
+							height:$operateH;
+							line-height:$operateH;
+							float:left;
+							margin:0 .1rem;
+							div.input-label{
+								color:$textB;
+								font-weight: normal;
+								text-align: center;
+								height:$trH;
+								line-height:$trH;
+							}
+							div.input-content{
+								text-align: center;
+								height:$trH;
+								line-height:$trH;
+								input{
+									width:100%;
+									height:100%;
+									text-align:center;
+									background:$bgDefaultDarkA;
+									border:0;
+									$radius:.04rem;
+									border-radius: $radius;
+									-moz-border-radius: $radius;
+									-webkit-border-radius: $radius;
+									padding:0 .1rem;
+								}
+								span{
+									// width:100%;
+									display:inline-block;
+									word-break:keep-all;/* 不换行 */ 
+									white-space:nowrap;/* 不换行 */ 
+									overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */ 
+									//text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+									font-size:.16rem;
+									color:$textG;
+								}
+							}
+						}
+					}
+					div.operate-btns{
+						float:left;
+						$btnsH:.3rem;
+						margin-top: .32rem;
+						button{
+							width:.64rem;
+							height:$btnsH;
+							/* line-height:$btnsH; */
+							background-color:$btnPrimary;
+							border:0;
+							$radius:.04rem;
+							border-radius: $radius;
+							-moz-border-radius: $radius;
+							-webkit-border-radius: $radius;
+							color:$textD;
+							margin:0 .05rem;
+						}
+						span#counting{
+							margin:0 $btnsH;
+							height:$btnsH;
+							line-height:$btnsH;
+							img{
+								margin:0 .02rem;
+							}
+							>span{
+								display:inline-block;
+								width:.6rem;
+							}
+						}
+						button#operateBargain{}
+						button#operateReject{
+							color:$textF;
+							background-color:$bgDefaultLightC;
+						}
+						button#operateDeal{}
+						button#close{
+							background-color:$primaryBg;
+						}
+						button.hide-btn{
+							display:none;
+						}
+					}
 				}
-				ul.bargain-cur-history{
-					position:absolute;
-					top:1.56rem;
-					bottom:0;
-					left:0;
-					right:0;
+				div.bargain-cur-history{
+					ul.bargain-cur-history-ul{
+						margin-top:.2rem;
+						li{
+							font-size:0;
+							height:.24rem;
+							line-height:.24rem;
+							margin:.02rem 0;
+							span{
+								text-align:center;
+								font-size:.12rem;
+								margin:0 .1rem;
+								display:inline-block;
+								word-break:keep-all;/* 不换行 */ 
+								white-space:nowrap;/* 不换行 */ 
+								overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */ 
+								//text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+							}
+							$colW1:.44rem;
+							$colW2:1rem;
+							$colW3:1.1rem;
+							$colW4:.9rem;
+							$colW5:1.4rem;
+							span.bargain-cur-history-drc{
+								width:$colW1;
+								div{
+									width:.32rem;
+									height:.22rem;
+									line-height:.2rem;
+									text-align:center;
+								}
+								div.seller{
+									border:1px solid $textH;
+									color:$textH;
+								}
+								div.buyer{
+									border:1px solid $textI;
+									color:$textI;
+								}
+							}
+							span.bargain-cur-history-yldrto{
+								width:$colW2;
+							}
+							span.bargain-cur-history-netprc{
+								width:$colW3;
+							}
+							span.bargain-cur-history-num{
+								width:$colW4;
+							}
+							span.bargain-cur-history-setamt{
+								width:$colW5;
+							}
+						}
+						li.diff{
+							color:$textG;
+						}
+					}
+				}
+			}
+			div.bargain.hide-content{
+				$operateH:.32rem;
+				div.operate{
+					height:$operateH;
+					div.input{
+						$trH:.32rem;
+						span{
+							height:$operateH;
+							line-height:$operateH;
+							div.input-content{
+								display:none;
+							}
+						}
+					}
+					div.operate-btns{
+						margin-top: .02rem;
+					}
+				}
+				div.bargain-cur-history{
+					top:$infoH+$operateH;
 				}
 			}
 			div.bargain.fold{
 				display:none;
 			}
 			ul#chat_content{
+				position:absolute;
+				top:.32rem;
+				left:0;
+				bottom:0;
+				right:0;
+				overflow-y:auto;
 				$imgWH:.4rem;
 				//箭头
 				div.arrow{
@@ -137,7 +317,7 @@ div#chatroom{
 					position:relative;
 					div.quote-dialog-pop{
 						width:3.82rem;
-						height:1.8rem;
+						height:1.5rem;
 						display:inline-block;
 						margin:0 .24rem;
 						background:$bgDefaultLightB;
@@ -153,9 +333,54 @@ div#chatroom{
 							line-height:$tipsH;
 							background-image:url('../../../../../resource/images/img_bg_title.png');
 							background-repeat:repeat-x;
+							>span.drc{
+								margin-left:.1rem;
+							}
+							>span.timer-container{
+								float:right;
+								margin-right:.1rem;
+								span.timer{
+									vertical-align:middle;
+								}
+							}
 						}
 						div.contents{
 							height:1.18rem;
+							padding:.1rem;
+							.contents-shortname{
+								color:$textG;
+								font-size:.16rem;
+							}
+							>ul.contents-detail{
+								font-size:0;
+								margin-top:.1rem;
+								li.contents-detail-title>span{
+									color:$textK;
+									font-size:.12rem;
+									font-weight: normal;
+								}
+								li.contents-detail-body>span{
+									color:$textG;
+									font-size:.16rem;
+								}
+								li{
+									font-size:0;
+									>span{
+										display:inline-block;
+										word-break:keep-all;/* 不换行 */ 
+										white-space:nowrap;/* 不换行 */ 
+										overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+									}
+									>span.contents-price{
+										width:2rem;
+										/* background:red; */
+									}
+									>span.contents-num{
+										width:1.6rem;
+										/* background:green; */
+									}
+								}
+							}
 						}
 						div.btns{
 							$btnsH:.3rem;
@@ -193,8 +418,10 @@ div#chatroom{
 						}
 					}
 				}
-
-				li{
+				>li:first-child{
+					margin-top:.1rem;
+				}
+				>li{
 					margin-top:.5rem;
 					margin-bottom:.2rem;
 					padding:0 .1rem;
@@ -349,6 +576,13 @@ div#chatroom{
 					margin:0 .04rem;
 					cursor:pointer;
 				}
+				span#emoticon{
+					margin-left:.1rem;
+					margin-right:.4rem;
+				}
+				span#card{
+					margin-right:.4rem;
+				}
 				span#history{
 					float:right;
 				}
@@ -380,7 +614,7 @@ div#chatroom{
 	}
 }
 div#chatroom.show-chat-history{//chatchat
-	$chatHistoryW: 3rem;
+	$chatHistoryW: 4rem;
 	main{
 		margin-right: $chatHistoryW+0.04rem;
 		div#sendarea{
@@ -396,5 +630,148 @@ div#chatroom.show-chat-history{//chatchat
 		width: $chatHistoryW;
 		display:block;
 		background-color: $bgDefaultLightB;
+		$tipsH: .32rem;
+		color:$textK;
+		position:relative;
+		div.bargain-all-history-tips{
+			height: $tipsH;
+			line-height: $tipsH;
+			background-image:url('../../../../../resource/images/img_bg_title.png');
+			background-repeat:repeat-x;
+			padding:0 .06rem;
+			color:$textD;
+		}
+		header.bargain-all-history-header{
+			font-size:0;
+			padding:0 .06rem;
+			span{
+				font-size:.12rem;
+				display:inline-block;
+				text-align:center;
+				height:$tipsH;
+				line-height:$tipsH;
+			}
+			span.all-history-info{
+				width:1.2rem;
+				text-align:left;
+			}
+			span.all-history-drc{
+				width:.7rem;
+			}
+			span.all-history-num{
+				width:.9rem;
+			}
+			span.all-history-yield{
+				width:.6rem;
+			}
+		}
+		ul.bargain-all-history-list{
+			background: $bgDefaultDarkA;
+			position:absolute;
+			top:.64rem;
+			left:0;
+			right:0;
+			bottom:0;
+			overflow-y:auto;
+			>li{
+				border-bottom:.01rem solid $textK;
+				padding:.06rem;
+				>div.all-history-item{
+					height:.6rem;
+					line-height:.6rem;
+					font-size:0;
+					span{
+						font-size:.12rem;
+						display:inline-block;
+						text-align:center;
+						word-break:keep-all;/* 不换行 */ 
+						white-space:nowrap;/* 不换行 */ 
+						overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+						div.history-info-nm{
+							height:.3rem;
+							line-height:.4rem;
+							color:$textG;
+						}
+						div.history-info-cd{
+							height:.3rem;
+							line-height:.2rem;
+						}
+					}
+					span.all-history-info{
+						width:1.2rem;
+						text-align:left;
+					}
+					span.all-history-drc{
+						width:.7rem;
+						height:.6rem;
+						line-height:.6rem;
+						background-repeat: no-repeat;
+						background-position: center;
+					}
+					span.all-history-drc.drc8{
+						background-image:url('../../../../../resource/images/icon_hebuy.png');
+					}
+					span.all-history-drc.drc9{
+						background-image:url('../../../../../resource/images/icon_hesale.png');
+					}
+					span.all-history-drc.drc2{
+						background-image:url('../../../../../resource/images/icon_ibuy.png');
+					}
+					span.all-history-drc.drc3{
+						background-image:url('../../../../../resource/images/icon_isale.png');
+					}
+					span.all-history-num{
+						width:.9rem;
+					}
+					span.all-history-yield{
+						width:.6rem;
+					}
+				}
+				>div.all-history-exchanges{
+					border-top:.01rem solid $textK;
+					font-size:0;
+					position:relative;
+					>div.history-exchanges-seller,div.history-exchanges-buyer{
+						vertical-align:top;
+						display:inline-block;
+						width:1.8rem;
+						font-size:.12rem;
+						margin:.1rem 0;
+						text-align:center;
+						span{
+							display:inline-block;
+							word-break:keep-all;/* 不换行 */ 
+							white-space:nowrap;/* 不换行 */ 
+							overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+							color:$textK;
+						}
+						span.history-exchanges-yldrto{
+							width:.5rem;
+						}
+						span.history-exchanges-netprc{
+							width:.6rem;
+						}
+						span.history-exchanges-num{
+							width:.5rem;
+						}
+					}
+					div.history-exchanges-seller{
+						color:$textH;
+						/* border-right:.01rem solid $textK; */
+					}
+					div.history-exchanges-buyer{
+						color:$textI;
+					}
+					div.vline{
+						width:1px;
+						border-left:1px solid $textK;
+						position:absolute;
+						top:.12rem;
+						bottom:.1rem;
+						left:1.8rem;
+					}
+				}
+			}
+		}
 	}
 }

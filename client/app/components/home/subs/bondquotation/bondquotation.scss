@@ -1,67 +1,79 @@
 @import '../../../../common/css/common';
-h1,h2,h3,h4,h5,h6{
-	margin: 0; 
-	padding: 0;
-}
-
-input{
-	border:none;
-	background:none;
-	font-size: 0.12rem;
-	padding:0.04rem 0.1rem;
-	height:20px;
-	border:1px solid #ccc;
-	border-radius:5px;
-	// color:$inputPlaceColor;
-}
-
-.btn:hover{
-	color:$textF;
-}
-.btn-primary,.btn-primary:hover,.btn-primary.focus,.btn-primary.active,.btn-primary.visited{
-	background-color:$btnPrimary;
-	border:none;
-}
-.btn-default,.btn-default:hover,.btn-default.focus,.btn-default.active,.btn-default.visited{
-	background-color:$bgDefaultLightC;
-	color:$textD;
-	border:none;
-}
-$borderColor:#36474f;
-.bg{
-	background:url(../../../../../resource/images/btn_person.png) no-repeat center;
-}
-
-$inputPlaceColor:#ccc
-::-webkit-input-placeholder { /* WebKit browsers */
-color: $inputPlaceColor;
-}
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-color: $inputPlaceColor;
-}
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-color: $inputPlaceColor;
-}
-::-ms-input-placeholder { /* Internet Explorer 10+ */
-color: $inputPlaceColor;
-}
-
-.btn{
-	font-size: 12px;
-	text-align: center;
-	vertical-align: middle;
-}
-// @media screen and (max-width: 1370px) { /*当屏幕尺寸小于1370px时，应用下面的CSS样式*/
-//   .wid12 {
-//     width:100%;
-//   }
-//   #_body_.well{
-//   	padding: 0.1rem;
-//   	// overflow-y: ;
-//   	height: 4.7rem;
-//   }
+// h1,h2,h3,h4,h5,h6{
+// 	margin: 0; 
+// 	padding: 0;
 // }
-.o-v-a{
+
+
+
+
+
+
+
+.bondquotation{
+	.btn,.btn:hover,.btn.focus,.btn.active,.btn.visited,.btn:focus{
+		// background-color:$bgDefaultLightC;
+		outline: none;
+		color:$textD;
+		border:none;
+	}
+
+	.btn-primary,.btn-primary:hover,.btn-primary.focus,.btn-primary.active,.btn-primary.visited{
+		background-color:$btnPrimary;
+		border:none;
+	}
+	.btn-default,.btn-default:hover,.btn-default.focus,.btn-default.active,.btn-default.visited{
+		background-color:$bgDefaultLightC;
+		color:$textD;
+		border:none;
+	}
+	$borderColor:#36474f;
+	.bg{
+		background:url(../../../../../resource/images/img_bg_title.png)  center;
+	}
+	$inputPlaceColor:#ccc
+	::-webkit-input-placeholder { /* WebKit browsers */
+	color: $inputPlaceColor;
+	}
+	:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	color: $inputPlaceColor;
+	}
+	::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color: $inputPlaceColor;
+	}
+	::-ms-input-placeholder { /* Internet Explorer 10+ */
+	color: $inputPlaceColor;
+	}
+	.btn.active{
+		background-color:$bgGold;
+	}
+	.btn{
+		font-size: 12px;
+		text-align: center;
+		vertical-align: middle;
+	}
+	.colorH{
+		color:$textH;
+	}
+	.colorI{
+		color:$textI;
+	}
+	.colorF{
+		color:$textF;
+	}
+	.colorN{
+		color:$textN;
+	}
+	input{
+		border:none;
+		background:$bgDefault;
+		font-size: 0.12rem;
+		padding:0.04rem 0.1rem;
+		height:20px;
+		border:1px solid $borderDefault;
+		// border-radius:5px;
+		color:$inputPlaceColor;
+	}
 	$cardW:27.43%;
 	$tableW:71.83%;
 	$marginL:0.74%;
@@ -81,9 +93,9 @@ color: $inputPlaceColor;
 			right:0;
 			bottom:0;
 			section.card{
-				border-width:0 0.01rem 0.01rem 0.01rem;
-				border-style: solid;
-				border-color: #dddddd;
+				// border-width:0 0.01rem 0.01rem 0.01rem;
+				// border-style: solid;
+				// border-color: #dddddd;
 				position: relative;
 
 
@@ -92,7 +104,7 @@ color: $inputPlaceColor;
 				header.title{
 					height:$titleH;
 					line-height: $titleH;
-					background:$bgDefaultDarkA;
+					// background:$bgDefaultDarkA;
 					color:$textDefault;
 					span{
 						line-height:$titleH;
@@ -147,8 +159,21 @@ color: $inputPlaceColor;
 							white-space: nowrap;
 						}
 					}
+					.bgMore{
+						float:right;
+						margin-top: 0.05rem;
+						display: inline-block;
+						width:0.44rem;
+						height: 0.16rem;
+						background: url(../../../../../resource/images/btn_more_normal.png) no-repeat center;
+					}
+					.bgMore:hover{
+						background: url(../../../../../resource/images/btn_more_hover.png) no-repeat center;
+					}
 					.mar_T10{
-						margin-top: 0.16rem;
+						text-align: right;
+						display:inline-block;
+						margin-top: 0.1rem;
 						text-align: right;
 						line-height: 0.16rem;
 						height:0.16rem;
@@ -171,63 +196,140 @@ color: $inputPlaceColor;
 		height:100%;
 		$headerH:0.32rem;
 		$wrapW:0.1rem;
+		.wid45{
+			width:44%;
+		}
+		.wid55{
+			width:56%;
+		}
 		header#condition{
 			height:$headerH;
-			background:$bgDefaultLightA;
+			// background:$bgDefaultLightA;
 			.head{
 				height: $headerH;
+				padding:0.04rem 0.1rem;
 				// line-height: 0.32rem;
 				.mar_L10{
+					display: inline-block;
+					float: left;
 					margin-left: 0.1rem;
-					padding:0.04rem 0.2rem;
+					// margin-top: 0.04rem;
+					height: 0.24rem;
+					line-height: 0.24rem;
+					padding:0 0.2rem;
 					border-radius: 0.2rem;
 				}
+				.padd5{
+					display:inline-block;
+					margin-left:0.15rem;
+					// margin-top: 0.04rem;
+					width:0.24rem;
+					height: 0.24rem;
+					border-radius: 50%;
+					background: $bgDefaultLightC;
+					line-height: 0.24rem;
+					text-align: center;
+					.plus{
+						display: inline-block;
+						height:0.12rem;
+						width:0.12rem;
+						background: url(../../../../../resource/images/btn_plus_normal.png) no-repeat center;
+					}
+					.plus:hover{
+						background: url(../../../../../resource/images/btn_plus_hover.png) no-repeat center;
+					}
+				}
+				.myBond{
+					display: inline-block;
+					background: url(../../../../../resource/images/btn_delete_normal.png) no-repeat center;
+					width:0.24rem;
+					height: 0.24rem;
+				}
+				.myBond:hover{
+					background: url(../../../../../resource/images/btn_delete_hover.png) no-repeat center;
+				}
+				.SelectDownBox{
+					display:inline-block;
+					float: right;
+					margin:0.09rem 0 0 0.26rem;
+					width:0.13rem;
+					height: 0.14rem;
+					background: url(../../../../../resource/images/btn_arrow_packup1_normal.png) no-repeat center;
+				}
+				.SelectDownBox:hover{
+					background: url(../../../../../resource/images/btn_arrow_packup1_hover.png) no-repeat center;
+				}
+				.SelectDownBox.active{
+					background: url(../../../../../resource/images/btn_arrow_unfold1_normal.png) no-repeat center;
+				}
+				.SelectDownBox.active:hover{
+					background: url(../../../../../resource/images/btn_arrow_unfold1_hover.png) no-repeat center;
+				}
 			}
-			.btn{
-				padding: .03rem .06rem;
+			// .btn{
+			// 	padding: .03rem .06rem;
+			// }
+			.nowBondAlert{
+				height: 0.4rem;
+				font-size: 0.14rem;
+				line-height:0.4rem;
+				position:fixed;
+				top:0;
+				right:2rem;
 			}
 			#_body_{
 				padding:$wrapW;
 			}
-			.titSearch{
+			.titSearchBox{
 				float: right;
 				position: relative;
 				width:2rem;
-				#searchSelect{
-					position: absolute;
-					z-index: 100;
-					right: 0;
-					width:2.45rem;
-					border: 1px solid #ccc;
-					li{
-						height: 0.3rem;
-						background: #ccc;
-						line-height: 0.3rem;
-						padding-left: 0.1rem;
-						span{
-							margin-right: 0.1rem;
-						}
-					}
-				}
-				label{
+				// #searchSelect{
+				// 	position: absolute;
+				// 	z-index: 100;
+				// 	right: 0;
+				// 	width:2.45rem;
+				// 	border: 1px solid #ccc;
+				// 	li{
+				// 		height: 0.3rem;
+				// 		background: #ccc;
+				// 		line-height: 0.3rem;
+				// 		padding-left: 0.1rem;
+				// 		span{
+				// 			margin-right: 0.1rem;
+				// 		}
+				// 	}
+				// }
+				.searchBg{
+					display:inline-block;
+					width:0.16rem;
+					height: 0.16rem;
+					background: url(../../../../../resource/images/icon_search.png) no-repeat center;
 					position: absolute;
 					z-index: 1;
 					right:.05rem;
-					top:.07rem;
+					top:.08rem;
 					font-size:14px;
+				}
+				.searchBg:hover{
+					background: url(../../../../../resource/images/icon_search_hover.png) no-repeat center;
 				}
 				input{
 					width:100%;
 					border-radius: 0.24rem;
 					padding-right: 0.25rem;
+					margin-top:0.04rem;
 					height: 0.24rem;
 					color:#667882;
 				}
 			}
-			div#_body_{
+			
+		}
+		div#_body_{
 				// display: none;
 				$height20:0.2rem;
 				$titMinWidth:0.5rem;
+				padding:0.1rem;
 				section{
 					padding: 0;
 				}
@@ -270,25 +372,96 @@ color: $inputPlaceColor;
 						height: 0.2rem;
 					}
 				}
-				
+				.bgDY{
+					width: 0.5rem;
+					height: 0.2rem;
+					text-align: center;
+					line-height: 0.2rem;
+					position: relative;
+					right:-0.1rem;
+					background: url(../../../../../resource/images/btn_changeday_normal.png) no-repeat center;
+				}
+				// .bgDYNormal{
+					
+				// }
+				.bgDYActive{
+					background: url(../../../../../resource/images/btn_changeday_select.png) no-repeat center;
+				}
 			}
-		}
 		main{
-			// min-height: 3.3rem;
-			// max-height:6rem;
-
-			// display: none;
-			// position:relative;
-			border:1px solid #ccc;
-			// top:$headerH;
-			// bottom:0;
-			// left:0;
-			// right:0;
-			// td,th{
-			// 	border-left:1px solid #ccc;
-			// }
+			.my-table{
+				height: 6.2rem;
+				overflow-y: auto;
+			}
 			table{
+				th,td{
+					text-align: center;
+				}
+				td{
+					border-top: 1px solid $borderDefault;
+				}
+				th {
+					padding:0;
+					height: 0.32rem;
+					border-bottom: none;
+					vertical-align: middle;
+					// position:relative;
+				}
+				th i{
+					display: none;
+				}
+				tr:visited{
+					background: $bgDefaultLightC;
+				}
+				th.active{
+					background: none;
+				}
+				.colorH{
+					color:$textH;
+				}
+				.colorI{
+					color:$textI;
+				}
 
+				.sortDown{
+					display:inline-block;
+					width:0.07rem ;
+					height:0.11rem;
+					position: absolute;
+					top:4px;
+					right:-12px;
+					background: url(../../../../../resource/images/btn_sort_down.png) no-repeat  center;
+				}
+				.sortUp{
+					display:inline-block;
+					width:0.07rem ;
+					height:0.11rem;
+					position: absolute;
+					top:4px;
+					right:-12px;
+					background: url(../../../../../resource/images/btn_sort_up.png) no-repeat  center;
+				}
+				.starNor{
+					width:0.4rem;
+					background: url(../../../../../resource/images/btn_star_normal.png) no-repeat center;
+				}
+				.starSelect{
+					width:0.4rem;
+					background: url(../../../../../resource/images/btn_star_select.png) no-repeat center;
+				}
+				.chatRoom{
+					display:inline-block;
+					width:0.17rem;
+					height: 0.17rem;
+					background: url(../../../../../resource/images/btn_chat_normal.png) no-repeat center;
+					margin-right: 0.2rem;
+				}
+				.calculator{
+					display:inline-block;
+					width:0.17rem;
+					height: 0.17rem;
+					background: url(../../../../../resource/images/btn_calculator_normal.png) no-repeat center;
+				}
 				// height: 100%;
 				// overflow-y: scroll;
 			}
@@ -296,20 +469,66 @@ color: $inputPlaceColor;
 				height:100%;
 
 			}
-			thead i{
-				float: right;
+			thead tr{
+				background:$bgDefaultLightA;
 			}
-			i.pulRight{
-				// position: absolute;
-				left: .3rem;
-				top:0;
+			// 分页
+			.myPage{
+				text-align: right;
+				.pagination{
+					margin:0;
+				}
+				span{
+					display: inline-block;
+					padding:0 5px;
+					margin:0 0.1rem;
+					line-height: 0.34rem;
+				}
+			}
+			// thead i{
+			// 	float: right;
+			// }
+			// i.pulRight{
+			// 	// position: absolute;
+			// 	left: .3rem;
+			// 	top:0;
+			// }
+			.change{
+				display: inline-block;
+				padding: 6px;
+				margin: 0 10px ;
+				background: url(../../../../../resource/images/btn_edite_normal.png)  no-repeat center;
+			}
+			.delete{
+				display: inline-block;
+				padding: 6px;
+				margin: 0 10px;
+				background: url(../../../../../resource/images/btn_delete_normal.png) no-repeat  center;
+			}
+			.send{
+				display: inline-block;
+				padding: 6px;
+				margin: 0 10px;
+				background: url(../../../../../resource/images/btn_send_normal.png) no-repeat center;
+			}
+			.unShowName{
+				background: url(../../../../../resource/images/btn_person.png) no-repeat center;
+			}
+			.addNew{
+				display: inline-block;
+				padding: 6px;
+				margin: 0 10px ;
+				background: url(../../../../../resource/images/btn_guapai_normal.png) no-repeat  center;
+			}
+			.addNew:hover{
+				background: url(../../../../../resource/images/btn_guapai_hover.png) no-repeat  center;
 			}
 		}
 	}
 }
-.v-o-a{
+.bondquotation{
 	div#_body_.collapse{
-		height: 2.9rem;
+		height: 3.2rem;
 		// display:block;
 	}
 	td.care{
@@ -323,74 +542,3 @@ color: $inputPlaceColor;
 
 
 
-.modal-dialog{
-	// height:6rem;
-	width:8rem;
-	margin-top:0;
-	position:relative;
-	z-index:1000;
-	.modal-content{
-		height:6.2rem;
-		position:relative;
-
-		.modal-body{
-			height: 4.9rem;
-			width:8rem;
-			float:left;
-			padding-left:0;
-			padding-right:0;
-			.cont{
-				width:100%;
-				border-top:1px solid #ccc;
-				label {
-					font-weight:500;
-				}
-				.marT10{
-					margin-top:10px;
-				}
-				p.input-group{
-					margin:0;
-				}
-				.cont_l,.cont_r{
-					width:48%;
-					display: inline-block;
-					margin-bottom:  10px ;
-				}
-				.tit{
-					display:inline-block;
-					width:1.2rem;
-					text-align: right;
-					margin-right: 20px;
-				}
-				.titSearch{
-					position: relative;
-					input{
-						padding:0px 20px;
-					}
-					.ser,.clear{
-						position: absolute;
-						top:.08rem;
-					}
-					.ser{
-						left:.03rem;
-
-					}
-					.clear{
-						right:5px;
-					}
-				}
-			}
-			.borT0{
-				border-top:none;
-				margin-top:0;
-			}
-		}
-		.modal-footer{
-			height: .4rem;
-			position:absolute;
-			left:3rem;
-			bottom:0px;
-			border:none;
-		}
-	}
-}

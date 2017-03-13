@@ -2,25 +2,27 @@ class PageheaderController {
 	constructor($state,pageheaderService) {
 		this.$state = $state;
 		this.pageheaderService = pageheaderService;
+		
+
 	}
 	$onInit(){
 		this.name = 'pageheader';
-		this.tabs = [{
-			routeState:"home.bondquotation",
-			routeLabel:"债券报价",
-			routeClass:"active",
-		}];
+		
+		let BONDCONFIG = require('../../../../../bond.config.js');
+		(!!BONDCONFIG.USERINFO.userName) && (this.username = BONDCONFIG.USERINFO.userName);
 	}
 	logout(){
 		let promise = this.pageheaderService.logout();
 		promise.then((data)=>{
 			console.log(data);
-			if(data.data.status!=="0"){alert(data.data.msg);}
+			if(data.data && data.data.status!=="0"){alert(data.data.msg);}
 			this.$state.go('login');
 		},(data)=>{
 			console.warn("用户登录异常");
 		});
 	}
+	/**
+	 * 移除,TAB不需要在这里处理
 	addTab(nav) {
 		// console.info(nav);
 		this.tabs.forEach((item)=>{
@@ -50,6 +52,7 @@ class PageheaderController {
 	deleteTab() {
 		console.info('delete');
 	}
+	*/
 }
 PageheaderController.$inject = ['$state','pageheaderService'];
 export default PageheaderController;

@@ -6,7 +6,7 @@ let quoteModalComponent = {
 	restrict: 'E',
 	bindings: {
 		modalInstance: "<",
-		resolve: "<",
+		resolve: "<"
 	},
 	template,
 	controller,

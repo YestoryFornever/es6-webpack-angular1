@@ -1,8 +1,9 @@
 class PagenavController {
-	constructor() {
+	constructor(pagetabService) {
+		this.pagetabService = pagetabService;
 		this.name = 'pagenav';
 		this.navs = [
-			{
+			/*{
 				rstate:"",
 				rlabel:"About",
 				rclass:"",
@@ -57,59 +58,65 @@ class PagenavController {
 						]
 					}
 				]
-			},
+			},*/
 			{
-				rstate:"",
-				rlabel:"债券报价",
-				rclass:"",
+				routeState:"",
+				routeLabel:"债券报价",
+				routeClass:"",
 				children:[
 					{
-						rstate:"home.bondquotation",
-						rlabel:"债券报价",
-						rclass:"",
+						tabKey: 'home.bondquotation',
+						routeState:"home.bondquotation",
+						routeLabel:"债券报价",
+						routeClass:"",
+						onClick: function()
+						{
+							pagetabService.activeTab({
+								tabKey: this.tabKey,
+								routeState: this.routeState,
+								routeLabel: this.routeLabel,
+							});
+						}
 					},
 					{
-						rstate:"home.chatroom",
-						rlabel:"消息中心",
-						rclass:"",
+						tabKey: 'home.chatroom',
+						routeState:"home.chatroom",
+						routeLabel:"消息中心",
+						routeClass:"",
+						onClick: function()
+						{
+							pagetabService.activeTab({
+								tabKey: this.tabKey,
+								routeState: this.routeState,
+								routeLabel: this.routeLabel,
+							});
+						}
 					},
 					{
-						rstate:"home.calculator",
-						rlabel:"计算器",
-						rclass:"",
+						tabKey: 'home.calculator',
+						routeState:"home.calculator",
+						routeLabel:"计算器",
+						routeClass:"",
 					},
 					{
-						rstate:'home.minebond',
-						rlabel:'我的报价',
-						rclass:''
+						tabKey: 'home.message',
+						routeState:'home.message',
+						routeLabel:'质讯',
+						routeClass:'',
+						onClick: function()
+						{
+							pagetabService.activeTab({
+								tabKey: this.tabKey,
+								routeState: this.routeState,
+								routeLabel: this.routeLabel,
+							});
+						}
 					},
-					{
-						rstate:'home.acoupondetails',
-						rlabel:'个券详情',
-						rclass:''
-					},
-					{
-						rstate:'home.cashoffer',
-						rlabel:'现券报价弹窗',
-						rclass:''
-					},
-					{
-						rstate:'home.backgroundsystem',
-						rlabel:'后台管理查询报价',
-						rclass:''
-					},
-					{
-						rstate:'home.backsystem',
-						rlabel:'后台管理_债券报价',
-						rclass:''
-					}
 				]
 			}
 		];
 	}
-	addtab(nav){
-		this.onAddTab({nav:nav});
-	}
 }
+PagenavController.$inject = ['pagetabService'];
 
 export default PagenavController;

@@ -4,7 +4,10 @@ import './bondTrial.scss';
 
 let bondTrialComponent = {
 	restrict: 'E',
-	bindings: {},
+	bindings: {
+		modalInstance: "<",
+		resolve: "<",
+	},
 	template,
 	controller
 };

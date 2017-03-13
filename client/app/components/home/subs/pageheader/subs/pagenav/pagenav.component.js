@@ -6,7 +6,6 @@ let pagenavComponent = {
 	restrict: 'E',
 	bindings: {
 		nav:'<',
-		onAddTab:'&'
 	},
 	template,
 	controller

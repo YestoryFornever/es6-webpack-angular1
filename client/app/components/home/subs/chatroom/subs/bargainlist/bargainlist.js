@@ -17,7 +17,8 @@ let bargainlistModule = angular.module('bargainlist', [
 				'list@home.chatroom': {
 					component: 'bargainlist'
 				}
-			}
+			},
+			cache:false
 		});
 })
 .component('bargainlist', bargainlistComponent)

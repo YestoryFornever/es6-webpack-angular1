@@ -6,7 +6,8 @@ h1,h2,h3,h4,h5,h6{
 .a-c-d{
 	height:100%;
 	overflow:auto;
-	font-size:0.14rem;
+	font-size:0.12rem;
+	color:#a3cbd9;
 	ul{
 			list-style:none;
 			
@@ -15,50 +16,107 @@ h1,h2,h3,h4,h5,h6{
 		height:.6rem;
 		line-height:0.6rem;
 		width:100%;
-		background:#666 ;
+		background:#253942 ;
 		div.title_lf{
 			float:left;
 			height:100%;
-		 	width:3rem;
+		 	width:60%;
 		 	padding-left:.16rem;
 		 	color:#ffeb62;
-		 	font-size: 0.18rem;
+		 	font-size: 18px;
 		 	font-weigth:7rem
 
 		 }
+
+
+
+		 //div.title_co{
+		 //float:left;
+		// background:url('../../../../../../resource/images/btn_selectbox_hover.png') no-repeat;
+		 
+
+		// }
+
+
+
+
 		 div.title_rt{
 		 	height:.6rem;
 		 	width:4rem;
 		 	float:right;
 			 	.title_rt_input{
-			 	height:0.2rem;
-			 	width:2.6rem;
-			 	line-height:0.2rem;
-			 	float:left;
-			 	padding-left:0.1rem;
-			 	margin-top:0.2rem;
-			 	background:#fff;
-			 	border-radius:0.15rem;
-				 	input{
-				 	border:none;
-				 	outline:none;
-				 	height:0.2rem;
-				 	width:2.1rem;
-				 	}
+				 	height:0.3rem;
+				 	width:2.6rem;
+				 	line-height:0.3rem;
+				 	float:left;
+				 	padding-left:0.1rem;
+				 	margin-top:0.15rem;
+				 	background:#2B414C;
+				 	border-radius:0.15rem;
+				 	position:relative;
+				 	left:0;
+				 	top:0;
+					 	input{
+						 	border:none;
+						 	outline:none;
+						 	height:0.3rem;
+						 	width:2.24rem;
+						 	background:#2B414C;
+						 	border-radius:0.15rem;
+					 	}
+					 	#box_search{
+					 		width:2rem;
+					 		//height:.3rem;
+					 		background:#FFFFFF;
+					 		border-radius:.05rem;
+					 		z-index:200;
+					 		li{
+					 			height:.26rem;
+					 			width:2rem;
+					 			line-height:.3rem;
+					 			text-align:center;
+					 		}
+					 		li:hover{
+								background:#377DC2;
+							}
+
+					 	}
 		 	}
 			 	.title_rt_tub{
-			 	height:.3rem;
-			 	width:1.1rem;
-			 	float:right;
-			 	margin-top:0.04rem;
-				 	i#fa-heart-o{
-				 	padding-left:0.2rem;
-				 	}
+					 	height:.3rem;
+					 	width:1rem;
+					 	
+					 	float:right;
+					 	margin-top:0.15rem;
+					 		.cal{
+					 		display:inline-block;
+					 		height:.24rem;
+					 		width:.24rem;
+					 		float:left;
+					 			background:url("../../../../../../resource/images/btn_calculator2_normal.png") no-repeat;
+					 		}
+					 		.cal:hover{
+					 		background:url("../../../../../../resource/images/btn_calculator2_hover.png") no-repeat;
+					 		}
+						 	.start{
+							 	display:inline-block;
+						 		height:.24rem;
+						 		width:.24rem;
+						 		float:right;
+						 		margin:0rem .2rem;
+						 		background:url("../../../../../../resource/images/btn_star2_normal.png") no-repeat;
+							 		
+						 	}
+						 	.start:hover{
+					 		background:url("../../../../../../resource/images/btn_star2_select.png") no-repeat;
+					 		}
 			 	}
 		 }
 	}
 		div.info{
 			height:2rem;
+			font-size:.12rem;
+			color:#a3cbd9;
 			margin-top:.14rem;
 			div.content{
 				height:100%;
@@ -74,6 +132,10 @@ h1,h2,h3,h4,h5,h6{
 				height:.3rem;
 				}
 				}
+				span{
+									font-size:.16rem;
+									color:#ffeb62;
+								}
 		}
 
 		.selector{
@@ -89,10 +151,10 @@ h1,h2,h3,h4,h5,h6{
 						height:.4rem;
 						line-height:.4rem;
 						padding-left:.16rem;
-						font-size:.18rem;
+						font-size:.12rem;
 						font-weigth:7rem;
-						color:#DDD;
-						background:#333;
+						color:#fff;
+						background:#2E424D;
 					}
 					.main{
 						height:2.4rem;
@@ -109,6 +171,7 @@ h1,h2,h3,h4,h5,h6{
 								li{
 								height:.3rem;
 								}
+								
 							}
 						}
 						div.clearfixed{
@@ -121,33 +184,32 @@ h1,h2,h3,h4,h5,h6{
 						div#business{
 						width:100%;
 						height:4rem;
+						font-size:0.14rem;
+						color:#a3cbd9;
 						margin-top:.3rem;
 						overflow:hidden;
 							#box{
-									//height:2rem;
+								
 									.newBox{
-									
-										//height:0.2rem;
-										//width:3rem;
 										overflow:hidden;
 										width:100%;
 										float:left;
-										//padding-left:.16rem;
-										//text-overflow:ellipsis;
+									
 										white-space:wrap;
-									    //word-wrap:break-word;
-									    //word-break:break-all;
+									   
 									    .newBox-left{
 									    	height:100%;
 									    	width:20%;
 									    	//background:blue;
 									    	padding-left:.16rem;
 									    	float:left;
+									    	
 									    }
 									    .newBox-right{
 									    	height:100%;
 									    	width:80%;
 									    	float:left;
+									    	
 									    	
 									   }
 									}
@@ -176,7 +238,7 @@ h1,h2,h3,h4,h5,h6{
 			
 		}
 		
-		
+
 		
 
 	

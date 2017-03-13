@@ -1,21 +1,24 @@
 class PagetabController {
-	constructor() {}
+
+	constructor(pageheaderService,$state,$stateParams,$uibModal,$mdDialog, pagetabService) {
+		this.$stateParams = $stateParams;
+		this.$uibModal = $uibModal;
+		this.$mdDialog = $mdDialog;
+		this.pagetabService = pagetabService;
+	}
+
 	$onInit(){
 		this.name = 'pagetab';
 	}
-	setActive(tab){
-		angular.forEach(this.tabs,function(item){
-			let arr = item.routeClass.split(" ");
-			let index = arr.indexOf('active');
-			if(index>-1){
-				arr.splice(index,1);
-			}
-			item.routeClass = arr.join(" ");
-		});
-		if(tab){
-			tab.routeClass+=" active";
+	close(tab){
+		console.log(tab);
+		let index = this.bondDetail.indexOf(tab);
+		if(index>=-1){
+			this.bondDetail.splice(index,1);
 		}
 	}
+	
+
 	/*$doCheck(){
 		console.log(this.tabs);
 	}
@@ -23,5 +26,7 @@ class PagetabController {
 	$postLink(){}
 	$onDestroy(){}*/
 }
-// PagetabController.$inject = ['getTabsService'];
+
+PagetabController.$inject = ['pageheaderService','$state','$stateParams','$uibModal','$mdDialog', 'pagetabService'];
+
 export default PagetabController;

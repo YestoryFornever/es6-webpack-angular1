@@ -1,7 +1,12 @@
 class BargainlistController {
-	constructor($scope,$stateParams,bargainlistService,$state) {
+	constructor($rootScope,$scope,$stateParams,bargainlistService,$state) {
 		this.name = 'bargainlist';
 		this.bargainlistService = bargainlistService;
+		this.$rootScope = $rootScope;
+		this.$scope = $scope;
+		this.$scope.$on('refresh-bargain-list',(event,args)=>{
+			this.getBarginList();
+		});
 	}
 	$onInit(){
 		this.getBarginList();
@@ -10,10 +15,14 @@ class BargainlistController {
 		let promise = this.bargainlistService.queryBondNegtprcList();
 		promise.then((data)=>{
 			if(data.status===200){
-				console.log(data.data.data);
-				this.bargainlist = data.data.data.map((item)=>{
-					item.fold=true;return item;
-				});
+				if(data.data.status==="0"){
+					// debugger;
+					this.bargainlist = data.data.data.map((item)=>{
+						item.fold=true;return item;
+					});
+				}else{
+					alert(data.data.msg);
+				}
 			}
 		},(data)=>{
 			console.warn("获取议价列表异常");
@@ -28,5 +37,5 @@ class BargainlistController {
 		bargain.fold = !bargain.fold;
 	}
 }
-BargainlistController.$inject =  ['$scope','$stateParams','bargainlistService','$state'];
+BargainlistController.$inject =  ['$rootScope','$scope','$stateParams','bargainlistService','$state'];
 export default BargainlistController;

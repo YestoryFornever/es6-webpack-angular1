@@ -11,12 +11,16 @@ acoupondetailsServiceModule
 
 	$stateProvider
 		.state('home.acoupondetails', {
-			url: '/acoupondetails',
+			url: '/acoupondetails/?:bondid',
 			views: {
 				'main@home': {
 					component: 'acoupondetails'
 				}
-			}
+			},
+			// controller:function($stateParams){
+   //              return ($stateParams.bondid)
+   //          }
+
 		})
 	
 })

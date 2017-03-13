@@ -1,7 +1,7 @@
 class InputNumController {
 	constructor() {
 		this.name = 'inputNum';
-		this.aaa = '';
+		this.value = '';
 		this.xxx = '请输入内容';
 	}
 	$onInit(){
@@ -22,25 +22,25 @@ class InputNumController {
 	}
 	// 点击上下箭头
 	numChange(ev,ele){
-		this.aaa *= 1 ;
-		if(!this.aaa){
-			this.aaa = 0;
+		this.value *= 1 ;
+		if(!this.value){
+			this.value = 0;
 		}
 		let up =$(ele).hasClass('up');
 		let down =$(ele).hasClass('down');
 		console.log($(ele))
 		if(up){
-			this.aaa+=1;
+			this.value+=1;
 		}else{
-			this.aaa = parseFloat( (this.aaa - 1).toFixed(10));
-			this.aaa<=0 && (this.aaa = 0.01);
+			this.value = parseFloat( (this.value - 1).toFixed(10));
+			this.value<=0 && (this.value = 0);
 		}
 
 	}
 	//向上传value 值
 	getValue(){
-		// console.log(this.aaa)
-		this.onGetValue({value:this.aaa})
+		// console.log(this.value)
+		this.onGetValue({value:this.value})
 	}
 
 

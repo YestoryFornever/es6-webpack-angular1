@@ -3,140 +3,147 @@
 </div> -->
 <!-- 弹窗 -->
 
-<div class="modal-dialog " >
-    <div class="modal-content"  >
-        <div class="modal-header ng-scope">
-            <p class="modal-title" id="modal-title">债券试算 
-                <i class="fa fa-times pull-right" aria-hidden="true" ng-click="$ctrl.closeDialog()"></i>
-            </p>
-        </div>
-        <div class="modal-body ng-scope clearfix" id="modal-body" >
-            <div class="cont borT0">
-                <div class="cont_l form-inline">
-                    <span class="tit">债券代码:</span>
-                    <div class="form-group form-inline titSearch"  >
-                        <label  class="ser"><i class="glyphicon glyphicon-search"></i></label>
-                        <input type="text" class="form-control " placeholder="债券代码" >
-                        <span ng-click='$ctrl.clearSeach($event)'><i class="fa fa-times clear" aria-hidden="true"></i></span>
-                    </div>
-                </div>
-                <div class="cont_r">
-                    <span class="tit">债券简称:</span>
-                    <span class="content">12华茂债</span>
-                </div>
-                <div class="cont_l form-inline">
-                    <span class="tit">剩余期限:</span>
-                    <span class="content">145D</span>
-                </div>
-                <div class="cont_r">
-                    <span class="tit">主/债评级:</span>
-                    <span class="content">--/AA</span>
-                </div>
-                <div class="cont_l form-inline">
-                    <span class="tit">票面利率(%):</span>
-                    <span class="content">6.3</span>
-                </div>
-                <div class="cont_r">
-                    <span class="tit">票息类型:</span>
-                    <span class="content">固定利率</span>
-                </div>
-            </div>
-            <div class="cont">
-                <div class="cont_l form-inline marT10">
-                    <span class="tit">交易日期:</span>
-                    <p class="input-group">
-                        <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="$ctrl.tody" is-open="$ctrl.popup1.opened" datepicker-options="dateOptions"  close-text="Close" alt-input-formats="altInputFormats" />
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default" ng-click="$ctrl.open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
-                    </p>
-                </div>
-                <div class="cont_r">
-                    <span class="tit">债券简称:</span>
-                    <span class="content">
-                        <!-- <label >
-                            <img src="../../../../resource/images/btn_selectbox_round_normal.png" alt="">&nbsp;T+1
-                        </label> -->
-                        <label ng-click='$ctrl.getCalSettlementDate("1")' >
-                            <img src="../../../../resource/images/btn_selectbox_round_select.png" alt="">&nbsp;T+1
-                        </label>
-                        <label ng-click='$ctrl.getCalSettlementDate("0")' >
-                            <img src="../../../../resource/images/btn_selectbox_round_normal.png" alt="">&nbsp;T+0
-                        </label>
-                        <!-- <label >
-                            <img src="../../../../resource/images/btn_selectbox_round_select.png" alt="">&nbsp;T+0
-                        </label> -->
-                    </span>
-                </div>
-                <div class="cont_l form-inline">
-                    <span class="tit">结算日期:</span>
-                    <span class="content">{{$ctrl.settlementDate}}</span>
-                </div>
-                <div class="cont_r">
-                    <span class="tit">&nbsp;</span>
-                    <span class="content">&nbsp;</span>
-                </div>
-                <div class="cont_l form-inline">
-                    <span class="tit">数量(万):</span>
-                    <span class="content form-inline"><input type="text" class="form-control"></span>
-                </div>
-                <div class="cont_r">
-                    <span class="tit">结算金额:</span>
-                    <span class="content">10,348,190.00</span>
-                </div>
-            </div>
-            <div class="cont">
-                <div class="cont_l form-inline marT10">
-                    <span class="tit">到期收益率(%):</span>
-                    <span class="content form-inline"><input type="text"  class="form-control" placeholder="请输入内容"></span>
-                </div>
-                <div class="cont_r">
-                    <span class="tit">计息天数:</span>
-                    <span class="content">4.61Y</span>
-                </div>
-                <div class="cont_l form-inline marT10">
-                    <span class="tit">行权收益率(%):</span>
-                    <span class="content form-inline"><input type="text"  class="form-control" placeholder="请输入内容"></span>
-                </div>
-                <div class="cont_r">
-                    <span class="tit">应计利息:</span>
-                    <span class="content">3.866301</span>
-                </div>
-                <div class="cont_l form-inline marT10">
-                    <span class="tit">净价(元):</span>
-                    <span class="content form-inline"><input type="text"  class="form-control" placeholder="请输入内容"></span>
-                </div>
-                <div class="cont_r">
-                    <span class="tit">兑付日:</span>
-                    <span class="content">2017-04-12</span>
-                </div>
-                <div class="cont_l form-inline marT10">
-                    <span class="tit">全价(元):</span>
-                    <span class="content form-inline"><input type="text"  class="form-control" placeholder="请输入内容"></span>
-                </div>
-                <div class="cont_r">
-                    <span class="tit">行权日:</span>
-                    <span class="content">---</span>
-                </div>
-            </div>
-            <div class="cont">
-                <div class="cont_l marT10">
-                    <span class="tit">麦氏久期:</span>
-                    <span class="content">0.3890</span>
-                </div>
-                <div class="cont_r">
-                    <span class="tit">PVBP:</span>
-                    <span class="content">0.0039</span>
-                </div>
-                <div class="cont_l marT10">
-                    <span class="tit">修正久期:</span>
-                    <span class="content">0.3636</span>
-                </div>
-                <div class="cont_r">
-                    <span class="tit">凸性:</span>
-                    <span class="content">0.0039</span>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="bondTrial " >
+	<!-- <div class="modal-content"  > -->
+		<div class="modal-header ng-scope">
+			<p class="modal-title" id="modal-title">债券试算 
+				<i class="fa fa-times pull-right" aria-hidden="true" ng-click="$ctrl.cancel()""></i>
+			</p>
+		</div>
+		<div class="modal-body ng-scope clearfix" id="modal-body" >
+			<div class="cont borT0">
+				<div class="cont_l">
+					<span class="tit">债券代码</span>
+					<input type="text"
+						ng-model="$ctrl.bondCd"
+						uib-typeahead="list as list.bondCd for list in  $ctrl.queryQuote($viewValue)"
+						typeahead-template-url="bondTrial.html"
+						typeahead-on-select='$ctrl.search($ctrl.bondCd)'
+						typeahead-show-hint="false"
+						placeholder="">
+				</div>
+				<div class="cont_r">
+					<span class="tit">债券简称</span>
+					<span class="content">{{$ctrl.infoList.bondShrtnm}}</span>
+				</div>
+				<div class="cont_l">
+					<span class="tit">剩余期限</span>
+					<span class="content">{{$ctrl.infoList.rsdtrm | addYearFilter}}</span>
+				</div>
+				<div class="cont_r">
+					<span class="tit">主/债评级</span>
+					<span class="content">{{$ctrl.infoList.institutionRank}}/{{$ctrl.infoList.bondRank}}</span>
+				</div>
+				<div class="cont_l">
+					<span class="tit">票面利率(%)</span>
+					<span class="content">{{$ctrl.infoList.bondRate | yldrtoFilter}}</span>
+				</div>
+				<div class="cont_r">
+					<span class="tit">票息类型</span>
+					<span class="content">{{$ctrl.infoList.rateType}}</span>
+				</div>
+			</div>
+			<div class="cont">
+				<div class="cont_l marT10">
+					<span class="tit">交易日期</span>
+					<input type="text" class="inpWid118" uib-datepicker-popup="{{format}}" ng-model="$ctrl.tody" is-open="isOpen" datepicker-options="dateOptions" ng-change='$ctrl.dateChange()'  close-text="Close" alt-input-formats="altInputFormats" />
+					<span class="date" ng-click='isOpen = !isOPen'></span>
+				</div>
+				<div class="cont_r">
+					<span class="tit">债券简称</span>
+					<span class="content">
+						<!-- <label >
+							<img src="../../../../resource/images/btn_selectbox_round_normal.png" alt="">&nbsp;T+1
+						</label> -->
+						<label ng-model='$ctrl.getCalcIndicators.clearSpeed' uib-btn-radio="'1'"   ng-click='$ctrl.getCalSettlementDate("1")'>
+							<span class="choice" ng-class='{"unChoice" : $ctrl.getCalcIndicators.clearSpeed =="0"}'></span>&nbsp;T+1
+						</label>
+						<label ng-model='$ctrl.getCalcIndicators.clearSpeed' uib-btn-radio="'0'" ng-click='$ctrl.getCalSettlementDate("0")'>
+							<span class="choice" ng-class='{"unChoice" : $ctrl.getCalcIndicators.clearSpeed =="1"}'></span>&nbsp;T+0
+						</label>
+						<!-- <label >
+							<img src="../../../../resource/images/btn_selectbox_round_select.png" alt="">&nbsp;T+0
+						</label> -->
+					</span>
+				</div>
+				<div class="cont_l">
+					<span class="tit">结算日期</span>
+					<span class="content">{{$ctrl.settlementDate}}</span>
+				</div>
+				<div class="cont_r">
+					<span class="tit">&nbsp;</span>
+					<span class="content">&nbsp;</span>
+				</div>
+				<div class="cont_l">
+					<span class="tit">数量(万)</span>
+					<span class="content"><input type="text" ng-blur='$ctrl.getMoneyForNum()' ng-model='$ctrl.getCalcIndicators.dealNum'></span>
+				</div>
+				<div class="cont_r">
+					<span class="tit">结算金额</span>
+					<span class="content">{{$ctrl.settlementAmount  | number:4}}</span>
+				</div>
+			</div>
+			<div class="cont">
+				<div class="cont_l marT10">
+					<span class="tit">到期收益率(%)</span>
+					<span class="content"><input type="text" ng-model='$ctrl.getCalcIndicators.yield' ng-blur='$ctrl.calcIndicatorsYield()'  placeholder="请输入内容"></span>
+				</div>
+				<div class="cont_r">
+					<span class="tit">计息天数</span>
+					<span class="content"></span>
+				</div>
+				<div class="cont_l ">
+					<span class="tit">行权收益率(%)</span>
+					<span class="content"><input style="background: #ccc" type="text" disabled="true" placeholder="请输入内容"></span>
+				</div>
+				<div class="cont_r">
+					<span class="tit">应计利息</span>
+					<span class="content">{{$ctrl.calcIndicatorsList.accruedInterest  | numPointFourFilter}}</span>
+				</div>
+				<div class="cont_l ">
+					<span class="tit">净价(元)</span>
+					<span class="content"><input type="text"  ng-model='$ctrl.getCalcIndicators.cleanPrice' ng-blur='$ctrl.calcIndicatorsForWeb("cleanPrice")' placeholder="请输入内容"></span>
+				</div>
+				<div class="cont_r">
+					<span class="tit">兑付日</span>
+					<span class="content">{{}}</span>
+				</div>
+				<div class="cont_l ">
+					<span class="tit">全价(元)</span>
+					<span class="content"><input type="text" ng-model='$ctrl.getCalcIndicators.fullRate ' ng-blur='$ctrl.calcIndicatorsForWeb("fullRate")' placeholder="请输入内容"></span>
+				</div>
+				<div class="cont_r">
+					<span class="tit">行权日</span>
+					<span class="content"></span>
+				</div>
+			</div>
+			<div class="cont marNone">
+				<div class="cont_l marT10">
+					<span class="tit">麦氏久期</span>
+					<span class="content">{{$ctrl.calcIndicatorsList.rmclDuration }}</span>
+				</div>
+				<div class="cont_r">
+					<span class="tit">PVBP</span>
+					<span class="content">{{$ctrl.calcIndicatorsList.rbPV  }}</span>
+				</div>
+				<div class="cont_l ">
+					<span class="tit">修正久期</span>
+					<span class="content">{{$ctrl.calcIndicatorsList.rmdfDuration  }}</span>
+				</div>
+				<div class="cont_r">
+					<span class="tit">凸性</span>
+					<span class="content">{{$ctrl.calcIndicatorsList.rconvexity  }}</span>
+				</div>
+			</div>
+		</div>
+	<!-- </div> -->
 </div>
+<script type="text/ng-template" id="bondTrial.html">
+	<a data-id="{{match.model.bondid}}">
+		<!-- <span>{{match.model.bondCd}}</span> -->
+		<span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span>
+		<span>{{match.model.bondShrtnm}}</span>
+		<span>{{match.model.sbjRtg}}</span>
+		<span>{{match.model.rsdtrm}}</span>
+	</a>
+</script>

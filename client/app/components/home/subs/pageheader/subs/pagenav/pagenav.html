@@ -1,16 +1,16 @@
 <div class="nav">
 	<ul class="navul">
 		<li ng-repeat="level1 in $ctrl.navs">
-			<a ui-sref="{{level1.rstate}}" ng-click="$ctrl.addtab(level1)">{{level1.rlabel}}</a>
+			<a ui-sref="{{level1.routeState}}" ng-click="level1.onClick()">{{level1.routeLabel}}</a>
 			<ul>
 				<li ng-repeat="level2 in level1.children">
-					<a ui-sref="{{level2.rstate}}" ng-click="$ctrl.addtab(level2)">{{level2.rlabel}}</a>
+					<a ui-sref="{{level2.routeState}}" ng-click="level2.onClick()">{{level2.routeLabel}}</a>
 					<ul class="xd">
 						<li ng-repeat="level3 in level2.children">
-							<a ui-sref="{{level3.rstate}}" ng-click="$ctrl.addtab(level3)">{{level3.rlabel}}</a>
+							<a ui-sref="{{level3.routeState}}" ng-click="level3.onClick()">{{level3.routeLabel}}</a>
 							<ul class="xd">
 								<li ng-repeat="level4 in level3.children">
-									<a ui-sref="{{level4.rstate}}" ng-click="$ctrl.addtab(level4)">{{level4.rlabel}}</a>
+									<a ui-sref="{{level4.routeState}}" ng-click="level4.onClick()">{{level4.routeLabel}}</a>
 								</li>
 							</ul>
 						</li>

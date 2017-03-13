@@ -21,72 +21,139 @@
 			</ul>
 		</aside>
 		<div id="list" style="height:100%;">
-			<div ui-view="list" friend="$ctrl.friend" change-friend="$ctrl.changeFriend(friend)"></div>
+			<div ui-view="list" friend="$ctrl.friend" change-friend="$ctrl.changeBargain(friend)"></div>
 		</div>
 		<div class="bargain-all-history">
-			{{bargain}}
-			<header></header>
-			<ul>
+			<div class="bargain-all-history-tips">{{bargain}}</div>
+			<header class="bargain-all-history-header">
+				<span class="all-history-info">债券信息</span>
+				<span class="all-history-drc">方向</span>
+				<span class="all-history-num">数量(万)</span>
+				<span class="all-history-yield">收益率</span>
+				<!-- <span style="width:.4rem;">&nbsp;</span> -->
+			</header>
+			<ul class="bargain-all-history-list">
 				<li ng-repeat="bond in $ctrl.bargainHistory">
-					{{bond.bondShrtnm}}
-					{{bond.bondCd}}
-					{{bond.drc}}
-					{{bond.num}}
-					{{bond.yldrto}}
-					{{bond.crclMkt}}
+					<div class="all-history-item">
+						<span class="all-history-info">
+							<div class="history-info-nm">{{bond.bondShrtnm}}</div>
+							<div class="history-info-cd">{{bond.bondCd}}{{bond.crclMkt}}{{bond.rsdtrm}}</div>
+						</span>
+						<span class="all-history-drc" ng-class="{drc8:bond.drc=='8',drc9:bond.drc=='9',drc2:bond.drc=='2',drc3:bond.drc=='3'}"></span>
+						<span class="all-history-num">{{bond.num|numFilter}}万</span>
+						<span class="all-history-yield">{{bond.yldrto|yldrtoFilter}}%</span>
+					</div>
+					<div class="all-history-exchanges">
+						<div class="history-exchanges-seller">
+							卖方议价
+							<ul>
+								<li ng-repeat="item in bond.negtprcDtlList" ng-if="item.drc=='1'">
+									<span class="history-exchanges-yldrto">{{item.yldrto|yldrtoFilter}}%</span>
+									<span class="history-exchanges-netprc">{{item.netprc|numPointTwoFilter}}元</span>
+									<span class="history-exchanges-num">{{item.num|numFilter}}万</span>
+								</li>
+							</ul>
+						</div>
+						<div class="vline">&nbsp;</div>
+						<div class="history-exchanges-buyer">
+							买方议价
+							<ul>
+								<li ng-repeat="item in bond.negtprcDtlList" ng-if="item.drc!='1'">
+									<span class="history-exchanges-yldrto">{{item.yldrto|yldrtoFilter}}%</span>
+									<span class="history-exchanges-netprc">{{item.netprc|numPointTwoFilter}}元</span>
+									<span class="history-exchanges-num">{{item.num|numFilter}}万</span>
+								</li>
+							</ul>
+						</div>
+					</div>
 				</li>
 			</ul>
 		</div>
-		<main>
+		<main ng-if="$ctrl.showChatList">
 			<div id="chatcontent">
 				<div class="friend-tips">您正在和{{$ctrl.friend.userName}}聊天</div>
-				<div class="bargain" ng-class="{fold:$ctrl.bargainfold}">
+				<div class="bargain" ng-class="{fold:$ctrl.bargainfold,'hide-content':$ctrl.bargainInputFold}">
 					<div class="info">
-						<div class="abbr">{{$ctrl.curBargain.organizationShortName}}-{{$ctrl.curBargain.userName}}
-						{{$ctrl.curBargain.dic}}
+						<div class="abbr">{{$ctrl.IBargain.organizationShortName}}-{{$ctrl.IBargain.userName}}
+						<span class="drc" ng-class="{'show-drc':$ctrl.IBargain.drc=='2'}">我方买入</span>
+						<span class="drc" ng-class="{'show-drc':$ctrl.IBargain.drc=='3'}">我方卖出</span>
+						<span class="drc" ng-class="{'show-drc':$ctrl.IBargain.drc=='8'}">对方买入</span>
+						<span class="drc" ng-class="{'show-drc':$ctrl.IBargain.drc=='9'}">对方卖出</span>
 						</div>
 						<div class="bond">
-							{{$ctrl.curBargain.bondShrtnm}}[{{$ctrl.curBargain.bondCd}}]
-							{{$ctrl.curBargain.yldrto}}/{{$ctrl.curBargain.netprc}}
+							{{$ctrl.IBargain.bondShrtnm}}[{{$ctrl.IBargain.bondCd}}]
+							<span>
+								{{$ctrl.IBargain.yldrto|yldrtoFilter}}%&nbsp;/{{$ctrl.IBargain.netprc|numPointTwoFilter}}元&nbsp;{{$ctrl.IBargain.num|numFilter}}万
+							</span>
 						</div>
-						<div class="level">评级{{$ctrl.curBargain.sbjRtg}}/{{$ctrl.curBargain.dbtitmRtg}}</div>
+						<div class="level">评级{{$ctrl.IBargain.sbjRtg}}/{{$ctrl.IBargain.dbtitmRtg}}</div>
 					</div>
 					<div class="operate">
-						<table>
-							<thead>
-								<th>收益率</th>
-								<th>净价</th>
-								<th>数量</th>
-								<th>结算金额</th>
-							</thead>
-							<tbody>
-								<tr>
-									<td><input type="text" ng-model="$ctrl.curBargainDetail.yield"></td>
-									<td><input type="text" ng-model="$ctrl.curBargainDetail.netprc"></td>
-									<td><input type="text" ng-model="$ctrl.curBargainDetail.num"></td>
-									<td><input type="text" ng-model="$ctrl.curBargainDetail.setamt"></td>
-								</tr>
-							</tbody>
-						</table>
-						<div>
-							<button type="button" ng-click="$ctrl.addBargainDetail()">议价</button>
-							交易倒计时:
-							<button type="button" ng-click="$ctrl.reject()">拒绝</button>
-							<button type="button" ng-click="$ctrl.deal()">交易</button>
-							<button type="button" ng-click="$ctrl.closeBargainDrop()">CLOSE</button>
+						<div class="input">
+							<span style="width:.44rem">&nbsp;</span>
+							<span style="width:1rem;">
+								<div class="input-label">收益率(%)</div>
+								<div class="input-content">
+									<input type="text" ng-model="$ctrl.OBargain.yield" ng-blur="$ctrl.yieldKeyup()">
+								</div>
+							</span>
+							<span style="width:1.1rem;">
+								<div class="input-label">净价(元)</div>
+								<div class="input-content">
+									<input type="text" ng-model="$ctrl.OBargain.netprc" ng-blur="$ctrl.netprcKeyup()">
+								</div>
+							</span>
+							<span style="width:.9rem;">
+								<div class="input-label">数量(万)</div>
+								<div class="input-content">
+									<input type="text" ng-model="$ctrl.OBargain.num" ng-blur="$ctrl.numKeyup()">
+								</div>
+							</span>
+							<span style="width:1.4rem;">
+								<div class="input-label">结算金额(元)</div>
+								<div class="input-content">
+									<span ng-bind="$ctrl.OBargain.setamt|numPointTwoFilter"></span><span>元</span>
+								</div>
+							</span>
+						</div>
+						<div class="operate-btns">
+							<button id="operateBargain" class="btn" ng-class="{'hide-btn':!$ctrl.bargainInputFold,'disabled':!$ctrl.btnState.bargain}" type="button" ng-click="$ctrl.openInputs()" ng-disabled="!$ctrl.btnState.bargain">议价</button>
+							<!-- <button id="operateBargain" class="btn" ng-class="{'hide-btn':!$ctrl.bargainInputFold,'disabled':!$ctrl.btnState.bargain}" type="button" ng-click="$ctrl.openInputs()">议价</button> -->
+							<button id="operatePublish" class="btn" ng-class="{'hide-btn':$ctrl.bargainInputFold,'disabled':!$ctrl.btnState.publish}" type="button" ng-click="$ctrl.publishBargain()" ng-disabled="!$ctrl.btnState.publish">发布</button>
+							<span id="counting" ><img src="../../../../../resource/images/icon_time.png" alt="">
+								交易倒计时:
+								<span>{{$ctrl.OBargain.udtTm|date:'mm:ss'}}</span>
+							</span>
+							<button id="operateReject" type="button" class="btn" ng-click="$ctrl.reject()" ng-class="{'disabled':!$ctrl.btnState.reject}" ng-disabled="!$ctrl.btnState.reject">拒绝</button>
+							<button id="operateDeal" type="button" class="btn" ng-click="$ctrl.deal()" ng-class="{'disabled':!$ctrl.btnState.deal}" ng-disabled="!$ctrl.btnState.deal">交易</button>
+							<!-- <button id="close" type="button" class="btn" ng-click="$ctrl.closeBargainDrop()">CLOSE</button> -->
 						</div>
 					</div>
-					<ul class="bargain-cur-history">
-						<li ng-repeat="item in $ctrl.curBargain.negtprcDtlList">
-							{{item.drc}}{{item.yldrto}}{{item.netprc}}{{item.num}}{{item.setamt}}
-						</li>
-					</ul>
+					<div class="bargain-cur-history">
+						<ul class="bargain-cur-history-ul">
+							<li ng-repeat="item in $ctrl.IBargain.negtprcDtlList|arrReverse" ng-class="{diff:item.drc==''}">
+								<span class="bargain-cur-history-drc " ng-if="item.drc==''">
+									<div class="">&nbsp;</div>
+								</span>
+								<span class="bargain-cur-history-drc " ng-if="item.drc=='1'">
+									<div class="seller">卖方</div>
+								</span>
+								<span class="bargain-cur-history-drc " ng-if="item.drc=='-1'">
+									<div class="buyer">买方</div>
+								</span>
+								<span class="bargain-cur-history-yldrto">{{item.yldrto|number:4}}%</span>
+								<span class="bargain-cur-history-netprc">{{item.netprc|numPointTwoFilter}}元</span>
+								<span class="bargain-cur-history-num">{{item.num|numFilter}}万</span>
+								<span class="bargain-cur-history-setamt">{{(item.setamt)|number:2}}元</span>
+							</li>
+						</ul>
+					</div>
 				</div>
 				<ul id="chat_content">
 					<li ng-repeat="chat in $ctrl.chatcontent" ng-class="{itext:chat.type=='itext',otext:chat.type=='otext',iquote:chat.type=='iquote',oquote:chat.type=='oquote'}">
 						<div class="text-dialog" ng-if="chat.type=='itext'">
 							<div class="text-dialog-head">
-								<img ng-src="{{$ctrl.curBargainDetail.iconUrl}}" alt="">
+								<img ng-src="{{$ctrl.OBargain.iconUrl}}" alt="">
 							</div>
 							<div class="arrow"><div class="cutoff"></div></div>
 							<span class="text-dialog-message" ng-bind="chat.message"></span>
@@ -95,65 +162,73 @@
 							<span class="text-dialog-message" ng-bind="chat.message"></span>
 							<div class="arrow"><div class="cutoff"></div></div>
 							<div class="text-dialog-head">
-								<img ng-src="{{$ctrl.curBargainDetail.iconUrl}}" alt="">
+								<img ng-src="{{$ctrl.curUserUrl}}" alt="">
 							</div>
 						</div>
 						<div class="quote-dialog" ng-if="chat.type=='iquote'">
 							<div class="text-dialog-head">
-								<img ng-src="{{$ctrl.curBargainDetail.iconUrl}}" alt="">
+								<img ng-src="{{$ctrl.OBargain.iconUrl}}" alt="">
 							</div>
 							<div class="arrow"><div class="cutoff"></div></div>
-							<div class="quote-dialog-pop">
-								<div class="quote-tips"><span>{{chat.message.drc}}</span><span>4:52</span></div>
-								<div class="contents">
-									<span>简称{{chat.message.bondShrtnm}}</span>
-									<table>
-										<thead>
-											<th>价格</th>
-											<th>数量</th>
-										</thead>
-										<tbody>
-											<tr>
-												<td>{{chat.message.yldrto}}/{{chat.message.netprc}}</td>
-												<td>{{chat.message.num}}</td>
-											</tr>
-										</tbody>
-									</table>
+							<div class="quote-dialog-pop" ng-click="$ctrl.showCurBargain(chat)">
+								<div class="quote-tips">
+									<span class="drc">
+										<span ng-if="chat.message.drc=='-1'">买入</span>
+										<span ng-if="chat.message.drc=='1'">卖出</span>
+										<span ng-if="chat.message.drc=='2'">我方买入</span>
+										<span ng-if="chat.message.drc=='3'">我方卖出</span>
+									</span>
+									<span class="timer-container">
+										<img src="../../../../../resource/images/icon_time.png" alt="">
+										<span class="timer">{{chat.message.udtTm|date:'mm:ss'}}</span>
+									</span>
 								</div>
-								<div class="btns">
-									<div ng-click="$ctrl.openBargainDrop()">议价</div>
-									<div ng-click="$ctrl.addBargainDetail()">交易</div>
-									<div ng-click="$ctrl.addBargainDetail()">拒绝</div>
+								<div class="contents">
+									<span class="contents-shortname">简称{{chat.message.bondShrtnm}}</span>
+									<ul class="contents-detail">
+										<li class="contents-detail-title">
+											<span class="contents-price">价格</span>
+											<span class="contents-num">数量(万)</span>
+										</li>
+										<li class="contents-detail-body">
+											<span class="contents-price">{{chat.message.yldrto|yldrtoFilter}}%/{{chat.message.netprc|numPointTwoFilter}}元</span>
+											<span class="contents-num">{{chat.message.num|numFilter}}</span>
+										</li>
+									</ul>
 								</div>
 							</div>
 						</div>
 						<div class="quote-dialog" ng-if="chat.type=='oquote'">
 							<div class="quote-dialog-pop">
-								<div class="quote-tips"><span>{{chat.message.drc}}</span><span>4:52</span></div>
-								<div class="contents">
-									<span>简称{{chat.message.bondShrtnm}}</span>
-									<table>
-										<thead>
-											<th>价格</th>
-											<th>数量</th>
-										</thead>
-										<tbody>
-											<tr>
-												<td>{{chat.message.yldrto}}/{{chat.message.netprc}}</td>
-												<td>{{chat.message.num}}</td>
-											</tr>
-										</tbody>
-									</table>
+								<div class="quote-tips">
+									<span class="drc">
+										<span ng-if="chat.message.drc=='-1'">买入</span>
+										<span ng-if="chat.message.drc=='1'">卖出</span>
+										<span ng-if="chat.message.drc=='2'">我方买入</span>
+										<span ng-if="chat.message.drc=='3'">我方卖出</span>
+									</span>
+									<span class="timer-container">
+										<img src="../../../../../resource/images/icon_time.png" alt="">
+										<span class="timer">{{chat.message.udtTm|date:'mm:ss'}}</span>
+									</span>
 								</div>
-								<div class="btns">
-									<div ng-click="$ctrl.addBargainDetail()">议价</div>
-									<div ng-click="$ctrl.addBargainDetail()">交易</div>
-									<div ng-click="$ctrl.addBargainDetail()">拒绝</div>
+								<div class="contents">
+									<span class="contents-shortname">简称{{chat.message.bondShrtnm}}</span>
+									<ul class="contents-detail">
+										<li class="contents-detail-title">
+											<span class="contents-price">价格</span>
+											<span class="contents-num">数量(万)</span>
+										</li>
+										<li class="contents-detail-body">
+											<span class="contents-price">{{chat.message.yldrto|yldrtoFilter}}%/{{chat.message.netprc|numPointTwoFilter}}元</span>
+											<span class="contents-num">{{chat.message.num|numFilter}}</span>
+										</li>
+									</ul>
 								</div>
 							</div>
 							<div class="arrow"><div class="cutoff"></div></div>
 							<div class="text-dialog-head">
-								<img ng-src="{{$ctrl.curBargainDetail.iconUrl}}" alt="">
+								<img ng-src="{{$ctrl.curUserUrl}}" alt="">
 							</div>
 						</div>
 					</li>
@@ -162,26 +237,32 @@
 			<div id="sendarea">
 				<div id="fnarea">
 					<span id="emoticon">
-						<i class="fa fa-smile-o" aria-hidden="true"></i>
+						<!-- <i class="fa fa-smile-o" aria-hidden="true"></i> -->
+						<img src="../../../../../resource/images/icon_face.png" alt="">
 						表情
 					</span>
 					<span id="card">
-						<i class="fa fa-credit-card" aria-hidden="true"></i>
+						<!-- <i class="fa fa-credit-card" aria-hidden="true"></i> -->
+						<img src="../../../../../resource/images/icon_namecard.png" alt="">
 						发送名片
 					</span>
 					<span id="quoto" ng-click="$ctrl.sendQuote()">
-						<i class="fa fa-plus" aria-hidden="true"></i>
+						<!-- <i class="fa fa-plus" aria-hidden="true"></i> -->
+						<img src="../../../../../resource/images/icon_baojia.png" alt="">
 						发送报价
 					</span>
+					<!-- <button type="button" class="btn btn-warn" ng-click="$ctrl.test1()">test1</button>
+					<button type="button" class="btn btn-warn" ng-click="$ctrl.test2()">test2</button> -->
 					<span id="history" ng-click="$ctrl.toggleChatHistory()">
-						<i class="fa fa-history" aria-hidden="true"></i>
+						<!-- <i class="fa fa-history" aria-hidden="true"></i> -->
+						<img src="../../../../../resource/images/icon_record.png" alt="">
 						议价记录
 					</span>
 				</div>
 				<textarea name="" id="inputarea" ng-model="$ctrl.message" placeholder="请输入会话"></textarea>
 				<div id="btnarea">
 					<md-button class="md-raised md-primary" ng-click="$ctrl.sendMsg()">发送</md-button>
-					<md-button class="md-raised" ng-click="$ctrl.test()">关闭</md-button>
+					<md-button class="md-raised" ng-click="$ctrl.closeChatList()">关闭</md-button>
 				</div>
 			</div>
 		</main>

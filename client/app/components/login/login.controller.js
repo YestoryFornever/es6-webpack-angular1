@@ -5,10 +5,8 @@ class LoginController {
 		this.loginService = loginService;
 		this.$http = $http;
 		this.name = '登录';
-		/*this.account = '15811111111';
-		this.password = '123qwe';*/
-		this.account = '15652598188';
-		this.password = 'q123456';
+		this.account = '18888888888';
+		this.password = '654321';
 	}
 	$onInit(){
 		//this.login();
@@ -27,6 +25,7 @@ class LoginController {
 			if(data.data.status === "200003"){
 				this.login(true);
 			}else if(data.data.status !== "0"){
+				console.error(data.data);
 				alert(data.data.msg);
 			}else{
 				this.$state.go('home');
@@ -49,7 +48,7 @@ class LoginController {
 			// debugger;
 		},(data)=>{
 			console.warn("获取验证码异常");
-		}); 
+		});
 	}
 }
 LoginController.$inject = ['$state','$stateParams','loginService','$http'];

@@ -5,6 +5,21 @@ let bondquotationServiceModule = angular.module('bondquotationService', [])
 .factory('bondquotationService',['$http','$q',function($http,$q){
 	console.log(BONDCONFIG);
 	return {
+		// 获取结算行情
+		getCBLatestWeekValuation(obj){
+			let deferred = $q.defer();
+			$http({
+				method: 'POST',
+				url: BONDCONFIG.getIP()+"ainas/web/getCBLatestWeekValuation",
+				data: JSON.stringify(obj),
+				headers: BONDCONFIG.JH,
+			}).then((response)=>{
+				deferred.resolve(response);
+			},(response)=>{
+				deferred.resolve(response);
+			});
+			return deferred.promise;
+		},
 		// 获取报价列表
 		queryQuoteList(obj){
 			let deferred = $q.defer();
@@ -66,6 +81,21 @@ let bondquotationServiceModule = angular.module('bondquotationService', [])
 			});
 			return deferred.promise;
 		},
+		// 更新自选方案
+		updateScm(obj){
+			let deferred = $q.defer();
+			$http({
+				method: 'POST',
+				url: BONDCONFIG.getIP()+"e-bondquote/bondScm/updateScm",
+				data: JSON.stringify(obj),
+				headers: BONDCONFIG.JH,
+			}).then((response)=>{
+				deferred.resolve(response);
+			},(response)=>{
+				deferred.resolve(response);
+			});
+			return deferred.promise;
+		},
 		// 债券搜索
 		searchBondBreed(obj){
 			let deferred = $q.defer();
@@ -98,11 +128,32 @@ let bondquotationServiceModule = angular.module('bondquotationService', [])
 			return deferred.promise;
 		},
 		// 更新报价状态
-		updateQuoteState(obj){
+		updateQuoteState(obj,name){
+			let sendObj = {
+				bondOfrid:'',
+			}
+			sendObj['bondOfrid'] = obj['bondOfrid'];
+			sendObj[name] = obj[name];
+			console.log(sendObj);
 			let deferred = $q.defer();
 			$http({
 				method: 'POST',
 				url: BONDCONFIG.getIP()+"e-bondquote/bondOfr/updateQuoteState",
+				data: JSON.stringify(sendObj),
+				headers: BONDCONFIG.JH,
+			}).then((response)=>{
+				deferred.resolve(response);
+			},(response)=>{
+				deferred.resolve(response);
+			});
+			return deferred.promise;
+		},
+		// 获取方案详情
+		getScmDetail(obj){
+			let deferred = $q.defer();
+			$http({
+				method: 'POST',
+				url: BONDCONFIG.getIP()+"e-bondquote/bondScm/getScmDetail",
 				data: JSON.stringify(obj),
 				headers: BONDCONFIG.JH,
 			}).then((response)=>{
@@ -111,7 +162,62 @@ let bondquotationServiceModule = angular.module('bondquotationService', [])
 				deferred.resolve(response);
 			});
 			return deferred.promise;
-		}
+		},
+		getIssuerListByFullName(obj){
+			let deferred = $q.defer();
+			$http({
+				method: 'POST',
+				url: BONDCONFIG.getIP()+"E_project_base/authority/getIssuerListByFullName",
+				data: JSON.stringify(obj),
+				headers: BONDCONFIG.JH,
+			}).then((response)=>{
+				deferred.resolve(response);
+			},(response)=>{
+				deferred.resolve(response);
+			});
+			return deferred.promise;
+		},
+		addBatchBondQuote(quoteListChecked){//批量新增报价
+			let deferred = $q.defer();
+			$http({
+				method: 'POST',
+				url: BONDCONFIG.getIP()+"e-bondquote/bondOfr/addBatchBondQuote",
+				data: JSON.stringify({
+					'drc':'',
+					'addList':quoteListChecked
+				}),
+				headers: BONDCONFIG.JH,
+			}).then((response)=>{
+				deferred.resolve(response);
+			},(response)=>{
+				deferred.resolve(response);
+			});
+			return deferred.promise;
+		},
+		updateBondQuote(obj){//xiugai报价
+			let deferred = $q.defer();
+			$http({
+				method: 'POST',
+				url: BONDCONFIG.getIP()+"e-bondquote/bondOfr/updateBondQuote",
+				data: JSON.stringify({
+					"drc": obj.drc,
+					"bondOfrid":obj.bondOfrid,
+					"bondid":obj.bondid,
+					"num":obj.num*10000,
+					"yldrto":obj.yldrto/100,
+					"netprc":obj.netprc,
+					"wthrAnon":obj.wthrAnon,
+					"rmrk":(obj.rmrk ? obj.rmrk : ''),
+
+				}),
+				headers: BONDCONFIG.JH,
+			}).then((response)=>{
+				deferred.resolve(response);
+			},(response)=>{
+				deferred.resolve(response);
+			});
+			return deferred.promise;
+		},
 
 	}
 }])

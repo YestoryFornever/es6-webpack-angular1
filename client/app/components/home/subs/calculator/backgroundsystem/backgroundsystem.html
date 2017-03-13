@@ -1,207 +1,260 @@
-<div class="a-P">
-	<!-- <div class="header_nav">
-		<span>债券报价查询</span>
-	</div> -->
-	<div class="header_look">
-			<div class="header_one">
-				<span>
-					机构类型
-							<div class="btn-group">
+<div class="all_main">
+	<!-- //导航 -->
+		<div class="nav ">
+				<ul>
+					<li class="nav_top "id="ooo" ng-click="$ctrl.changetab(0)">推荐</li>
+					<li class="nav_top"  ng-click="$ctrl.changetab(1)">负面</li>
+					<li class="nav_top" ng-click="$ctrl.changetab(2)">自媒体</li>
+					<li class="nav_top" ng-click="$ctrl.changetab(3)">全部</li>
+					<li class="nav_top" ng-click="$ctrl.changetab(4)">收藏(10)</li>
+					<li class="nav_top" ng-click="$ctrl.changetab(5)">详情</li>
 
-						        <label class="btn btn-primary " uib-btn-checkbox  ng-model="checkModel.a" >不限</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox  ng-model="checkModel.b" >银行</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox  ng-model="checkModel.c" >证券</label>
-						         <label class="btn btn-primary" uib-btn-checkbox  ng-model="checkModel.l" >基金</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox  ng-model="checkModel.m" >保险</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox  ng-model="checkModel.right" >资产管理</label>
-						         <label class="btn btn-primary" uib-btn-checkbox  ng-model="checkModel.left" >信托公司</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox  ng-model="checkModel.middle" >财务公司</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox  ng-model="checkModel.d" >投资公司</label>
-						         <label class="btn btn-primary" uib-btn-checkbox  ng-model="checkModel.e" >企业</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox  ng-model="checkModel.f" >其他金融</label>
-				    		</div>
-				    </span>
-				    <span>
-				    	机构名称 <input type="text">
-		    			用户姓名<input type="text">
-		    			注册手机号<input type="text">
-				    </span>
-	    		
-			</div>
-			<div class="header_one">
-				<span>
-					债券类型
-							<div class="btn-group">
-
-						        <label class="btn  btn-primary"  uib-btn-checkbox  ng-model="checkModel.left" >不限</label>
-						        <label class="btn  btn-primary"  uib-btn-checkbox  ng-model="checkModel.middle" >国债</label>
-						        <label class="btn  btn-primary"  uib-btn-checkbox  ng-model="checkModel.right" >央票</label>
-						         <label class="btn btn-primary" uib-btn-checkbox ng-model="checkModel.l" >金融债</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox ng-model="checkModel.m" >地方债</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox ng-model="checkModel.right" >短融</label>
-						         <label class="btn btn-primary" uib-btn-checkbox ng-model="checkModel.left" >中票</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox ng-model="checkModel.middle" >企业债</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox ng-model="checkModel.right" >同业存单</label>
-						         <label class="btn btn-primary" uib-btn-checkbox ng-model="checkModel.left" >公司债</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox ng-model="checkModel.middle" >其他</label>
-				    		</div>
-				    </span>
-				    
-    				<span>
-					剩余期限
-							<div class="btn-group">
-
-						        <label class="btn  btn-primary" uib-btn-checkbox ng-model="checkModel.left" >不限</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox ng-model="checkModel.middle" >&lt;=3M</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox ng-model="checkModel.right" >3~6M</label>
-						         <label class="btn btn-primary" uib-btn-checkbox ng-model="checkModel.l" >6~9M</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox ng-model="checkModel.m" >9~12M</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox ng-model="checkModel.right" >1~3Y</label>
-						         <label class="btn btn-primary" uib-btn-checkbox ng-model="checkModel.left" >3~5Y</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox ng-model="checkModel.middle" >5~7Y</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox ng-model="checkModel.right" >7~10Y</label>
-						         <label class="btn btn-primary" uib-btn-checkbox ng-model="checkModel.left" >>10Y</label>
-						        <!-- <label class="btn  btn-primary" ng-model="checkModel.middle" >其他金融</label> -->
-				    		</div>
-				    </span>
-			</div>
-			<div class="header_one" style="border-bottom:none;">
-				<span>
-				    	代码/简称 <input type="text">
-				    	报价状态
-							<div class="btn-group">
-
-						        <label class="btn btn-primary " uib-btn-checkbox ng-model="checkModel.left" >不限</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox ng-model="checkModel.middle" >有效</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox ng-model="checkModel.right" >成交</label>
-						         <label class="btn btn-primary" uib-btn-checkbox ng-model="checkModel.l" >撤销</label>
-						        
-				    		</div>
-				    	方向
-							<div class="btn-group">
-
-						        <label class="btn btn-primary " ng-model="checkModel.left" >不限</label>
-						        <label class="btn  btn-primary" ng-model="checkModel.middle" >卖出</label>
-						        <label class="btn  btn-primary" ng-model="checkModel.right" >买入</label>
-						        
-				    		</div>
-				    		报价日期<input type="date">-<input type="date">
-		    			
-				    </span>
-				<span>
-						挂牌类型
-							<div class="btn-group">
-
-						        <label class="btn btn-primary  " uib-btn-checkbox ng-model="checkModel.left" >不限</label>
-						        <label class="btn  btn-primary"  uib-btn-checkboxng-model="checkModel.middle" >公开挂牌</label>
-						        <label class="btn  btn-primary" uib-btn-checkbox ng-model="checkModel.right" >定向发送</label>
-						         <label class="btn btn-primary  " uib-btn-checkbox ng-model="checkModel.l" >客服代挂</label>
-						        
-				    		</div>
-				    		<button type="button" class="btn btn-primary" type="button" >查询</button>
-				    </span>
-				    
-	    		
-			</div>
-		
+				</ul>
+				<div class="nav_all">
+					<div class="nav_one">8888</div>
+					<div class="nav_two">
+						<input type="text">
+						<i class="nav_two_close" ng-click="$ctrl.cancelSearch()">00</i>
+						<i>11</i>
+					</div>
+				</div>
 		</div>
-	<!-- <div class="btn-group">
-        <label class="btn btn-primary" ng-model="checkModel.left" uib-btn-checkbox>Left</label>
-        <label class="btn btn-primary" ng-model="checkModel.middle" uib-btn-checkbox>Middle</label>
-        <label class="btn btn-primary" ng-model="checkModel.right" uib-btn-checkbox>Right</label>
-    </div>
-		<button type="button" class="btn btn-primary" type="button" >查询</button>
-	</div> -->
-	<!-- 报价记录列表 -->
-	
-	<div class="list">
-			<div class="filter">
-				<span>当前筛选下，共计报价<span>300</span>笔，金额<span>100亿</span>。</span>
-				<button class="btn btn-primary">发送给用户</button>
-				<a href="#">导出为excel</a>
-
-			</div>
-	<!-- 左侧列表 -->
-			<div class="talk_left">
-				    <main>
-						<div class="scroll-body" slim-scroll>
-							<div class="table-responsive">
-								<table class="table table-bordered table-hover">
-									<thead>
-										<tr>
-											<th></th>
-											<th>用户姓名</th>
-											<th>注册手机</th>
-											<th>机构名称</th>
-											<th>方向</th>
-											<th>债券简称</th>
-											<th>债券代码</th>
-											<th>剩余期限</th>
-											<th>数量</th>
-											<th>收益率</th>
-											<th>净价</th>
-											<th>备注信息</th>
-											<th>报价状态</th>
-											<th>报价时间</th>
-											<th>挂牌类型</th>
-											<th>操作人</th>
-											<th>操作</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td><input type="checkbox"></td>
-											<td>张三</td>
-											<td>12345678901</td>
-											<td>国寿安保基金管理有限公司</td>
-											<td>卖出</td>
-											<td>16国开10</td>
-											<td>160210.IB</td>
-											<td>1.56Y</td>
-											<td>5000万</td>
-											<td>3.51%</td>
-											<td>100.25元</td>
-											<td>这里是备注</td>
-											<td>成交</td>
-											<td>2016-11-22 12:00:45</td>
-											<td>公开挂牌</td>
-											<td></td>
-											<td><a href="#">查看议价记录</a></td>
-										</tr> 
-										
-										
-									</tbody>
-							 	</table>
+		<!-- tab内容 -->
+		<div class="clearfix"></div>
+		<div class="table">
+		<!-- 推荐页面 -->
+			<div class="list  introduced" >
+				<!-- <div class="introduced_lf">
+					<ul>
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+						<li>7</li>
+						<li>8</li>
+						<li>9</li>
+						<li>10</li>
+						
+					</ul>
+				</div> -->
+				<div class="introduced_center">
+					<ul>
+						<li>
+						<div class="introduced_lf">
+							<div class="introduced_center_pp">
+								
+							</div>
+							<!-- <div class="clearfix"></div> -->
+							<div class="introduced_center_bb">
+								<h5>亚联信息技术有限责任公司成立于2013年10月18日由亚洲金融合作联盟联合民生加银资产管理有限公司发</h5>
+								<p><a href="javascript:0;">公司秉承“科技改变生活”的理念，引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技术水平，促进并带动金融行业信息技术的长足发展为目标，创新科技、超越常规理念，力争提供行业内最优秀的信息技术服务</a></p>
+								<p>资讯来源 <span >上午</span><span>时间</span></p>
 							</div>
 						</div>
-					</main>
-			    </div>
-	</div>
+						</li>
+						<li>2</li>
+						<li>3</li>
+						<li>4</li>
+						<li>5</li>
+						<li>6</li>
+						<li>7</li>
+						<li>8</li>
+						<li>9</li>
+						<li>10</li>
+						
+					</ul>
+				</div>
+				<div class="introduced_rt">
+					<div class="introduced_rt_top">
+						<span>快讯</span>
+					</div>
+					<div class="introduced_rt_center">
+						亚联信息技术有限责任公司成立于2013年10月18日亚洲金融合作联盟联由亚洲长<a href="javascript:0;" ng-hide="$ctrl.target">...</a>
+						<span ng-show='$ctrl.target' >吸收除居民储蓄存款之外的公众存款；发放短期、中期和长期贷款；办理国内外结算中期和长期贷款；吸收除居民储蓄存款之外的公众存款；发放短期、中期和长期贷款；办理国内外结算中期和长期贷款长期贷</span>
+						<p><span>时间</span><span class="open"><a  href="javascript:0;" ng-click="$ctrl.doCheck()"   ng-hide="$ctrl.target" ><i class="icon-angle-down"></i> 全部展开</a><a href="javascript:0;" ng-click="$ctrl.doCheck()"  ng-hide="!$ctrl.target" ><i class=" icon-angle-up"></i> 收起</a></span></p>
 
-<!-- 弹窗 -->
-	<!-- 1.发送报价-选择用户弹窗 -->
-		<div class="modal-dialog  select-user" >
-		     	<div class="modal-content"  >
-		     		
-			     		<div class="modal-header ng-scope">
-			            	<p class="modal-title" id="modal-title">选择用户 
-			            	<i  style=""class="fa fa-times" aria-hidden="true" ></i>
-			            	</p>
-
-			        	</div>
-			        	<div class="modal_main">
-			        		<p><label for="">注册手机</label><input type="text"></p>
-			        		<p><input type="text"></p>
-			        	</div>
-			        <div class="modal-footer ng-scope" style=" border:none;"	>
-			            <button type="button" class="btn btn-primary" type="button" >取消</button>
-			            <button  type="button" class="btn " type="button" >确定</button>
-			            <!-- btn-warning -->
-			        </div>
-			     </div>
-			 </div>
+					</div>
+				</div>
+				
 
 
+			</div>
+		<!-- 负面页面 -->
+			<div class="list introduced" >
+				1111111111111111
+			</div>
+		<!-- 自媒体页面 -->
+			<div class="list introduced" >
+				22222222222222222222
+			</div>
+		<!-- 全部页面 -->
+			<div class="list introduced" >
+				3333333333333333333
+			</div>
+		<!-- 收藏页面 -->
+			<div class="list introduced">
+				44444444444444444
+			</div>
+		<!-- 详情页面 -->
+			<div class="list  "id='details'>
+				<div class="details_lf">
+					<div class="details_lf_top">
+						<h4>科技改变生活”的理念，引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技术水平，促进并带动金融行业信息技术的长足发展为目标，创新科技引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技术水平，促进并带动金融行业信息技术的长足发展为目标，创新科技</h4>
+						<p>时间</p>
+					</div>
+					<div class="details_lf_contail">
+						<p>本期投资提示：</p>
+						<p><span>科技改变生活”的理念，引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技术水平，促进并带动金融行业信息技术的长足发展为目标，创新科技引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技术水平，促进并带动金融行业信息技术的长足发展为目标，创新科技</span></p>
+						<p><span>科技改变生活”的理念，引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技术水平，促进并带动金融行业信息技术的长足发展为目标，创新科技引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技术水平，促进并带动金融行业信息技术的长足发展为目标，创新科技</span></p>
+					</div>
+					<div class="details_lf_img">
+						<!-- 加图片 -->
+					</div>
+					<div class="details_lf_contail">
+						<p><span>科技改变生活”的理念，引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技术水平，促进并带动金融行业信息技术的长足发展为目标，创新科技引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技术水平，促进并带动金融行业信息技术的长足发展为目标，创新科技</span></p>
+						<p><span>科技改变生活”的理念，引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技术水平，促进并带动金融行业信息技术的长足发展为目标，创新科技引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技术水平，促进并带动金融行业信息技术的长足发展为目标，创新科技</span></p>
+					</div>
+					<!-- 评论 -->
+					<div class="details_lf_comments">
+						<div class="details_lf_comments_text" style="margin-top:10px;">
+							<textarea name="" id="" cols="" rows="" ></textarea>
+						</div>
+						<div class="details_lf_comments_button">
+							<button >发布评论</button>
+						</div>
+					</div>
+					<!-- 评论区域 -->
+					<div class="details_lf_comments_area">
+						<div class="details_lf_comments_area_box">
+							<div class="comments_area_header">
+								<p>2条评论</p>
+							</div>
+							<!-- 显示评论内容 -->
+							<div class="clearfix"></div>
+							<div class="comments_area_content">
+								<ul>
+									<li style="margin-top:10px;">
+									<!-- 评论头像 -->
+										<div class="area_content_title">
+											<div class="title_one"></div>
+											<div class="title_two">
+												<p>Mr&nbsp;Me</p>
+												<p><span>机构名称</span>&nbsp;&nbsp;<span>职称</span></p>
+											</div>
+										</div>
+										<div class="area_content">
+											<p>回复Mr A: 评论正文评论正文评论正文评论正文评论正文评论正文评论正文评论评论正文评论正文评论正文评论正文评论正文评论正文评论正文评论论正文评论正文评论正文评论</p>
+											<p class="area_content_time">
+											<span class="area_content_span01">2016-08-01 20:40</span> 
+											<span class="area_content_span02"><a href="javascript:0;">删除.</a>
+											<a href="javascript:0;">赞(10).</a><a href="javascript:0;" ng-If="false">赞.</a>
+											<a href="javascript:0;" ng-If="false">已赞(11).</a>
+											<a href="javascript:0;" ng-click=" $ctrl.response()">回复</a>
+											</span>
+											</p>
+											<div class="clearfix"></div>
+											<p class="import" id="import" >
+											<!-- ng-If="$ctrl.reply" -->
+											<textarea name="" id="" cols="" rows=""></textarea>
+											<!-- <input style="button" class="response" value="发布回复"> -->
+											<span id="response">
+												<button class="btn  " type="button" ng-click=" $ctrl.cancelBubble()" >取消回复</button>
+												<button class="btn  " type="button" >发布回复</button>
+											</span>
+											
+											</p>
+										</div>
+									</li>
+									<div class="clearfix"></div>
+									<li style="margin-top:10px;">
+									<!-- 评论头像 -->
+										<div class="area_content_title">
+											<div class="title_one"></div>
+											<div class="title_two">
+												<p>Mr&nbsp;Me</p>
+												<p><span>机构名称</span>&nbsp;&nbsp;<span>职称</span></p>
+											</div>
+										</div>
+										<div class="area_content">
+											<p>回复Mr A: 评论正文评论正文评论正文评论正文评论正文评论正文评论正文评论评论正文评论正文评论正文评论正文评论正文评论正文评论正文评论论正文评论正文评论正文评论</p>
+											<p class="area_content_time">
+											<span class="area_content_span01">2016-08-01 20:40</span> 
+											<span class="area_content_span02"><a href="javascript:0;">删除.</a>
+											<a href="javascript:0;">赞(10)</a>.<a href="javascript:0;" ng-If="false">赞.</a>
+											<a href="javascript:0;" ng-click=" $ctrl.response()">回复</a>
+											</span>
+											</p>
+											<div class="clearfix"></div>
+											<p class="import" ng-If="$ctrl.reply" >
+											<textarea name="" id="" cols="" rows=""></textarea>
+											<!-- <input style="button" class="response" value="发布回复"> -->
+											<span id="response">
+												<button class="btn  " type="button" >取消回复</button>
+												<button class="btn  " type="button" >发布回复</button>
+											</span>
+											
+											</p>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 右侧 -->
+				<div class="details_rt">
+					<div class="details_rt_top">
+						<div class="details_rt_top_left">
+							<span>1232</span><span><a  href="javascript:0;" ng-click="$ctrl.getCheck()"   ng-hide="$ctrl.flag" ><i class="icon-angle-down"></i> 收藏</a><a href="javascript:0;" ng-click="$ctrl.getCheck()"  ng-hide="!$ctrl.flag" ><i class=" icon-angle-up"></i> 取消收藏</a></span>
+						</div>
+						<div class="details_rt_top_right">
+							<span>2424</span><span>打开原网站</span>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+					<div class="details_rt_contail">
+						<div class="details_rt_contail_top">
+							<div class="two_top">
+							<!-- 图片 -->
+								<div class="two_top_lf"></div>
+								<div class="two_top_rt">
+									<span>	中证网</span>
+								</div>
+							</div>
+							<!-- 内容 -->
+							<div class="clearfix"></div>
+							<div class="two_center">
+								<ul style="list-style-type:lower-roman;">
+									<li>的理念，引进、研发并推动发展金融行业先进的信息技术，以提高</li>
+									<li>促进并带动金融行业信息技术的长足发展为目标，创新科技引进、</li>
+									<li>研发并推动发展金融行业先进的信息技术，足发展为目标</li>
+									<li>业信息技术水平，促进并带动金融行业信息技术的长足发展为目标</li>
+								</ul>
+
+
+
+							</div>
+						</div>
+
+						<div class="details_rt_contail_footer">
+							<button class="one_left">
+								<p>上一篇：</p>
+								<p>上一篇资讯标题上一篇</p>
+							</button>
+							<button class="one_right">
+								<p>下一篇：</p>
+								<p>上一篇资讯标题上一篇</p>
+							</button>
+						</div>
+					</div>
+
+
+				</div>
+				
+
+			</div>
 
 		</div>
-
+</div>
