@@ -28,7 +28,7 @@ class nowBondController {
 		this.items = this.resolve.modalData.items;
 		this.quoteList = this.resolve.modalData.quoteList  ;
 		if(this.quoteList[0]){
-			this.quoteList[0].num = parseInt(this.quoteList[0].num/10000);
+			this.quoteList[0].num = parseInt( this.quoteList[0].num ?  this.quoteList[0].num/10000 : "");
 			this.quoteList[0].yield = parseFloat(this.quoteList[0].yldrto*100);
 			this.quoteList[0].netprc = parseFloat(this.quoteList[0].netprc);
 			// for(let key in this.quoteList[0]){

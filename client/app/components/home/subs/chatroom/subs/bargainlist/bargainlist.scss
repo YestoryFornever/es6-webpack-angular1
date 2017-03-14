@@ -71,12 +71,30 @@ bargainlist {
 						margin-right:.15rem;
 						position:relative;
 						div.negtprc-title{
+							height:.16rem;
+							line-height:.16rem;
 							h4.negtprc-orgname{
 								color:$textD;
 								font-size:.12rem;
 							}
-							span.negtprc-mark{
-
+							>span.negtprc-mark{
+								float:right;
+								>span{
+									display:inline-block;
+									width:.4rem;
+									$radius:.15rem;
+									border-radius: $radius;
+									-moz-border-radius: $radius;
+									-webkit-border-radius: $radius;
+									color:$textD;
+									text-align:center;
+								}
+								>span.negtprc-mark-best{
+									background-color:$bgGold;
+								}
+								>span.negtprc-mark-friend{
+									background-color:#10597d;
+								}
 							}
 						}
 						$detalLiH:.16rem;

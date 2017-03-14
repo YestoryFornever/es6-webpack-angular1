@@ -153,6 +153,7 @@ class BondTrialController {
 				this.settlementDate = res.data.data['settlementDate'];
 			}
 			this.getMoneyForNum();
+			this.calcIndicatorsYield();
 			// console.log(res);
 		},(data)=>{
 			console.warn("用户登录异常");
@@ -170,17 +171,16 @@ class BondTrialController {
 		promise.then(function(res) {
 			console.log(res)
 			if(res.data && res.data.data ){
-				if(name == 'fullRate'){
-					that.getCalcIndicators.yield = that.yieldChange( res.data.data.yield )*100;
-					that.getCalcIndicators.cleanPrice = that.numchangeTwo( res.data.data.cleanPrice );
-				}
-				if(name == 'cleanPrice'){
-					that.getCalcIndicators.yield =  that.yieldChange( res.data.data.yield )*100;
-					that.getCalcIndicators.fullRate = that.numchangeTwo( res.data.data.fullPrice );
-				}
-				
 				that.calcIndicatorsList = res.data.data;
 				that.getMoneyForNum();// 获取结算金额 和 收益率
+				if(name == 'fullRate'){
+					that.getCalcIndicators.yield = that.yieldChange( res.data.data.yield ? res.data.data.yield : '')*100;
+					that.getCalcIndicators.cleanPrice = that.numchangeTwo( res.data.data.cleanPrice? res.data.data.cleanPrice :''  );
+				}
+				if(name == 'cleanPrice'){
+					that.getCalcIndicators.yield =  that.yieldChange( res.data.data.yield ? res.data.data.yield :'' )*100;
+					that.getCalcIndicators.fullRate = that.numchangeTwo( res.data.data.fullPrice ? res.data.data.fullPrice:'' );
+				}
 			}
 		});
 	}
@@ -245,7 +245,7 @@ class BondTrialController {
 				console.log(res)
 				that['infoList'] = res.data.data;
 				that.getCalSettlementDate();
-				that.calcIndicatorsYield();
+				
 			}
 		});
 	}

@@ -1,6 +1,7 @@
 class PagenavController {
-	constructor(pagetabService) {
+	constructor(pagetabService,bondquotationService) {
 		this.pagetabService = pagetabService;
+		this.bondquotationService = bondquotationService;
 		this.name = 'pagenav';
 		this.navs = [
 			/*{
@@ -93,10 +94,14 @@ class PagenavController {
 						}
 					},
 					{
-						tabKey: 'home.calculator',
-						routeState:"home.calculator",
+						tabKey: 'home',
+						routeState:"home",
 						routeLabel:"计算器",
 						routeClass:"",
+						onClick: function()
+						{
+							bondquotationService.openCalculator();
+						}
 					},
 					{
 						tabKey: 'home.message',
@@ -117,6 +122,6 @@ class PagenavController {
 		];
 	}
 }
-PagenavController.$inject = ['pagetabService'];
+PagenavController.$inject = ['pagetabService','bondquotationService'];
 
 export default PagenavController;

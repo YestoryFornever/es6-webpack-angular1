@@ -13,8 +13,6 @@ import numPointTwoFilter from '../common/filters/numPointTwo.filter';
 import numPointFourFilter from '../common/filters/numPointFour.filter';
 
 import numChangeYiFilter from '../common/filters/numChangeYi.filter';
-
-
 import PlusService from '../common/services/plus.service';
 
 let componentModule = angular.module('app.components', [
@@ -29,7 +27,7 @@ let componentModule = angular.module('app.components', [
 	numChangeYiFilter,
 
 	CheckmarkFilter,
-	PlusService
+	PlusService,
 ])
 .name;
 

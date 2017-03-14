@@ -2,9 +2,30 @@ var BONDCONFIG = require('../../../../../bond.config.js');
 import angular from 'angular';
 
 let bondquotationServiceModule = angular.module('bondquotationService', [])
-.factory('bondquotationService',['$http','$q',function($http,$q){
+.factory('bondquotationService',['$http','$q','$uibModal',function($http,$q,$uibModal){
 	console.log(BONDCONFIG);
 	return {
+		openCalculator(item){//计算器 弹窗
+			this.$uibModal = $uibModal;
+			this.dataCalculatorModal ={
+				itemInfo:{},
+			}
+			let that =this;
+			this.$uibModal.open({
+				animation: true,
+				component:'bondTrial',
+				windowClass:'my-bond-trial',
+				size: 'xs',//'lg',//'sm',
+				resolve: {
+					modalData:function(){
+						if(item){
+							that.dataCalculatorModal['itemInfo'] = item;
+						}
+						return that.dataCalculatorModal;
+					}
+				}
+			}).result.then(function (selectedItem) {},that);
+		},
 		// 获取结算行情
 		getCBLatestWeekValuation(obj){
 			let deferred = $q.defer();
@@ -117,7 +138,7 @@ let bondquotationServiceModule = angular.module('bondquotationService', [])
 			let deferred = $q.defer();
 			$http({
 				method: 'POST',
-				url: BONDCONFIG.getIP()+"ainas/bond/queryBondBaseInfo",
+				url: BONDCONFIG.getIP()+"ainas/web/queryDetailBondBaseInfo",
 				data: JSON.stringify(obj),
 				headers: BONDCONFIG.JH,
 			}).then((response)=>{

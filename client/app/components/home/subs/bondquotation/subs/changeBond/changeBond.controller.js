@@ -22,25 +22,7 @@ class ChangeBondController {
 	}
 	$onInit(){
 		this.tody = this.getTody();
-		// this.changeInfo ={
-		// 	drc:'',
-		// 	bondOfrid:'',
-		// 	bondid:'',
-		// 	bondShrtnm:'',
-		// 	num:'',
-		// 	yldrto:'',
-		// 	netprc:'',
-		// 	wthrAnon:'',
-		// 	wthrListg:'',
-		// 	rmrk:'',
-
-		// }
 		console.log(this.resolve.changeDataForModal.changeInfo)
-		// this.items = this.resolve.changeDataForModal.items;
-		// this.changeInfo = this.resolve.changeDataForModal.changeInfo;
-		// for(let key in this.changeInfo){
-		// 	this.changeInfo[key] = this.resolve.changeDataForModal.changeInfo[key];
-		// }
 		this.changeInfo = this.resolve.changeDataForModal.changeInfo;
 		this.changeInfo.drc = this.changeInfo.drc =="买入" ? "-1" : (this.changeInfo.drc =="卖出" ? "1" :"");
 		this.changeInfo.num = parseFloat( this.changeInfo.num/10000);
@@ -59,13 +41,20 @@ class ChangeBondController {
 	changeInfoStatus(){
 		if(this.changeInfo.wthrAnon == "0"){
 			this.changeInfo.wthrAnon = "1"
-		}
-		if(this.changeInfo.wthrAnon == "1"){
+		}else{
 			this.changeInfo.wthrAnon = "0"
 		}
 	}
 	cancel() {
 		this.modalInstance.dismiss('cancel');
+
+	}
+	deleteRemark(item){
+		if(item['rmrk'].length<=50){
+			return false;
+		}else{
+			item.rmrk = item.rmrk.substr(0,50);
+		}
 	}
 	netprcFn(item){//计算净价
 
@@ -93,7 +82,7 @@ class ChangeBondController {
 		promise.then((res)=>{
 			console.log(res);
 			if(res.data && res.data.data.yield){
-				item.yldrto = Math.round(res.data.data.yield*10000)/100;
+				item.yldrto = parseFloat(res.data.data.yield*1000000)/10000;
 			}
 		},(data)=>{
 			console.warn("获取议价列表异常");

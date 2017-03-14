@@ -5,8 +5,10 @@ class LoginController {
 		this.loginService = loginService;
 		this.$http = $http;
 		this.name = '登录';
-		this.account = '18888888888';
-		this.password = '654321';
+		/*this.account = '18888888888';
+		this.password = '654321';*/
+		this.account = '';
+		this.password = '';
 	}
 	$onInit(){
 		//this.login();

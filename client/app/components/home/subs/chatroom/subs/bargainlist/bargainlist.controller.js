@@ -1,3 +1,4 @@
+var BONDCONFIG = require('../../../../../../../bond.config.js');
 class BargainlistController {
 	constructor($rootScope,$scope,$stateParams,bargainlistService,$state) {
 		this.name = 'bargainlist';
@@ -9,6 +10,7 @@ class BargainlistController {
 		});
 	}
 	$onInit(){
+		(!!BONDCONFIG.USERINFO.uid) && (this.curUserId = BONDCONFIG.USERINFO.uid);
 		this.getBarginList();
 	}
 	getBarginList(){
@@ -16,7 +18,6 @@ class BargainlistController {
 		promise.then((data)=>{
 			if(data.status===200){
 				if(data.data.status==="0"){
-					// debugger;
 					this.bargainlist = data.data.data.map((item)=>{
 						item.fold=true;return item;
 					});

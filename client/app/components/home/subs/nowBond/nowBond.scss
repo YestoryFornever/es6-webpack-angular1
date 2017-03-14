@@ -28,6 +28,12 @@
 // windowClass:'my-bond',
 
 now-bond{
+	.btn,.btn:hover,.btn.focus,.btn.active,.btn.visited,.btn:focus{
+		// background-color:$bgDefaultLightC;
+		outline: none;
+		color:$textD;
+		border:none;
+	}
 	background:red;
 	color:$textD;
 	font-size:0.12rem;

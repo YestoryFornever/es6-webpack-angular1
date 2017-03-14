@@ -22,8 +22,13 @@ class GLOBAL{
 			'Content-Type' : 'application/json;charset=utf-8',
 			'terminal' : '2'
 		}
-		this.UUID = PRIVATECONFIG.Guid();
-		this.USERINFO = window.localStorage.USERINFO? JSON.parse(window.localStorage.USERINFO):{};
+		this.USERINFO = {};
+		var userinfo = window.localStorage.USERINFO;
+		if (userinfo) {
+			this.UUID = PRIVATECONFIG.Guid();
+			this.USERINFO = userinfo = JSON.parse(userinfo);
+			this.JH["lid"] = this.FH["lid"] = userinfo.lid;
+		};
 	}
 	getIP(){
 		let host = PRIVATECONFIG.Host;

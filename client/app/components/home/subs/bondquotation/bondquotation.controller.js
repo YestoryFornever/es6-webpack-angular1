@@ -10,88 +10,20 @@ import ChangeModalInstanceCtrl from './subs/changeBond/changeBond.controller';
 var echarts = require('echarts');
 
 class BondquotationController {
-	constructor(bondquotationService,$uibModal,$mdDialog) {
+	constructor(bondquotationService,$uibModal,$mdDialog,AlertModalService,pagetabService) {
 		this.name ="债券报价";
 		this.bondquotationService = bondquotationService;
+		this.AlertModalService = AlertModalService;
+		this.pagetabService = pagetabService;
 		this.$uibModal = $uibModal;
-		this.$mdDialog = $mdDialog;		// 基于准备好的dom，初始化echarts实例
+		// 基于准备好的dom，初始化echarts实例
 		this.myChart = echarts.init(document.getElementById('settleChart'));
-		// 绘制图表
-		this.axisData = ["2017-11-1","2017-11-2","2017-11-3","2017-11-4","2017-11-5","2017-11-6","2017-11-7"];
-		 // ['3.00','3.05','3.10','3.15','3.20','3.25','3.30']
-		this.data = this.axisData.map(function (item, i) {
-			return Math.round(Math.random() * 3 * (i + 1));
-		});
-		this.links = this.data.map(function (item, i) {
-			return {
-				source: i,
-				target: i + 1
-			};
-		});
-		this.links.pop();
-		this.myChart.setOption({
-			textStyle:{
-				color:'#fff',
-			},
-			
-			xAxis: {
-				type : 'category',
-				boundaryGap : false,
-				data: this.axisData
-			},
-			yAxis: {
-				type : 'value'
-			},
-			series: [
-				{
-					type: 'graph',
-					layout: 'none',
-					coordinateSystem: 'cartesian2d',
-					symbolSize: 10,
-
-					label: {
-						normal: {
-							show: false
-						}
-					},
-					edgeSymbol: ['circle', 'arrow'],
-					edgeSymbolSize: [1, 5],
-					data: this.data,
-					links: this.links,
-					lineStyle: {
-						normal: {
-							color: '#fff'
-						}
-					}
-				}
-			]
-		});
-		// window.onresize = function(){
-		// 	this.myChart.resize();
-		// };
-		this.tableH = '3';
-		// 债券搜索
-		// this.searchBondList = [
-		//  {
-		//      bondid:'',
-		//      bondCd:'',
-		//      bondShrtnm:'',
-		//      sbjRtg:'',
-		//      rsdtrm:'',
-
-		//  }
-		// ];
-		// this.SearchSelected = '';
-		// this.customSelected ='';//模糊搜索
 		this.searchBondBreedInfo = {
 			keyWord:'',
 			queryFlag:'A',
 			wthrFcs:'',
 			pageNum:1,
 			pageSize:50,
-			
-
-
 		}
 		// 债券详情
 		this.bondDetail =  {};
@@ -110,14 +42,12 @@ class BondquotationController {
 	}
 	$onInit(){
 		this.myResize();
+
 		this.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 		this.format = this.formats[0];
 		this.altInputFormats = ['M!/d!/yyyy'];
 
-		this.popup1 = {
-			opened: false
-		};
-				// 地区 数据
+		// 地区 数据
 		this.location = {
 			"data":[
 				{"label": "华东地区",'checked':false,'id':'1', "children": [
@@ -257,24 +187,6 @@ class BondquotationController {
 				{"label": "国际组织",'checked':false,'id':'T', "children": []},
 			]
 		}
-		// 复选 债券类型
-		// this.bondTp={bondTp1:'',bondTp2:'',bondTp3:'',bondTp4:'',bondTp5:'',bondTp6:'',bondTp7:'',bondTp8:'',bondTp9:'',bondTp10:'',bondTp11:'',bondTp99:'',}
-		// // 复选
-		// this.sbjRtg={sbjRtg1:'',sbjRtg2:'',sbjRtg3:'',sbjRtg4:'',sbjRtg5:'',sbjRtg6:'',sbjRtg7:'',sbjRtg8:'',sbjRtg9:'',sbjRtg10:'',sbjRtg11:'',sbjRtg99:'',}
-		// //复选
-		// this.dbtitmRtg={dbtitmRtg1:'',dbtitmRtg2:'',dbtitmRtg3:'',dbtitmRtg4:'',dbtitmRtg5:'',dbtitmRtg6:'',dbtitmRtg7:'',dbtitmRtg8:'',dbtitmRtg9:'',dbtitmRtg10:'',dbtitmRtg11:'',dbtitmRtg99:'',}
-		// //复选
-		// this.issuEntp={issuEntp1:'',issuEntp2:'',issuEntp3:'',issuEntp4:'',issuEntp5:'',issuEntp6:'',issuEntp7:'',issuEntp8:'',issuEntp9:'',issuEntp10:'',issuEntp11:'',issuEntp99:'',}
-		// //复选
-		// this.wrnt={wrnt1:'',wrnt2:'',wrnt3:'',wrnt4:'',wrnt5:'',wrnt6:'',wrnt7:'',wrnt8:'',wrnt9:'',wrnt10:'',wrnt11:'',wrnt99:'',}
-		// //复选
-		// this.wrght={wrght1:'',wrght2:'',wrght3:'',wrght4:'',wrght5:'',wrght6:'',wrght7:'',wrght8:'',wrght9:'',wrght10:'',wrght11:'',wrght99:'',}
-		// //复选
-		// // this.face={face1:'',face2:'',face3:'',face4:'',face5:'',face6:'',face7:'',face8:'',face9:'',face10:'',face11:'',face99:'',}
-		// //复选
-		// this.crclMkt={crclMkt1:'',crclMkt2:'',crclMkt3:'',crclMkt4:'',crclMkt5:'',crclMkt6:'',crclMkt7:'',crclMkt8:'',crclMkt9:'',crclMkt10:'',crclMkt11:'',crclMkt99:'',}
-		// //复选
-		// this.rsdtrm={rsdtrm1:'',rsdtrm2:'',rsdtrm3:'',rsdtrm4:'',rsdtrm5:'',rsdtrm6:'',rsdtrm7:'',rsdtrm8:'',rsdtrm9:'',rsdtrm10:'',rsdtrm11:'',rsdtrm99:'',}
 		this.bondTp=[];
 		// 复选
 		this.sbjRtg=[];
@@ -315,8 +227,6 @@ class BondquotationController {
 			wrnt:'', wrght:'', face:'', crclMkt:'', idy:'', rgon:'', yr:'2017',
 		}
 		//列表信息
-		// this.currentPage = '1';//当前页
-
 		this.QueryQuoteList = [] ;
 		this.sendQueryQuoteListInfo = {
 			queryFlag:'A',
@@ -351,21 +261,17 @@ class BondquotationController {
 			items:['item1', 'item2', 'item3'],
 			isShow:false,
 			quoteList:[],
-			// drc:'',
-			// isShow: true,
 		};
 		this.scmid = '';
 		this.getQueryScmList();//获取方案名称
 		this.getQueryQuoteList();
-		// this.strToObj(this.bondTp)
+
 
 	}
 	// 获取结算行情
 	getCBLatestWeekValuation(id){
 		let promise = this.bondquotationService.getCBLatestWeekValuation({bondid :id});
 			promise.then((res)=>{
-				// console.log(res.data.data);
-				// console.log(this.myChart)
 				this.axisData =[];
 				this.data =[];
 				for(let obj of res.data.data){
@@ -373,8 +279,6 @@ class BondquotationController {
 					obj.yield = obj.yield*100;
 					this.data.push( obj.yield );
 				}
-				// console.log(this.axisData)
-				// console.log(this.data)
 				this.myChart.setOption({
 					textStyle:{
 						color:'#fff',
@@ -391,8 +295,6 @@ class BondquotationController {
 						legend: {
 						    orient: 'vertical',
 						    left: 'left',
-
-						  // data:this.xData
 						},
 						xAxis: {
 						    gridIndex: 0,
@@ -415,9 +317,6 @@ class BondquotationController {
 						    data:this.data
 						}
 					});
-					// console.log(this.myChart);
-					
-					// that.getQueryQuoteList();
 				},(data)=>{
 					// console.warn("批量新增报价异常");
 				});
@@ -429,8 +328,6 @@ class BondquotationController {
 		var modalInstance = that.$uibModal.open({
 			animation: that.animationsEnabled,
 			component:'nowBond',
-
-			// isShow:that.isShow,
 			windowClass:'my-now-bond',
 			size: 'wfxl',//'lg',//'sm',
 			resolve: {
@@ -462,35 +359,36 @@ class BondquotationController {
 						'rmrk':item.remark
 					});
 				}else{
-					alert('请输入完整信息');
+					that.AlertModalService.openBox({
+						'tittle':'',
+						'content':'修改报价成功',
+					});
 					flag = false;
 					return false;
 
 				};
 			},that);
-			console.log(that.quoteListChecked)
 			if(flag){
 				let promise = that.bondquotationService.addBatchBondQuote(that.quoteListChecked);
 				promise.then((res)=>{
 					if(res.data){
-						alert(res.data.msg);
+						that.AlertModalService.openBox({
+							'tittle':'',
+							'content':res.data.msg,
+						});
 						that.getQueryQuoteList(null,"A");
 					}
 				},(data)=>{
 					console.warn("批量新增报价异常");
 				});
 			}
-		}, function () {
-			// that.$log.info('Modal dismissed at: ' + new Date());
 		});
 	}
 /****************处理 复选框数组******/
 	objToStr(obj){
 		let arr = [];
 		$.each(obj, function(index, val) {
-			 /* iterate through array or object */
 			if(val){
-			// console.log(val)
 				arr.push(val)
 			}
 		});
@@ -503,23 +401,16 @@ class BondquotationController {
 	// 查询
 	search(){
 		this.sendQueryQuoteListInfo.bondid = this.customSelected.bondid;
-		// console.log(this.sendQueryQuoteListInfo)
 		this.getQueryQuoteList();
-		// console.log(this.customSelected)
 	}
 	// 债券搜索   模糊查询
 	queryQuote(val){
 		this.searchBondBreedInfo.keyWord = val;
-		// console.log(this.searchBondBreedInfo);
-		// console.log(this.customSelected)
+		this.searchBondBreedInfo.queryFlag = this.sendQueryQuoteListInfo.queryFlag;
 		let promise = this.bondquotationService.searchBondBreed(this.searchBondBreedInfo);
 		return promise.then(function(res) {
-			// body...
 			if(res.data.data ){
-				// debugger;
-				// console.log(res.data.data)
 				return res.data.data;
-				// return [{bondShrtnm :123 ,bondCd : 23} ,{bondShrtnm :22 , bondCd : 34}]
 			}
 		});
 
@@ -528,23 +419,13 @@ class BondquotationController {
 	fullName(val){
 		let promise = this.bondquotationService.getIssuerListByFullName({'organizationFullName':val});
 		return promise.then(function(res) {
-			// body...
-			// console.log(res)
 			if(res.data.data ){
-				// debugger;
-				// console.log(res.data.data)
 				return res.data.data;
-				// return [{name :123 ,id : 23} ,{name :22 , id : 34}]
 			}
 		});
 	}
-	aaa(){
-		// console.log(this.checkModel)
-	}
 	/*获取报价列表*/
 	getQueryQuoteList(ev,id){
-		
-		// console.log(this.searchBondBreedInfo)
 		this.isCollapsed = false;
 		if(ev){
 			$(ev.target).parent('tr').find('i').hide();
@@ -566,7 +447,6 @@ class BondquotationController {
 		this.sendQueryQuoteListInfo.desc  = this.orderList[1];
 		let promise = this.bondquotationService.queryQuoteList(this.sendQueryQuoteListInfo);
 		promise.then((res)=>{
-			console.log(res);
 			if(res.data){
 				if(res.data.status=='0'){
 					this.QueryQuoteList = res.data.data;
@@ -594,16 +474,12 @@ class BondquotationController {
 					}
 					if(this.QueryQuoteList[0]){
 						this.totalItems =	this.QueryQuoteList[0].page.totalResult;
-						// this.currentPage =	this.sendQueryQuoteListInfo.pageNum;
-						// this.numPages =this.QueryQuoteList[0].page.totalPage;
 					}
 					if(this.QueryQuoteList.length>0){
 						this.getDetail(this.QueryQuoteList[0]['bondid']);
 
 					}
 					this.getQueryScmList();
-				}else{
-					// alert(res.data.msg)
 				}
 			}
 		},(data)=>{
@@ -624,9 +500,6 @@ class BondquotationController {
 			// console.warn("获取议价列表异常");
 		});
 	}
-	pageChanged (num){
-		console.log(num)
-	}
 	//删除自选方案
 	deleteScm(id){
 		this.deleteScmInfo.scmid = id;
@@ -636,7 +509,11 @@ class BondquotationController {
 			if(res.data){
 				this.getQueryScmList();//获取方案名称
 				// alert(res.data.msg)
-				alert(res.data.msg)
+				this.AlertModalService.openBox({
+					'tittle':'删除自选方案',
+					'content':'删除自选方案成功',
+				});
+				// alert(res.data.msg)
 			}
 		},(data)=>{
 			// console.warn("获取议价列表异常");
@@ -644,14 +521,9 @@ class BondquotationController {
 	}
 	// 新增自选方案
 	addScm(id){
-
-		console.log(this.changeScmid);
-		console.log(this.addScmInfo);
-
 		if(this.changeScmid){
 			this.addScmInfo.scmid = this.scmid;
 		}
-
 		if(this.yldrto[0] ){
 			this.yldrto[0] = this.yldrto[0]/100+'';
 		}
@@ -690,7 +562,10 @@ class BondquotationController {
 			promise.then((res)=>{
 				if(res.data ){
 					this.getQueryQuoteList();
-					alert(res.data.msg)
+					this.AlertModalService.openBox({
+							'tittle':'新增自选方案',
+							'content':'新增自选方案成功',
+						});
 				}
 			},(data)=>{
 			});
@@ -699,7 +574,10 @@ class BondquotationController {
 			promise.then((res)=>{
 				if(res.data ){
 					this.getQueryQuoteList();
-					alert(res.data.msg)
+					this.AlertModalService.openBox({
+							'tittle':'修改自选方案',
+							'content':'修改自选方案成功',
+						});
 				}
 			},(res)=>{});
 		}
@@ -711,7 +589,16 @@ class BondquotationController {
 		promise.then((res)=>{
 			console.log(res);
 			if(res.data){
-				this.bondDetail = res.data.data
+				this.bondDetail = res.data.data;
+				this.bondDetail.bondid = id;
+				this.bondDetail.nameAll = res.data.data.marketType;
+				if (this.bondDetail.nameAll == "银行间") {
+					this.bondDetail.nameAll = "IB";
+				} else if (this.bondDetail.nameAll == "沪市") {
+					this.bondDetail.nameAll = "SH";
+				} else if (this.bondDetail.nameAll == "深市") {
+					this.bondDetail.nameAll = "SZ";
+				}
 			}
 		},(data)=>{
 			// console.warn("获取议价列表异常");
@@ -732,7 +619,10 @@ class BondquotationController {
 	newAddShow(){
 		this.changeScmid =false;
 		if(this.queryScmList.length>=5){
-			alert('最多新增5条自选方案');
+			this.AlertModalService.openBox({
+				'tittle':'',
+				'content':'最多添加5个自选方案',
+			});
 			return false;
 		}
 		this.isCollapsed =!this.isCollapsed;
@@ -768,22 +658,20 @@ class BondquotationController {
 		return arr;
 	}
 	// 下拉自选方案
+
 	changeAddShow(){
 		this.changeScmid = true;
 		this.isCollapsed =!this.isCollapsed;
 		let id = this.sendQueryQuoteListInfo.queryFlag;
 		let promise = this.bondquotationService.getScmDetail({'scmid':id});
 		promise.then((res)=>{
-			console.log(res);
 			if(res.data.data){
 				this.scmid = res.data.data.scmid;
 				for(let key in this.addScmInfo){
 					this.addScmInfo[key] = res.data.data[key];
-
 					if(!this.addScmInfo[key]){
 						this.addScmInfo[key] ='';
 					}
-					
 					if(key == 'yldrto'){
 						this.yldrto = this.numInput( this.addScmInfo[key]  ,'yldrto');
 					}
@@ -796,66 +684,58 @@ class BondquotationController {
 					if( this.addScmInfo[key] ==''){
 						this.addScmInfo.opRsdtrmUt ="D";
 					}
+					this['bondTp'] = this.strtoArr(this['bondTp'], this.addScmInfo['bondTp']);
+					this['rsdtrm'] =this.strtoArr(this['rsdtrm'], this.addScmInfo['rsdtrm']);
+					this['sbjRtg'] =this.strtoArr(this['sbjRtg'], this.addScmInfo['sbjRtg']);
+					this['dbtitmRtg'] =this.strtoArr(this['dbtitmRtg'], this.addScmInfo['dbtitmRtg']);
+					this['issuEntp'] =this.strtoArr(this['issuEntp'], this.addScmInfo['issuEntp']);
+					this['wrnt'] =this.strtoArr(this['wrnt'], this.addScmInfo['wrnt']);
+					this['wrght'] =this.strtoArr(this['wrght'], this.addScmInfo['wrght']);
+					this['face'] =this.strtoArr(this['face'], this.addScmInfo['face']);
+					this['crclMkt'] =this.strtoArr(this['crclMkt'], this.addScmInfo['crclMkt']);
 				}
-				this['bondTp'] = this.strtoArr(this['bondTp'], this.addScmInfo['bondTp']);
-				this['rsdtrm'] = this.strtoArr(this['rsdtrm'], this.addScmInfo['rsdtrm']);
-				this['sbjRtg'] = this.strtoArr(this['sbjRtg'], this.addScmInfo['sbjRtg']);
-				this['dbtitmRtg'] = this.strtoArr(this['dbtitmRtg'], this.addScmInfo['dbtitmRtg']);
-				this['issuEntp'] = this.strtoArr(this['issuEntp'], this.addScmInfo['issuEntp']);
-				this['wrnt'] = this.strtoArr(this['wrnt'], this.addScmInfo['wrnt']);
-				this['wrght'] = this.strtoArr(this['wrght'], this.addScmInfo['wrght']);
-				this['face'] = this.strtoArr(this['face'], this.addScmInfo['face']);
-				this['crclMkt'] =this.strtoArr(this['crclMkt'], this.addScmInfo['crclMkt']);
-				console.log(this.addScmInfo)
 			}
-			// this.getQueryQuoteList();
 		},(data)=>{
 			// console.warn("获取议价列表异常");
 		});
 	}
 	strtoArr(bond,val){
-		bond = [];
+		let newarr = [];
 		if(!val){
-			return '';
+			return ;
 		}
+		// debugger
 		if(val.length==1){
-			bond[(val-1)] = val;
-			return bond;
-		}else{
-			let arr = val.split(',');
-			arr.forEach(function(value, index) {
-				if(value!="99"){
-					bond[value-1] = value;
-				}
-				if(value =='99'){
-					bond[99] = '99';
-				}
-				console.log(value,index)
+			newarr[(val-1)] = val;
+
+			// return newarr;
+		}else if(val.length>1){
+			var  arr = val.split(',');
+			$.each(arr, function(index, value) {
+				newarr[(value-1)] = value;
 			});
-			return bond;
 		}
-		
+		for(let i =0; i< newarr.length; i++){
+			if(!newarr[i]){
+				newarr[i] = '';
+			}
+		}
+		return newarr;
 	}
 	// 获取下拉 信息 年份 地区 行业
 	yearFn(val){
 		this.year = val;
-		console.log(val)
 	}
 	locationFn(val){
 		this.location = val;
-		console.log(this.location)
-		console.log(val)
 	}
 	sectionFn(val){
 		this.section['data'] = val;
-		console.log(val)
 	}
 	makeSelect(obj){
-		console.log(obj)
 		let newArr =[];
 		for(let key of obj.data){
 			if(key['checked']){
-				// debugger
 				newArr.push(key['id']);
 				for(let key2 of key['children']){
 					if(key2['checked']){
@@ -867,10 +747,8 @@ class BondquotationController {
 		return newArr.join(',');
 	}
 	initSelect(obj){
-		console.log(obj);
 		for(let key of obj.data){
 			if(key['checked']){
-				// debugger
 				key['checked'] =false;
 				for(let key2 of key['children']){
 					if(key2['checked']){
@@ -878,32 +756,11 @@ class BondquotationController {
 					}
 				}
 			}
-			// else{
-			// 	for(let key2 of key['children']){
-			// 		if(key2['checked']){
-			// 			newArr.push(key2['id'])
-			// 		}
-			// 	}
-			// }
 		}
 		return obj;
 	}
-	getValue(xxx,fff){
-		console.log(xxx);
-	}
-	open1(){
-		this.popup1.opened = true;//打开 时间控件
-	}
-	openDialog(){//打开弹窗
-		$(".modal-dialog").show("slow");
-	}
-	closeDialog(){//关闭弹窗
-		$(".modal-dialog").hide("slow");
-	}
-
 	changeCareInfo(item,name,ev){//撤销 和 关注
 		ev.stopPropagation();
-		// console.log(item);
 		this.careInfo.bondOfrid = item.bondOfrid;
 		this.careInfo.wthrFcs = item.wthrFcs;
 		this.careInfo.ofrEStatus = item.ofrEStatus;
@@ -921,12 +778,14 @@ class BondquotationController {
 		}
 		let promise = this.bondquotationService.updateQuoteState(this.careInfo,name);
 		promise.then((res)=>{
-			console.log(res)
 			if(res.data.data){
 				if(name == 'ofrEStatus'){
 					item.ofrEStatus = '撤销';
 				}
-				alert(res.data.msg);
+				this.AlertModalService.openBox({
+					'tittle':'',
+					'content':'操作成功',
+				});
 			}
 		},(data)=>{
 			// console.warn("获取议价列表异常");
@@ -964,14 +823,14 @@ class BondquotationController {
 			this.bondTp[8] = '9';
 			this.bondTp[9] = '10';
 			this.bondTp[10] = '11';
-			this.bondTp[99] = '99';
+			this.bondTp[98] = '99';
 		}else{
 			this.bondTp[6] = '';
 			this.bondTp[7] = '';
 			this.bondTp[8] = '';
 			this.bondTp[9] = '';
 			this.bondTp[10] = '';
-			this.bondTp[99] = '';
+			this.bondTp[98] = '';
 		}
 		if(this.bondTp[0] ==false && this.bondTp[5] ==false){
 			this.addScmInfo.bondTp ='';
@@ -1026,7 +885,6 @@ class BondquotationController {
 		return str;
 	}
 	numInput(str ,name){
-		// debugger
 		if(!str){
 			return ['',''];
 		}
@@ -1049,27 +907,11 @@ class BondquotationController {
 		return false;
 	}
 	openCalculator(item){//计算器 弹窗
-		let that =this;
-		that.$uibModal.open({
-			animation: that.animationsEnabled,
-			component:'bondTrial',
-			windowClass:'my-bond-trial',
-			size: 'xs',//'lg',//'sm',
-			resolve: {
-				modalData:function(){
-					if(item){
-						that.dataCalculatorModal.itemInfo = item;
-					}
-					
-					return that.dataCalculatorModal;
-				}
-			}
-		}).result.then(function (selectedItem) {},that);
+		this.bondquotationService.openCalculator(item);
 	}
-	openChange(item ,ev){//修改报价
+	openChange(item ,ev,nameAll){//修改报价
 		ev.stopPropagation();
 		let that = this;
-		console.log(item)
 		that.$uibModal.open({
 			  animation: that.animationsEnabled,
 			  component:"changeBond",
@@ -1077,26 +919,28 @@ class BondquotationController {
 			  size: 'xl',
 			  resolve: {
 				changeDataForModal: function () {
-					that.changeDataForModal.changeInfo = item;
-					console.log(item)
+					for(let key in item){
+						that.changeDataForModal.changeInfo[key] = item[key];
+					}
+					that.changeDataForModal.changeInfo.nameAll = nameAll;
 					return  that.changeDataForModal;
 				}
 			  }
 			}).result.then(function(res){
-				// body...
 				let sendObjInfo = that.changeDataForModal.changeInfo;
-
-				console.log(that.changeDataForModal.changeInfo)
 				let promise = that.bondquotationService.updateBondQuote(sendObjInfo);
 				promise.then((res)=>{
 					if(res.data){
-						console.log(res)
 						that.getQueryQuoteList();
-						alert(res.data.msg);
+						that.AlertModalService.openBox({
+							'tittle':'修改报价',
+							'content':'修改报价成功',
+						});
 					}
 				},(data)=>{
-					console.warn("请求失败");
 				});
+			},function(res) {
+				that.getQueryQuoteList();
 			})
 	}
 	openFirend(item){//打开好友弹窗
@@ -1115,12 +959,19 @@ class BondquotationController {
 		}).result.then(function (selectedItem) {},that);
 	}
 	// 分页
-	pageNumChange(pageNow){
+	pageNumChange(pageNow){o
 		this.sendQueryQuoteListInfo.pageNum = pageNow;
 		this.getQueryQuoteList();
-		console.log(pageNow)
+	}
+	activeTab1(){// 调到详情页面
+		this.pagetabService.activeTab({
+			tabKey: 'home.acoupondetails',
+			routeState:"home.acoupondetails",
+			routeLabel:("详情"),
+		});
 	}
 
+
 }
-BondquotationController.$inject = ['bondquotationService','$uibModal','$mdDialog'];
+BondquotationController.$inject = ['bondquotationService','$uibModal','$mdDialog','AlertModalService','pagetabService'];
 export default BondquotationController;

@@ -117,6 +117,50 @@ div#chatroom{
 						color:$textB;
 					}
 				}
+				div.operate-btns{
+					margin-top:.2rem;
+					$btnsH:.3rem;
+					span#counting{
+						height:$btnsH;
+						line-height:$btnsH;
+						img{
+							margin:0 .02rem;
+						}
+						>span{
+							display:inline-block;
+							width:.6rem;
+						}
+					}
+					button{
+						float:right;
+						width:.64rem;
+						height:$btnsH;
+						/* line-height:$btnsH; */
+						background-color:$btnPrimary;
+						border:0;
+						$radius:.04rem;
+						border-radius: $radius;
+						-moz-border-radius: $radius;
+						-webkit-border-radius: $radius;
+						color:$textD;
+						margin-right:.02rem;
+					}
+					button#operateBargain,button#operatePublish{
+						margin-right:.5rem;
+					}
+					button#operateReject{
+						color:$textF;
+						background-color:$bgDefaultLightC;
+					}
+					button#operateDeal{
+					}
+					button#close{
+						background-color:$primaryBg;
+					}
+					button.hide-btn{
+						display:none;
+					}
+				}
 				$operateH:.7rem;
 				div.operate{
 					height:$operateH;
@@ -165,48 +209,6 @@ div#chatroom{
 									color:$textG;
 								}
 							}
-						}
-					}
-					div.operate-btns{
-						float:left;
-						$btnsH:.3rem;
-						margin-top: .32rem;
-						button{
-							width:.64rem;
-							height:$btnsH;
-							/* line-height:$btnsH; */
-							background-color:$btnPrimary;
-							border:0;
-							$radius:.04rem;
-							border-radius: $radius;
-							-moz-border-radius: $radius;
-							-webkit-border-radius: $radius;
-							color:$textD;
-							margin:0 .05rem;
-						}
-						span#counting{
-							margin:0 $btnsH;
-							height:$btnsH;
-							line-height:$btnsH;
-							img{
-								margin:0 .02rem;
-							}
-							>span{
-								display:inline-block;
-								width:.6rem;
-							}
-						}
-						button#operateBargain{}
-						button#operateReject{
-							color:$textF;
-							background-color:$bgDefaultLightC;
-						}
-						button#operateDeal{}
-						button#close{
-							background-color:$primaryBg;
-						}
-						button.hide-btn{
-							display:none;
 						}
 					}
 				}
@@ -282,9 +284,6 @@ div#chatroom{
 								display:none;
 							}
 						}
-					}
-					div.operate-btns{
-						margin-top: .02rem;
 					}
 				}
 				div.bargain-cur-history{

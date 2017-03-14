@@ -7,10 +7,10 @@
 					<span>债券信息</span>
 				</header>
 				<main id="BondMain">
-					<div class="tit">{{$ctrl.bondDetail.bondShrtnm}}</div>
+					<div class="tit">{{$ctrl.bondDetail.bondShrtnm}}&nbsp;[ {{$ctrl.bondDetail.bondCd}}.{{$ctrl.bondDetail.nameAll}}]</div>
 					<div class="cont_l" >
 						<div class="col">
-							<span  ng-click='$ctrl.openCalculator()'>剩余期限：</span>
+							<span >剩余期限：</span>
 							<span>{{$ctrl.bondDetail.rsdtrm}}</span>
 						</div>
 						<div class="col">
@@ -41,7 +41,7 @@
 						</div>
 						<div class="col">
 							<span>票息类型：</span>
-							<span>{{$ctrl.bondDetail.rateType}}</span>
+							<span>{{$ctrl.bondDetail.rateTypeName}}</span>
 						</div>
 						<div class="col">
 							<span>久期：</span>
@@ -62,14 +62,14 @@
 					</div>
 					<div class="col">
 						<div class="tit_l">发行人：</div>
-						<div class="textOverHidden">{{$ctrl.bondDetail.name }}
+						<div class="textOverHidden">{{$ctrl.bondDetail.issueName }}
 						</div>
 					</div>
 					<div class="col">
 						<div class="tit_l">主承销商：</div>
 						<span class="textOverHidden">{{$ctrl.bondDetail.underwriterName}}</span>
 					</div>
-					<div ui-sref="home.acoupondetails({bondid:($ctrl.bondDetail.bondid)})" ui-sref-active="actived"><span class="bgMore"></span></div>
+					<div ui-sref="home.acoupondetails({bondid:($ctrl.bondDetail.bondid)})" ui-sref-active="actived" ><span class="bgMore" ng-click='$ctrl.activeTab1()'></span></div>
 				</main>
 			</section>
 			<div id="_gap_"></div>
@@ -144,7 +144,7 @@
 										<label class="btn" ng-model="$ctrl.bondTp[8]" uib-btn-checkbox btn-checkbox-true="'9'" ng-click='$ctrl.allCheckFalse("bondTp")'>企业债</label>
 										<label class="btn" ng-model="$ctrl.bondTp[10]" uib-btn-checkbox btn-checkbox-true="'11'" ng-click='$ctrl.allCheckFalse("bondTp")'>PPN</label>
 										<label class="btn" ng-model="$ctrl.bondTp[9]" uib-btn-checkbox btn-checkbox-true="'10'" ng-click='$ctrl.allCheckFalse("bondTp")'>公司债</label>
-										<label class="btn" ng-model="$ctrl.bondTp[99]" uib-btn-checkbox btn-checkbox-true="'99'" ng-click='$ctrl.allCheckFalse("bondTp")'>其他</label>
+										<label class="btn" ng-model="$ctrl.bondTp[98]" uib-btn-checkbox btn-checkbox-true="'99'" ng-click='$ctrl.allCheckFalse("bondTp")'>其他</label>
 								</div>
 							</div>
 							<div class="padd10">
@@ -156,7 +156,7 @@
 									<label class="btn" ng-model="$ctrl.sbjRtg[2]" uib-btn-checkbox btn-checkbox-true="3" ng-click='$ctrl.allCheckFalse("sbjRtg")'>AA</label>
 									<label class="btn" ng-model="$ctrl.sbjRtg[3]" uib-btn-checkbox btn-checkbox-true="4" ng-click='$ctrl.allCheckFalse("sbjRtg")'>AA-</label>
 									<label class="btn" ng-model="$ctrl.sbjRtg[4]" uib-btn-checkbox btn-checkbox-true="5" ng-click='$ctrl.allCheckFalse("sbjRtg")'>&nbsp;A&nbsp;</label>
-									<label class="btn" ng-model="$ctrl.sbjRtg[99]" uib-btn-checkbox btn-checkbox-true="99" ng-click='$ctrl.allCheckFalse("sbjRtg")'>其他</label>
+									<label class="btn" ng-model="$ctrl.sbjRtg[98]" uib-btn-checkbox btn-checkbox-true="99" ng-click='$ctrl.allCheckFalse("sbjRtg")'>其他</label>
 								</div>
 
 							</div>
@@ -170,7 +170,7 @@
 									<label class="btn" ng-model="$ctrl.dbtitmRtg[3]" uib-btn-checkbox btn-checkbox-true="4"  ng-click='$ctrl.allCheckFalse("dbtitmRtg")'>AA</label>
 									<label class="btn" ng-model="$ctrl.dbtitmRtg[4]" uib-btn-checkbox btn-checkbox-true="5"  ng-click='$ctrl.allCheckFalse("dbtitmRtg")'>AA-</label>
 									<label class="btn" ng-model="$ctrl.dbtitmRtg[5]" uib-btn-checkbox btn-checkbox-true="6"  ng-click='$ctrl.allCheckFalse("dbtitmRtg")'>&nbsp;A+&nbsp;</label>
-									<label class="btn" ng-model="$ctrl.dbtitmRtg[99]" uib-btn-checkbox btn-checkbox-true="99"  ng-click='$ctrl.allCheckFalse("dbtitmRtg")'>其他</label>
+									<label class="btn" ng-model="$ctrl.dbtitmRtg[98]" uib-btn-checkbox btn-checkbox-true="99"  ng-click='$ctrl.allCheckFalse("dbtitmRtg")'>其他</label>
 								</div>
 							</div>
 							
@@ -252,7 +252,7 @@
 									<label class="btn" ng-model="$ctrl.issuEntp[0]" uib-btn-checkbox btn-checkbox-true="1"  ng-click='$ctrl.allCheckFalse("issuEntp")'>央企</label>
 									<label class="btn" ng-model="$ctrl.issuEntp[1]" uib-btn-checkbox btn-checkbox-true="2" btn-checkbox-true="''" ng-click='$ctrl.allCheckFalse("issuEntp")'>国企</label>
 									<label class="btn" ng-model="$ctrl.issuEntp[2]" uib-btn-checkbox btn-checkbox-true="3" ng-click='$ctrl.allCheckFalse("issuEntp")'>民企</label>
-									<label class="btn" ng-model="$ctrl.issuEntp[99]" uib-btn-checkbox btn-checkbox-true="99" ng-click='$ctrl.allCheckFalse("issuEntp")'>其他</label>
+									<label class="btn" ng-model="$ctrl.issuEntp[98]" uib-btn-checkbox btn-checkbox-true="99" ng-click='$ctrl.allCheckFalse("issuEntp")'>其他</label>
 								</div>
 							</div>
 							<div class="padd10">
@@ -362,10 +362,12 @@
 								</div>
 								<span class="calculator" ng-if='item.ifpresentUser=="0" '  ng-click='$ctrl.openCalculator(item)'></span>
 
-								<span class="change"  ng-if='item.ifpresentUser=="1" ' ng-click='$ctrl.openChange(item,$event)'></span>
+								<span class="change"  ng-if='item.ifpresentUser=="1" && item.ofrEStatus!="成交"' ng-click='$ctrl.openChange(item,$event,$ctrl.bondDetail.nameAll)'></span>
+								<!-- <span class="change"  ng-if='item.ifpresentUser=="1"' ng-click='$ctrl.openChange(item,$event)'></span> -->
 								<span class="addNew"  ng-if='item.ofrEStatus=="成交" || item.ofrEStatus=="撤销"' ng-click='$ctrl.sendQuote(item)'></span>
 								<span class="delete" ng-if='item.ifpresentUser=="1" && item.ofrEStatus=="有效" ' ng-click='$ctrl.changeCareInfo(item,"ofrEStatus",$event)'></span>
 								<span class="send" ng-if='item.ifpresentUser=="1" && item.ofrEStatus=="有效"' ng-click='$ctrl.openFirend(item)'></span>
+								<span class="send" ng-if='item.ifpresentUser=="1" && item.ofrEStatus=="有效" && item.wthrListg !="报价大厅"' ng-click='$ctrl.openCheckAlert(item)'></span>
 							</td>
 						</tr>
 					</tbody>

@@ -32,7 +32,7 @@
 				</div>
 				<div class="cont_r">
 					<span class="tit">主/债评级</span>
-					<span class="content">{{$ctrl.infoList.institutionRank}}/{{$ctrl.infoList.bondRank}}</span>
+					<span class="content">{{$ctrl.infoList.sbjRtg}}/{{$ctrl.infoList.bondRank}}</span>
 				</div>
 				<div class="cont_l">
 					<span class="tit">票面利率(%)</span>
@@ -80,7 +80,7 @@
 				</div>
 				<div class="cont_r">
 					<span class="tit">结算金额</span>
-					<span class="content">{{$ctrl.settlementAmount  | number:4}}</span>
+					<span class="content">{{$ctrl.settlementAmount  | number:2}}</span>
 				</div>
 			</div>
 			<div class="cont">
@@ -120,19 +120,19 @@
 			<div class="cont marNone">
 				<div class="cont_l marT10">
 					<span class="tit">麦氏久期</span>
-					<span class="content">{{$ctrl.calcIndicatorsList.rmclDuration }}</span>
+					<span class="content">{{$ctrl.calcIndicatorsList.rmclDuration  | number :4}}</span>
 				</div>
 				<div class="cont_r">
 					<span class="tit">PVBP</span>
-					<span class="content">{{$ctrl.calcIndicatorsList.rbPV  }}</span>
+					<span class="content">{{$ctrl.calcIndicatorsList.rbPV  | number :4 }}</span>
 				</div>
 				<div class="cont_l ">
 					<span class="tit">修正久期</span>
-					<span class="content">{{$ctrl.calcIndicatorsList.rmdfDuration  }}</span>
+					<span class="content">{{$ctrl.calcIndicatorsList.rmdfDuration  | number :4 }}</span>
 				</div>
 				<div class="cont_r">
 					<span class="tit">凸性</span>
-					<span class="content">{{$ctrl.calcIndicatorsList.rconvexity  }}</span>
+					<span class="content">{{$ctrl.calcIndicatorsList.rconvexity   | number :4 }}</span>
 				</div>
 			</div>
 		</div>

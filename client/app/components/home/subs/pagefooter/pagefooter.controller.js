@@ -17,7 +17,7 @@ class PagefooterController {
 		this.pagetabService.activeTab({
 			tabKey: 'home.chatroom',
 			routeState:"home.chatroom",
-			routeLabel:(new Date()).toString(),
+			routeLabel:"消息中心",
 		});
 	}
 	activeTab1(){

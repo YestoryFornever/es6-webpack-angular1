@@ -3,6 +3,11 @@ import inputNumModule from './components/inputNum/inputNum';
 import mutiSelectModule from './components/mutiSelect/mutiSelect';
 import bondTrialModule from './components/bondTrial/bondTrial';
 
+import alertModalModule from './components/alertModal/alertModal';
+import alertModalService from './components/alertModal/alertModal.service';
+
+import conntDownModule from './components/countDown/countDown';
+
 import yldrtoFilter from './filters/yldrto.filter';
 import numFilter from './filters/num.filter';
 import numPointTwoFilter from './filters/numPointTwo.filter';
@@ -19,6 +24,8 @@ let commonModule = angular.module('app.common', [
 	inputNumModule,
 	mutiSelectModule,
 	bondTrialModule,
+	alertModalModule,
+	conntDownModule,
 
 	yldrtoFilter,
 	numFilter,
@@ -29,6 +36,7 @@ let commonModule = angular.module('app.common', [
 	arrReverse,
 	
 	storageService,
+	alertModalService
 
 ])
 

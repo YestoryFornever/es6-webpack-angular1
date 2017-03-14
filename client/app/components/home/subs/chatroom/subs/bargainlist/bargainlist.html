@@ -12,8 +12,12 @@
 				<div class="drc" ng-class="{drc8:item.drc=='8',drc9:item.drc=='9',drc2:item.drc=='2',drc3:item.drc=='3'}"></div>
 				<div class="detail">
 					<div class="negtprc-title">
-						<h4 class="negtprc-orgname">{{item.organizationShortName}}-{{item.userName}}</h4>
-						<!-- <span class="negtprc-mark">{{item.bestFlag}}{{user.friendsFlag}}</span> -->
+						<span class="negtprc-mark">
+							<span class="negtprc-mark-friend" ng-if="item.friendsFlag=='1'">好友</span>
+							<span class="negtprc-mark-best" ng-if="item.bestFlag=='1'">最优</span>
+						</span>
+						<h4 class="negtprc-orgname" ng-if="item.wthrAnon=='0'||$ctrl.curUserId==item.userId">{{item.organizationShortName}}-{{item.userName}}</h4>
+						<h4 class="negtprc-orgname" ng-if="item.wthrAnon=='1'&&$ctrl.curUserId!=item.userId">匿名</h4>
 					</div>
 					<div>
 						<ul class="negtprc-detail">

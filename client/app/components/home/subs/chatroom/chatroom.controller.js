@@ -6,12 +6,12 @@ WebIM.config = require('../../../../../resource/js/easemob/webim.config.js');
 class ChatroomController {
 	/*刷新议价列表*/
 	_refreshBargainList(){
-		this.$rootScope.$broadcast('refresh-bargain-list');
+		this.$scope.$broadcast('refresh-bargain-list');
 	}
 
 	/*切换当前议价对象（userid）*/
 	changeBargain(bargain){
-		this._clearTimerList();//清空倒计时数组
+		//this._clearTimerList();//清空倒计时数组
 		this.showChatList = true;//显示聊天界面
 		this.chatcontent = [];//清空聊天列表
 		this.OBargain.negtprcUserId = bargain.userId;
@@ -66,7 +66,7 @@ class ChatroomController {
 			case '4':;
 			case '6':
 				//判断议价列表是否为空
-				if(data.negtprcDtlList.length>0){//不为空
+				if(data.negtprcDtlList && data.negtprcDtlList.length>0){//不为空
 					//判断最后一条议价（倒取第一条）里的用户id与当前用户id是否一致
 					if(data.negtprcDtlList[data.negtprcDtlList.length-1].userId == BONDCONFIG.USERINFO.uid){
 						this.btnState = {
@@ -113,7 +113,7 @@ class ChatroomController {
 				};
 				break;
 		}
-		let timer = this._getTimer(data.udtTm);
+		/*let timer = this._getTimer(data.udtTm);
 		let min5 = 5*60*1000;
 		var timeleft = min5-timer.interval;
 		if(timeleft>0){
@@ -129,7 +129,7 @@ class ChatroomController {
 		}else{
 			this.OBargain.udtTm = '已过期';
 			this.btnState.deal = false;
-		}
+		}*/
 		this.IBargain = data;
 		if(data.negtprcDtlList.length<=0){
 			this.OBargain.yield = this.__y(this.IBargain.yldrto,true);
@@ -148,14 +148,14 @@ class ChatroomController {
 		this.closeInputs();
 	}
 	/*重置计时器*/
-	_resetTimer(str){
+	/*_resetTimer(str){
 		if(this.counter){
 			this.OBargain.udtTm = str;
 			this.$interval.cancel(this.counter);
 		}
-	}
-	/*刷新议价详情列表*/
-	_refreshBargainDetailList(){//this.OBargain bondOfrid:报价id|bondNegtprcid:议价id|userId用户:id
+	}*/
+	/*刷新议价详情列表-暂时用不到*/
+	/*_refreshBargainDetailList(){//this.OBargain bondOfrid:报价id|bondNegtprcid:议价id|userId用户:id
 		let promise = this.chatroomService.queryBargainDetail(this.OBargain);
 		promise.then((data)=>{
 			if(!data.status===200){alert(data);}
@@ -170,7 +170,7 @@ class ChatroomController {
 		this._refreshBargainHistory(this.OBargain.userId);
 		this.openBargainDrop();
 		this.closeInputs();
-	}
+	}*/
 	/*拒绝报价*/
 	reject(){
 		let promise = this.chatroomService.updateBargainState(this.IBargain,this.OBargain,'5');
@@ -260,7 +260,7 @@ class ChatroomController {
 			y,p,n,s
 		);
 		promise.then((data)=>{
-			this._refreshBargainDetailList();
+			this._refreshBargainDetail();
 			this._refreshBargainList();
 			this._refreshBargainHistory();
 		},(data)=>{
@@ -338,7 +338,7 @@ class ChatroomController {
 			});
 		}
 		/*倒计时*/
-		if(ext.ext_msg_type=="20"||ext.ext_msg_type=="21"){
+		/*if(ext&&(ext.ext_msg_type=="20"||ext.ext_msg_type=="21")){
 			if(ext.udtTm>0){
 				var curTimer = this.$interval(()=>{
 					ext.udtTm -= 1000;
@@ -351,15 +351,15 @@ class ChatroomController {
 				ext.udtTm = '已过期';
 			}
 			this.timers.push(curTimer);
-		}
+		}*/
 		/*滚动条*/
 		this.chatContentScroll();
 	}
-	_clearTimerList(){
+	/*_clearTimerList(){
 		this.timers.forEach((item,index)=>{
 			this.$interval.cancel(item);
 		});
-	}
+	}*/
 	/*发送信息*/
 	sendMsg(extObj){
 		var id = this.conn.getUniqueId();		// 生成本地消息id
@@ -381,12 +381,13 @@ class ChatroomController {
 			alert('发送内容为空');
 			return false;
 		}
-		if(!extObj){
-			this.message = "";
-		}
+		// debugger;
 		this.popMsg(extObj,this.message,'o');
 		this.conn.send(msg.body);
 		this.cacheChatList(msgBody,'o');
+		if(!extObj){
+			this.message = "";
+		}
 	}
 	/*缓存聊天列表*/
 	cacheChatList(message,io){
@@ -449,12 +450,13 @@ class ChatroomController {
 							// 刷新议价列表
 							that._refreshBargainList();
 							// 刷新议价界面
-							that._refreshBargainDetailList();
+							that._refreshBargainDetail();
 							// 刷新议价历史
 						}
 						that.$scope.$apply(function(){
-							console.info("消息类型:"+message.type);
-							console.info(message.data||"Text");
+							// console.info("消息类型:"+message.type);
+							// console.info(message.data||"Text");
+							// debugger;
 							that.popMsg(message.ext,message.data,'i');
 						});
 					}
@@ -703,20 +705,23 @@ class ChatroomController {
 		result.sec = parseInt(afterMin);
 		return result;
 	}
-	
+	_countDownBroadcast(){
+		this.$rootScope.$broadcast('count-down-broadcast');
+	}
 	constructor($rootScope,$scope,$log,$state,$stateParams,$uibModal,$interval,chatroomService) {
 		this.$rootScope = $rootScope;
 		this.$scope = $scope;
 		this.$state = $state;
 		this.$uibModal = $uibModal;
 		this.$log = $log;
-		this.$interval = $interval;
+		/*this.$interval = $interval;*/
 		this.chatroomService = chatroomService;
 	}
 	$onInit(){
 		//当前用户头像
 		this.curUserUrl = '../../../../../resource/images/img_defaulthead_group.png';
 		(!!BONDCONFIG.USERINFO.iconUrl) && (this.curUserUrl = BONDCONFIG.USERINFO.iconUrl);
+		(!!BONDCONFIG.USERINFO.uid) && (this.curUserId = BONDCONFIG.USERINFO.uid);
 		//测试数据
 		this.$scope.bargain="议价记录";
 		//弹窗交互数据
@@ -831,6 +836,7 @@ class ChatroomController {
 		this.chatContentScroll();
 		this._btnStateReset();
 		this.timers=[];
+		/*来自报价大厅的跳转处理*/
 		let ofrUserId = this.$state.params.ofrUserId;
 		let bondOfrid = this.$state.params.bondOfrid;
 		if(ofrUserId && bondOfrid){
@@ -841,6 +847,12 @@ class ChatroomController {
 			this.OBargain.negtprcUserId = ofrUserId;
 			this._refreshBargainDetail();
 		}
+		/*this.$interval(()=>{
+			this._countDownBroadcast();
+		},1000);
+		this.$scope.$on('count-down-broadcast',(event,args)=>{
+			console.log(event);
+		});*/
 	}
 
 	/*$onChanges(changesObj){

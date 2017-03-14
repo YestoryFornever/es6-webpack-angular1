@@ -2,40 +2,39 @@
 	<div class=" changeBond" >
 		<div class="modal-content" >
 				<div class="modal-header">
-					<p class="modal-title" id="modal-title">修改报价 </p>
+					<p class="modal-title" id="modal-title">修改报价 
+						<i class="fa fa-times pull-right" aria-hidden="true" ng-click="$instanceCtrl.cancel()""></i>
+					</p>
+
 				</div>
 				<div class="modal-body " id="modal-body" >
 				    <div class="one cont_l">
 				    	<label><span>方向</span></label>
 						<div class="btn-group">
-							<span class="btn " ng-model = '$instanceCtrl.changeInfo.drc' uib-btn-radio="'-1'">买入</span>
-							<span class="btn "  ng-model = '$instanceCtrl.changeInfo.drc'  uib-btn-radio="'1'">卖出</span>
+							<span class="btn " ng-model = '$instanceCtrl.changeInfo.drc' uib-btn-radio="'-1'" disabled='true'>买入</span>
+							<span class="btn "  ng-model = '$instanceCtrl.changeInfo.drc'  uib-btn-radio="'1'" disabled='disabled'>卖出</span>
 						</div>
 					</div>
 				   <!-- 债券代码/简称 -->
 					<div class="one cont_r" >
 						<label><span class="colorH">债券代码/简称</span></label>
-						<div style="display: inline-block;">{{$instanceCtrl.changeInfo.bondShrtnm}}</div>
-						<!-- <input type="text" value="反显,不可修改" style="width:240px;height:50px;border:none;outline:none;margin-left:20px;"> -->
+						<div style="display: inline-block;">{{$instanceCtrl.changeInfo.bondShrtnm}}&nbsp;[{{$instanceCtrl.changeInfo.bondCd}}.{{$instanceCtrl.changeInfo.nameAll}}]</div>
 					</div>
 					<!-- 数量 -->
 					<div class="one cont_l">
 						<label><span>数量</span></label>
-						<!-- <input-num style="position: relative; z-index: 100000"></input-num> -->
 						<input type="text"  ng-model = '$instanceCtrl.changeInfo.num'>
 						<span class="marL10">万</span>
 					</div>
 					<!-- 收益率 -->
 					<div class="one cont_r">
 						<label><span>债收益率</span></label>
-						<!-- <span>*</span><span>债收益率</span> -->
 						<input type="text" ng-model = '$instanceCtrl.changeInfo.yldrto' ng-blur='$instanceCtrl.netprcFn($instanceCtrl.changeInfo ,"yldrto")'>
 						<span class="marL10">%</span>
 					</div>
 					<!-- 净价 -->
 					<div class="one cont_l">
 						<label><span>净价</span></label>
-						<!-- <span>*</span><span>净价</span> -->
 						<input type="text" ng-model = '$instanceCtrl.changeInfo.netprc' ng-blur='$instanceCtrl.yldrtoFn($instanceCtrl.changeInfo ,"netprc")'>
 						<span class="marL10">元</span>
 					</div>
@@ -47,8 +46,8 @@
 					</div>
 					<!-- 备注 -->
 					<div class="bot " >
-						<textarea  placeholder='备注' ng-model = '$instanceCtrl.changeInfo.rmrk'></textarea>
-						<span class="contNum">0/50</span>
+						<textarea  placeholder='备注' ng-model = '$instanceCtrl.changeInfo.rmrk' ng-change='$instanceCtrl.deleteRemark($instanceCtrl.changeInfo)'></textarea>
+						<span class="contNum">{{($instanceCtrl.changeInfo.rmrk).length}}/50</span>
 					</div>
 					<div class="modal-footer " id='myFooter'>
 						<button type="button" class="btn btn-primary" type="button" ng-click="$instanceCtrl.ok()">确定</button>

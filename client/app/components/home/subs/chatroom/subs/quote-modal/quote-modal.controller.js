@@ -31,7 +31,8 @@ class QuoteModalController {
 		var modalInstance = that.$uibModal.open({
 			animation: that.animationsEnabled,
 			component:'nowBond',
-			size: 'xl',//'lg',//'sm',
+			windowClass:'my-now-bond',
+			size: 'wfxl',//'lg',//'sm',
 			resolve: {}
 		}).result.then(function (quotelist) {
 			//
