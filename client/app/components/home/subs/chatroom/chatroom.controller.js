@@ -163,14 +163,9 @@ class ChatroomController {
 			if(!(data.negtprcDtlList && data.negtprcDtlList.length>0))
 				this.showCurCounting = false;
 
-		let that = this;
-		this.bargainDetailTime = new ChatRoomTimer(data.udtTm);
-		this.bargainDetailTime.onZero = function(time){
-			this.str = '已过期';
-			this.counting = false;
-			that.btnState.deal.enable = false;//交易按钮不可用
+		if(this.bargainDetailTime&&this.bargainDetailTime.reduction){
+			this.bargainDetailTime.reduction(5*60*1000 - ((new Date()).getTime()-(new Date(stamp)).getTime()));
 		}
-
 		if(!this.bargainDetailTime.counting){
 			this.btnState.deal.enable = false;//交易按钮不可用
 		}
@@ -554,6 +549,15 @@ class ChatroomController {
 		this.unfoldBargain = false;
 		this.showCurCounting = true;
 		this.historyListHeight = '470';
+
+		this.bargainDetailTime = new ChatRoomTimer(data.udtTm);
+		let that = this;
+		this.bargainDetailTime.onZero = function(time){
+			this.str = '已过期';
+			this.counting = false;
+			that.btnState.deal.enable = false;//交易按钮不可用
+		}
+
 		this.OBargain = {
 			bondNegtprcid:'',//议价id
 			bondOfrid:'',//报价id
@@ -582,7 +586,7 @@ class ChatroomController {
 				message:'已拒绝'
 			}*/
 		];
-		//let that = this;
+		
 		this.easeMobService.init((message)=>{
 			message.ext.udtTm=(new Date().getTime());
 			this.easeMobService.setCache(message,'i');
