@@ -2,7 +2,8 @@ class ChatRoomTimer{
 	constructor(stamp){
 		"ngInject";
 		this.reset();
-		this._getTimeLeft(stamp);
+		if(undefined!==stamp)
+			this._getTimeLeft(stamp);
 	}
 	onZero(){
 		this.str = '已过期';
@@ -10,7 +11,8 @@ class ChatRoomTimer{
 	}
 	onStop(time){}
 	reset(){
-		if(this.stop)this.stop();
+		if(this.stop)
+			this.stop();
 		this.counting = true;
 		this.str = '';
 	}
@@ -550,7 +552,10 @@ class ChatroomController {
 		this.showCurCounting = true;
 		this.historyListHeight = '470';
 
-		this.bargainDetailTime = new ChatRoomTimer(data.udtTm);
+		/**
+		 * 倒计时预备对象创建
+		 */
+		this.bargainDetailTime = new ChatRoomTimer();
 		let that = this;
 		this.bargainDetailTime.onZero = function(time){
 			this.str = '已过期';
@@ -586,7 +591,7 @@ class ChatroomController {
 				message:'已拒绝'
 			}*/
 		];
-		
+
 		this.easeMobService.init((message)=>{
 			message.ext.udtTm=(new Date().getTime());
 			this.easeMobService.setCache(message,'i');
