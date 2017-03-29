@@ -1,27 +1,4 @@
-import angular from 'angular';
-import uiRouter from 'angular-ui-router';
-import homeComponent from './home.component';
-
-import PageHeader from './subs/pageheader/pageheader';
-import PageFooter from './subs/pagefooter/pagefooter';
-
-import Calculator from './subs/calculator/calculator';
-import Chatroom from './subs/chatroom/chatroom';
-import Bondquotation from './subs/bondquotation/bondquotation';
-
-
-let homeModule = angular.module('home', [
-	uiRouter,
-	PageHeader,
-	PageFooter,
-
-	Calculator,
-	Chatroom,
-	Bondquotation,
-
-])
-
-.config(($stateProvider, $urlRouterProvider) => {
+app.config(($stateProvider, $urlRouterProvider) => {
 	"ngInject";
 
 	$stateProvider
@@ -35,7 +12,7 @@ let homeModule = angular.module('home', [
 					component: 'pageheader'
 				},
 				'main@home': {
-					component: 'bondquotation'
+					// component: 'bondquotation'
 				},
 				'footer@home': {
 					component: 'pagefooter'
@@ -44,8 +21,9 @@ let homeModule = angular.module('home', [
 		});
 })
 
-.component('home', homeComponent)
-
-.name;
-
-export default homeModule;
+.component('home', {
+  restrict: 'E',
+  bindings: {},
+  templateUrl: './home.html',
+  controller: HomeController
+});

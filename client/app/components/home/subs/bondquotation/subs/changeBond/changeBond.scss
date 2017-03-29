@@ -1,11 +1,10 @@
-@import '../../../../../../common/css/common';
-
 
 	// color: #000;
 	// height:8rem;
 
 .my-change-bond{
 	.modal-xl.modal-dialog {
+		z-index:999999;
 		width: 4.9rem;
 		.modal-content{
 			margin-top:0.5rem;
@@ -24,7 +23,7 @@
 		}
 	}
 }
-change-bond{
+.changeBond{
 	.btn.active{
 		background-color:$btnPrimary;
 		outline: none;

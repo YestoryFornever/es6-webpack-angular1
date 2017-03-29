@@ -1,4 +1,4 @@
-@import '../../../../../../common/css/common';
+
 
 bargainlist {
 	ul.barginlist{
@@ -41,14 +41,15 @@ bargainlist {
 			}
 			ul.items{
 				>li{
-					$drcW:.6rem;
-					height:$drcW;
-					line-height:$drcW;
+					$drcW:.5rem;
+					$drcH:.6rem;
+					height:$drcH;
+					line-height:$drcH;
 					div.drc{
 						float:left;
 						width:$drcW;
-						height:$drcW;
-						line-height:$drcW;
+						height:$drcH;
+						line-height:$drcH;
 						background-repeat:no-repeat;
 						background-position:center;
 					}
@@ -68,7 +69,7 @@ bargainlist {
 						margin-left:$drcW;
 						font-size:.12rem;
 						padding:.1rem 0;
-						margin-right:.15rem;
+						margin-right:.06rem;
 						position:relative;
 						div.negtprc-title{
 							height:.16rem;
@@ -76,6 +77,10 @@ bargainlist {
 							h4.negtprc-orgname{
 								color:$textD;
 								font-size:.12rem;
+								word-break:keep-all;/* 不换行 */ 
+								white-space:nowrap;/* 不换行 */ 
+								overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */ 
+								text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/ 
 							}
 							>span.negtprc-mark{
 								float:right;
@@ -99,7 +104,7 @@ bargainlist {
 						}
 						$detalLiH:.16rem;
 						ul.negtprc-detail{
-							width:2rem;
+							width:2.4rem;
 							>li{
 								font-size:.12rem;
 								height:$detalLiH;
@@ -110,14 +115,19 @@ bargainlist {
 									vertical-align: middle;
 								}
 								span.negtprc-detail-num,span.negtprc-detail-yldrto,span.negtprc-detail-netprc{
-									width:.4rem;
 									word-break:keep-all;/* 不换行 */ 
 									white-space:nowrap;/* 不换行 */ 
 									overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */ 
 									//text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/ 
 								}
-								span.negtprc-detail-netprc{
+								span.negtprc-detail-num{
+									width:.42rem;
+								}
+								span.negtprc-detail-yldrto{
 									width:.5rem;
+								}
+								span.negtprc-detail-netprc{
+									width:.64rem;
 								}
 								span.negtprc-detail-drc{
 									color:$textI;

@@ -1,14 +1,9 @@
-import template from './pagenav.html';
-import controller from './pagenav.controller';
-import './pagenav.scss';
-
 let pagenavComponent = {
 	restrict: 'E',
 	bindings: {
 		nav:'<',
 	},
-	template,
-	controller
+	templateUrl: './pagenav.html',
+	controller: PagenavController
 };
 
-export default pagenavComponent;

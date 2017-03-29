@@ -3,5 +3,3 @@ class HomeController {
 		this.name = 'home';
 	}
 }
-
-export default HomeController;

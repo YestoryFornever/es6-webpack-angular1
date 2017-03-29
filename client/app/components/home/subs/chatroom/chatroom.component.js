@@ -1,12 +1,7 @@
-import template from './chatroom.html';
-import controller from './chatroom.controller';
-import './chatroom.scss';
-
 let chatroomComponent = {
 	restrict: 'E',
 	bindings: {},
-	template,
-	controller
+	templateUrl: './chatroom.html',
+	controller: ChatroomController
 };
 
-export default chatroomComponent;

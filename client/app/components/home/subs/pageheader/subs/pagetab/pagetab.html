@@ -1,8 +1,8 @@
 <div class="pagetab">
 	<ul>
-		<li ng-repeat="tab in $ctrl.pagetabService._tabs" ng-class="{'active':tab.tabKey==$ctrl.pagetabService.activeTabKey}" ng-click="$ctrl.pagetabService.activeTab(tab);$ctrl.pagetabService.activeIndex=$index">
-			<a ui-sref="{{tab.routeState}}">{{tab.routeLabel}}
-				<span class="close-tab" ng-click="$ctrl.pagetabService.closeTab(tab)">
+		<li ng-repeat="tab in pagetabService._tabs" ng-class="{'active':tab.tabKey==pagetabService.activeTabKey}" ng-click="pagetabService.activeTab(tab);pagetabService.activeIndex=$index">
+			<a>{{tab.routeLabel}}
+				<span class="close-tab" ng-click="pagetabService.closeTab(tab, $event)">
 					<i class="fa fa-times" aria-hidden="true"></i>
 				</span>
 			</a>
@@ -10,27 +10,10 @@
 		</li>
 		
 		<li class="drop">
-			<a href="#">
+			<a>
 				<i class="fa fa-chevron-down" aria-hidden="true"></i>
 			</a>
 		</li>
-	</ul>
-	<ul>
-	<li ng-repeat="tab in $ctrl.bondDetail" class="{{tab.routeClass}}" ng-click="$ctrl.setActive(tab)">
-			<a ui-sref="{{tab.routeState}}">{{tab.routeLabel}}
-				<span class="close-tab" ng-click="$ctrl.close(tab)">
-					<i class="fa fa-times" aria-hidden="true"></i>
-				</span>
-			</a>
-			
-		</li>
-		
-		<li class="drop">
-			<a href="#">
-				<i class="fa fa-chevron-down" aria-hidden="true"></i>
-			</a>
-		</li>
-		
 	</ul>
 	<!-- <ul class="nav nav-sm nav-tabs">
 		<li ng-repeat="tab in $ctrl.tabs" class="{{tab.routeClass}}" ng-click="$ctrl.activeTab(tab)">

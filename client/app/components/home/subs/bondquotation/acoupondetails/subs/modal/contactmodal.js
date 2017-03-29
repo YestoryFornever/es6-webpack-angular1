@@ -1,11 +1,4 @@
-import angular from 'angular';
-import uiRouter from 'angular-ui-router';
-import contactmodalComponent from './contactmodal.component';
-
-let contactmodalModule = angular.module('contactmodal', [
-  uiRouter
-])
-.config(($stateProvider, $urlRouterProvider) => {
+app.config(($stateProvider, $urlRouterProvider) => {
 	"ngInject";
 
 	$stateProvider
@@ -19,8 +12,9 @@ let contactmodalModule = angular.module('contactmodal', [
 		})
 	
 })
-.component('contactmodal', contactmodalComponent)
-
-.name;
-
-export default contactmodalModule;
+.component('contactmodal', {
+	restrict: 'E',
+	bindings: {},
+	templateUrl: './contactmodal.html',
+	controller: ContactmodalController
+});

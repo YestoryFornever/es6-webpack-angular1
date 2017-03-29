@@ -1,13 +1,17 @@
-@import "common/css/common";
+@import "common";
 .app {
 	color:$textDefault;
 	background-color: $bgDefaultLightA;
-	position:fixed;
+	position: relative;
+	min-width: 1300px;
+	min-height: 600px;
+	height: 100%;
 	top:0;
 	left:0;
 	right:0;
 	bottom:0;
 	font-size:.14rem;
+	overflow: hidden;
 	>div[ui-view]{
 		height:100%;
 	}
@@ -29,4 +33,17 @@ a,a:active,a:hover{
 	color:#337ab7;
 	text-decoration: none;
 	cursor: pointer;
+}
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus{
+	outline:0;
+}
+.btn-primary {
+	color: #fff;
+	background-color: $btnPrimary;
+	border-color: #e95810;
+}
+.btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary,.btn-primary:hover,.btn-primary.focus, .btn-primary:focus,.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover{
+	color: #fff;
+	background-color: #d44d0a;
+	border-color: #b73d01;
 }

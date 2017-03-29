@@ -18,7 +18,7 @@
 				   <!-- 债券代码/简称 -->
 					<div class="one cont_r" >
 						<label><span class="colorH">债券代码/简称</span></label>
-						<div style="display: inline-block;">{{$instanceCtrl.changeInfo.bondShrtnm}}&nbsp;[{{$instanceCtrl.changeInfo.bondCd}}.{{$instanceCtrl.changeInfo.nameAll}}]</div>
+						<div style="display: inline-block;">{{$instanceCtrl.changeInfo.bondShrtnm}}&nbsp;[{{$instanceCtrl.changeInfo.bondCd}}{{$instanceCtrl.changeInfo.marketType | bondQuotationMarkeTType}}]</div>
 					</div>
 					<!-- 数量 -->
 					<div class="one cont_l">
@@ -28,7 +28,7 @@
 					</div>
 					<!-- 收益率 -->
 					<div class="one cont_r">
-						<label><span>债收益率</span></label>
+						<label><span>收益率</span></label>
 						<input type="text" ng-model = '$instanceCtrl.changeInfo.yldrto' ng-blur='$instanceCtrl.netprcFn($instanceCtrl.changeInfo ,"yldrto")'>
 						<span class="marL10">%</span>
 					</div>

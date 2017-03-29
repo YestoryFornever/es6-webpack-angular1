@@ -45,7 +45,7 @@
 				    </div>
 			    	<div class="title_rt_tub">
 
-				    	<a class="cal"  href="javascript:;" ng-click="$ctrl.openCalculator()">
+				    	<a class="cal"  href="javascript:;"    ng-click="$ctrl.openCalculator(item)">
 				    	<!-- <img src="../../../../../../resource/images/btn_calculator2_normal.png" height="24" width="24" alt=""> -->
 				    	</a>
 				    	<a class="start" id="fa-heart-o"  ng-If="false">
@@ -71,7 +71,8 @@
     				<ul>
     					<li><h5>票面利率（%）：{{$ctrl.list.bondRate}}</h5></li>
     					<li>付息频率：{{$ctrl.list.payInterestRuleFreq}}</li>
-    					<li>是否城投债：</li>
+    					<!-- 问题 -->
+    					<li>是否城投债：{{$ctrl.list.isCityBond}}</li>
     					<li>距下一付息日：{{$ctrl.list.nextPayInterestDate}}</li>
     					<li>下一行权日：{{$ctrl.list.nextPerformDate}}</li>
     					
@@ -108,25 +109,25 @@
 	    			
 	    			<ul  >
 	    			   	<li><span style="font-size:16px;color:#ffeb62;">{{item.name}}</span></li>
-	    			   	<li>证监会行业（门类）:{{$ctrl.info.csrcCategory}}</li>
-	    				<li>最新信用评级：{{$ctrl.info.lastCreditRank}}</li>
-	    				<li>设立日期：{{$ctrl.info.regDate}}</li>
-	    				<li>是否上市公司：{{$ctrl.info.listed}}</li>
-	    				<li>法人代表：{{$ctrl.info.contract}}</li>
-	    				<li>公司网址：{{$ctrl.info.website}}</li>
-	    				<li>电话：{{$ctrl.info.phone}}</li>
+	    			   	<li>证监会行业（门类）:{{$ctrl.info[0].csrcCategory}}</li>
+	    				<li>最新信用评级：{{$ctrl.info[0].lastCreditRank}}</li>
+	    				<li>设立日期：{{$ctrl.info[0].regDate}}</li>
+	    				<li>是否上市公司：{{$ctrl.info[0].listed}}</li>
+	    				<li>法人代表：{{$ctrl.info[0].contract}}</li>
+	    				<li>公司网址：{{$ctrl.info[0].website}}</li>
+	    				<li>电话：{{$ctrl.info[0].phone}}</li>
 	    			</ul>
 	    		</div>
-	    		<div class="mainInfo">
+	    		<div class="mainInfo" style="padding-left:0px;">
 		    			<!-- <h4></h4> -->
 		    			<ul>
 		    				<li></li>
-		    				<li>评级机构：{{$ctrl.info.creditInstitution}}</li>
-		    				<li>证监会行业（大类）:{{$ctrl.info.csrcIndustry}}</li>
-		    				<li>注册资本：{{$ctrl.info.money}}</li>
-		    				<li>注册地址：{{$ctrl.info.address}}</li>
-		    				<li>总经理：{{$ctrl.info.manager}}</li>
-		    				<li>企业性质：{{$ctrl.info.nature}}</li>
+		    				<li>评级机构：{{$ctrl.info[0].creditInstitution}}</li>
+		    				<li>证监会行业（大类）:{{$ctrl.info[0].csrcIndustry}}</li>
+		    				<li>注册资本：{{$ctrl.info[0].money}}</li>
+		    				<li>注册地址：{{$ctrl.info[0].address}}</li>
+		    				<li>总经理：{{$ctrl.info[0].manager}}</li>
+		    				<li>企业性质：{{$ctrl.info[0].nature}}</li>
 		    				<!-- <li>电话：010-68306940</li> -->
 		    			</ul>
 		    	</div>
@@ -134,33 +135,55 @@
 			 <div class="clearfixed"></div>
     	<!-- 经营范围 -->
 	    	<div id="business" >
-	    		<div id="box"  >
+	    		<div id="box" ng-init="is_show=0" >
 	    		   <div class="newBox" >
-		    		   <div class="newBox-left"><span >经营范围：{{$ctrl.info.scope}}</span></div>
-		    		   <div class="newBox-right"> 吸收除居民储蓄存款之外的公众存款；发放短期、中期和长期贷款；办理国内外结算中期和长期贷款；
-		    		   <span ng-show='$ctrl.target'>
-		    		    111吸收除居民储蓄存款之外的公众存款；发放短期、中期和长期贷款；办理国内外结算中期和长期贷款 222222222222222吸收除居民储蓄存款之外的公众存款；发放短期、中期和长期贷款；办理国内外结算中期和长期贷款 333吸收除居民储蓄存款之外的公众存款；发放短期、中期和长期贷款；办理国内外结算中期和长期贷款
-		    		   </span>
-		    		   <a id="open" href="#" ng-click="$ctrl.doCheck()"   ng-hide="$ctrl.target" >...全部展开</a>
-		    		   <!-- ng-show="!$ctrl.target" -->
-		    		   <a href="#" ng-click="$ctrl.doCheck()"     ng-hide="!$ctrl.target" >收起</a>
+		    		   <div class="newBox-left"><span >经营范围：</span></div>
+		    		   <div class="newBox-right" >
+		    		  <p ng-class="{'span_a':is_show==0, 'span_b':is_show==1}"> 
+		    		  {{$ctrl.info[0].scope}}
+		    		   <!-- 公司秉承“科技改变生活”的理念，引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技公司秉承“科技改变生活”的理念，引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技术水平，促进并带动金融行业信息技术的长足发展为目标，创新科技、超越常规理念，力争提供行业内最优秀的信息技术服务公司秉承“科技改变生活”的理念，引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技术水平，促进并带动金融行业信息技术的长足发展为目标，创新科技、超越常规理念，力争提供行业内最优秀的信息技术服务 -->
+		    		   </p>
+		    		    <!-- {{$ctrl.article_one_content}}  -->
+		    		   <!-- </span> -->
+						<p ng-If="$ctrl.jianjie" >
+		    		   <a id="open" href="javascript:0;" ng-click="$ctrl.doCheck(0);is_show=1"   ng-show="is_show==0"  >全部展开</a>
+		    		   <!-- ng-hide="$ctrl.target" -->
+		    		   <a href="javascript:0;" ng-click="$ctrl.doCheck(0);is_show=0"  ng-show="is_show==1"     >收起</a>
+		    		   </p>
+		    		    <!-- ng-hide="!$ctrl.target" -->
 		    		   </div>
 
 		    		  
-		    		   <!-- ng-show="$ctrl.target"  -->
 	    		   </div>
 
 	    		 </div>
 
-	    		<div id="box" class="box1" >
+	    		<div id="box" class="box1" ng-init="is_show_one=0">
 	    		   <div class="newBox" >
-		    		   <div class="newBox-left"> <span>公司简介：{{$ctrl.info.profile}}</span></div>
-		    		    <div class="newBox-right">国家开发银行成立于1994年，是直属中国国务院领导的政策性金融机构。2008年12月
-		    		   <span ng-show='$ctrl.target1'>
-			    		1111吸收除居民储蓄存款之外的公众存款；发放短期、中期和长期贷款；办理国内外结算中期和长期贷款 222吸收除居民储蓄存款之外的公众存款；发放短期、中期和长期贷款；办理国内外结算中期和长期贷款 333333333333333吸收除居民储蓄存款之外的公众存款；发放短期、中期和长期贷款；办理国内外结算中期和长期贷款
+		    		   <div class="newBox-left"> <span>公司简介：</span></div>
+		    		    <div class="newBox-right">
+		    		    
+						<p ng-class="{'span_c':is_show_one==0, 'span_d':is_show_one==1}"> 
+						{{$ctrl.info[0].profile}}
+		    		  <!--  公司秉承“科技改变生活”的理念，引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技公司秉承“科技改变生活”的理念，引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技术水平，促进并带动金融行业信息技术的长足发展为目标，创新科技、超越常规理念，力争提供行业内最优秀的信息技术服务公司秉承“科技改变生活”的理念，引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技术水平，促进并带动金融行业信息技术的长足发展为目标，创新科技、超越常规理念，力争提供行业内最优秀的信息技术服务 -->
+		    		   </p>
+		    		    <!-- {{$ctrl.article_one_content}}  -->
+		    		   <!-- </span> -->
+						<p ng-If="$ctrl.fanwei ">
+		    		   <a id="open" href="javascript:0;" ng-click="$ctrl.doCheck(1);is_show_one=1"   ng-show="is_show_one==0"  >全部展开</a>
+		    		   <!-- ng-hide="$ctrl.target" -->
+		    		   <a href="javascript:0;" ng-click="$ctrl.doCheck(1);is_show_one=0"  ng-show="is_show_one==1"     >收起</a></p>
+
+
+
+		    		    <!-- {{$ctrl.article_two}}  -->
+		    		    
+		    		  <!--  <span ng-show='$ctrl.target1'>
+		    		   {{$ctrl.article_two_content}} 
+			    		
 			    		</span>
-		    		   	<a id="open" href="#" ng-click="$ctrl.doCheck1()"  ng-show="!$ctrl.target1"  >...全部展开</a>
-			    		<a href="#" ng-click="$ctrl.doCheck1()"  ng-show="$ctrl.target1" >收起</a>
+		    		   	<a id="open" href="javascript:0;" ng-click="$ctrl.doCheck1()"    >...全部展开</a>
+			    		<a href="javascript:0;" ng-click="$ctrl.doCheck1()"  ng-show="$ctrl.target1" >收起</a> -->
 			    		</div>
 			    	</div>
 	    		 </div>

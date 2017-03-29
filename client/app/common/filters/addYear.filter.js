@@ -1,7 +1,4 @@
-import angular from 'angular';
-
-let addYearFilterModule = angular.module('addYearFilter', [])
-.filter('addYearFilter',function(){
+app.filter('addYearFilter',function(){
 	return function(addyear){
 		// console.log(addyear/1)
 		let reg = /\./;
@@ -10,7 +7,4 @@ let addYearFilterModule = angular.module('addYearFilter', [])
 		}
 		return addyear ;
 	};
-})
-.name;
-
-export default addYearFilterModule;
+});

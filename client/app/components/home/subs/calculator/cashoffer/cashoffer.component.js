@@ -1,12 +1,6 @@
-import template from './cashoffer.html';
-import controller from './cashoffer.controller';
-import './cashoffer.scss';
-
 let cashofferComponent = {
 	restrict: 'E',
 	bindings: {},
-	template,
-	controller
+	templateUrl: './cashoffer.html',
+	controller: CashofferController
 };
-
-export default cashofferComponent;

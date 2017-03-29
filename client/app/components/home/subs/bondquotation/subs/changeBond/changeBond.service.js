@@ -1,13 +1,36 @@
-var BONDCONFIG = require('../../../../../../../bond.config.js');
-import angular from 'angular';
+app.factory('ChangeBondService',['$http','$q',"$uibModal",function($http,$q,$uibModal){
 
-let ChangeBondServiceModule = angular.module('ChangeBondService', [])
-.factory('ChangeBondService',['$http','$q',function($http,$q){
 	return {
+		/**
+		 * 修改报价弹窗
+		 */
+		openChange(item,nameAll){//修改报价
+			let that = this;
+			let deferred = $q.defer();
+			that.changeDataForModal={
+				changeInfo:{},
+				nameAll:''
+			}
+			$uibModal.open({
+				  animation: true,
+				  component:"changeBond",
+				  windowClass:'my-change-bond',
+				  size: 'xl',
+				  resolve: {
+					changeDataForModal: function () {
+						that.changeDataForModal.changeInfo = angular.extend( {}, item);
+						that.changeDataForModal.changeInfo.nameAll = nameAll;
+						return  that.changeDataForModal;
+					}
+				  }
+				}).result.then((res)=>{
+					deferred.resolve(that.changeDataForModal)
+				});
+				return deferred.promise;
+
+		},
 		// 计算净价
 		calSettlementAmountYieldForCM(obj,name){
-
-
 			let deferred = $q.defer();
 			$http({
 				method: 'POST',
@@ -52,6 +75,4 @@ let ChangeBondServiceModule = angular.module('ChangeBondService', [])
 			return deferred.promise;
 		},
 	}
-}])
-.name;
-export default ChangeBondServiceModule;
+}]);

@@ -1,0 +1,186 @@
+<div class="nowBond " >
+	<div class="modal-header">
+		<h3 class="modal-title" >现券报价
+		    <i class="fa fa-times pull-right" aria-hidden="true" ng-click="$instanceCtrl.cancel()""></i>
+		</h3>
+	</div>
+	<div class="modal-body">
+		<div class="table-responsive mytable" ng-class='{"hideRight" : $instanceCtrl.hideRight}'>
+			<div class="head">
+				<span>
+					<label style="padding:10px;">方向</label>
+					<label  ng-model='$instanceCtrl.drc' uib-btn-radio="'1'"  class="btn  drc">卖出</label >
+					<label  ng-model='$instanceCtrl.drc' uib-btn-radio="'-1'"  class="btn  drc">买入</label >
+				</span>
+				<span class="pull-right">
+					<button class="btn active "  ng-click="$instanceCtrl.addQuote()">添加债券</button>
+					<button class="btn active"  ng-click="$instanceCtrl.show()">债券搜索</button>
+				</span>
+			</div>
+			<table class="table myTable">
+				<thead>
+					<tr class="bg">
+						<th style="width:.5rem">序号</th>
+						<!-- <th style="width:.46rem">方向</th> -->
+						<th style="width:.90rem">债券代码</th>
+						<th style="width:1.17rem">债券简称</th>
+						<th style="width:.66rem">数量(万)</th>
+						<th style="width:.67rem">收益率%</th>
+						<th style="width:.71rem">净价(元)</th>
+						<th style="width:.57rem">匿名</th>
+						<th style="width:.7rem" ng-class="{'hidden' : $instanceCtrl.isShow !=true }">大厅挂牌</th>
+						<th style="width:1.43rem">备注</th>
+						<th style="width:0.5rem">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in $instanceCtrl.quoteList" >
+						<td style="width:.5rem">
+							{{$index+1}}
+							<!-- <input type="checkbox" ng-model="item.checked"> -->
+						</td>
+						<!-- <td style="width:.46rem"> -->
+							<!-- <input type="text" ng-model="item.drc"> -->
+						<!-- </td> -->
+						<td style="width:.90rem">
+							<input type="text"
+								placeholder="请输入债券代码或简称"
+								ng-model="item.bondCd"
+								uib-typeahead="list as list.bondCd for list in  $instanceCtrl.queryQuote($viewValue)"
+								typeahead-template-url="customTemplateNowBond.html"
+								typeahead-on-select = '$instanceCtrl.showBondShrtnm($item,$index)'
+								typeahead-show-hint="false">
+						</td>
+						<td style="width:1.17rem">
+							<input type="text" disabled="true" ng-model="item.bondShrtnm">
+						</td>
+						<td style="width:.66rem">
+							<input type="text" ng-model="item.num" placeholder="输入金额">
+						</td>
+						<td style="width:.67rem">
+							<input type="text" ng-model="item.yield" placeholder="输入收益率" ng-change='$instanceCtrl.netprc(item ,item.bondCd)'>
+						</td>
+						<td style="width:.71rem">
+							<input type="text" ng-model="item.netprc" placeholder="输入净价" ng-change='$instanceCtrl.yield(item ,item.bondCd)'>
+						</td>
+						<td style="width:.57rem">
+							<input type="checkbox" ng-model="item.wthrAnon">
+						</td>
+						<td style="width:.68rem" ng-class="{'hidden' : $instanceCtrl.isShow !=true }" >
+							<input type="checkbox" ng-model="item.wthrListg" >
+						</td>
+						<td style="width:1.43rem">
+							<!-- <textarea  ng-model="item.remark" ></textarea> -->
+							<input type="text" placeholder="这里输入50个字..." ng-model="item.remark" ng-change='$instanceCtrl.deleteRemark(item)'>
+						</td>
+						<td style="width:.68rem">
+							<span ng-click='$instanceCtrl.delete($index)'>删除</span>
+							<!-- <input type="text" ng-model="item.remark"> -->
+						</td>
+					</tr>
+				</tbody>
+		 	</table>
+		</div>
+		<div class="mysearch" ng-class='{"hideRight" : $instanceCtrl.hideRight}'>
+			<header>
+				债券搜索
+			</header>
+			<section>
+				<div class="cont_l">
+					<span class="title">债券类型</span>
+					<muti-select class='select'  ng-class='{className: true}'  source="$instanceCtrl.bondTp" on-get-value ='$instanceCtrl.bondTpFn(value)'></muti-select>
+					<!-- <select ng-model="$instanceCtrl.searchConditions.creditType">
+						<option value="">全部</option>
+						<option value="1">利率债</option>
+						<option value="2">国债</option>
+						<option value="3">央票</option>
+						<option value="4">金融债</option>
+						<option value="5">地方债</option>
+						<option value="6">信用债</option>
+						<option value="7">短融</option>
+						<option value="8">中票</option>
+						<option value="9">企业债</option>
+						<option value="10">公司债</option>
+						<option value="11">同业存单</option>
+						<option value="99">其他</option>
+					</select> -->
+				</div>
+				<div  class="cont_r" ng-onInit='$instanceCtrl.isActive==false'>
+					<span class="title" >期限</span>
+					<span class="DY" ng-class='{"active":$instanceCtrl.isActive==true}' ng-model='$instanceCtrl.searchConditions.termType' ng-click='$instanceCtrl.changeStatus($instanceCtrl.isActive)'>
+						{{$instanceCtrl.searchConditions.termType}}
+					</span>
+					<input type="text"  placeholder="数字" style="width:50px;" ng-model="$instanceCtrl.searchConditions.termStart">&nbsp;&nbsp;至&nbsp;&nbsp;  
+					<input type="text" placeholder="数字" style="width:50px;" ng-model="$instanceCtrl.searchConditions.termEnd">
+				</div>
+				<div class="cont_l">
+					<span class="title">票面</span>
+					<muti-select class='select' ng-class='{className: true}' place="请选择" source="$instanceCtrl.face" on-get-value ='$instanceCtrl.faceFn(value)'></muti-select>
+				<!-- <select ng-model="$instanceCtrl.searchConditions.rateType">
+					<option value="">全部</option>
+					<option value="1">浮息</option>
+					<option value="2">固息</option>
+				</select> -->
+				</div>
+				<div  class="cont_r">
+					<span class="title">主体评级</span>
+					<muti-select class='select' ng-class='{className: true}' place="请选择" source="$instanceCtrl.sbjRtg" on-get-value ='$instanceCtrl.sbjRtgFn(value)'></muti-select>
+					<button class='btn active pull-right' ng-click="$instanceCtrl.searchBonds()">搜索</button>
+				</div>
+				<!-- <select ng-model="$instanceCtrl.searchConditions.creditSymbol">
+					<option value="">全部</option>
+					<option value="1">AAA1</option>
+					<option value="2">AA+</option>
+					<option value="3">AA</option>
+					<option value="4">AA-</option>
+					<option value="5">A+</option>
+					<option value="99">其他</option>
+				</select> -->
+			</section>
+			<main>
+				<div class=" table-search-list">
+					<table class="table ">
+						<thead>
+							<tr class="bg">
+								<th style="width: 0.7rem" >债券代码</th>
+								<th style="width: 1rem" >债券简称</th>
+								<th  ng-click=' $instanceCtrl.onTitleClick("yield");isYield=!isYield;isRsdtrm=null;isSbjRtg=null;' >收益率%
+									<span style="position: relative;" ng-if='isYield!=null'><i ng-class="{ 'sortDown'   : isYield ,'sortUp' :!isYield}"></i></span>
+								</th>
+								<th ng-click=' $instanceCtrl.onTitleClick("rsdtrm");isRsdtrm = !isRsdtrm;isYield=null;isSbjRtg =null;'>剩余期限
+									<span style="position: relative;" ng-if="isRsdtrm!=null"><i ng-class="{ 'sortDown'   :isRsdtrm ,'sortUp' : !isRsdtrm}"></i></span></th>
+								<th ng-click=' $instanceCtrl.onTitleClick("sbjRtg");isSbjRtg=true;isYield=null;isRsdtrm=null'>评级
+									<span style="position: relative;" ng-if="isSbjRtg!=null"><i ng-class="{ 'sortDown'   :isSbjRtg ,'sortUp' : !isSbjRtg}"></i></span></th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="bodyTr"  ng-init='isHighLight =false'>
+							<tr ng-class='{"active" : isHighLight ==true}' ng-repeat="item2 in $instanceCtrl.searchList" ng-click='isHighLight = !isHighLight' ng-dblclick='$instanceCtrl.toDetail(item2)' >
+								<td >{{item2.bondCd}}</td>
+								<td style='max-width: 0.8rem'><span class="bondShrtnm" uib-tooltip='{{item2.bondShrtnm }}'>{{item2.bondShrtnm }}</span></td>
+								<td >{{item2.yield | yldrtoFilter}}</td>
+								<td >{{item2.rsdtrm }}</td>
+								<td >{{item2.sbjRtg}}</td>
+								<td >
+									<span class="addQuote" ng-click="$instanceCtrl.addQuote(item2)" style=""></span>
+									<!-- <a >+</a> -->
+								</td>
+							</tr>
+						</tbody>
+				 	</table>
+				</div>
+				<!-- <ul>
+					<li ng-repeat="item in $instanceCtrl.items">
+						<a href="#" ng-click="$event.preventDefault(); $instanceCtrl.selected.item = item">{{ item }}</a>
+					</li>
+				</ul>
+				Selected:<b>{{ $instanceCtrl.selected.item }}</b> -->
+			</main>
+		</div>
+		<div style="clear: both;"></div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn active" type="button" ng-disabled="$instanceCtrl.disabledButton" ng-click="$instanceCtrl.ok()">发布</button>
+	</div>
+</div>
+

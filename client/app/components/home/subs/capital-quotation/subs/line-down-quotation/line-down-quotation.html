@@ -1,0 +1,106 @@
+<div class="lineDownQuotation">
+	<header id="top">
+		<div class="col">
+			<span class="tit">方向</span>
+			<div class="btn-group">
+				<label class="btn-default " ng-repeat= "(key ,item) in  $ctrl.drc.value" uib-btn-radio="item.value" ng-model="$ctrl.searchConditions.drc">{{item.name}}</label>
+			</div>
+		</div>
+		<div class="col" >
+			<span class="tit">种类</span>
+			<div class="btn-group">
+				<label class="btn " ng-repeat= "(key,item) in  $ctrl.ctlg.value" ng-model="$ctrl.ctlgList[key]" uib-btn-checkbox btn-checkbox-true="{{item.value}}">{{item.name}}</label>
+			</div>
+		</div>
+		<div class="col">
+			<span class="tit">利率</span>
+			<div class="btn-group">
+				<label class="btn active "  >全部</label>&nbsp;
+				<input type="text" name="" id="">&nbsp;&nbsp; 至&nbsp;&nbsp;
+				<input type="text" name="" id="">&nbsp;%&nbsp;
+			</div>
+		</div>
+		<div class="col">
+			<span class="tit">期限</span>
+			<div class="btn-group">
+				<label class="btn " ng-repeat= "(key,item) in  $ctrl.trmTp.value" ng-model="$ctrl.trmTpList[key]" uib-btn-checkbox btn-checkbox-true="{{item.value}}">{{item.name}}</label>
+				<span ng-repeat="(key,item) in $ctrl.uDFTrm.value" >
+					<input type="text" name="" id=""  ng-model="$ctrl.uDFTrmList[key]">
+					<select name="" id="" ng-model='$ctrl.trmList[key]'>
+						<option value="1">天</option>
+						<option value="2">月</option>
+						<option value="3">年</option>
+					</select>
+					<span ng-if="$index ==0">&nbsp;&nbsp; 至&nbsp;&nbsp;</span>
+				</span>
+			</div>
+		</div>
+	</header>
+	<section>
+	    <div class="table-responsive" >
+			<table class="table">
+				<thead>
+					<tr class="bg">
+						<th class="bgStar"></th>
+						<th>报价方</th>
+						<th>联系方式</th>
+						<th>方向</th>
+						<th>种类</th>
+						<th>隔夜</th>
+						<th>7天</th>
+						<th>14天</th>
+						<th>21天</th>
+						<th>1个月</th>
+						<th>2个月</th>
+						<th>3个月</th>
+						<th>6个月</th>
+						<th>9个月</th>
+						<th>一年</th>
+						<th>其他</th>
+						<th>备注</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in $ctrl.infoList">
+						<td class="bgStar"></td>
+						<td>{{item.instNm}}-{{item.userNm}}</td>
+						<td>
+							<span>1</span>
+							<span>2</span>
+							<span>3</span>
+						</td>
+						<td>{{item.drcNm}}</td>
+						<td>{{item.ctlgNm}}</td>
+						<td>{{item.dy1IntRtVal}}</td>
+						<td>{{item.dy7IntRtVal}}</td>
+						<td>{{item.dy14IntRtVal}}</td>
+						<td>{{item.dy21IntRtVal}}</td>
+						<td>{{item.mo1IntRtVal}}</td>
+						<td>{{item.mo2IntRtVal}}</td>
+						<td>{{item.mo3IntRtVal}}</td>
+						<td>{{item.mo6IntRtVal}}</td>
+						<td>{{item.mo9IntRtVal}}</td>
+						<td>{{item.yr1IntRtVal}}</td>
+						<td>{{item.uDFTrm1}}{{item.uDFTrmUnitNm1}}{{item.uDFInRtVal1 | addPercentFilter}}</td>
+						<td>{{item.rmrk}}</td>
+					</tr>
+				</tbody>
+		 	</table>
+		</div>
+		<div class="myPage1" >
+			<ul  uib-pagination
+				boundary-links="true"
+				total-items="$ctrl.totalItems"
+				ng-model="$ctrl.currentPage"
+				previous-text="&lsaquo;"
+				next-text="&rsaquo;"
+				first-text="&laquo;"
+				last-text="&raquo;"
+				items-per-page='$ctrl.sendQueryQuoteListInfo.pageSize'
+				num-pages="$ctrl.numPages"
+				ng-change='$ctrl.pageNumChange($ctrl.currentPage)'
+				></ul>
+			<!-- <span style="float: right">{{$ctrl.currentPage}} / {{$ctrl.numPages}}</span> -->
+		</div>
+	</section>
+</div>

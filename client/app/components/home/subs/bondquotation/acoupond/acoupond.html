@@ -1,24 +1,22 @@
 
-<!-- <div class="a-c-d"> -->
   
 <!-- 第二次变动 -->
 <!--  -->
- <div class="modal-dialog " style="height:600px;width:800px;background:#192D34; font-size:12px;">
-     	<div class="modal-content"  style="height:617px;position:relative;background:#192D34;width:100%,font-size:12px; color='#fff'">
+<div id="all_modal" style="background:$bgDefault;">
+ <div class="modal-dialog " style="height:600px;width:800px; font-size:12px;">
+     	<div class="modal-content"  style="height:617px;position:relative;width:100%,font-size:12px; color='#fff'">
      		
 	     		<div class="modal-header ng-scope" style="background:#2B414C;border-bottom:1px solid #2B414C;float:left;width:100%">
 	            	<p class="modal-title" id="modal-title" style="display:block;height:20px;width:735px;float:left;color:#fff;"><span>选择联系人</span></p> 
 	            	<i id="close_11" style="display:block;height:20px;width:20px;margin-right:10px;float:right;text-align:center;" aria-hidden="true" ng-click="$ctrl.closeDialog()">
-	            		<!-- <img src="../../../../../../resource/images/btn_close02_gray.png" height="10" width="10" alt=""> -->
+	            		
 	            	</i>
-	            	
-<!-- padding-left:694px; -->
 	        	</div>
 
-	        <div class="modal-body ng-scope" id="modal-body" style="height: 470px;width:798px;float:left;">
+	        <div class="modal-body ng-scope" id="modal-body" style="height: 470px;width:798px;float:left;"> 
 	        	<!-- 左侧 -->
-	            <div class="modal_lef" style="height: 510px;width: 282px; float:left;clear:both;">
-		            <div style="height: 40px; width:100%;">
+	           <div class="modal_lef" style="height: 510px;width: 282px; float:left;clear:both;">
+		            <div style="height: 40px; width:100%;"> 
 		            <!-- #192D34 -->
 		            	<div class="left_top" style="height: 30px; width:95%;border-radius:10px ;border:1px solid #666;background:#192D34;margin-left:6px;">
 		            		<input type="text"  placeholder=" 搜索" ng-model='$ctrl.searchInfo.queryValue' 
@@ -26,7 +24,7 @@
 								<i style="display:inline-block;height:20px;width:20px;position:absoluted;left:-4px;top:3px;">
 		            					<img src="../../../../../../resource/images/icon_search.png" alt="">
 		            			</i>
-								<!-- style=" width:90%; height:30px;margin:5px 5px;background:green;" -->
+								
 		            	</div>
 		            </div>
 		         <div style="height: 508px;width: 282px; border:1px solid #666;overflow:auto;background:#2B414C;">
@@ -56,23 +54,12 @@
 												</div>
 												<div class="name" style="height:50px;width:190px; float:left;padding-left:10px;color:#fff;">
 													<p>{{ls.userName}} <span style="display:inline-block;height:20px;width:34px;text-align:center;"><img src="../../../../../../resource/images/icon_realname.png" height="16" width="18" alt=""></span></p>
-													<p style="font-size:12px;color:#a3c8d9; ">{{ls.organizationShortName}}{{ls.position}}</p>
+													<p style="font-size:12px;color:#a3c8d9;word-break:break-all;text-overflow:ellipsis;display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden;  ">{{ls.organizationShortName}}{{ls.position}}</p>
 												</div>
 												<div style="height:50px;width:15px;line-height:50px; float:left;"> <input type="checkbox" ng-click="$ctrl.checked()" ></div>
 												
 											</li>
-											<!-- <li style=" display:block;height:60px;width:100%; border-bottom:1px solid #666;padding-left: 8px; ">
-												<div class="headportrait" style="height:50px;width:50px;background:green; float:left;border-radius:25px;margin-top:5px;">
-													<img style=" display:block;width:100%; height: 100%;overflow:hidden;border-radius:50%;" src="{{ls.iconUrl}}" alt="">
-												</div>
-												<div class="name" style="height:50px;width:190px; float:left;padding-left:10px;color:#fff;">
-													<p>kjddjssds <span style="display:inline-block;height:20px;width:34px;background:#666;">
-													<img src="../../../../../../resource/images/icon_realname.png" height="16" width="18" alt=""></span></p>
-													<p style="font-size:10px;">qwqwewewewew</p>
-												</div>
-												<div style="height:50px;width:15px;line-height:50px; float:left;"> <input type="checkbox" ng-click="$ctrl.checked()" ></div>
-												
-											</li> -->
+											
 										</ul>
 									</div>
 
@@ -82,14 +69,14 @@
 				            			<span style="display:block; height:30px;width:200px;line-height:30px;color:#fff; float:left;">我的群组({{ $ctrl.grouplists.length}})
 				            			</span>
 				            			<span style="display:block; height:30px;width:30px;line-height:30px;text-align:center;float:right ">
-				            			<!-- style="padding-left:152px;" -->
-				            					<i  aria-hidden="true"   ng-show="$ctrl.group"  ng-click="$ctrl.groupShow()">
+				            			
+				            					<i  aria-hidden="true"   ng-show="$ctrl.gruop_tag"  ng-click="$ctrl.groupShow()">
 				            						<img src="../../../../../../resource/images/btn_arrow_unfold.png" alt="">
 				            					</i>
-						            			<i  aria-hidden="true" ng-show="!$ctrl.group" ng-click="$ctrl.groupShow()">
+						            			<i  aria-hidden="true" ng-show="!$ctrl.gruop_tag" ng-click="$ctrl.groupShow()">
 						            				<img src="../../../../../../resource/images/btn_arrow_packup.png" alt="">
 						            			</i>
-						            			 <!-- style="padding-left:150px;" -->
+						            			 
 						            	</span>
 					            	</div>
 
@@ -100,7 +87,12 @@
 														<img style=" display:block;width:100%; height: 100%;overflow:hidden;border-radius:50%;" src="{{its.groupheadAdr}}" alt="">
 													</div>
 													<div class="name" style="height:50px;width:190px; float:left;padding-left:10px;color:#fff;">
-														<p>{{its.groupGrpNm}}</p>
+														<p style="word-break:break-all;
+							text-overflow:ellipsis;
+							display: -webkit-box; 
+    						-webkit-box-orient: vertical; 
+    						-webkit-line-clamp: 1; 
+    						overflow: hidden;  ">{{its.groupGrpNm}}</p>
 														<p style="font-size:12px;color:#a3c8d9; ">群成员:({{its.groupaStaffTotNum}})人</p>
 													</div>
 													<div style="height:50px;width:15px;line-height:50px; float:left;"> <input type="checkbox"  name="user" class="checkBox"  ng-click="$ctrl.groupChecked()"></div>
@@ -116,14 +108,14 @@
 	            </div>
 	            </div>
 	            <!-- 右侧 -->
-	            <div class="modal_rt" style="height: 460px;width: 490px; float:left;margin-left:10px;background:#2B414C; overflow-y:auto;">
+	           <div class="modal_rt" style="height: 460px;width: 476px; float:left;margin-left:10px;background:#2B414C; overflow-y:auto;">
 	            	
 			            	<div class="left_top" style="height: 40px; width:100%;padding-top:8px;background:#192D34;">
 			            		<p style="text-align:center;font-size:16px;color:#b8d1dd;">已选择<span  style="font-size:16px;color:#439ec9;">{{$ctrl.alls.length}}</span>用户,<span style="font-size:16px;color:#439ec9;">{{$ctrl.all_grounp.length}}</span>个群</p> 
 			            	</div>
-			            	<div class="content_main" style="height: 400px;width: 100%; border:1px solid #6666;overflow:auto;">
+			            	<div class="content_main" style="height: 420px;width: 100%; border:1px solid #6666;overflow:auto;">
 								<!-- 存放好友 -->
-					            	<div class="rt_frident">
+					            <div class="rt_frident">
 
 					            		<ul  ng-repeat="items in $ctrl.alls">
 					            			<li  class=" fdrtClose"  style="dispaly:block;width:120px;height:140px; float:left;margin:5px ;">
@@ -132,16 +124,16 @@
 							            					<img style=" display:block;width:100%; height: 100%;overflow:hidden;border-radius:50%;" src="{{items.iconUrl}}" alt="">
 							            				</div>
 							            				<i  id="img" style=" display:block;height: 12px;width: 12px;float:left;margin-left:-6px;" aria-hidden="true" ng-click="$ctrl.fdClose(items.oppositeUserId)">
-							            					<!-- <img src="../../../../../../resource/images/btn_delete_normal.png" height="12" width="12" alt=""> -->
+							            					
 							            				</i>
 							            			</div>
 							            			<p style="text-align:center;color:#fff;">{{items.userName}}<span style="display:inline-block;height:20px;width:34px;text-align:center;"><img src="../../../../../../resource/images/icon_realname.png" height="16" width="18" alt=""></span></p>
 													<p style="padding-left:10px;text-align:center;font-size:12px;color:#a3c8d9;">{{items.organizationShortName}}</p>
 					            			</li>
 					            		</ul>
-					            	</div>
+					            	</div> 
 									<!-- 存放讨论 -->
-									<div class="rt_talk">
+								 <div class="rt_talk">
 					            		<ul ng-repeat="lst in $ctrl.all_grounp">
 					            			<li  class=" rtClose"style="dispaly:block;width:120px;height:140px; float:left;margin:5px ;" >
 							            			<div  style="height:60px;width:120px; float:left;">
@@ -149,49 +141,42 @@
 							            					<img style=" display:block;width:100%; height: 100%;overflow:hidden;border-radius:50%;" src="{{lst.groupheadAdr}}" alt="">
 							            				</div>
 							            				<i id="img" style="display:block;height: 13px;width: 13px;float:left;margin-left:-6px;" aria-hidden="true" ng-click="$ctrl.cancelClose(lst.groupGrpid)">
-							            					<!-- <img src="../../../../../../resource/images/btn_delete_hover.png" height="12" width="12" alt=""> -->
+							            					
 							            				</i>
 							            			</div>
-							            			<p style="text-align:center;font-size:12px;color:#fff;">{{lst.groupGrpNm}}债券交易交流群</p>
+							            			<p style="text-align:center;font-size:12px;color:#fff;">{{lst.groupGrpNm}}</p>
 													<p style="text-align:center;font-size:12px;color:#a3c8d9;">群成员：{{lst.groupaStaffTotNum}}人</p>
 					            			</li>
 					            			
 					            		</ul>
 					            	</div>
-					            	<!-- 存放债券群 -->
-					            	<!-- <div class="rt_ground">
-					            		<ul>
-					            			<li></li>
-					            		</ul>
-					            	</div> -->
+					            	
 	            			</div>
 			            <div class="modal-footer ng-scope" style="height: 30px;width:200px;position:absolute;left:380px;bottom:-50px; border:none;"	>
 			            	<button type="button" class="btn " type="button" ng-click="$ctrl.closeDialog()">取消</button>
 				            <button  type="button" class="btn " style="background:#FF671B;"   type="button" ng-click="$ctrl.sendOffer()">发送</button>
 				            
 				            
-				        </div> 
+				        </div>  
 	            	 <!-- 右侧节点 -->
-	            </div>
+	        </div>
 	        </div>
 	       
 	     </div>
 	 </div>
 <div class="clear" style="clear:both;"></div>
 <!-- 第二次弹窗变动结束 -->
-<!-- </div> -->
+
+</div>
 
 
-
-<script type="text/ng-template" id="customTemplate.html">
+<!-- <script type="text/ng-template" id="customTemplate.html">
     <a data-id="{{match.model.bondid}}">
         <span>{{match.model.bondCd}}</span>
         <span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span>
        
     </a>
-</script>
-
-
+</script> -->
 
 
 

@@ -1,5 +1,6 @@
 class CalculatorController {
 	constructor($uibModal) {
+		"ngInject";
 		this.name = 'calculator';
 		this.info='';
 		this.value1 = '';
@@ -84,5 +85,3 @@ class CalculatorController {
 	}
 
 }
-CalculatorController.$inject = ['$uibModal'];
-export default CalculatorController;

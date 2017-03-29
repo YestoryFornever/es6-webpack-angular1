@@ -1,0 +1,167 @@
+<div class="all_mains">
+	
+		<!-- tab内容 -->
+		<div class="clearfix"></div>
+		<div class="table">
+		
+			<div   id='details'>
+				<div class="details_lf"  iscroll  on-bottom="$ctrl.listComments()">
+					<div class="details_lf_top">
+						<h4>
+						{{$ctrl.info.title}}
+						</h4>
+						<p>{{$ctrl.info.insert_time}}</p>
+					</div>
+					<div class="details_lf_contail">
+						<p >本期投资提示：</p>
+						<ul id="detail_message">
+						
+
+							<!-- <li ng-repeat="list in $ctrl.array1 track by $index" >{{list}}</li> -->
+
+						</ul>
+						<!-- <p ng-repeat="list in $ctrl.array1 track by $index">
+						{{list}}
+						</p> -->
+						
+					</div>
+					<!-- <div class="details_lf_img">
+					
+					</div> -->
+					
+					<!-- 评论 -->
+					<div class="details_lf_comments" >
+						<div class="details_lf_comments_text" style="margin-top:10px;" >
+							<!-- <div class="position_img" ng-If="!$ctrl.comentdata.length" ng-click=" $ctrl.judgement()">
+								<img src="../../../../../../resource/images/icon_hint_shafa.png" height="58" width="150"alt="" >
+							</div> -->
+							<!-- ng-If="$ctrl.count_judgement" -->
+							<textarea name="" id="" ng-focus="count "  ng-model="$ctrl.commentinfo.content" >
+							</textarea>
+							<!-- <div class="position_img" ng-If="!$ctrl.commentinfo.content.length" ng-click=" $ctrl.judgement()">
+								<img src="../../../../../../resource/images/icon_hint_write-down-comment.png" height="32" width="130"alt="" >
+							</div> -->
+						</div>
+						<div class="details_lf_comments_button" ng-click="$ctrl.publishComments()">
+							<div  class="search_sofa">发布评论</div>
+							<!-- <div  class="search_sofa" ng-If="!$ctrl.comentdata.length">抢沙发</div> -->
+						</div>
+					</div>
+					<!-- 评论区域 -->
+					<div class="details_lf_comments_area"  ng-If="$ctrl.comentdata.length">
+						<div class="details_lf_comments_area_box">
+							<div class="comments_area_header">
+								<p ><span style="color:#FE6917;">{{$ctrl.comentdata.length}}</span>条评论</p>
+							</div>
+							<!-- 显示评论内容 -->
+							<div class="clearfix"></div>
+							<div class="comments_area_content">
+								<ul ng-init="is_index=0">
+									<li style="margin-top:10px;" ng-repeat="list in $ctrl.comentdata track by $index">
+									<!-- 评论头像 -->
+										<div class="area_content_title">
+											<div class="title_one">
+												<img src="{{list.user.head}}" alt="">
+											</div>
+											<div class="title_two">
+												<p class="title_two_name" style="font-size:13px;font-weight:600;">{{list.user.uname}}</p>
+												<p><span>{{list.user.org}}</span>&nbsp;&nbsp;<span>{{list.user.job}}</span></p>
+											</div>
+										</div>
+										<div class="area_content">
+											<p class="area_content_replay" ><span  ng-If="list.replys.uname" class="area_content_replay_show " >回复&nbsp;&nbsp;{{list.replys.uname}}:</span>{{list.content}}</p>
+											<p class="area_content_time">
+											<span class="area_content_span01">{{list.time}}</span> 
+											<span class="area_content_span02" ng-switch="$ctrl.selection">
+											<a href="javascript:0;" ng-click="$ctrl.deleteComments(list.cid)">删除.</a>
+											<a href="javascript:0;" ng-If="!$ctrl.zan" ng-click="$ctrl.like(list.cid,1)">赞({{list.likes}}).</a>
+											<!-- <a href="javascript:0;" ng-If="$ctrl.zan" ng-click="$ctrl.like(list.cid)">赞.</a> -->
+											<a href="javascript:0;"  ng-If="$ctrl.zan" ng-click="$ctrl.like(list.cid,2)">已赞({{list.likes}}).</a>
+											<a href="javascript:0;" ng-click=" $ctrl.response()">回复</a>
+											</span>
+											</p>
+											<div class="clearfix"></div>
+											<p class="import" id="import" >
+											<!-- ng-If="$ctrl.reply" -->
+											<textarea name="" id="" cols="" rows=""  ng-model="$ctrl.commentinfo.content" ng-model="$ctrl.commentinfo.content"></textarea>
+											<!-- <input style="button" class="response" value="发布回复"> -->
+											<span id="response">
+												<button class="btn  " type="button" ng-click=" $ctrl.cancelBubble()" >取消</button>
+												<button class="btn  " type="button" ng-click="$ctrl.publishCommentsreply(list.cid)">发布回复</button>
+											</span>
+											
+											</p>
+										</div>
+										
+										<!-- ******************************** -->
+
+									</li>
+									<div class="clearfix"></div>
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 右侧 -->
+				<div class="details_rt" iscroll >
+					<div class="details_rt_top">
+						<div class="details_rt_top_left">
+							<span class="span_img" >
+								<img src="../../../../../../resource/images/icon_collect_normal.png" height="24" width="24" alt="" ng-show="$ctrl.info.is_favorite==0" >
+								<img src="../../../../../../resource/images/icon_collect_collected.png" height="24" width="24" alt="" ng-show="$ctrl.info.is_favorite==1">
+							</span>
+							<span class="span_world"><a  href="javascript:0;" ng-click="$ctrl.getCheck()"   ng-show="$ctrl.info.is_favorite==0" > 收藏</a><a href="javascript:0;" ng-click="$ctrl.getCheck()"  ng-show="$ctrl.info.is_favorite==1" >
+								<!-- <img src="../../../../../../resource/images/icon_collect_normal.png" height="24" width="24" alt=""> -->
+							 取消收藏</a></span>
+						</div>
+						<div class="details_rt_top_right">
+							<span class="span_img"></span>
+							<span class="span_world"><a href="{{$ctrl.info.source_path}}" target="_blank">打开原网站</a></span>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+					<div class="details_rt_contail">
+						<div class="details_rt_contail_top">
+							<div class="two_top">
+							<!-- 图片 -->
+								<div class="two_top_lf">
+									<img ng-src="{{$ctrl.info.source_logo}}" alt="">
+								</div>
+								<div class="two_top_rt">
+									<span>	{{$ctrl.info.source}}</span>
+								</div>
+							</div>
+							<!-- 内容 -->
+							<div class="clearfix"></div>
+							<div class="two_center">
+								<p class="two_center_one">最新资讯</p>
+								<ul  >
+									<li ng-repeat="item_one in $ctrl.source_one">
+									<p>{{item_one.title}}</p>
+									<!-- <p>{{item_one.iid}}</p> -->
+									</li>
+									
+								</ul>
+							</div>
+						</div>
+						<div class="details_rt_contail_footer" style="background:red;">
+							<button class="one_left" ng-click="$ctrl.checked_up()">
+								<p>上一篇：</p>
+								<p>上一篇资讯标题:{{$ctrl.infoUpDowns_info.up_title}}</p>
+							</button>
+							<button class="one_right" ng-click="$ctrl.checked_down()">
+								<p>下一篇：</p>
+								<p>上一篇资讯标题{{$ctrl.infoUpDowns_info.down_title}}</p>
+							</button>
+						</div>
+					</div>
+
+
+				</div>
+				
+
+			</div>
+
+		</div>
+</div>

@@ -1,15 +1,10 @@
-import template from './bargainlist.html';
-import controller from './bargainlist.controller';
-import './bargainlist.scss';
-
 let bargainlistComponent = {
 	restrict: 'E',
 	bindings: {
 		friend:"=",
 		changeFriend:'&'
 	},
-	template,
-	controller
+	templateUrl: './bargainlist.html',
+	controller: BargainlistController
 };
 
-export default bargainlistComponent;

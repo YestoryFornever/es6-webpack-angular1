@@ -1,7 +1,9 @@
 class QuoteModalController {
-	constructor(quoteModalService,$uibModal) {
+	constructor(quoteModalService,$uibModal,$log) {
+		"ngInject";
 		this.quoteModalService = quoteModalService;
 		this.$uibModal = $uibModal;
+		this.$log = $log;
 	}
 	$onInit(){
 		this.quoteList = this.resolve.modalData.quoteList;
@@ -34,12 +36,10 @@ class QuoteModalController {
 			windowClass:'my-now-bond',
 			size: 'wfxl',//'lg',//'sm',
 			resolve: {}
-		}).result.then(function (quotelist) {
-			//
+		}).result.then(function () {
+			that.queryQuoteList();
 		}, function () {
-			that.$log.info('Modal dismissed at: ' + new Date());
+			that.queryQuoteList();
 		});
 	}
 }
-QuoteModalController.$inject = ['quoteModalService','$uibModal'];
-export default QuoteModalController;

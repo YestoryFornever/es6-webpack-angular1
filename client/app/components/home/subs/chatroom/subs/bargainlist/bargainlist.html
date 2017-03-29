@@ -1,4 +1,4 @@
-<ul class="barginlist">
+<ul class="barginlist" slimscroll slim-resize="list">
 	<li ng-repeat="bargain in $ctrl.bargainlist"  ng-class="{fold:bargain.fold}">
 		<div class="bondShrtnm" ng-click="$ctrl.togglelist(bargain)">
 			<div class="bondShrtnm-left">{{bargain.bondShrtnm}}[{{bargain.bondCd}}]</div>
@@ -16,8 +16,8 @@
 							<span class="negtprc-mark-friend" ng-if="item.friendsFlag=='1'">好友</span>
 							<span class="negtprc-mark-best" ng-if="item.bestFlag=='1'">最优</span>
 						</span>
-						<h4 class="negtprc-orgname" ng-if="item.wthrAnon=='0'||$ctrl.curUserId==item.userId">{{item.organizationShortName}}-{{item.userName}}</h4>
-						<h4 class="negtprc-orgname" ng-if="item.wthrAnon=='1'&&$ctrl.curUserId!=item.userId">匿名</h4>
+						<h4 class="negtprc-orgname" ng-if="item.wthrAnon=='0'">{{item.organizationShortName}}-{{item.userName}}</h4>
+						<h4 class="negtprc-orgname" ng-if="item.wthrAnon=='1'">匿名</h4>
 					</div>
 					<div>
 						<ul class="negtprc-detail">
@@ -31,7 +31,7 @@
 									<span class="negtprc-detail-symbol">|</span>
 								<span class="negtprc-detail-yldrto">{{detail.yldrto|yldrtoFilter}}%</span>
 									<span class="negtprc-detail-symbol">|</span>
-								<span class="negtprc-detail-netprc">{{detail.netprc|numPointTwoFilter}}元</span>
+								<span class="negtprc-detail-netprc">{{detail.netprc|number:4}}元</span>
 							</li>
 						</ul>
 						<span class="negtprc-time">{{item.time|date:"HH:mm:ss"}}</span>

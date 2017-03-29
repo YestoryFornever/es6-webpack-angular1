@@ -1,0 +1,98 @@
+
+.lineUp {
+	height:100%;
+	color: $textF;
+	background: $bgDefault;
+	.bg{
+		background:url(../../../../../../../../../resource/images/img_bg_title.png) center;
+	}
+	.btn,.btn:hover,.btn.focus,.btn.active,.btn.visited,.btn:focus{
+		outline: none;
+		color:$textD;
+		border:none;
+
+	}
+	.btn-default,.btn-default:hover,.btn-default:focus,.btn-default.focus,.btn-default.active,.btn-default.visited,.btn-default:visited{
+		background-color:$bgDefaultLightC;
+		color:$textD;
+		border:none;
+		width: 0.7rem;
+		height: 0.2rem;
+		vertical-align: middle;
+		text-align: center;
+	}
+	.btn-default.active{
+		background: $bgGold;
+	}
+	.btn-primary,.btn-primary:hover,.btn-primary:focus,.btn-primary.focus,.btn-primary.active,.btn-primary.visited,.btn-primary:visited{
+		background-color:$btnPrimary;
+		border:none;
+	}
+	header#top{
+		padding:0.1rem 0.2rem;
+		textarea.cont{
+			resize:none;
+			width:100%;
+			height:1rem;
+			margin-bottom:0.1rem;
+			background:$bgDefaultDarkA;
+		}
+
+	}
+	section#lineUpCont{
+		padding:0.1rem 0.2rem;
+		border-top:1px solid $bgDefaultDarkA;
+		.head{
+			margin-bottom:0.1rem;
+			div.plus{
+				float:right;
+				height:0.24rem;
+				width:0.24rem;
+				background:$bgDefaultLightC;
+				border-radius:0.24rem;
+				span.bgPlus{
+					display:inline-block;
+					height:0.24rem;
+					width:0.24rem;
+					background:url(../../../../../../../../../resource/images/btn_plus_normal.png) no-repeat center;
+				}
+				span.bgPlus:hover{
+					background:url(../../../../../../../../../resource/images/btn_plus_hover.png) no-repeat center;
+				}
+			}
+		}
+		#table{
+			table.table{
+
+				td,th{
+					border:none;
+					text-align:center;
+				}
+				thead>tr{
+					background-size:100%;
+				}
+				tbody{
+					.delete{
+						display:inline-block;
+						width:0.24rem;
+						height:0.24rem;
+						background:url(../../../../../../../../../resource/images/btn_delete_normal.png) no-repeat center;
+					}
+					.delete:hover{
+						background:url(../../../../../../../../../resource/images/btn_delete_hover.png) no-repeat center;
+					}
+				}
+			}
+		}
+		.footer{
+			text-align:center;
+			button.btn{
+				display:inline-block;
+
+			}
+		}
+	}
+	.myPage1{
+		height:0.4rem;
+	}
+}

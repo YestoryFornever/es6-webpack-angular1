@@ -1,7 +1,4 @@
-import angular from 'angular';
-
-let numFilterModule = angular.module('numFilter', [])
-.filter('numFilter',function(){
+app.filter('numFilter',function(){
 	return function(num){
 		// console.log(num)
 		if(num){// 数量、10000
@@ -10,7 +7,4 @@ let numFilterModule = angular.module('numFilter', [])
 		}
 		return num ;
 	};
-})
-.name;
-
-export default numFilterModule;
+});

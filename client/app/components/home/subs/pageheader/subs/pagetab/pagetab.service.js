@@ -1,22 +1,17 @@
-import angular from 'angular';
+
 
 /**
  * 标签服务
  * @type {[type]}
  */
-let pagetabService = angular.module('pagetabService', [])
-.factory('pagetabService',['storageService','$q',function(storageService,$q){
+app.factory('pagetabService',['storageService','$q', '$state', function(storageService,$q, $state){
 	var _tabs = storageService.get('_nav_tabs_active');
 	if(!_tabs){
-		_tabs = [{
-			routeState:"home.bondquotation",
-			routeLabel:"债券报价",
-			routeClass:"active",
-		}];
+		_tabs = [];
 	}
 	return {
 		_tabs: _tabs,
-		activeTabKey: storageService.get('_nav_tabs_activeTabKey')||_tabs[0].activeTabKey,
+		activeTabKey: storageService.get('_nav_tabs_activeTabKey'),
 		/**
 		 * 激活TAB
 		 * @param {Object} tab 
@@ -37,6 +32,9 @@ let pagetabService = angular.module('pagetabService', [])
 			if (index<0) {
 				this._tabs.push(tab);
 			}
+			if (tab.routeState) {
+				$state.go(tab.routeState);
+			};
 			this.activeTabKey = tab.tabKey;
 			
 			storageService.set('_nav_tabs_active', this._tabs);
@@ -49,15 +47,29 @@ let pagetabService = angular.module('pagetabService', [])
 		 * @param  {[type]}
 		 * @return {[type]}
 		 */
-		closeTab: function(tab)
+		closeTab: function(tab, $event)
 		{
+			$event.preventDefault();
+			$event.stopPropagation();
+
 			let index = this._tabs.indexOf(tab);
-			if(index>=-1){
-				this._tabs.splice(index,1);
-			}
+			this._tabs.splice(index,1);
+			// 关闭激活标签才需处理
+			if (tab.tabKey==this.activeTabKey) {
+				let total = this._tabs.length;
+				index = index==0?0:index-1; //将要激活的tab索引
+				var _tab = this._tabs[index]; 
+				if (_tab) {
+					if (_tab.routeState) {
+						$state.go(_tab.routeState);
+					};
+					this.activeTab(_tab);
+				}else{
+					$state.go('home');
+				}
+			};
 			storageService.set('_nav_tabs_active', this._tabs);
 		}
 	}
 }]);
 
-export default pagetabService.name;

@@ -1,23 +1,4 @@
-import angular from 'angular';
-import uiRouter from 'angular-ui-router';
-
-import chatroomComponent from './chatroom.component';
-import chatroomService from './chatroom.service';
-
-import friendsModule from './subs/friendslist/friendslist';
-import groupsModule from './subs/groupslist/groupslist';
-import bargainlistModule from './subs/bargainlist/bargainlist';
-import quoteModalModule from './subs/quote-modal/quote-modal';
-
-let chatroomModule = angular.module('chatroom', [
-	uiRouter,
-	chatroomService,
-	friendsModule,
-	groupsModule,
-	bargainlistModule,
-	quoteModalModule
-])
-.config(($stateProvider, $urlRouterProvider) => {
+app.config(($stateProvider, $urlRouterProvider) => {
 	"ngInject";
 
 	$stateProvider
@@ -39,8 +20,4 @@ let chatroomModule = angular.module('chatroom', [
 			}
 		});
 })
-.component('chatroom', chatroomComponent)
-
-.name;
-
-export default chatroomModule;
+.component('chatroom', chatroomComponent);

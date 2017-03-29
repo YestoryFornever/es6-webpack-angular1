@@ -1,0 +1,50 @@
+
+
+.mineQuotation {
+	color:$textF;
+	margin:0.1rem 0.05rem ;
+	.bg{
+		background: url(../../../../../../../resource/images/img_bg_title.png) center;
+	}
+	.nav_nav{
+		.head{
+			.nav_top{
+				display:inline-block;
+				padding:0.07rem 0.1rem;
+			}
+			.nav_top.active{
+				background: url(../../../../../../../resource/images/img_bg_title.png) center;
+				background-size:100%;
+			}
+		}
+	}
+	.nav-tabs{
+		border:none;
+		li>a,li>a:hover{
+			background: none;
+			color:$textF;
+			border:none;
+		}
+
+		li.active>a,li.active>a:hover,li.active>a:focus{
+			background: url(../../../../../../../resource/images/img_bg_title.png) center;
+			background-size:100%;
+			color:$textD;
+			border:none;
+		}
+	}
+	.tab-content{
+		font-size:0.14rem;
+		table{
+			border:none;
+			th,td{
+				border:none;
+				text-align: center;
+			}
+		}
+		.myPage1,.myPage2{
+			float: right;
+			height: 0.5rem;
+		}
+	}
+}

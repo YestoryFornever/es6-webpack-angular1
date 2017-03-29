@@ -1,0 +1,55 @@
+// @import url(http://fonts.googleapis.com/css?family=Roboto);
+
+//字体颜色
+$textA:#fff6bf;
+$textB:#b8d1dd;
+$textC:#e6dea8;
+$textD:#ffffff;
+$textE:#667882;
+$textF:#a3c8d9;
+$textG:#ffeb62;
+$textH:#1ba1ff;
+$textI:#ff1f64;
+$textJ:$textD;
+$textK:#6b838e;
+$textL:$textG;
+$textM:#ff671b;
+$textN:$textG;
+$textDefault:$textB;
+$textFrameActive:$textA;
+$textHighlight:$textG;
+
+//背景色
+$bgGold:#8d754a;
+$bgDefaultLightC:#677983;
+$bgDefaultLightB:#3a5664;
+$bgDefaultLightA:#2d424c;
+$bgDefault:#243941;
+/* $bgDefaultDark:#1b2f37; */
+$bgDefaultDarkA:#192d35;
+/* $bgDefaultDark:#192d35; */
+$bgDefaultDarkB:#15272e;
+/* $bgDefaultDark:#13242b; */
+$bgDefaultDarkC:#111f25;
+
+//按钮
+$btnPrimary:#ff671b;
+
+//border
+$borderDefault:#36474f;
+
+$primaryText:#3caa9e;
+$successText:#90b901;
+$warnText:#e1bd2c;
+$dangerText:#ea6969;
+
+$primaryBg:#209e91;
+$successBg:#90b901;
+$warnBg:#dfb81c;
+$dangerBg:#e85656;
+
+$navH:.4rem;
+$tabH:.32rem;
+$headerH:$navH+$tabH;
+$footerH:.3rem;
+$tipsH:.32rem; 

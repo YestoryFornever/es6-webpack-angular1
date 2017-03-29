@@ -1,6 +1,6 @@
-var BONDCONFIG = require('../../../../../../../bond.config.js');
 class BargainlistController {
 	constructor($rootScope,$scope,$stateParams,bargainlistService,$state) {
+		"ngInject";
 		this.name = 'bargainlist';
 		this.bargainlistService = bargainlistService;
 		this.$rootScope = $rootScope;
@@ -38,5 +38,3 @@ class BargainlistController {
 		bargain.fold = !bargain.fold;
 	}
 }
-BargainlistController.$inject =  ['$rootScope','$scope','$stateParams','bargainlistService','$state'];
-export default BargainlistController;

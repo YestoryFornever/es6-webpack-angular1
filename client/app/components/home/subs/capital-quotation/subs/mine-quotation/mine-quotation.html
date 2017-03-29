@@ -1,0 +1,120 @@
+<ul class="mineQuotation">
+<!-- 	<div class="nav_nav">
+		<ul class="head" ng-init='isShow =false'>
+			<li class="nav_top " ng-class="{'active': isShow ==false }" ng-click='isShow =!isShow'>线上资金</li>
+			<li class="nav_top" ng-class="{'active': isShow ==true }"  ng-click='isShow =!isShow'>线下资金</li>
+		</ul>
+	</div> -->
+  	<uib-tabset active="Justified">
+    	<uib-tab index="0" heading="线上资金" >
+    		<div class="table-responsive" >
+				<table class="table">
+					<thead>
+						<tr class="bg">
+							<th >方向</th>
+							<th >期限</th>
+							<th >金额</th>
+							<th >利率</th>
+							<th >模式</th>
+							<th >备注</th>
+							<th >发布时间</th>
+							<th >状态</th>
+							<th >操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td >方向</td>
+							<td >期限</td>
+							<td >金额</td>
+							<td >利率</td>
+							<td >模式</td>
+							<td >备注</td>
+							<td >发布时间</td>
+							<td >状态</td>
+							<td >操作</td>
+						</tr>
+					</tbody>
+			 	</table>
+			</div>
+			<div class="myPage1" >
+				<ul  uib-pagination
+					boundary-links="true"
+					total-items="$ctrl.totalItems"
+					ng-model="$ctrl.currentPage"
+					previous-text="&lsaquo;"
+					next-text="&rsaquo;"
+					first-text="&laquo;"
+					last-text="&raquo;"
+					items-per-page='$ctrl.sendQueryQuoteListInfo.pageSize'
+					num-pages="$ctrl.numPages"
+					ng-change='$ctrl.pageNumChange($ctrl.currentPage)'
+					></ul>
+				<!-- <span style="float: right">{{$ctrl.currentPage}} / {{$ctrl.numPages}}</span> -->
+			</div>
+			<div style="clear: both"></div>
+    	</uib-tab>
+    	<uib-tab index="1" heading="线下资金">
+    		<div class="table-responsive" >
+				<table class="table">
+					<thead>
+						<tr class="bg">
+							<th >方向</th>
+							<th >种类</th>
+							<th >隔夜</th>
+							<th >7天</th>
+							<th >14天</th>
+							<th >21天</th>
+							<th >1个月</th>
+							<th >2个月</th>
+							<th >3个月</th>
+							<th >6个月</th>
+							<th >9个月</th>
+							<th >1年</th>
+							<th >其他</th>
+							<th >发布时间</th>
+							<th >备注</th>
+							<th >状态</th>
+							<th >操作</th>
+						</tr>
+					</thead>
+					<tbody>
+							<td >方向</td>
+							<td >种类</td>
+							<td >隔夜</td>
+							<td >7天</td>
+							<td >14天</td>
+							<td >21天</td>
+							<td >1个月</td>
+							<td >2个月</td>
+							<td >3个月</td>
+							<td >6个月</td>
+							<td >9个月</td>
+							<td >1年</td>
+							<td >其他</td>
+							<td >发布时间</td>
+							<td >备注</td>
+							<td >状态</td>
+							<td >操作</td>
+					</tbody>
+			 	</table>
+			</div>
+			<div class="myPage2" >
+				<ul  uib-pagination
+					boundary-links="true"
+					total-items="$ctrl.totalItems"
+					ng-model="$ctrl.currentPage"
+					previous-text="&lsaquo;"
+					next-text="&rsaquo;"
+					first-text="&laquo;"
+					last-text="&raquo;"
+					items-per-page='$ctrl.sendQueryQuoteListInfo.pageSize'
+					num-pages="$ctrl.numPages"
+					ng-change='$ctrl.pageNumChange($ctrl.currentPage)'
+					></ul>
+				<!-- <span style="float: right">{{$ctrl.currentPage}} / {{$ctrl.numPages}}</span> -->
+			</div>
+			<div style="clear: both"></div>
+    	</uib-tab>
+  	</uib-tabset>
+</ul>

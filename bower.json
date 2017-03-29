@@ -1,0 +1,101 @@
+{
+  "name": "demo",
+  "description": "spring-boot and angularJS",
+  "version": "0.1.0-SNAPSHOT",
+  "keywords": [
+    "the first project of spring-boot and angularJS"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "src/main/webapp/bower_components",
+    "src/main/webapp/lib",
+    "src/main/java",
+    "src/main/resources",
+    "src/test",
+    "target"
+  ],
+  "dependencies": {
+    "jquery": "3.1.0",
+    "angular": "1.5.5",
+    "moment": "2.10.6",
+    "font-awesome-bower": "^4.7.0",
+    "angular-resource": "1.5.5",
+    "angular-cookies": "1.5.5",
+    "angular-messages": "1.5.5",
+    "angular-animate": "1.5.5",
+    "angular-sanitize": "1.5.5",
+    "angular-aria": "1.5.5",
+    "angular-i18n": "1.5.5",
+    "angular-material": "1.0.4",
+    "angular-ui-router": "^1.0.0-beta.1",
+    "angular-ui-validate": "1.2.2",
+    "bootstrap": "^3.3.7",
+    "angular-bootstrap": "angular-ui-bootstrap-bower#2.4.0",
+    "angular-loading-bar": "0.9.0",
+    "angular-local-storage": "0.2.7",
+    "angular-material-data-table": "0.10.9",
+    "angular-once": "0.1.9",
+    "angular-moment": "1.0.0-beta.3",
+    "Chart.js": "1.0.2",
+    "angular-chart.js": "0.8.8",
+    "angular-filter": "0.5.8",
+    "ng-file-upload": "^12.0.4",
+    "editor.md": "1.5.0",
+    "iscroll": "^5.2.0",
+    "easemob-websdk": "^1.4.10",
+    "echarts": "^3.4.0",
+    "zrender": "^3.3.0",
+    "seajs": "^3.0.0",
+    "angular-ui-select": "^0.19.6",
+    "angular-slimscroll": "^1.1.5"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.5.5",
+    "angular-scenario": "1.5.5"
+  },
+  "overrides": {
+    "angular": {
+      "main": [
+        "angular.min.js"
+      ]
+    },
+    "angular-material": {
+      "main": [
+        "angular-material.min.js",
+        "angular-material.min.css"
+      ]
+    },
+    "bootstrap": {
+      "main": [
+        "dist/js/bootstrap.min.js",
+        "dist/css/bootstrap.min.css"
+      ]
+    },
+    "select2": {
+      "main": [
+        "select2.css",
+        "select2.js"
+      ]
+    },
+    "easemob-websdk": {
+      "main": []
+    },
+    "echarts": {
+      "main": [
+        "dist/echarts.min.js"
+      ]
+    },
+    "iscroll": {
+      "main": [
+        "build/iscroll.js"
+      ]
+    },
+    "ng-iscroll": {
+      "main": [
+        "src/ng-iscroll.min.js"
+      ]
+    }
+  }
+}

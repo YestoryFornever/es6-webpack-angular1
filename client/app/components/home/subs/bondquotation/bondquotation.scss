@@ -1,18 +1,6 @@
-@import '../../../../common/css/common';
-// h1,h2,h3,h4,h5,h6{
-// 	margin: 0; 
-// 	padding: 0;
-// }
-
-
-
-
-
-
-
 .bondquotation{
+	height:100%;
 	.btn,.btn:hover,.btn.focus,.btn.active,.btn.visited,.btn:focus{
-		// background-color:$bgDefaultLightC;
 		outline: none;
 		color:$textD;
 		border:none;
@@ -21,6 +9,7 @@
 	.btn-primary,.btn-primary:hover,.btn-primary.focus,.btn-primary.active,.btn-primary.visited{
 		background-color:$btnPrimary;
 		border:none;
+		border-radius:none;
 	}
 	.btn-default,.btn-default:hover,.btn-default.focus,.btn-default.active,.btn-default.visited{
 		background-color:$bgDefaultLightC;
@@ -29,7 +18,7 @@
 	}
 	$borderColor:#36474f;
 	.bg{
-		background:url(../../../../../resource/images/img_bg_title.png)  center;
+		background:url('../../../../../resource/images/img_bg_title.png')  center;
 	}
 	$inputPlaceColor:#ccc
 	::-webkit-input-placeholder { /* WebKit browsers */
@@ -71,16 +60,14 @@
 		padding:0.04rem 0.1rem;
 		height:20px;
 		border:1px solid $borderDefault;
-		// border-radius:5px;
 		color:$inputPlaceColor;
 	}
-	$cardW:27.43%;
-	$tableW:71.83%;
-	$marginL:0.74%;
+	$cardW:3.7rem;
+	$tableW:9.6rem;
+	$marginL:0.1rem;
 	$marginR:$cardW+$marginL;
 	$marginW:0.06rem;
 	font-size:0.12rem;
-	overflow:hidden;
 	margin:$marginW;
 	position:static!important;
 	aside.hallSidebar{
@@ -93,18 +80,12 @@
 			right:0;
 			bottom:0;
 			section.card{
-				// border-width:0 0.01rem 0.01rem 0.01rem;
-				// border-style: solid;
-				// border-color: #dddddd;
 				position: relative;
-
-
 				$titleH:0.32rem;
 				$titMarL:0.12rem;
 				header.title{
 					height:$titleH;
 					line-height: $titleH;
-					// background:$bgDefaultDarkA;
 					color:$textDefault;
 					span{
 						line-height:$titleH;
@@ -123,7 +104,6 @@
 				}
 			}
 			section#bondInfo.card{
-				// min-height:2.5rem;
 				main#BondMain {
 					padding: 0.1rem;
 					height: 2.8rem;
@@ -132,7 +112,6 @@
 						float:left;
 					}
 					.tit{
-						// margin-bottom:0.2rem;
 						line-height: 0.18rem;
 						height: 0.3rem;
 						font-size:0.18rem;
@@ -165,10 +144,10 @@
 						display: inline-block;
 						width:0.44rem;
 						height: 0.16rem;
-						background: url(../../../../../resource/images/btn_more_normal.png) no-repeat center;
+						background: url('../../../../../resource/images/btn_more_normal.png') no-repeat center;
 					}
 					.bgMore:hover{
-						background: url(../../../../../resource/images/btn_more_hover.png) no-repeat center;
+						background: url('../../../../../resource/images/btn_more_hover.png') no-repeat center;
 					}
 					.mar_T10{
 						text-align: right;
@@ -189,9 +168,7 @@
 		}
 	}
 	div.hallTable{
-		position: static!important;
-		// width:$tableW;
-		// float:left;
+		position: relative;
 		margin-right:$marginR;
 		height:100%;
 		$headerH:0.32rem;
@@ -204,25 +181,26 @@
 		}
 		header#condition{
 			height:$headerH;
-			// background:$bgDefaultLightA;
 			.head{
+				position:relative;
 				height: $headerH;
 				padding:0.04rem 0.1rem;
-				// line-height: 0.32rem;
 				.mar_L10{
+					position: relative;
 					display: inline-block;
 					float: left;
 					margin-left: 0.1rem;
-					// margin-top: 0.04rem;
 					height: 0.24rem;
 					line-height: 0.24rem;
 					padding:0 0.2rem;
 					border-radius: 0.2rem;
 				}
+				.padR{
+					padding:0 0.4rem 0 0.2rem;
+				}
 				.padd5{
 					display:inline-block;
 					margin-left:0.15rem;
-					// margin-top: 0.04rem;
 					width:0.24rem;
 					height: 0.24rem;
 					border-radius: 50%;
@@ -233,20 +211,22 @@
 						display: inline-block;
 						height:0.12rem;
 						width:0.12rem;
-						background: url(../../../../../resource/images/btn_plus_normal.png) no-repeat center;
+						background: url('../../../../../resource/images/btn_plus_normal.png') no-repeat center;
 					}
 					.plus:hover{
-						background: url(../../../../../resource/images/btn_plus_hover.png) no-repeat center;
+						background: url('../../../../../resource/images/btn_plus_hover.png') no-repeat center;
 					}
 				}
 				.myBond{
+					position:absolute;
+					right:0.05rem;
 					display: inline-block;
-					background: url(../../../../../resource/images/btn_delete_normal.png) no-repeat center;
+					background: url('../../../../../resource/images/btn_delete_normal.png') no-repeat center;
 					width:0.24rem;
 					height: 0.24rem;
 				}
 				.myBond:hover{
-					background: url(../../../../../resource/images/btn_delete_hover.png) no-repeat center;
+					background: url('../../../../../resource/images/btn_delete_hover.png') no-repeat center;
 				}
 				.SelectDownBox{
 					display:inline-block;
@@ -254,57 +234,39 @@
 					margin:0.04rem 0 0 0.26rem;
 					width:0.13rem;
 					height: 0.14rem;
-					background: url(../../../../../resource/images/btn_arrow_packup1_normal.png) no-repeat center;
+					background: url('../../../../../resource/images/btn_arrow_packup1_normal.png') no-repeat center;
 				}
 				.SelectDownBox:hover{
-					background: url(../../../../../resource/images/btn_arrow_packup1_hover.png) no-repeat center;
+					background: url('../../../../../resource/images/btn_arrow_packup1_hover.png') no-repeat center;
 				}
 				.SelectDownBox.active{
-					background: url(../../../../../resource/images/btn_arrow_unfold1_normal.png) no-repeat center;
+					background: url('../../../../../resource/images/btn_arrow_unfold1_normal.png') no-repeat center;
 				}
 				.SelectDownBox.active:hover{
-					background: url(../../../../../resource/images/btn_arrow_unfold1_hover.png) no-repeat center;
+					background: url('../../../../../resource/images/btn_arrow_unfold1_hover.png') no-repeat center;
 				}
 			}
-			// .btn{
-			// 	padding: .03rem .06rem;
-			// }
 			.nowBondAlert{
-				height: 0.4rem;
+				color:$textB;
+				// height: 0.4rem;
 				font-size: 0.14rem;
-				line-height:0.4rem;
-				position:fixed;
-				top:0;
-				right:2rem;
-			}
-			#_body_{
-				padding:$wrapW;
+				// line-height:0.4rem;
+				position:absolute;
+				top:-0.7rem;
+				right:-1.8rem;
+				padding:0.05rem 0.1rem ;
+				background: $bgGold;
 			}
 			.titSearchBox{
-				float: right;
-				position: relative;
+				position: absolute;
+				top:0.03rem;
+				right:0.4rem;
 				width:2rem;
-				// #searchSelect{
-				// 	position: absolute;
-				// 	z-index: 100;
-				// 	right: 0;
-				// 	width:2.45rem;
-				// 	border: 1px solid #ccc;
-				// 	li{
-				// 		height: 0.3rem;
-				// 		background: #ccc;
-				// 		line-height: 0.3rem;
-				// 		padding-left: 0.1rem;
-				// 		span{
-				// 			margin-right: 0.1rem;
-				// 		}
-				// 	}
-				// }
 				.searchBg{
 					display:inline-block;
 					width:0.16rem;
 					height: 0.16rem;
-					background: url(../../../../../resource/images/icon_search.png) no-repeat center;
+					background: url('../../../../../resource/images/icon_search.png') no-repeat center;
 					position: absolute;
 					z-index: 1;
 					right:.05rem;
@@ -312,7 +274,7 @@
 					font-size:14px;
 				}
 				.searchBg:hover{
-					background: url(../../../../../resource/images/icon_search_hover.png) no-repeat center;
+					background: url('../../../../../resource/images/icon_search_hover.png') no-repeat center;
 				}
 				input{
 					width:100%;
@@ -325,23 +287,35 @@
 			
 		}
 		div#_body_{
-				// display: none;
 				$height20:0.2rem;
 				$titMinWidth:0.5rem;
 				padding:0.1rem;
 				section{
 					padding: 0;
 				}
+				.className{
+					width:2rem;
+					height:.3rem;
+
+				}
+				.clearSelect{
+					display: inline-block;
+					width: 0.14rem;
+					height: 0.14rem;
+					background: url('../../../../../resource/images/btn_delete_normal.png') no-repeat center;
+				}
+				.clearSelect:hover{
+					background: url('../../../../../resource/images/btn_delete_hover.png') no-repeat center;
+				}
 				.mar_T14{
 					margin-top: 0.14rem;
 				}
 				.padd10{
-					// padding-top: .1rem ;
 					margin-bottom: 0.06rem;
 					clear: both;
 					.spacePlace{
 						display: inline-block;
-						margin-bottom: 0.06px;
+						margin-bottom: 0.06rem;
 						height: 0.2rem;
 					}
 					.btn{
@@ -378,19 +352,25 @@
 					line-height: 0.2rem;
 					position: relative;
 					right:-0.1rem;
-					background: url(../../../../../resource/images/btn_changeday_normal.png) no-repeat center;
+					background: url('../../../../../resource/images/btn_changeday_normal.png') no-repeat center;
 				}
-				// .bgDYNormal{
-					
-				// }
 				.bgDYActive{
-					background: url(../../../../../resource/images/btn_changeday_select.png) no-repeat center;
+					background: url('../../../../../resource/images/btn_changeday_select.png') no-repeat center;
 				}
 			}
+		
+
 		main{
+			position:absolute;
+			transition:all 0.5s;
+			width:100%;
+			bottom:0.4rem;
+			top:0.32rem;
+			min-height:0.5rem;
+			overflow-y: auto;
+			overflow-x: hidden;
 			.my-table{
-				height: 6.2rem;
-				overflow-y: auto;
+				width::100%;
 			}
 			table{
 				th,td{
@@ -398,19 +378,45 @@
 				}
 				td{
 					border-top: 1px solid $borderDefault;
+					.bondShrtnm{
+						display: inline-block;
+						width: 100%;
+						text-overflow: ellipsis;
+						overflow: hidden;
+						white-space: nowrap;
+					}
+					.ofrUserNm{
+						display: inline-block;
+						width: 1rem;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+					}
+					.rmrk{
+						display: inline-block;
+						max-width:0.8rem;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						white-space:nowrap;
+					}
 				}
 				th {
 					padding:0;
 					height: 0.32rem;
 					border-bottom: none;
 					vertical-align: middle;
-					// position:relative;
 				}
 				th i{
 					display: none;
 				}
-				tr:visited{
-					background: $bgDefaultLightC;
+				tr.active{
+					background: $bgDefaultLightB;
+					td{
+						background: $bgDefaultLightB;
+					}
+					.toopRmrk{
+						padding:8px 0px;
+					}
 				}
 				th.active{
 					background: none;
@@ -421,7 +427,15 @@
 				.colorI{
 					color:$textI;
 				}
-
+				.star{
+					display: inline-block;
+					width:0.2rem;
+					height: 0.17rem;
+					background: url('../../../../../resource/images/btn_star_normal.png') no-repeat center;
+				}
+				.star.active{
+					background: url('../../../../../resource/images/btn_star_select.png') no-repeat center;
+				}
 				.sortDown{
 					display:inline-block;
 					width:0.07rem ;
@@ -429,7 +443,7 @@
 					position: absolute;
 					top:4px;
 					right:-12px;
-					background: url(../../../../../resource/images/btn_sort_down.png) no-repeat  center;
+					background: url('../../../../../resource/images/btn_sort_down.png') no-repeat  center;
 				}
 				.sortUp{
 					display:inline-block;
@@ -438,41 +452,89 @@
 					position: absolute;
 					top:4px;
 					right:-12px;
-					background: url(../../../../../resource/images/btn_sort_up.png) no-repeat  center;
+					background: url('../../../../../resource/images/btn_sort_up.png') no-repeat  center;
 				}
 				.starNor{
 					width:0.4rem;
-					background: url(../../../../../resource/images/btn_star_normal.png) no-repeat center;
+					background: url('../../../../../resource/images/btn_star_normal.png') no-repeat center;
 				}
 				.starSelect{
 					width:0.4rem;
-					background: url(../../../../../resource/images/btn_star_select.png) no-repeat center;
+					background: url('../../../../../resource/images/btn_star_select.png') no-repeat center;
 				}
 				.chatRoom{
 					display:inline-block;
 					width:0.17rem;
 					height: 0.17rem;
-					background: url(../../../../../resource/images/btn_chat_normal.png) no-repeat center;
+					background: url('../../../../../resource/images/btn_chat_normal.png') no-repeat center;
 					margin-right: 0.2rem;
+				}
+				.chatRoom:hover{
+					background: url('../../../../../resource/images/btn_chat_press.png') no-repeat center;
 				}
 				.calculator{
 					display:inline-block;
 					width:0.17rem;
 					height: 0.17rem;
-					background: url(../../../../../resource/images/btn_calculator_normal.png) no-repeat center;
+					background: url('../../../../../resource/images/btn_calculator_normal.png') no-repeat center;
+				}
+				.calculator:hover{
+					background: url('../../../../../resource/images/btn_calculator_hover.png') no-repeat center;
 				}
 				// height: 100%;
 				// overflow-y: scroll;
 			}
-			div#testSlimScroll{
-				height:100%;
-
-			}
 			thead tr{
 				background:$bgDefaultLightA;
 			}
-			// 分页
-			.myPage{
+			.change{
+				display: inline-block;
+				padding: 6px;
+				margin: 0 10px ;
+				background: url('../../../../../resource/images/btn_edite_normal.png')  no-repeat center;
+			}
+			.change:hover{
+				background: url('../../../../../resource/images/btn_edite_hover.png')  no-repeat center;
+			}
+			.delete{
+				display: inline-block;
+				padding: 6px;
+				margin: 0 10px;
+				background: url('../../../../../resource/images/btn_delete_normal.png') no-repeat  center;
+			}
+			.delete:hover{
+				background: url('../../../../../resource/images/btn_delete_hover.png') no-repeat  center;
+			}
+			.send{
+				display: inline-block;
+				padding: 6px;
+				margin: 0 10px;
+				background: url('../../../../../resource/images/btn_send_normal.png') no-repeat center;
+			}
+			.send:hover{
+				background: url('../../../../../resource/images/btn_send_hover.png') no-repeat center;
+			}
+			.unShowName{
+				background: url('../../../../../resource/images/btn_person.png') no-repeat center;
+			}
+			.addNew{
+				display: inline-block;
+				padding: 6px;
+				margin: 0 10px ;
+				background: url('../../../../../resource/images/btn_guapai_normal.png') no-repeat  center;
+			}
+			.addNew:hover{
+				background: url('../../../../../resource/images/btn_guapai_hover.png') no-repeat  center;
+			}
+		}
+		.top35{
+			top: 3.5rem;
+		}
+		.myPage{//分页
+				position: absolute;
+				bottom:0;
+				right:0.1rem;
+				height: 0.4rem;
 				text-align: right;
 				.pagination{
 					margin:0;
@@ -484,58 +546,18 @@
 					line-height: 0.34rem;
 				}
 			}
-			// thead i{
-			// 	float: right;
-			// }
-			// i.pulRight{
-			// 	// position: absolute;
-			// 	left: .3rem;
-			// 	top:0;
-			// }
-			.change{
-				display: inline-block;
-				padding: 6px;
-				margin: 0 10px ;
-				background: url(../../../../../resource/images/btn_edite_normal.png)  no-repeat center;
-			}
-			.delete{
-				display: inline-block;
-				padding: 6px;
-				margin: 0 10px;
-				background: url(../../../../../resource/images/btn_delete_normal.png) no-repeat  center;
-			}
-			.send{
-				display: inline-block;
-				padding: 6px;
-				margin: 0 10px;
-				background: url(../../../../../resource/images/btn_send_normal.png) no-repeat center;
-			}
-			.unShowName{
-				background: url(../../../../../resource/images/btn_person.png) no-repeat center;
-			}
-			.addNew{
-				display: inline-block;
-				padding: 6px;
-				margin: 0 10px ;
-				background: url(../../../../../resource/images/btn_guapai_normal.png) no-repeat  center;
-			}
-			.addNew:hover{
-				background: url(../../../../../resource/images/btn_guapai_hover.png) no-repeat  center;
-			}
-		}
 	}
 }
 .bondquotation{
 	div#_body_.collapse{
 		height: 3.2rem;
-		// display:block;
 	}
 	td.care{
-		background: url(../../../../../resource/images/btn_star_select.png) no-repeat center;
+		background: url('../../../../../resource/images/btn_star_select.png') no-repeat center;
 
 	}
 	td.noCare{
-		background: url(../../../../../resource/images/btn_star_normal.png) no-repeat center;
+		background: url('../../../../../resource/images/btn_star_normal.png') no-repeat center;
 	}
 }
 

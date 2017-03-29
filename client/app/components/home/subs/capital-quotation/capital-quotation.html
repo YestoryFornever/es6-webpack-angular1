@@ -1,0 +1,25 @@
+<div class="o-v-a">
+	<div id="capitalQuotation">
+		<header id="condition">
+			<ul class="head">
+				<li class="btn-default ">
+					<a id="onLineBond "  ui-sref="home.capitalQuotation.onLineBond" ui-sref-active="actived"> 线上资金</a>
+				</li>
+				<li class="btn-default">
+					<a id="lineDownQuotation"  ui-sref="home.capitalQuotation.lineDownQuotation" ui-sref-active="actived"> 线下资金</a>
+				</li>
+
+				<li class="btn-default">
+					<a id="mineQuotation"  ui-sref="home.capitalQuotation.mineQuotation" ui-sref-active="actived"> 我的报价</a>
+				</li>
+				<li class="btn-primary pull-right bond" >
+					<a id="willQuote"  ui-sref="home.capitalQuotation.willQuote.lineUp" ui-sref-active="actived"> 我要报价</a>
+				</li>
+			</ul>
+		</header>
+		<div id="list" style="height:100%;">
+			<div ui-view="list" class="list"></div>
+		</div>
+	</div>
+</div>
+

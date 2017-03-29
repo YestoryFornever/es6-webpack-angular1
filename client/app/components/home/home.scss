@@ -1,29 +1,38 @@
-@import '../../common/css/common';
 
-*{
-	margin:0;
-	padding:0;
-}
-.pageheader,.pagepanel,.pagefooter{
+.pageheader{
 	position:absolute;
 	left:0;
 	right:0;
-}
-.pageheader{
 	top:0;
 }
 .pagepanel{
+	position:absolute;
+	left:0;
+	right:0;
 	top:$navH+$tabH;
 	bottom:$footerH;
 	background:$bgDefaultDarkB;
+
 	.mainpanel{
-		position:absolute;left:0;right:0;top:0;bottom:0;
+		position:absolute;
+		left:0;
+		right:0;
+		top:0;
+		bottom:0;
+
 		.o-v-a{//子页面加滚动条
-			position:absolute;left:0;right:0;top:0;bottom:0;
+			position:absolute;
+			left:0;
+			right:0;
+			top:0;
+			bottom:0;
 			overflow-y:auto;
 		}
 	}
 }
 .pagefooter{
+	position:absolute;
+	left:0;
+	right:0;
 	bottom:0;
 }

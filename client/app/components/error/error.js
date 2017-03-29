@@ -1,11 +1,4 @@
-import angular from 'angular';
-import uiRouter from 'angular-ui-router';
-import errorComponent from './error.component';
-
-let errorModule = angular.module('error', [
-	uiRouter
-])
-.config(($stateProvider, $urlRouterProvider) => {
+app.config(($stateProvider, $urlRouterProvider) => {
 	"ngInject";
 
 	$stateProvider
@@ -14,8 +7,9 @@ let errorModule = angular.module('error', [
 			component: 'error'
 		})
 })
-.component('error', errorComponent)
-
-.name;
-
-export default errorModule;
+.component('error', {
+	restrict: 'E',
+	bindings: {},
+	templateUrl: './error.html',
+	controller: ErrorController
+});

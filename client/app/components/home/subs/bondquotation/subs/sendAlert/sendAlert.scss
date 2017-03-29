@@ -1,0 +1,58 @@
+
+.my-send-alert{
+	.modal-xs.modal-dialog {
+		width: 3.7rem;
+		position: fixed;
+		margin: auto;
+		top:0;
+		left: 0;
+		bottom: 0;
+		right:0;
+		z-index:999999;
+		.modal-content{
+			background: $bgDefault;
+			height: auto;
+			border:0;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			.modal-body{
+				width: 3.7rem;
+				height: auto;
+			}
+			.modal-footer{
+				text-align: center;
+				left:0;
+			}
+		}
+	}
+}
+
+.sendAlert {
+	font-size:0.12rem;
+	color:$textD;
+	.btn,.btn:hover,.btn.focus,.btn.active,.btn.visited,.btn:focus{
+		background: $btnPrimary;
+		outline: none;
+		color:$textD;
+	}
+	#modal-body{
+		height: 2rem;
+		padding: 0.1rem;
+		div{
+			.bg.active{
+				color:$textG;
+				background: url(../../../../../../../resource/images/btn_selectbox_round_select.png) no-repeat 0 center;
+			}
+			.bg{
+				background: url(../../../../../../../resource/images/btn_selectbox_round_normal.png) no-repeat 0 center;
+			}
+		}
+	}
+	.modal-footer{
+		padding:0;
+		width:100%;
+		background: $bgDefault;
+		margin-bottom: 0.2rem;
+	}
+}

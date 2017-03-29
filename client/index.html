@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<base href="/alphabond/">
 		<meta charset="utf-8">
 		<title>AlphaBond</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,12 +8,24 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="description" content="">
-		<link rel="icon" href="../resource/images/afcat.png" mce_href="../resource/images/afcat.png" type="image/x-icon">
-		<link rel="shortcut icon" href="../resource/images/afcat.png" mce_href="../resource/images/afcat.png" type="image/x-icon">
+		<link rel="icon" href="./resource/images/afcat.png" mce_href="../resource/images/afcat.png" type="image/x-icon">
+		<link rel="shortcut icon" href="./resource/images/afcat.png" mce_href="../resource/images/afcat.png" type="image/x-icon">
+		<!-- bower:css -->
+    	<!-- endbower -->
+
+    	<link rel="stylesheet" href="app.min.css" />
 	</head>
-	<body ng-app="app" ng-strict-di ng-cloak>
+	<body ng-strict-di>
 		<app>
 			Loading...
 		</app>
+		<!-- bower:js -->
+    	<!-- endbower -->
+    	<script src="app.min.js" type="text/javascript" charset="utf-8"></script>
+    	<script src="vendor/easemob-websdk/sdk/dist/strophe-1.2.8.min.js"></script>
+		<script src="vendor/easemob-websdk/sdk/dist/websdk-1.4.10.js"></script>
+    	<script type="text/javascript">
+    		angular.bootstrap(document, ['website']);
+    	</script>
 	</body>
 </html>

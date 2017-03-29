@@ -1,8 +1,4 @@
-var BONDCONFIG = require('../../../../../../bond.config.js');
-import angular from 'angular';
-
-let cashofferServiceModule = angular.module('cashofferService', [])
-.factory('cashofferService',['$http','$q',function($http,$q){
+app.factory('cashofferService',['$http','$q',function($http,$q){
 	console.log(BONDCONFIG);
 	return {
 		// 新增报价
@@ -36,6 +32,4 @@ let cashofferServiceModule = angular.module('cashofferService', [])
 		},
 
 	}
-}])
-.name;
-export default cashofferServiceModule;
+}]);

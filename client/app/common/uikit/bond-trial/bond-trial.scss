@@ -1,0 +1,126 @@
+@media screen and (min-width: 768px){
+	.modal-dialog {
+		margin:auto;
+	}
+}
+.my-bond-trial{
+	.modal-xs.modal-dialog {
+		width: 5rem;
+		.modal-content{
+			background: $bgDefault;
+			height: auto;
+			border:0;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			.modal-body{
+				width: 5rem;
+				height: auto;
+			}
+			.modal-footer{
+				left: 2.7rem;
+			}
+		}
+	}
+}
+
+.bondTrial {
+	margin-top:0.5rem;
+	background: $bgDefault;
+	font-size:0.12rem;
+	color:$textD;
+	input{
+		width:1.3rem;
+		background: $bgDefault;
+		outline: none;
+		border:none;
+		border:1px solid $borderDefault;
+	}
+	#modal-body{
+		padding:  0.1rem 0.05rem 0 0.1rem;
+		background: $bgDefault;
+		// height: 4.9rem;
+		// width:8rem;
+		// float:left;
+		// padding-left:0;
+		// padding-right:0;
+		.cont{
+			width:100%;
+			border-top:1px solid #ccc;
+			.content label{
+				line-height: 0.14rem;
+			}
+			label {
+				font-weight:500;
+				.choice{
+					display: inline-block;
+					width:0.14rem;
+					height: 0.14rem;
+					background: url(../../../../resource/images/btn_selectbox_round_select.png) no-repeat center;
+				}
+				.unChoice{
+					display: inline-block;
+					width:0.14rem;
+					height: 0.14rem;
+					background: url(../../../../resource/images/btn_selectbox_round_normal.png) no-repeat center;
+				}
+			}
+			.marT10{
+				margin-top:0.1rem;
+			}
+			p.input-group{
+				margin:0;
+			}
+			.cont_l,.cont_r{
+				width:2.38rem;
+				height: 0.2rem;
+				display: inline-block;
+				margin-bottom:  0.1rem ;
+			}
+			.date{
+				display: inline-block;
+				width:0.2rem;
+				height: 0.2rem;
+				float: right;
+				position: relative;
+				top:-0.2rem;
+				background: url(../../../../resource/images/btn_calculate_normal.png) no-repeat center;
+			}
+			.inpWid118{
+				width:1.1rem;
+			}
+			.tit{
+				display:inline-block;
+				width:.8rem;
+				text-align: right;
+				margin-right: .2rem;
+			}
+			.titSearch{
+				position: relative;
+				input{
+					padding:0px 20px;
+				}
+				.ser,.clear{
+					position: absolute;
+					top:.08rem;
+				}
+				.ser{
+					left:.03rem;
+
+				}
+				.clear{
+					right:5px;
+				}
+			}
+		}
+		.borT0{
+			border-top:none;
+			margin-top:0;
+		}
+		.marNone{
+			margin-bottom: 0;
+		}
+	}
+}
+
+

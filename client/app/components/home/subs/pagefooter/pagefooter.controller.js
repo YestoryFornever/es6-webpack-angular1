@@ -1,5 +1,6 @@
 class PagefooterController {
 	constructor($http, $timeout, pagetabService) {
+		"ngInject";
 		this.$timeout = $timeout;
 		this.pagetabService = pagetabService;
 	}
@@ -28,5 +29,3 @@ class PagefooterController {
 		});
 	}
 }
-PagefooterController.$inject = ['$http','$timeout', 'pagetabService'];
-export default PagefooterController;

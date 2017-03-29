@@ -1,0 +1,85 @@
+<div class="lineDown">
+	<header id="top">
+		<textarea class="cont" ng-model='$ctrl.ofrDscListInfo' placeholder="请再次粘贴报价"></textarea>
+		<button class="btn-default pull-right" >提交</button>
+		<div style="clear: both;"></div>
+	</header>
+	<section id="lineUpCont">
+		<div class="head">
+			预览：<div class="plus" ng-click="$ctrl.addBondList()"><span class="bgPlus"></span></div>
+		</div>
+		<div id="table">
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr class="bg">
+							<th>方向</th>
+							<th>种类</th>
+							<th>隔夜</th>
+							<th>7天</th>
+							<th>14天</th>
+							<th>21天</th>
+							<th>1个月</th>
+							<th>2个月</th>
+							<th>3个月</th>
+							<th>6个月</th>
+							<th>9个月</th>
+							<th>一年</th>
+							<th>自定义</th>
+							<th>备注</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat='item in  $ctrl.ofrDscList'>
+							<td>
+								<select name="" id="">
+									<option value="1">融入</option>
+									<option value="2">融出</option>
+								</select>
+							</td>
+							<td>
+								<select name="" id="">
+									<option value="">隔夜</option>
+									<option value="">7天</option>
+								</select>
+							</td>
+							<td>
+								<input type="text">&nbsp;
+								<select name="" id="">
+									<option value="">万</option>
+									<option value="">亿</option>
+								</select>
+
+							</td>
+							<td>
+								<select name="" id="">
+									<option value="">押利率</option>
+									<option value="">押信用</option>
+								</select>
+							</td>
+							<td>
+								<input type="text">
+							</td>
+							<td>
+								<select name="" id="">
+									<option value="">押利率</option>
+									<option value="">押信用</option>
+								</select>
+							</td>
+							<td>
+								<input type="text">
+							</td>
+							<td>
+								<span class="delete"></span>
+							</td>
+						</tr>
+					</tbody>
+			 	</table>
+			</div>
+		</div>
+		<div class="footer">
+			<button class="btn btn-primary" ng-click="$ctrl.offlineAddOfr()">确认发布</button>
+		</div>
+	</section>
+</div>

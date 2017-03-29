@@ -1,26 +1,47 @@
 <div class="pageheader">
 	<div id="altarea">
-		<div id="logo" class="leftblock">
-			<div class="navbar-header">
-				<a class="navbar-brand">
-					<img src="../../../../../resource/images/logo02.png" alt="">
-				</a>
-			</div>
-		</div>
-		<div id="nav" class="leftblock">
-			<pagenav on-add-tab="$ctrl.addTab(nav)" >
-			</pagenav>
-		</div>
-		<div id="qrcode" class="leftblock">手机版</div>
+		<ul class="leftblock">
+			<li id="logo" >
+				<img src="../../../../../resource/images/logo02.png" alt="">
+			</li>
+			<li id="nav">
+				<pagenav on-add-tab="$ctrl.addTab(nav)" >
+				</pagenav>
+			</li>
+			<li id="qrcode" class="dropdown" ng-init="qrcodeOpen=false" ng-mouseover="qrcodeOpen=true" ng-mouseleave="qrcodeOpen=false" ng-class="{open:qrcodeOpen}">
+				<a class="dropdown-toggle"><img src="../../../../../resource/images/icon_phone.png">
+				手机版</a>
+				<ul class="dropdown-menu">
+		            <li>
+		            	<img src="./images/QRcode-app.png">
+		            	<p>下载债金所手机版<br/>随时随地看报价</p>
+		            </li>
+		            <li>
+		            	<img src="./images/QRcode-wechat.png">
+		            	<p>关注债金所公众号<br/>及时了解最新债券资讯</p>
+		            </li>
+		        </ul>
+			</li>
+		</ul>
 
-		<div id="complain" class="rightblock">我要吐槽</div>
-		<div id="coin" class="rightblock">金币</div>
-		<div id="menu" class="rightblock">
-			您好{{$ctrl.username}}
-			<button ng-click="$ctrl.logout()">注销</button>
-		</div>
-		<!-- <div id="tag" class="rightblock">挂牌</div> -->
-		<div style="clear:both;"></div>
+		<ul class="rightblock">
+			<li id="pageheaderGuapai">
+				<a ng-click="$ctrl.nowBondService.openNowBondModal()"><span>挂牌</span></a>
+			</li>
+			<li class="dropdown" ng-init="myspaceOpen=false" ng-mouseover="myspaceOpen=true" ng-mouseleave="myspaceOpen=false" ng-class="{open:myspaceOpen}">
+	          <a  class="dropdown-toggle">{{$ctrl.username}},您好 <span class="caret"></span></a>
+	          <ul class="dropdown-menu my-space-list">
+	          	<li><a >个人中心</a></li>
+	            <li><a ng-click="$ctrl.logout()">注销</a></li>
+	          </ul>
+	        </li>
+			<li id="coin">
+				<a>金币</a>
+			</li>
+			<li id="iWantTucao">
+				<a><span>我要吐槽</span></a>
+			</li>
+		</ul>
 	</div>
 	<pagetab tabs="$ctrl.tabs"></pagetab>
 </div>

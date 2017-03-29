@@ -1,8 +1,4 @@
-var BONDCONFIG = require('../../../../../bond.config.js');
-import angular from 'angular';
-
-let pageheaderServiceModule = angular.module('pageheaderService', [])
-.factory('pageheaderService',['$http','$q',function($http,$q){
+app.factory('pageheaderService',['$http','$q',function($http,$q){
 	// console.log(BONDCONFIG);
 	return {
 		logout(){
@@ -20,6 +16,4 @@ let pageheaderServiceModule = angular.module('pageheaderService', [])
 			return deferred.promise;
 		}
 	}
-}])
-.name;
-export default pageheaderServiceModule;
+}]);

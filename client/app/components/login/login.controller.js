@@ -1,5 +1,10 @@
+/**
+ * 登录
+ */
 class LoginController {
 	constructor($state,$stateParams,loginService,$http) {
+		"ngInject";
+		console.log('login...');
 		this.$state = $state;
 		this.$stateParams = $stateParams;
 		this.loginService = loginService;
@@ -53,5 +58,3 @@ class LoginController {
 		});
 	}
 }
-LoginController.$inject = ['$state','$stateParams','loginService','$http'];
-export default LoginController;

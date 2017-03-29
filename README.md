@@ -1,3 +1,4 @@
+gulp vendor
 npm run component -- --name test
 TRUNK                                                              
 |   .editorconfig                                                                   

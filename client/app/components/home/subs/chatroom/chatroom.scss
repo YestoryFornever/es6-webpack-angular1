@@ -1,8 +1,15 @@
-@import '../../../../common/css/common';
+@mixin radius($rd:.04rem) {
+	border-radius: $rd;
+	-moz-border-radius: $rd;
+	-webkit-border-radius: $rd;
+}
 .md-button.md-default-theme.md-primary.md-raised, .md-button.md-primary.md-raised, .md-button.md-default-theme.md-primary.md-fab, .md-button.md-primary.md-fab{
 	background-color:$btnPrimary;
 }
 .md-button.md-default-theme.md-primary.md-raised:not([disabled]):hover, .md-button.md-primary.md-raised:not([disabled]):hover, .md-button.md-default-theme.md-primary.md-fab:not([disabled]):hover, .md-button.md-primary.md-fab:not([disabled]):hover{
+	background-color:$btnPrimary;
+}
+a.md-button.md-default-theme.md-primary.md-raised:not([disabled]):hover, a.md-button.md-primary.md-raised:not([disabled]):hover, a.md-button.md-default-theme.md-primary.md-fab:not([disabled]):hover, a.md-button.md-primary.md-fab:not([disabled]):hover, .md-button.md-default-theme.md-primary.md-raised:not([disabled]):hover, .md-button.md-primary.md-raised:not([disabled]):hover, .md-button.md-default-theme.md-primary.md-fab:not([disabled]):hover, .md-button.md-primary.md-fab:not([disabled]):hover{
 	background-color:$btnPrimary;
 }
 div#chatroom{
@@ -33,25 +40,53 @@ div#chatroom{
 					display:block;
 					width:100%;
 					height:100%;
+					background-repeat: no-repeat;
+					background-position: center;
+				}
+				a#friendslist{
+					background-image:url('../../../../../resource/images/icon_yijia_01_normal.png');
+				}
+				a#groupslist{
+					background-image:url('../../../../../resource/images/icon_yijia_02_normal.png');
+				}
+				a#bargainlist{
+					background-image:url('../../../../../resource/images/icon_yijia_03_normal.png');
 				}
 				a:active,a:focus,a.actived{
-					color:$textB;
-					text-shadow:.04rem .04rem .04rem #444;
-					background:$bgDefaultLightB;
-					border-left:.04rem solid $bgDefaultLightA;
+					background-color:$bgDefaultLightA;
 				}
+				a#friendslist:active,a#friendslist:focus,a#friendslist.actived{
+					background-image:url('../../../../../resource/images/icon_yijia_01_current.png');
+				}
+				a#groupslist:active,a#groupslist:focus,a#groupslist.actived{
+					background-image:url('../../../../../resource/images/icon_yijia_02_current.png');
+				}
+				a#bargainlist:active,a#bargainlist:focus,a#bargainlist.actived{
+					background-image:url('../../../../../resource/images/icon_yijia_03_current.png');
+				}
+
 			}
 			li.actived{
 				a{
 					color:$textB;
 					text-shadow:.04rem .04rem .04rem #444;
-					background:$bgDefaultLightB;
-					border-left:.04rem solid $bgDefaultLightA;
+					background-color:$bgDefaultLightA;
+					background-repeat: no-repeat;
+					background-position: center;
+				}
+				a#friendslist{
+					background-image:url('../../../../../resource/images/icon_yijia_01_current.png');
+				}
+				a#groupslist{
+					background-image:url('../../../../../resource/images/icon_yijia_02_current.png');
+				}
+				a#bargainlist{
+					background-image:url('../../../../../resource/images/icon_yijia_03_current.png');
 				}
 			}
-			li:first-child{
+			/* li:first-child{
 				height:.1rem;
-			}
+			} */
 		}
 	}
 	div#list{
@@ -60,10 +95,17 @@ div#chatroom{
 		background-color:$bgDefaultLightA;
 		overflow:auto;
 	}
+	$tipsHeaderH:.32rem;
+	$infoH:.8rem;
+	$btnsH:.4rem;
+	$operateHeaderH:.26rem;
+	$operateBodyH:.4rem;
+	$foldListH1:.24rem;
+	$foldListH3:.52rem;
+	$sendareaH: 1.6rem;
 	main{
 		margin-left: $asideW+$listW;
 		position:relative;
-		$sendareaH: 2.2rem;
 		>*{
 			width:100%;
 			position:absolute;
@@ -74,14 +116,14 @@ div#chatroom{
 			/* overflow-y:auto; */
 			background-color:#121f25;
 			div.friend-tips{
+				/* background-color:red; */
 				color:$textD;
 				text-align:center;
-				height:$tipsH;
-				line-height:$tipsH;
+				height:$tipsHeaderH;
+				line-height:$tipsHeaderH;
 				background-image:url('../../../../../resource/images/chat_baojia_frame_title_middle.png');
 				background-repeat:repeat-x;
 			}
-			$infoH:.8rem;
 			div.bargain{
 				position:absolute;
 				top:.32rem;
@@ -89,14 +131,18 @@ div#chatroom{
 				right:0;
 				z-index:10;
 				background:$bgDefaultLightB;
-				padding:.1rem;
+				padding:0 .1rem;
 				div.info{
+					/* background-color:green; */
 					height:$infoH;
 					font-size:.12rem;
+					padding:.1rem 0;
 					border-bottom:.01rem solid $textF;
 					div.abbr{
 						color:$textD;
 						margin-top:.02rem 0;
+						height:.12rem;
+						line-height:.12rem;
 						span.drc{
 							float:right;
 							display:none;
@@ -106,20 +152,25 @@ div#chatroom{
 						}
 					}
 					div.bond{
-						font-size:.16rem;
+						font-size:.14rem;
 						color:$textG;
 						margin:.08rem 0;
+						height:.14rem;
+						line-height:.14rem;
 						span{
 							float:right;
 						}
 					}
 					div.level{
 						color:$textB;
+						height:.12rem;
+						line-height:.12rem;
 					}
 				}
 				div.operate-btns{
-					margin-top:.2rem;
-					$btnsH:.3rem;
+					/* background-color:blue; */
+					height:$btnsH;
+					line-height:$btnsH;
 					span#counting{
 						height:$btnsH;
 						line-height:$btnsH;
@@ -134,8 +185,8 @@ div#chatroom{
 					button{
 						float:right;
 						width:.64rem;
-						height:$btnsH;
-						/* line-height:$btnsH; */
+						height:.3rem;
+						margin-top:.04rem;
 						background-color:$btnPrimary;
 						border:0;
 						$radius:.04rem;
@@ -161,31 +212,30 @@ div#chatroom{
 						display:none;
 					}
 				}
-				$operateH:.7rem;
 				div.operate{
-					height:$operateH;
+					/* background-color:red; */
+					height:$operateHeaderH+$operateBodyH;
 					position:relative;
 					div.input{
 						float:left;
 						text-align:center;
-						$trH:.32rem;
 						>span{
 							display:inline-block;
-							height:$operateH;
-							line-height:$operateH;
+							height:$operateHeaderH+$operateBodyH;
+							line-height:$operateHeaderH+$operateBodyH;
 							float:left;
-							margin:0 .1rem;
+							/* margin:0 .1rem; */
 							div.input-label{
 								color:$textB;
 								font-weight: normal;
 								text-align: center;
-								height:$trH;
-								line-height:$trH;
+								height:$operateHeaderH;
+								line-height:$operateHeaderH;
 							}
 							div.input-content{
 								text-align: center;
-								height:$trH;
-								line-height:$trH;
+								height:$operateBodyH;
+								line-height:$operateBodyH;
 								input{
 									width:100%;
 									height:100%;
@@ -199,8 +249,7 @@ div#chatroom{
 									padding:0 .1rem;
 								}
 								span{
-									// width:100%;
-									display:inline-block;
+									display:inline;//inline-block;
 									word-break:keep-all;/* 不换行 */ 
 									white-space:nowrap;/* 不换行 */ 
 									overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */ 
@@ -212,9 +261,20 @@ div#chatroom{
 						}
 					}
 				}
+				div.bargain-list-state{
+					float: right;
+					background-image: url('../../../../../resource/images/btn_arrow_unfold1_normal.png');
+					background-repeat: no-repeat;
+					background-size:.14rem;
+					width:.14rem;
+					height:.14rem;
+					margin-right:.5rem;
+					/* position:relative;
+					top:.4rem; */
+				}
 				div.bargain-cur-history{
+					/* background-color:yellow; */
 					ul.bargain-cur-history-ul{
-						margin-top:.2rem;
 						li{
 							font-size:0;
 							height:.24rem;
@@ -223,18 +283,18 @@ div#chatroom{
 							span{
 								text-align:center;
 								font-size:.12rem;
-								margin:0 .1rem;
+								/* margin:0 .1rem; */
 								display:inline-block;
 								word-break:keep-all;/* 不换行 */ 
 								white-space:nowrap;/* 不换行 */ 
 								overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */ 
 								//text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
 							}
-							$colW1:.44rem;
-							$colW2:1rem;
-							$colW3:1.1rem;
-							$colW4:.9rem;
-							$colW5:1.4rem;
+							$colW1:.56rem;
+							$colW2:.9rem;
+							$colW3:.9rem;
+							$colW4:.7rem;
+							$colW5:1.1rem;
 							span.bargain-cur-history-drc{
 								width:$colW1;
 								div{
@@ -271,31 +331,12 @@ div#chatroom{
 					}
 				}
 			}
-			div.bargain.hide-content{
-				$operateH:.32rem;
-				div.operate{
-					height:$operateH;
-					div.input{
-						$trH:.32rem;
-						span{
-							height:$operateH;
-							line-height:$operateH;
-							div.input-content{
-								display:none;
-							}
-						}
-					}
-				}
-				div.bargain-cur-history{
-					top:$infoH+$operateH;
-				}
-			}
 			div.bargain.fold{
 				display:none;
 			}
 			ul#chat_content{
 				position:absolute;
-				top:.32rem;
+				top:$tipsHeaderH+$infoH+$btnsH+$operateHeaderH+$operateBodyH+$foldListH1+$foldListH3;
 				left:0;
 				bottom:0;
 				right:0;
@@ -382,13 +423,13 @@ div#chatroom{
 							}
 						}
 						div.btns{
-							$btnsH:.3rem;
-							height:$btnsH;
-							line-height:$btnsH;
+							$btnH:.3rem;
+							height:$btnH;
+							line-height:$btnH;
 							font-size:0;
 							div{
-								height:$btnsH;
-								line-height:$btnsH;
+								height:$btnH;
+								line-height:$btnH;
 								font-size:.14rem;
 								display:inline-block;
 								text-align:center;
@@ -437,7 +478,7 @@ div#chatroom{
 					}
 					span.text-dialog-message{
 						display:inline-block;
-						height:$imgWH;
+						/* height:$imgWH; */
 						line-height:$imgWH;
 						padding:0 .24rem;
 						margin:0 .24rem;
@@ -448,6 +489,19 @@ div#chatroom{
 						border-bottom-left-radius: .06rem;
 						-moz-border-bottom-left-radius: .06rem;
 						-webkit-border-bottom-left-radius: .06rem;
+					}
+				}
+				>li{
+					div.text-sys{
+						text-align:center;
+						span{
+							display:inline-block;
+							color:#6b838e;
+							background:#2d424c;
+							@include radius(.04rem);
+							min-width:1rem;
+							padding: 0 .2rem;
+						}
 					}
 				}
 				li.itext{
@@ -549,11 +603,17 @@ div#chatroom{
 					}
 				}
 			}
+			ul#chat_content.fold-list-h0{
+				top:$tipsHeaderH+$infoH+$btnsH+$operateHeaderH+$operateBodyH;
+			}
+			ul#chat_content.fold-list-h1{
+				top:$tipsHeaderH+$infoH+$btnsH+$operateHeaderH+$operateBodyH+$foldListH1;
+			}
 		}
 		div#sendarea{
 			bottom:0;
 			height:$sendareaH;
-			min-height:2rem;
+			min-height:1.6rem;
 			/* border-top:1px solid $primaryBg; */
 			>*{
 				display:block;
@@ -608,6 +668,70 @@ div#chatroom{
 			}
 		}
 	}
+	main.hide-inputs{
+		div#chatcontent{
+			div.bargain{
+				div.operate{
+					height:$operateHeaderH;
+					div.input{
+						>span{
+							height:$operateHeaderH;
+							line-height:$operateHeaderH;
+							div.input-content{
+								display:none;
+							}
+						}
+					}
+				}
+			}
+			ul#chat_content{
+				top:$tipsHeaderH+$infoH+$btnsH+$operateHeaderH+$foldListH1+$foldListH3;
+			}
+			ul#chat_content.fold-list-h0{
+				top:$tipsHeaderH+$infoH+$btnsH+$operateHeaderH;
+			}
+			ul#chat_content.fold-list-h1{
+				top:$tipsHeaderH+$infoH+$btnsH+$operateHeaderH+$foldListH1;
+			}
+		}
+	}
+	main.list-unfold{
+		div#chatcontent{
+			div.bargain{
+				bottom:0;
+				div.bargain-list-state{
+					background-image: url('../../../../../resource/images/btn_arrow_packup1_normal.png');
+				}
+				div.bargain-cur-history{
+					position:absolute;
+					top:$infoH+$btnsH+$operateHeaderH+$operateBodyH;
+					bottom:0;
+					overflow-y:auto;
+				}
+			}
+			ul#chat_content{
+				top:$tipsHeaderH+$infoH+$btnsH+$operateHeaderH+$operateBodyH+$foldListH1+$foldListH3;
+			}
+			ul#chat_content.fold-list-h0{
+				top:$tipsHeaderH+$infoH+$btnsH+$operateHeaderH+$operateBodyH;
+			}
+			ul#chat_content.fold-list-h1{
+				top:$tipsHeaderH+$infoH+$btnsH+$operateHeaderH+$operateBodyH+$foldListH1;
+			}
+		}
+	}
+	main.list-unfold.hide-inputs{
+		div#chatcontent{
+			div.bargain{
+				div.bargain-cur-history{
+					top:$infoH+$btnsH+$operateHeaderH;
+				}
+			}
+			ul#chat_content{
+				display:none;
+			}
+		}
+	}
 	div.bargain-all-history{
 		display:none;//chatchat
 	}
@@ -619,7 +743,7 @@ div#chatroom.show-chat-history{//chatchat
 		div#sendarea{
 			#fnarea{
 				span#history{
-					color:$primaryText;
+					/* color:$primaryText; */
 				}
 			}
 		}
@@ -632,6 +756,7 @@ div#chatroom.show-chat-history{//chatchat
 		$tipsH: .32rem;
 		color:$textK;
 		position:relative;
+		height:100%;
 		div.bargain-all-history-tips{
 			height: $tipsH;
 			line-height: $tipsH;
@@ -651,123 +776,151 @@ div#chatroom.show-chat-history{//chatchat
 				line-height:$tipsH;
 			}
 			span.all-history-info{
-				width:1.2rem;
+				width:1.1rem;
 				text-align:left;
 			}
 			span.all-history-drc{
-				width:.7rem;
+				width:.48rem;
 			}
 			span.all-history-num{
-				width:.9rem;
+				width:.5rem;
 			}
 			span.all-history-yield{
 				width:.6rem;
 			}
+			span.all-history-time{
+				width:.8rem;
+			}
 		}
-		ul.bargain-all-history-list{
-			background: $bgDefaultDarkA;
+		div#bargainAllHistory{
 			position:absolute;
 			top:.64rem;
 			left:0;
 			right:0;
 			bottom:0;
 			overflow-y:auto;
-			>li{
-				border-bottom:.01rem solid $textK;
-				padding:.06rem;
-				>div.all-history-item{
-					height:.6rem;
-					line-height:.6rem;
-					font-size:0;
-					span{
-						font-size:.12rem;
-						display:inline-block;
-						text-align:center;
-						word-break:keep-all;/* 不换行 */ 
-						white-space:nowrap;/* 不换行 */ 
-						overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
-						div.history-info-nm{
-							height:.3rem;
-							line-height:.4rem;
-							color:$textG;
-						}
-						div.history-info-cd{
-							height:.3rem;
-							line-height:.2rem;
-						}
-					}
-					span.all-history-info{
-						width:1.2rem;
-						text-align:left;
-					}
-					span.all-history-drc{
-						width:.7rem;
+			ul.bargain-all-history-list{
+				background: $bgDefaultDarkA;
+				>li{
+					border-bottom:.01rem solid $textK;
+					padding:.06rem;
+					>div.all-history-item{
 						height:.6rem;
 						line-height:.6rem;
-						background-repeat: no-repeat;
-						background-position: center;
-					}
-					span.all-history-drc.drc8{
-						background-image:url('../../../../../resource/images/icon_hebuy.png');
-					}
-					span.all-history-drc.drc9{
-						background-image:url('../../../../../resource/images/icon_hesale.png');
-					}
-					span.all-history-drc.drc2{
-						background-image:url('../../../../../resource/images/icon_ibuy.png');
-					}
-					span.all-history-drc.drc3{
-						background-image:url('../../../../../resource/images/icon_isale.png');
-					}
-					span.all-history-num{
-						width:.9rem;
-					}
-					span.all-history-yield{
-						width:.6rem;
-					}
-				}
-				>div.all-history-exchanges{
-					border-top:.01rem solid $textK;
-					font-size:0;
-					position:relative;
-					>div.history-exchanges-seller,div.history-exchanges-buyer{
-						vertical-align:top;
-						display:inline-block;
-						width:1.8rem;
-						font-size:.12rem;
-						margin:.1rem 0;
-						text-align:center;
+						font-size:0;
 						span{
+							font-size:.12rem;
 							display:inline-block;
+							text-align:center;
 							word-break:keep-all;/* 不换行 */ 
 							white-space:nowrap;/* 不换行 */ 
 							overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
-							color:$textK;
+							div.history-info-nm{
+								height:.3rem;
+								line-height:.4rem;
+								color:$textG;
+							}
+							div.history-info-cd{
+								height:.3rem;
+								line-height:.2rem;
+							}
 						}
-						span.history-exchanges-yldrto{
+						span.all-history-info{
+							width:1.1rem;
+							text-align:left;
+						}
+						span.all-history-drc{
+							width:.48rem;
+							height:.6rem;
+							line-height:.6rem;
+							background-repeat: no-repeat;
+							background-position: center;
+						}
+						span.all-history-drc.drc8{
+							background-image:url('../../../../../resource/images/icon_hebuy.png');
+						}
+						span.all-history-drc.drc9{
+							background-image:url('../../../../../resource/images/icon_hesale.png');
+						}
+						span.all-history-drc.drc2{
+							background-image:url('../../../../../resource/images/icon_ibuy.png');
+						}
+						span.all-history-drc.drc3{
+							background-image:url('../../../../../resource/images/icon_isale.png');
+						}
+						span.all-history-num{
 							width:.5rem;
 						}
-						span.history-exchanges-netprc{
+						span.all-history-yield{
 							width:.6rem;
 						}
-						span.history-exchanges-num{
-							width:.5rem;
+						span.all-history-time{
+							width:.8rem;
+						}
+						span.all-history-icon{
+							width: .1rem;
+							height: .6rem;
+							line-height: .6rem;
+							background-image:url('../../../../../resource/images/btn_arrow_packup2_normal.png');//btn_arrow_unfold2_normal
+							background-size:.1rem;
+							background-repeat: no-repeat;
+							background-position: center;
 						}
 					}
-					div.history-exchanges-seller{
-						color:$textH;
-						/* border-right:.01rem solid $textK; */
+					>div.all-history-exchanges{
+						border-top:.01rem solid $textK;
+						font-size:0;
+						position:relative;
+						>div.history-exchanges-seller,div.history-exchanges-buyer{
+							vertical-align:top;
+							display:inline-block;
+							width:1.8rem;
+							font-size:.12rem;
+							margin:.1rem 0;
+							text-align:center;
+							span{
+								font-size:.12rem;
+								display:inline-block;
+								word-break:keep-all;/* 不换行 */ 
+								white-space:nowrap;/* 不换行 */ 
+								overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+								color:$textK;
+							}
+							span.history-exchanges-yldrto{
+								width:.5rem;
+							}
+							span.history-exchanges-netprc{
+								width:.64rem;
+							}
+							span.history-exchanges-num{
+								width:.5rem;
+							}
+						}
+						div.history-exchanges-seller{
+							color:$textH;
+							/* border-right:.01rem solid $textK; */
+						}
+						div.history-exchanges-buyer{
+							color:$textI;
+						}
+						div.vline{
+							width:1px;
+							border-left:1px solid $textK;
+							position:absolute;
+							top:.12rem;
+							bottom:.1rem;
+							left:1.8rem;
+						}
 					}
-					div.history-exchanges-buyer{
-						color:$textI;
+				}
+				>li.fold{
+					>div.all-history-item{
+						span.all-history-icon{
+							background-image:url('../../../../../resource/images/btn_arrow_unfold2_normal.png');//btn_arrow_unfold2_normal
+						}
 					}
-					div.vline{
-						width:1px;
-						border-left:1px solid $textK;
-						position:absolute;
-						top:.12rem;
-						bottom:.1rem;
-						left:1.8rem;
+					>div.all-history-exchanges{
+						display:none;
 					}
 				}
 			}

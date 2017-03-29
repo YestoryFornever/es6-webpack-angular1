@@ -1,9 +1,7 @@
-import template from './app.html';
-import './app.scss';
+// import template from './app.html';
+// import './app.scss';
 
-let appComponent = {
-  template,
+app.component('app', {
+  templateUrl: './app.html',
   restrict: 'E'
-};
-
-export default appComponent;
+});

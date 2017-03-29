@@ -1,13 +1,4 @@
-import angular from 'angular';
-import uiRouter from 'angular-ui-router';
-import cashofferComponent from './cashoffer.component';
-import cashofferService from './cashoffer.service';
-
-let cashofferModule = angular.module('cashoffer', [
-	uiRouter,
-	cashofferService
-])
-.config(($stateProvider, $urlRouterProvider) => {
+app.config(($stateProvider, $urlRouterProvider) => {
 	"ngInject";
 
 	$stateProvider
@@ -20,8 +11,4 @@ let cashofferModule = angular.module('cashoffer', [
 			}
 		});
 })
-.component('cashoffer', cashofferComponent)
-
-.name;
-
-export default cashofferModule;
+.component('cashoffer', cashofferComponent);

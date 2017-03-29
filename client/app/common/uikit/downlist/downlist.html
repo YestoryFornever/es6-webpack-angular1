@@ -1,0 +1,26 @@
+<div class="dropdown uikit-downlist">
+	<div id="dLabel" data-toggle="dropdown">
+		<span ng-show="!selected.items || selected.items.length==0">{{placeholder}}</span>
+		<ul class="uikit-downlist-select-ul" ng-show="selected.items && selected.items.length>0">
+			<li ng-repeat="select in selected.items"> {{select.label}} </li>
+		</ul>
+	</div>
+	<div class="dropdown-menu" style="overflow:auto; height:5rem" ng-click="getSelecteds()">
+		<ul>
+			<li ng-repeat="item in listOfItems" data-stopPropagation="true">
+				<label>
+					<input type="checkbox" ng-model="item.ichecked">
+					{{item.label}}
+				</label>
+				<ul ng-if="item.children" class="uikit-downlist-level2">
+					<li ng-repeat="item2 in item.children">
+						<label>
+							<input type="checkbox" ng-model="item2.checked">
+							{{item2.label}}
+						</label>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>

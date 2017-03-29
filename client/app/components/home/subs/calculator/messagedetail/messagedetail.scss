@@ -1,0 +1,490 @@
+
+h1,h2,h3,h4,h5,h6{
+	margin: 0; 
+	padding: 0;
+}
+.all_mains{
+		height:100%;
+		width:100%;
+		margin:0 auto;
+		overflow:hidden;
+		// overflow-y:auto;
+		background:#fff;
+		color:black;
+		margin-bottom:.15rem;
+//清除浮动
+		.clearfix:afert{
+		clear:both;
+		content:' ';
+		display:block;
+		width: 0;
+		height: 0;
+		visibility:hidden;
+		}
+		.clearfix {zoom:1;} 
+//table切换
+	.table{
+		height:9rem;
+		width:100%;
+		//background:yellow;
+		margin:0rem auto;
+		//border:.01rem solid green;
+		.clear{
+			zoom:1;
+		}
+		
+		
+//详情页面
+#details{
+	//border:#033 1px solid; 
+	height:100%;
+	width:96%;
+	float:left;
+	margin:0 auto;
+	// overflow-y:auto;
+	overflow:hidden;
+	
+	.details_lf{
+		height:100%;
+		width:80%;
+		float:left;
+		overflow:hidden;
+		//background:red;
+		.details_lf_top{
+			height:1rem;
+			width:96%;
+			position:relative;
+			left:0;
+			top:0;
+			border-bottom:.1px solid #666;
+			// background:red;
+			margin:.1rem auto;
+			p{
+				display:block;
+				height:.3rem;
+				line-height:.3rem;
+				width:100%;
+				position:absolute;
+				left:0;
+				bottom:0;
+
+			}
+		}
+		.details_lf_contail{
+			width:96%;
+			height:auto;
+			margin:.1rem auto;
+			li{
+			margin:.1rem auto;
+			text-indent:2em;
+			}
+		}
+	// 图片
+		.details_lf_img{
+			height:2rem;
+			width:96%;
+			border-size:cover;
+			margin:.1rem auto;
+			img{
+				height:100%;
+				width:100%;
+			}
+		}
+		.details_lf_comments{
+			height:1.6rem;
+			width:96%;
+			background:#fff;
+			margin:.1rem auto;
+			
+			.details_lf_comments_text{
+				height:1rem;
+				width:96%;
+				margin:0 auto;
+				overflow:hidden;
+				background:#fff;
+				position:relative;
+				left:0;
+				top:0;
+				.position_img{
+					height:100%;
+					width:100%;
+					position:absolute;
+					left:0;
+					top:0;
+					background-size:cover;
+						img{
+							height:100%;
+							width:100%;
+						}
+				}
+				// background:url("../../../../../../resource/images/icon_collect_hover.png") no-repeat;
+				
+				textarea{
+						height:100%;
+						width:100%;
+				}
+			}
+			.details_lf_comments_button{
+				height:.4rem;
+				width:96%;
+				margin:0 auto;
+				position:relative;
+				left:0;
+				top:0;
+				//评论发布
+				.search_sofa{
+					border:none;
+					height:.3rem;
+					width:1rem;
+					line-height:.3rem;
+					text-align:center;
+					background:#C1C1C1;
+					position:absolute;
+					right:0;
+					bottom:0;
+			}
+				.search_sofa:hover{
+					background:#FF671B;
+				}
+			}
+
+			
+		}
+//评论区域
+		.details_lf_comments_area{
+			height:6rem;
+			overflow-y:hidden;
+			width:96%;
+			background:#F9F9F9;
+			margin:.1rem auto;
+			.details_lf_comments_area_box{
+				height:100%;
+				width:98%;
+				margin-left:.2rem;
+				.comments_area_header{
+				//background:red;
+				height:.3rem;
+				width:97%;
+				line-height:.3rem;
+				}
+				.comments_area_content{
+					float:left;
+					width:97%;
+					//background:red;
+					.area_content_title{
+						height:.4rem;
+						float:left;
+						width:100%;
+						.title_one{
+						height:.4rem;
+						width:.4rem;
+						border-radius:.2rem;
+						background:green;
+						border-size:cover;
+						float:left;
+						img{
+							height:100%;
+							width:100%;
+						}
+						
+						}
+						.title_two{
+							height:.4rem;
+							font-size:.1rem;
+							width:2rem;
+							float:left;
+							padding-left:.1rem;
+							.title_two_name{
+								font-size:14px;
+								font-weight:700;
+
+							}
+
+							p{
+								display:block;
+								height:.2rem;
+								line-height:.2rem;
+								width:100%;
+								margin-bottom:0px;
+							}
+						}
+					}
+					.area_content{
+						width:96%;
+						//
+						margin-left:.48rem;
+						//padding-left:.3rem;
+						margin-top:.05rem;
+							p{
+								margin:0;
+							}
+						.area_content_replay{
+							//background:red;
+							}
+						.area_content_time{
+							display:block;
+							height:.3rem;
+							float:left;
+							line-height:.3rem;
+							width:100%;
+							font-size:12px;
+							.area_content_span01{
+								display:block;
+								height:.3rem;
+								line-height:.3rem;
+								width:1.6rem;
+								float:left;
+								//background:red;
+								
+							}
+							.area_content_span02{
+								display:block;
+								height:.3rem;
+								line-height:.3rem;
+								width:1.2rem;
+								float:right;
+								//background:green;
+							}
+						}
+						.import{
+							display:none;
+							height:1rem;
+							width:100%;
+							position:relative;
+							left:0;
+							top:0;
+							textarea{
+							display:block;
+							height:.4rem;
+							width:100%;
+							}
+							#response{
+							display:block;
+								height:.4rem;
+								width:1.7rem;
+								position:absolute;
+								right:0;
+								bottom:.1rem;
+								#btn_cancal_coment:hover{
+								background:green;
+								}
+							}
+
+						}
+					}
+				}
+			}
+			}
+	}
+//资讯详情右侧
+	.details_rt{
+		height:100%;
+		width:20%;
+		float:left;
+		overflow:hidden;
+		.details_rt_top{
+			height:.4rem;
+			line-height:.4rem;
+			width:96%;
+			margin:.1rem .06rem;
+			float:left;
+			border:1px  solid #DCDBE0;
+			// background:red;
+			.details_rt_top_left{
+				height:.4rem;
+				width:50%;
+				border-right:1px solid #DCDBE0;
+				cursor:pointer;
+				float:left;
+				padding-left:5.5%;
+				.span_img{
+				display:block;
+				height:.24rem;
+				width:.24rem;
+				float:left;
+				margin-top:.08rem;
+				//background:url("../../../../../../resource/images/icon_collect_normal.png") no-repeat;
+				img{
+						display:block;
+						height:100%;
+						width:100%
+					}
+				}
+				.span_img:hover{
+				background:url("../../../../../../resource/images/icon_collect_hover.png") no-repeat;
+				}
+				.span_img:active{
+				background:url("../../../../../../resource/images/icon_collect_collected.png") no-repeat;
+				}
+				.span_world{
+				display:block;
+				height:.24rem;
+				width:.8rem;
+				float:left;
+				margin-top:.08rem;
+				line-height:.24rem;
+				text-align:center;
+				}
+				
+			}
+			.details_rt_top_left:hover{
+				background:#FF671B;
+				}
+
+			.details_rt_top_right{
+				height:100%;
+				width:50%;
+				float:left;
+				padding-left:.12rem;
+				cursor:pointer;
+				//padding-left:2%;
+				.span_img{
+				display:block;
+				height:.24rem;
+				width:.24rem;
+				float:left;
+				margin-top:.08rem;
+				background:url("../../../../../../resource/images/icon_original-net_normal.png") no-repeat;
+
+				}
+				.span_world{
+				display:block;
+				height:.24rem;
+				width:.8rem;
+				float:left;
+				margin-top:.08rem;
+				line-height:.24rem;
+				text-align:center;
+				}
+			}
+			.details_rt_top_right:hover{
+			background:#FF671B;
+
+			}
+		}
+		.details_rt_contail{
+			height:5rem;
+			width:96%;
+			margin:.1rem auto;
+			border-bottom:1px solid #666;
+			overflow:hidden;
+			position:relative;
+			left:0;
+			top:0;
+			.details_rt_contail_top{
+				height:7rem;
+				.two_top{
+					height:1rem;
+					width:100%;
+					float:left;
+					//background:yellow;
+					.two_top_lf{
+						height:.6rem;
+						width:.6rem;
+						background-size:cover;
+						float:left;
+						border-radius:.3rem;
+						margin:.2rem auto;
+						background:greenyellow;
+						img{
+							height:100%;
+							width:100%;
+						}
+					}
+					.two_top_rt{
+						height:.6rem;
+						line-height:.6rem;
+						width:1.2rem;
+						float:left;
+						margin:.2rem .3rem;
+						span{
+							font-size:.14rem;
+							text-align:center;
+							font-weight:700;
+						}
+					}
+				}
+				.two_center{
+					height:6rem;
+					width:96%;
+					margin:.1rem auto;
+					.two_center_one{
+						color:#A7A7A7;
+					}
+					li{
+						margin:.1rem auto;
+						p{
+						word-break:break-all;
+						text-overflow:ellipsis;
+						display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+		    			-webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+		    			-webkit-line-clamp: 2; /** 显示的行数 **/
+		    			overflow: hidden;  /** 隐藏超出的内容 **/
+						display:block;
+						//height:.4rem;
+						width:96%;
+						//background:blue;
+						//list-style-type:disc;
+						}
+						
+						//margin-left:.15rem;
+					}
+					li:hover{
+					color:#FD671A;
+					}
+				}
+			}
+			.details_rt_contail_footer{
+				height:1rem;
+				width:100%;
+				float:left;
+				background:red;
+				border-top:.01rem solid #666;
+				position:absolute;
+				left:0;
+				bottom:0;
+				.one_left{
+					height:100%;
+					width:50%;
+					float:left;
+					border:none;
+					background:#fff;
+					p{
+						word-break:break-all;
+						text-overflow:ellipsis;
+						display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+		    			-webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+		    			-webkit-line-clamp: 2; /** 显示的行数 **/
+		    			overflow: hidden;  /** 隐藏超出的内容 **/
+						dispaly:block;
+					}
+				}
+				.one_right{
+					height:100%;
+					width:50%;
+					float:left;
+					border:none;
+					background:#fff;
+					p{
+						word-break:break-all;
+						text-overflow:ellipsis;
+						display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+		    			-webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+		    			-webkit-line-clamp: 2; /** 显示的行数 **/
+		    			overflow: hidden;  /** 隐藏超出的内容 **/
+						dispaly:block;
+					}
+				}
+
+			}
+			
+		}
+	}
+	
+	}
+}
+
+
+
+
+}

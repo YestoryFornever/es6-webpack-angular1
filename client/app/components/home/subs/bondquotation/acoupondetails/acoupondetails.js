@@ -1,14 +1,4 @@
-import angular from 'angular';
-import uiRouter from 'angular-ui-router';
-import acoupondetailsComponent from './acoupondetails.component';
-import acoupondetailsServiceModule from './acoupondetails.service';
-let acoupondetailsModule = angular.module('acoupondetails', [
-  uiRouter,
-acoupondetailsServiceModule
-])
-.config(($stateProvider, $urlRouterProvider) => {
-	"ngInject";
-
+app.config(($stateProvider, $urlRouterProvider) => {
 	$stateProvider
 		.state('home.acoupondetails', {
 			url: '/acoupondetails/?:bondid',
@@ -24,8 +14,9 @@ acoupondetailsServiceModule
 		})
 	
 })
-.component('acoupondetails', acoupondetailsComponent)
-
-.name;
-
-export default acoupondetailsModule;
+.component('acoupondetails', {
+	restrict: 'E',
+	bindings: {},
+	templateUrl: './acoupondetails.html',
+	controller: AcoupondetailsController
+})

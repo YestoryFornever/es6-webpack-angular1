@@ -1,0 +1,19 @@
+<div class="sendAlert " >
+		<div class="modal-header ng-scope">
+			<p class="modal-title" id="modal-title">发送
+				<i class="fa fa-times pull-right" aria-hidden="true" ng-click="$ctrl.cancel()"></i>
+			</p>
+		</div>
+		<div class="modal-body ng-scope " id="modal-body" ng-onInit='info.friend=false,info.onLine=false'>
+			<div ng-model='$ctrl.info.friend' ng-click='$ctrl.info.friend=!$ctrl.info.friend' style="margin: 0.1rem 0">
+				<span class="bg" ng-class='{"active":$ctrl.info.friend}'><i style='margin-right: 0.15rem'>&nbsp;</i>发送给好友</span>
+			</div>
+			<div ng-model='$ctrl.info.onLine'  ng-click='$ctrl.info.onLine=!$ctrl.info.onLine'>
+				<span class="bg" ng-class='{"active":$ctrl.info.onLine}'><i style='margin-right: 0.15rem'>&nbsp;</i>在报价大厅挂牌</span>
+			</div>
+		</div>
+		<div style="clear: both;"></div>
+		<div class="modal-footer ">
+			<button class="btn" ng-click="$ctrl.ok()">确定</button>
+		</div>
+</div>

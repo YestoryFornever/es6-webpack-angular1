@@ -1,8 +1,4 @@
-var BONDCONFIG = require('../../../../../../../bond.config.js');
-import angular from 'angular';
-
-let QuoteModalServiceModule = angular.module('quoteModalService', [])
-.factory('quoteModalService',['$http','$q',function($http,$q){
+app.factory('quoteModalService',['$http','$q',function($http,$q){
 	return {
 		queryQuoteList(){
 			let deferred = $q.defer();
@@ -22,6 +18,4 @@ let QuoteModalServiceModule = angular.module('quoteModalService', [])
 			return deferred.promise;
 		}
 	}
-}])
-.name;
-export default QuoteModalServiceModule;
+}]);

@@ -1,6 +1,7 @@
 <div class="bond-quote">
 	<div class="modal-header">
 		<h3 class="modal-title">我的报价</h3>
+		<div class="modal-close" ng-click="$instanceCtrl.cancel()"></div>
 	</div>
 	<div class="modal-body">
 		<div class="table-responsive table-quote-list">
@@ -25,31 +26,32 @@
 							<input type="checkbox" ng-model="item.checked">
 						</td>
 						<td style="width:.46rem">
-							<input type="text" ng-model="item.drc">
+							<span class="drc-buy" ng-if="item.drc!='1'">买入</span>
+							<span class="drc-sell" ng-if="item.drc=='1'">卖出</span>
 						</td>
 						<td style="width:.90rem">
-							<input type="text" ng-model="item.bondCd">
+							<span>{{item.bondCd}}</span>
 						</td>
 						<td style="width:1.17rem">
-							<input type="text" ng-model="item.bondShrtnm">
+							<span class="shrtnm">{{item.bondShrtnm}}</span>
 						</td>
 						<td style="width:.66rem">
-							<input type="text" ng-model="item.num">
+							<span>{{item.num|numFilter}}</span>
 						</td>
 						<td style="width:.67rem">
-							<input type="text" ng-model="item.yldrto">
+							<span class="yld">{{item.yldrto|yldrtoFilter}}%</span>
 						</td>
 						<td style="width:.71rem">
-							<input type="text" ng-model="item.netprc">
+							<span>{{item.netprc|number:4}}</span>
 						</td>
 						<td style="width:.57rem">
-							<input type="checkbox" ng-checked="item.wthrAnon==='1'">
+							<input type="checkbox" ng-checked="item.wthrAnon==='1'" disabled>
 						</td>
 						<td style="width:1.43rem">
-							<input type="text" ng-model="item.remark">
+							<span>{{item.rmrk}}</span>
 						</td>
 						<td style="width:.68rem">
-							<input type="checkbox" ng-checked="item.wthrListg==='1'">
+							<input type="checkbox" ng-checked="item.wthrListg==='1'" disabled>
 						</td>
 					</tr>
 				</tbody>
@@ -58,6 +60,6 @@
 	</div>
 	<div class="modal-footer">
 		<button class="btn btn-primary" type="button" ng-click="$instanceCtrl.ok()">确定</button>
-		<button class="btn btn-warning" type="button" ng-click="$instanceCtrl.addQuote()">添加债券</button>
+		<button class="btn btn-primary" type="button" ng-click="$instanceCtrl.addQuote()">添加债券</button>
 	</div>
 </div>

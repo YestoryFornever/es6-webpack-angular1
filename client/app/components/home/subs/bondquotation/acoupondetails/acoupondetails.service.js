@@ -1,7 +1,4 @@
-var BONDCONFIG = require('../../../../../../bond.config.js');
-import angular from 'angular';
-let acoupondetailsServiceModule = angular.module('acoupondetailsService',[])
-.factory('acoupondetailsService',['$http','$q',function($http,$q){
+app.factory('acoupondetailsService',['$http','$q',function($http,$q){
 	console.log(BONDCONFIG);
 	return {
 		//获取详细的个券信息
@@ -147,6 +144,4 @@ let acoupondetailsServiceModule = angular.module('acoupondetailsService',[])
 
 
 
-}])
-.name;
-export default acoupondetailsServiceModule;
+}]);

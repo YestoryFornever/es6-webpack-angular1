@@ -1,12 +1,4 @@
-import angular from 'angular';
-import uiRouter from 'angular-ui-router';
-import groupslistComponent from './groupslist.component';
-import groupslistService from './groupslist.service';
-let groupslistModule = angular.module('groupslist', [
-	uiRouter,
-	groupslistService
-])
-.config(($stateProvider, $urlRouterProvider) => {
+app.config(($stateProvider, $urlRouterProvider) => {
 	"ngInject";
 
 	$stateProvider
@@ -19,8 +11,4 @@ let groupslistModule = angular.module('groupslist', [
 			}
 		});
 })
-.component('groupslist', groupslistComponent)
-
-.name;
-
-export default groupslistModule;
+.component('groupslist', groupslistComponent);

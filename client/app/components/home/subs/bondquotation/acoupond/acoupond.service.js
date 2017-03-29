@@ -1,7 +1,4 @@
-var BONDCONFIG = require('../../../../../../bond.config.js');
-import angular from 'angular';
-let acoupondServiceModule = angular.module('acoupondService',[])
-.factory('acoupondService',['$http','$q',function($http,$q){
+app.factory('acoupondService',['$http','$q',function($http,$q){
 	console.log(BONDCONFIG);
 	return {
 		//获取详细的个券信息
@@ -144,6 +141,4 @@ let acoupondServiceModule = angular.module('acoupondService',[])
 
 
 
-}])
-.name;
-export default acoupondServiceModule;
+}]);

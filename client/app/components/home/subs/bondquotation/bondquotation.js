@@ -1,24 +1,4 @@
-import angular from 'angular';
-import uiRouter from 'angular-ui-router';
-import bondquotationComponent from './bondquotation.component';
-import bondquotationService from './bondquotation.service';
-
-import acoupondetailsModule from './acoupondetails/acoupondetails';
-import acoupondModule from './acoupond/acoupond';
-import nowBondModule from '../nowBond/nowBond';
-import changeBondModule from './subs/changeBond/changeBond';
-
-
-
-let bondquotationModule = angular.module('bondquotation', [
-	uiRouter,
-	bondquotationService,
-	acoupondetailsModule,
-	acoupondModule,
-	nowBondModule,
-	changeBondModule
-])
-.config(($stateProvider, $urlRouterProvider) => {
+app.config(($stateProvider, $urlRouterProvider) => {
 	"ngInject";
 
 	$stateProvider
@@ -31,8 +11,9 @@ let bondquotationModule = angular.module('bondquotation', [
 			},
 		})
 })
-.component('bondquotation', bondquotationComponent)
-
-.name;
-
-export default bondquotationModule;
+.component('bondquotation', {
+	restrict: 'E',
+	bindings: {},
+	templateUrl: './bondquotation.html',
+	controller: BondquotationController
+});

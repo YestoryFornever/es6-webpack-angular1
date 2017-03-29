@@ -1,27 +1,15 @@
-import angular from 'angular';
-import uiRouter from 'angular-ui-router';
-import loginComponent from './login.component';
-import loginService from './login.service';
+app
 
-let loginModule = angular.module('login', [
-	uiRouter,
-	loginService
-])
-
-.config(($stateProvider, $urlRouterProvider) => {
-	"ngInject";
-
-	$urlRouterProvider.otherwise('/');
+.component('login', {
+	restrict: 'E',
+	bindings: {},
+	templateUrl: './login.html',
+	controller: LoginController
+}).config(($stateProvider, $urlRouterProvider) => {
 
 	$stateProvider
-		.state('login',{
-			url:'/',
-			component: 'login'
-		})
-})
-
-.component('login', loginComponent)
-
-.name;
-
-export default loginModule;
+	.state('login',{
+		url:'/login',
+		component: 'login'
+	})
+});

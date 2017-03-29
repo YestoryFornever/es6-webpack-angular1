@@ -1,0 +1,125 @@
+<!--<div style="text-align:center; height: 800px">&ndash;&gt;-->
+<!--<iframe src="http://ylzx.gensee.com/webcast/site/entry/join-e9c2f4a546c04e918602dba53f4623e9?nickName=tset"-->
+<!--frameBorder="0" marginwidth="0" marginheight="0" scrolling="yes" height="560" width="1000px"></iframe>-->
+<!--</div>-->
+<!--
+	开发：张旭超
+	site：不包括http://
+	ownerid="直播编号" 生产直播连接的join后面的编码
+	authcode 普通参加者口令，如果为空可选。
+-->
+<div style="background: #373b42">
+    <div class="container" style="height: 650px">
+        <p class="trailer"><span>{{$ctrl.data.state | caststate}}</span> {{$ctrl.data.title}}</p>
+        <table style="width: 100%; height: 100%">
+            <tr valign="top">
+                <!--聊天视频模块-->
+                <td width="300" height="200" style="background: #26292e">
+                    <gs:video-live
+                            site="ylzx.gensee.com"
+                            ownerid="e9c2f4a546c04e918602dba53f4623e9"
+                            uid={{$ctrl.uid}}
+                            uname={{$ctrl.uname}}
+                    />
+                </td>
+                <!--聊天文档模块-->
+                <td rowspan="2" class="castDocument" height="560">
+                    <!--ownerid="{{$ctrl.data.live_id}}"-->
+                    <!--ownerid="e9c2f4a546c04e918602dba53f4623e9"-->
+                    <gs:doc
+                            site="ylzx.gensee.com"
+                            ownerid="e9c2f4a546c04e918602dba53f4623e9"
+                            bgcolor="#2222222"
+                    />
+                </td>
+                <!--大纲和观众列表-->
+                <td width="300" rowspan="2">
+                    <div class="castFree" style="background: #25292e;">
+                        <div class="col-xs-6 text-center" style="border-right: 1px solid #444">
+                            <div class="bord" ng-class="{'rightTabActive': $ctrl.rightTabActive}"><a
+                                    ng-click="$ctrl.outline()">本期大纲</a>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 text-center">
+                            <div class="bord" ng-class="{'rightTabActive': !$ctrl.rightTabActive}"><a
+                                    ng-click="$ctrl.audience()">观众 · <span>{{$ctrl.data.sum_online}}</span></a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="clear: both"></div>
+                    <div class="documentPlace">
+                        <!--单机的时候调用不同的数据来替换这里的内容-->
+                        <div ng-show="$ctrl.rightTabActive">
+                            {{$ctrl.data.note}}
+                        </div>
+                        <div ng-show="!$ctrl.rightTabActive">
+                            <ul>
+                                <li ng-repeat="item in $ctrl.userList track by $index" class="castUser"
+                                    style="background: url(http://imgsrc.baidu.com/forum/pic/item/4193a851f3deb48fffedc8f7f11f3a292cf578f8.jpg) no-repeat; background-size: 35px 35px">
+                                    <!--<li ng-repeat="item in $ctrl.userList track by $index" class="castUser" style="background: url({{item.name}})">-->
+                                    <p class="pBottom">{{item.name}}</p>
+                                    <p class="space">{{item.role}}</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr valign="top">
+                <!--聊天和提问模块-->
+                <td>
+                    <div class="castFree" style="background: #25292e;">
+                        <div class="col-xs-6 text-center" style="border-right: 1px solid #444">
+                            <div class="bord" ng-class="{'castTabActive': $ctrl.castActive}"><a ng-click="$ctrl.free()">自由发言</a>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 text-center">
+                            <div class="bord" ng-class="{'castTabActive': !$ctrl.castActive}"><a
+                                    ng-click="$ctrl.quest()">提问</a></div>
+
+                        </div>
+                    </div>
+                    <div class="oneTab" ng-show="$ctrl.castActive">
+                        <ul class="freePlace" id="scroll">
+                            <li ng-repeat="item in $ctrl.msgInfo track by $index" class="castUser"
+                                style="background:
+                                url(http://imgsrc.baidu.com/forum/pic/item/4193a851f3deb48fffedc8f7f11f3a292cf578f8.jpg)
+                                no-repeat; background-size: 35px 35px">
+                                <p class="pBottom">{{item.sender}}</p>
+                                <p class="pBottom" ng-if="item.sender == null">我</p>
+                                <p><span
+                                        ng-class="{'msgBg': item.sender==null}">{{item.content}}</span>
+                                </p>
+                            </li>
+                        </ul>
+                        <div class="castSend">
+                            <textarea type="text" ng-model="$ctrl.content" class="castInput"></textarea>
+                            <a class="castIcon"><i class="fa fa-frown-o"></i></a>
+                            <button ng-click="$ctrl.send()" class="castBtn">发送</button>
+                        </div>
+                    </div>
+                    <div class="twoTab" ng-show="!$ctrl.castActive">
+                        <div class="freePlace">
+                            <div ng-repeat="item in $ctrl.questInfo track by $index">
+                                <ul>
+                                    <li class="castUser"
+                                        style="background: url(http://imgsrc.baidu.com/forum/pic/item/4193a851f3deb48fffedc8f7f11f3a292cf578f8.jpg) no-repeat; background-size: 35px 35px">
+                                        <p class="pBottom">{{item.submitor}}</p>
+                                        <!--<p class="castContent"><span>{{item.content}}</span></p>-->
+                                        <p>{{item.question}}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="castSend">
+                            <textarea type="text" ng-model="$ctrl.q" class="castInput"></textarea>
+                            <a class="castIcon"><i class="fa fa-frown-o"></i></a>
+                            <button ng-click="$ctrl.qt()" class="castBtn">提问</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

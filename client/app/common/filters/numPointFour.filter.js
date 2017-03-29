@@ -1,7 +1,4 @@
-import angular from 'angular';
-
-let numPointFourFilterModule = angular.module('numPointFourFilter', [])
-.filter('numPointFourFilter',function(){
+app.filter('numPointFourFilter',function(){
 	return function(numPointFour){
 		let reg = /\./;
 		if(reg.test(numPointFour)){
@@ -10,7 +7,4 @@ let numPointFourFilterModule = angular.module('numPointFourFilter', [])
 		}
 		return numPointFour ;
 	};
-})
-.name;
-
-export default numPointFourFilterModule;
+});

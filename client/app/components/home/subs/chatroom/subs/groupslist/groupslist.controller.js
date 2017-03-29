@@ -1,7 +1,7 @@
 class GroupslistController {
 	constructor() {
+		"ngInject";
 		this.name = 'groupslist';
 	}
 }
-GroupslistController.$inject = [];
-export default GroupslistController;
+

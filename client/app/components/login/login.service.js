@@ -1,9 +1,14 @@
-var BONDCONFIG = require('../../../bond.config.js');
-import angular from 'angular';
-
-let loginServiceModule = angular.module('loginService', [])
-.factory('loginService',['$http','$q',function($http,$q){
+app.factory('loginService',['$http','$q',function($http,$q){
 	return {
+		Guid:function() {
+			function s4() {
+				return Math.floor((1 + Math.random()) * 0x10000)
+					.toString(16)
+					.substring(1);
+			}
+			return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+				s4() + '-' + s4() + s4() + s4();
+		},
 		login:function(account, password, ifSecond){
 			let deferred = $q.defer();
 			$http({
@@ -16,11 +21,10 @@ let loginServiceModule = angular.module('loginService', [])
 					loginWay:"4",
 					loginTerminalType:"2",
 					equipmentNumber:"WEB-EBASE",
-					numberOfLanding:BONDCONFIG.UUID,
+					numberOfLanding:this.Guid(),
 					// auroraID:"",
 					isCarryOn:ifSecond?"1":""
-				},
-				headers: BONDCONFIG.JH
+				}
 			}).then((response)=>{
 				if(response.data.status==="0"){
 					BONDCONFIG.setUSERINFO(response.data.data);
@@ -45,8 +49,7 @@ let loginServiceModule = angular.module('loginService', [])
 					loginTerminalType:"2",
 					// auroraID:"",
 					equipmentNumber:"WEB-EBASE"
-				},
-				headers: BONDCONFIG.JH
+				}
 			}).then((response)=>{
 				deferred.resolve(response);
 			},(response)=>{
@@ -71,6 +74,4 @@ let loginServiceModule = angular.module('loginService', [])
 			return deferred.promise;
 		}
 	}
-}])
-.name;
-export default loginServiceModule;
+}]);

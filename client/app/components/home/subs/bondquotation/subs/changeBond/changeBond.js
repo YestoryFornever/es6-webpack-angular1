@@ -1,12 +1,4 @@
-import angular from 'angular';
-import uiRouter from 'angular-ui-router';
-import changeBondComponent from './changeBond.component';
-import changeBondService from './changeBond.service';
-let changeBondModule = angular.module('changeBond', [
-	uiRouter,
-	changeBondService
-])
-.config(($stateProvider, $urlRouterProvider) => {
+app.config(($stateProvider, $urlRouterProvider) => {
 	"ngInject";
 
 	$stateProvider
@@ -19,8 +11,14 @@ let changeBondModule = angular.module('changeBond', [
 			},
 		})
 })
-.component('changeBond', changeBondComponent)
-
-.name;
-
-export default changeBondModule;
+.component('changeBond', {
+	restrict: 'E',
+	bindings: {
+		modalInstance: "<",
+		resolve: "<",
+		// isShow:"<",
+	},
+	templateUrl: './changeBond.html',
+	controller: ChangeBondController,
+	controllerAs:'$instanceCtrl',
+});

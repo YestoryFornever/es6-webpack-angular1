@@ -1,6 +1,7 @@
 
 class CashofferController {
 	constructor(cashofferService,$uibModal) {
+		"ngInject";
 		this.name = 'cashoffer';
 		this.$uibModal = $uibModal;
 		this.cashofferService = cashofferService ;
@@ -57,5 +58,3 @@ class CashofferController {
 
 	}
 }
-CashofferController.$inject = ['cashofferService','$uibModal'];
-export default CashofferController;

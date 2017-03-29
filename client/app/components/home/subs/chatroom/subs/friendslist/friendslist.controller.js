@@ -1,5 +1,6 @@
 class FriendslistController {
 	constructor() {
+		"ngInject";
 		this.name = 'friendslist';
 	}
 	$onInit(){
@@ -31,5 +32,3 @@ class FriendslistController {
 		];
 	}
 }
-FriendslistController.$inject = [];
-export default FriendslistController;

@@ -1,20 +1,4 @@
-import angular from 'angular';
-import uiRouter from 'angular-ui-router';
-import calculatorComponent from './calculator.component';
-import Backgroundsystem from './backgroundsystem/backgroundsystem';
-import Message from './message/message';
-import Backsystem from './backsystem/backsystem';
-import Cashoffer from './cashoffer/cashoffer';
-
-let calculatorModule = angular.module('calculator', [
-	uiRouter,
-	Backgroundsystem,
-	Backsystem,
-	Cashoffer,
-	Message
-
-])
-.config(($stateProvider, $urlRouterProvider) => {
+app.config(($stateProvider, $urlRouterProvider) => {
 	"ngInject";
 
 	$stateProvider
@@ -27,8 +11,4 @@ let calculatorModule = angular.module('calculator', [
 			}
 		});
 })
-.component('calculator', calculatorComponent)
-
-.name;
-
-export default calculatorModule;
+.component('calculator', calculatorComponent);

@@ -1,17 +1,17 @@
-import $ from '../../../../../../../jquery-vendor.js';
-import bootstrap from 'bootstrap';
-import angular from 'angular';
-import uiRouter from 'angular-ui-router';
-import pagetabComponent from './pagetab.component';
-import pagetabService from './pagetab.service';
+app.component('pagetab', {
+	restrict: 'E',
+	bindings: {
+		tabs:'=',
+	},
+	templateUrl: './pagetab.html',
+	controller: function($scope, pageheaderService,$state,$stateParams,$uibModal,$mdDialog, pagetabService){
+		$scope.pagetabService = pagetabService;
 
-let pagetabModule = angular.module('pagetab', [
-	uiRouter,
-	pagetabService,
-])
-
-.component('pagetab', pagetabComponent)
-
-.name;
-
-export default pagetabModule;
+		/*$doCheck(){
+			console.log(this.tabs);
+		}
+		$onChanges(){}
+		$postLink(){}
+		$onDestroy(){}*/
+	}
+});

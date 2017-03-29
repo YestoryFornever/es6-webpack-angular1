@@ -1,8 +1,4 @@
-var BONDCONFIG = require('../../../../../../../bond.config.js');
-import angular from 'angular';
-
-let bargainlistServiceModule = angular.module('bargainlistService', [])
-.factory('bargainlistService',['$http','$q',function($http,$q){
+app.factory('bargainlistService',['$http','$q',function($http,$q){
 	return {
 		queryBondNegtprcList(){
 			let deferred = $q.defer();
@@ -21,6 +17,4 @@ let bargainlistServiceModule = angular.module('bargainlistService', [])
 			return deferred.promise;
 		},
 	}
-}])
-.name;
-export default bargainlistServiceModule;
+}]);
