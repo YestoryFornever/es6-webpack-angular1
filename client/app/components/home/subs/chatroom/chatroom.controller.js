@@ -160,11 +160,19 @@ class ChatroomController {
 				};
 				break;
 		}
+		/**
+		 * [showCurCounting 控制议价详情界面倒计时是否显示]
+		 * @type {[boolean]}
+		 * 通常倒计时是否显示与交易按钮是否显示同步，只有一种情况例外：从报价界面进入聊天界面且议价记录为空时。
+		 */
 		this.showCurCounting = this.btnState.deal.enable;
 		if(isQuote)
 			if(!(data.negtprcDtlList && data.negtprcDtlList.length>0))
 				this.showCurCounting = false;
-
+		/**
+		 * [this.bargainDetailTime.reduction 重置倒计时]
+		 * @param  {[number]} [时间戳]
+		 */
 		if(this.bargainDetailTime&&this.bargainDetailTime.reduction){
 			this.bargainDetailTime.reduction(5*60*1000 - ((new Date()).getTime()-(new Date(stamp)).getTime()));
 		}
