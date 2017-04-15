@@ -1,0 +1,147 @@
+<div id="newAll_info" iscroll>
+	<div class="header_nav_info ">
+		<ul>
+			<li  ng-class="{'nav_back':tabkey_li==0}" ng-click="getrecommendedLists();tabkey_li=0">信用债</li>
+			<li>利率债</li>
+			<!-- <li  ng-class="{'nav_back':tabkey_li==1}" ng-click="tabkey_li=1" >利率债</li> -->
+			<li ui-sref="home.investor()">111</li>
+		</ul>
+	</div>
+	<div class="new_content">
+		<div class="tab_change">
+			<ul>
+			<!-- ng-click="issuelists(1);tabkey_ls=0" -->
+				<li ng-class="{'tab_change_back':issuelists_info.enqrTp==1}"   ui-sref="home.newdebtinformation({enqrTp:1,pageNum:1, reload: true })" >发行中</li>
+				<li ng-class="{'tab_change_back':issuelists_info.enqrTp==2}" ui-sref="home.newdebtinformation({enqrTp:2,pageNum:1, reload: true })" >明日发行</li>
+				<li ng-class="{'tab_change_back':issuelists_info.enqrTp==3}" ui-sref="home.newdebtinformation({enqrTp:3,pageNum:1, reload: true })">未来发行</li>
+				<li ng-class="{'tab_change_back':issuelists_info.enqrTp==4}" ui-sref="home.newdebtinformation({enqrTp:4,pageNum:1, reload: true })">未公告</li>
+			</ul>
+		</div>
+		<div class="heightsearch_all" ng-If="issuelists_info.enqrTp==3||issuelists_info.enqrTp==4">
+			<div class="inp_heightsearch">
+				<input type="text" placeholder="债券全称/发行主体/主承" ng-model="issuelists_info.value">
+				<i ng-click="issuelists()"><img src="../../../../../resource/images/icon_search.png" alt=""></i>
+			</div>
+			
+			<div class="btn_heightsearch"  ><span ng-class="{'btn_heightsearch_bg':openheightsearch_flg,'btn_heightsearch_bg2':!openheightsearch_flg}" ng-click="openheightsearch();tablekey=0 ">高级搜索</span></div>
+		</div>
+		<!-- 高级搜索 -->
+		<div class="hide_heightsearch" ng-If="openheightsearch_flg" >
+			<div class="mutile_search">
+				<span class="span">债券类型:</span>
+				<div class="btn-group" >
+						<label class="btn"
+						ng-model="issuelists_info.creditTypeList"
+						uib-btn-radio=[]
+						 class="btn  drc"
+						ng-click='issuelists_info.creditTypeListSelecteds=[];' >全部
+						</label>
+						<label class="btn" ng-repeat='(key,item) in bondTp' 
+								ng-model="issuelists_info.creditTypeListSelecteds[key]"
+								uib-btn-checkbox
+								btn-checkbox-true="item.value" 
+								ng-click='allOrNoAll(bondTpList,key,1)'
+								>
+								{{item.name}}
+						</label>
+				</div>
+			</div>
+			<div class="mutile_search mutile_search_last">
+				<span class="span">期限:</span>
+				
+				<div class="btn-group" >
+						<label class="btn"
+						ng-model="issuelists_info.issueTermList"
+						uib-btn-radio=[]
+						 class="btn  drc"
+						ng-click='issuelists_info.issueTermListSelecteds=[]' >全部
+						</label>
+						<label class="btn" ng-repeat='(key,item) in rsdtrm' 
+								ng-model="issuelists_info.issueTermListSelecteds[key]"
+								uib-btn-checkbox
+								btn-checkbox-true="item.value" 
+								ng-click='allOrNoAll(rsdtrmList,key,2)'
+								>
+								{{item.name}}
+						</label>
+				</div>
+			</div>
+			<div class="mutile_search  mutile_search_one" >
+				<span class="span">主体评级:</span>
+				<div class="btn-group" >
+						<label class="btn"
+						ng-model="issuelists_info.currIssuerCreditList"
+						uib-btn-radio=[]
+						ng-click='issuelists_info.currIssuerCreditListSelecteds=[]'
+						 class="btn  drc" >全部
+						</label>
+						
+						<!-- btn-checkbox-true="[]" -->
+						<label class="btn" ng-repeat='(key,item) in dbtitmRtg' 
+								ng-model="issuelists_info.currIssuerCreditListSelecteds[key]"
+								uib-btn-checkbox
+								btn-checkbox-true="item.value" 
+								ng-click='allOrNoAll(dbtitmRtgList,key,3)'
+								>
+								{{item.name}}
+						</label>
+				</div>
+			</div>
+			<div class="packup">
+				<!-- <i>
+			         <img src="../../../../../resource/images/btn_arrow_unfold.png" alt="">
+			    </i>   --> 
+			    <span>
+			    	 <i   ng-click="openheightsearch()">
+						<!-- <img src="../../../../../resource/images/btn_arrow_packup.png" alt=""> -->
+					</i><a href="javascript:0;" ng-click="openheightsearch();openheightsearch_flg">收起</a>
+			    </span>				
+			   
+			</div>
+		</div>
+		<div class="table-body"  >
+		<!-- tr-click="getDetail($item.dstrBondId)" -->
+				<grid-view fields="fields"
+					query="searchQuery"
+					items="issue"
+					tr-dblclick="toNewDebtin($item.dstrBondId,$item.issuId,$item.roleId,$item.alrdySbrbInd)">
+				</grid-view>
+				
+		</div>
+		
+	</div>
+	<div class="myPage" >
+					 <ul
+	                    uib-pagination
+	                    boundary-links="true"
+	                    total-items="pageAll.totalResult"
+	                    ng-model="pageAll.currentPage"
+	                    class="pagination-sm"
+	                    previous-text="&lsaquo;"
+	                    next-text="&rsaquo;"
+	                    first-text="&laquo;"
+	                    last-text="&raquo;"
+	                    ng-change="$ctrl.pageChange(pageAll.currentPage)"
+	            	></ul>
+        </div>
+	<!-- <div class="myPage" >
+		<ul  uib-pagination
+					boundary-links="true"
+					total-items="totalItems"
+					ng-model="$ctrl.currentPage"
+					previous-text="&lsaquo;"
+					next-text="&rsaquo;"
+					first-text="&laquo;"
+					last-text="&raquo;"
+					items-per-page='$ctrl.sendQueryQuoteListInfo.pageSize'
+					num-pages="$ctrl.numPages"
+					ng-change='$ctrl.pageNumChange($ctrl.currentPage)'
+					>
+		</ul>
+		<span style="float: right">{{$ctrl.currentPage}} / {{$ctrl.numPages}}</span>
+	</div> -->
+	<!-- <div uikit-pager="Pager"></div> -->
+</div>
+
+
+

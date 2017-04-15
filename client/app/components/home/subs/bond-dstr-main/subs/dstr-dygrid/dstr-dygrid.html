@@ -1,0 +1,21 @@
+<grid-view class="has-header" fields="$ctrl.editabled.fields"
+	query="$ctrl.editabled.query"
+	items="$ctrl.editabled.items"
+	tr-click="$ctrl.listDATrClick($item,$index)">
+</grid-view>
+<div class="operate-btns" ng-if="$ctrl.editabled.items.length>0">
+	<div style="float:left;">
+		<button type="button" ng-click="$ctrl.copyNewRow()"><i class="fa fa-copy"></i>复制标位</button>
+		<button type="button" ng-click="$ctrl.addNewRow()"><i class="fa fa-plus-circle"></i>添加标位</button>
+	</div>
+	<div style="float:right;">
+		<button type="button" ng-click="$ctrl.submit()"><i class="fa fa-check-square"></i>确定</button>
+		<button type="button" ng-click="$ctrl.emptyMineTable()"><i class="fa fa-trash"></i>清空</button>
+		<button type="button" ng-click="$ctrl.cancelAddRows()"><i class="fa fa-times"></i>取消</button>
+	</div>
+</div>
+<grid-view class="no-header" fields="$ctrl.diseditabled.fields"
+	query="$ctrl.diseditabled.query"
+	items="$ctrl.diseditabled.items"
+	tr-click="$ctrl.listATrClick($item,$index)">
+</grid-view>

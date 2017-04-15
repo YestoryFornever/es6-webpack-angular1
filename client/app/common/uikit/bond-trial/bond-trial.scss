@@ -6,6 +6,9 @@
 .my-bond-trial{
 	.modal-xs.modal-dialog {
 		width: 5rem;
+		.modal-header{
+			border-color:$borderDefault;
+		}
 		.modal-content{
 			background: $bgDefault;
 			height: auto;
@@ -30,7 +33,7 @@
 	font-size:0.12rem;
 	color:$textD;
 	input{
-		width:1.3rem;
+		width:1rem;
 		background: $bgDefault;
 		outline: none;
 		border:none;
@@ -39,15 +42,10 @@
 	#modal-body{
 		padding:  0.1rem 0.05rem 0 0.1rem;
 		background: $bgDefault;
-		// height: 4.9rem;
-		// width:8rem;
-		// float:left;
-		// padding-left:0;
-		// padding-right:0;
 		.cont{
 			width:100%;
-			border-top:1px solid #ccc;
-			.content label{
+			border-top:1px solid $borderDefault;
+			.wfcontent label{
 				line-height: 0.14rem;
 			}
 			label {
@@ -56,13 +54,13 @@
 					display: inline-block;
 					width:0.14rem;
 					height: 0.14rem;
-					background: url(../../../../resource/images/btn_selectbox_round_select.png) no-repeat center;
+					background: url('./images/btn_selectbox_round_select.png') no-repeat center;
 				}
 				.unChoice{
 					display: inline-block;
 					width:0.14rem;
 					height: 0.14rem;
-					background: url(../../../../resource/images/btn_selectbox_round_normal.png) no-repeat center;
+					background: url('./images/btn_selectbox_round_normal.png') no-repeat center;
 				}
 			}
 			.marT10{
@@ -84,7 +82,7 @@
 				float: right;
 				position: relative;
 				top:-0.2rem;
-				background: url(../../../../resource/images/btn_calculate_normal.png) no-repeat center;
+				background: url('./images/btn_calculate_normal.png') no-repeat center;
 			}
 			.inpWid118{
 				width:1.1rem;

@@ -1,9 +1,7 @@
 app.directive('slimResize',['$parse', function($parse){
 	return {
 		restrict: 'A',
-		scope:{
-			rescroll:'&'
-		},
+		scope:{},
 		link: function(scope, element, attrs) {
 			let _w = $(window),_rule = (!!attrs.slimResize?$(document.getElementById(attrs.slimResize)):element);
 			_w.on('resize', _onRefresh);
@@ -12,10 +10,12 @@ app.directive('slimResize',['$parse', function($parse){
 			});
 			_onRefresh();
 			function _onRefresh(){
-				let option = scope.$eval(element.attr('slimscroll').replace(/{{.*}}/g,'250'))||{};
+				let option = scope.$eval(element.attr('slimscroll').replace(/{{.*?}}/g,'250'))||{};
 				option.height = _rule.height();
-				element.slimScroll({ destroy: true });
-				element.slimScroll(option);
+				setTimeout(()=>{
+					element.slimScroll({ destroy: true });
+					element.slimScroll(option);
+				},20);
 			}
 		}
 	};

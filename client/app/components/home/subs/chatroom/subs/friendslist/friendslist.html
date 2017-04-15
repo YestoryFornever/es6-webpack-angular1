@@ -1,15 +1,18 @@
-<div id="search">
+<!-- <div id="search">
 	<input type="text" placeholder="搜索" ng-model="$ctrl.query" class="form-control">
-</div>
-<ul class="items">
-	<li ng-repeat="item in $ctrl.items | filter:$ctrl.query">
+</div> -->
+<ul class="items" slim-resize="list" slimscroll="{alwaysVisible:true}">
+	<li ng-repeat="item in $ctrl.friends | filter:$ctrl.query" ng-click="$ctrl.changeUser(item)" g-right="$ctrl.showDeleteTag(item,event)">
 		<div class="portrait">
-			<img ng-src="{{item.image}}" alt="">
+			<img ng-src="{{item.iconUrl}}" alt="">
 		</div>
 		<div class="des">
-			<span class="item-name">{{item.name}}</span>
-			<span class="item-time">{{item.time}}</span>
-			<div class="item-snippet">{{item.snippet}}</div>
+			<span class="item-name">{{item.userName}}&emsp;{{item.organizationShortName}}</span>
+			<span class="item-time" ng-click="$ctrl.applyFriend()">{{item.userRealName}}</span>
+			<div class="item-snippet">{{item.realCertifyState}}</div>
 		</div>
 	</li>
 </ul>
+<div class="delete-tag" ng-if="$ctrl.deleteTag.show" ng-style="$ctrl.deleteTag.style" g-mouse-out="$ctrl.hideDeleteTag()" ng-click="$ctrl.deleteFriend()">
+	删除好友
+</div>

@@ -1,4 +1,4 @@
-<ul class="barginlist" slimscroll slim-resize="list">
+<ul class="barginlist" slim-resize="list" slimscroll="{alwaysVisible:true}">
 	<li ng-repeat="bargain in $ctrl.bargainlist"  ng-class="{fold:bargain.fold}">
 		<div class="bondShrtnm" ng-click="$ctrl.togglelist(bargain)">
 			<div class="bondShrtnm-left">{{bargain.bondShrtnm}}[{{bargain.bondCd}}]</div>
@@ -8,7 +8,7 @@
 			</div>
 		</div>
 		<ul class="items">
-			<li ng-repeat="item in bargain.negtprcList" ng-click="$ctrl.changeUser(item)">
+			<li ng-repeat="item in bargain.negtprcList" ng-click="$ctrl.changeBargain(item)">
 				<div class="drc" ng-class="{drc8:item.drc=='8',drc9:item.drc=='9',drc2:item.drc=='2',drc3:item.drc=='3'}"></div>
 				<div class="detail">
 					<div class="negtprc-title">

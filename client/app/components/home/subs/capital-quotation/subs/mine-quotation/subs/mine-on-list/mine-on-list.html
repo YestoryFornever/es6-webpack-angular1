@@ -1,0 +1,21 @@
+<grid-view fields="onLinefields"
+	query="onSearchCont"
+	items="onlineList">
+</grid-view>
+<div class="myPage1" >
+	<ul  uib-pagination
+		boundary-links="true"
+		total-items="onTotalPage"
+		ng-model="onSearchCont.pageNum"
+		previous-text="&lsaquo;"
+		next-text="&rsaquo;"
+		first-text="&laquo;"
+		last-text="&raquo;"
+		max-size='maxSize'
+		force-ellipses='true'
+		ng-change='pageNumChange()'
+		items-per-page='onSearchCont.pageSize'
+		num-pages="numPages1"
+		></ul>
+		<span style="float: right">{{onSearchCont.pageNum}} / {{numPages1}}</span>
+</div>

@@ -16,8 +16,8 @@ class PagefooterController {
 	}
 	activeTab(){
 		this.pagetabService.activeTab({
-			tabKey: 'home.chatroom',
-			routeState:"home.chatroom",
+			tabKey: 'home.chatroom.bargainlist',
+			routeState:"home.chatroom.bargainlist",
 			routeLabel:"消息中心",
 		});
 	}

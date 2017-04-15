@@ -1,3 +1,9 @@
+.content {
+  position: relative;
+  overflow: auto;
+  padding: 0 15px;
+}
+
 .castFree {
   height: 40px;
   line-height: 40px;
@@ -7,6 +13,7 @@
 .castFree a {
   color: #888888;
 }
+
 .bord {
   border-bottom: 2px solid #26292e;
 }
@@ -26,20 +33,22 @@
 
 .documentPlace {
   background: #26292e;
-  height: 525px;
+  overflow-y: auto;
 }
 
 .freePlace {
   background: #26292e;
-  height: 265px;
-  overflow-y: auto;
+  //overflow-y: auto;
   overflow-x: hidden;
   color: #ffffff;
-  padding: 10px;
+  padding: 0 10px 5px 0;
+  list-style-type: none;
 }
+
 .minHeight {
   height: 220px;
 }
+
 .castUser {
   color: #666;
   font-size: 12px;
@@ -54,7 +63,7 @@
 .castInput {
   height: 30px;
   line-height: 30px;
-  width: 190px;
+  width: 240px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -151,17 +160,21 @@
   line-height: 40px;
   margin: 5px;
 }
+
 .trailer span {
   padding: 5px 15px;
   background: #ff910c;
   margin-right: 10px;
 }
+
 .col-xs-6 {
   padding: 0;
 }
+
 .rightBorder {
   border-right: 1px solid #373b4e
 }
+
 .documentPlace {
   padding: 10px;
 }
@@ -170,29 +183,93 @@
 .castModel {
   position: relative;
 }
+
 .castLogin {
   width: 40px;
   height: 40px;
   float: left;
 }
+
 .castModelRigth {
   float: right;
   width: 220px;
 }
+
 .imgLogo {
   width: 35px;
   height: 35px;
   border-radius: 50%;
 }
+
 .space {
   overflow: hidden;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .castUser {
   padding-left: 40px;
   color: #fff;
 }
+
 .pBottom {
   margin-bottom: 5px;
+}
+
+.textColor {
+  color: #d0a45e
+}
+
+.castHeader {
+  margin-right: 20px;
+}
+
+.castHeader a {
+  color: #fff6bf;
+  text-decoration: none;
+}
+
+.msgIco {
+  position: absolute;
+  bottom: 60px;
+  left: 15px;
+  width: 350px;
+  height: 85px;
+  background: #555;
+}
+
+.msgIco li {
+  padding: 5px 0 5px 5px;
+}
+
+.pDown {
+  word-wrap: break-word;
+  table-layout: fixed;
+  word-break: break-all
+}
+
+.exchange {
+  position: absolute;
+  bottom: 30px;
+  right: 380px;
+  z-index: 99999;
+}
+
+.exchange a {
+  color: #fff;
+  font-weight: bold;
+}
+
+.noCast {
+  font-size: 30px;
+  color: #fff;
+  text-align: center;
+  margin-top: 15%;
+}
+
+.userLogoChecked {
+  color: #ff900c;
+}
+.userLoginBorder {
+  border: 1px solid #ff900c;
 }

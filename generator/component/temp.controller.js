@@ -1,7 +1,9 @@
 class <%= upCaseName %>Controller {
-	constructor() {
+	constructor($scope,$rootScope) {
+		"ngInject";
 		this.name = '<%= name %>';
+		this.$scope = $scope;
+		this.$rootScope = $rootScope;
 	}
+	$onInit(){}
 }
-<%= upCaseName %>Controller.$inject = [];
-export default <%= upCaseName %>Controller;

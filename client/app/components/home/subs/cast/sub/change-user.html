@@ -1,0 +1,37 @@
+<div class="newdebtdialog ">
+    <!-- <div class="modal-wfcontent"  > -->
+    <div class="modal-header ng-scope">
+        <p class="modal-title newdebtdialog-title">提示
+            <span class="cancal-right" style="width: 30px" ng-click="$ctrl.close()">关闭</span>
+        </p>
+    </div>
+    <div class="modal-body ng-scope addApp">
+        <p class="text-center">
+            请选择身份进入:
+        </p>
+        <div class="row">
+            <div class="col-xs-6 text-center">
+                <p>
+                    <a ng-click="$ctrl.meClick()">
+                        <img ng-src="{{$ctrl.iconUrl}}" width="50"  ng-class="{'userLoginBorder': $ctrl.me}" style="border-radius: 50%"/>
+                    </a>
+                </p>
+                <p>{{$ctrl.username}}</p>
+            </div>
+            <div class="col-xs-6 text-center">
+                <p>
+                    <a ng-click="$ctrl.undefinedClick()">
+                        <img ng-src="../../../../../../resource/images/ico_yk.png"  width="50" ng-class="{'userLoginBorder': $ctrl.under}" style="border-radius: 50%"/>
+                    </a>
+                </p>
+                <p>游客</p>
+            </div>
+            <p class="text-center">
+                <button ng-click="$ctrl.goClassRoom()" class="btn btn-default" style="padding: 8px 60px">确定</button>
+            </p>
+            <p class="text-center">小提醒: 选择游客进入可隐藏个人身份哦</p>
+            <p class="text-center userLogoChecked">{{$ctrl.message}}</p>
+        </div>
+
+    </div>
+</div>

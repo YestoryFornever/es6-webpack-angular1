@@ -4,8 +4,8 @@ app.component('downlistDemo', {
 		
 	},
 	templateUrl: 'demo.html',
-	controller: function($scope, bondquotationService)
+	controller: function($scope, NetBondquotationService)
 	{
-		$scope.listOfItems = bondquotationService.section.data;
+		$scope.listOfItems = NetBondquotationService.section.data;
 	}
 });

@@ -1,7 +1,5 @@
 
 capital-quotation {
-	height:100%;
-	color: $textD;
 	.btn,.btn:hover,.btn.focus,.btn.active,.btn.visited,.btn:focus{
 		// background-color:$bgDefaultLightC;
 		outline: none;
@@ -21,43 +19,55 @@ capital-quotation {
 		background-color:$btnPrimary;
 		border:none;
 	}
-	.o-v-a{
-		margin:0.05rem;
-		#capitalQuotation{
-			header#condition{
-
-				height: .32rem;
-				padding: 0  0.2rem;
-				background:url(../../../../../resource/images/img_bg_title.png)  center;
-				ul.head{
-					li{
-						display: inline-block;
+	#capitalQuotation{
+		height:100%;
+		margin:0 0.05rem;
+		// background:$bgDefault;
+		header#condition{
+			height: .32rem;
+			padding: 0  0.2rem;
+			background:url(../../../../../resource/images/img_bg_title.png)  center;
+			ul.head{
+				li{
+					display: inline-block;
+					a{
+						color: $textD;
 						margin-top: 0.06rem;
-						height: 0.2rem;
+						display: inline-block;
 						width:0.9rem;
-						margin-right: 0.1rem;
-						border-radius: 0.2rem;
+						height:0.2rem;
 						text-align:center;
-						a{
-							color: $textD;
-							display: inline-block;
-							width:0.9rem;
-							height:0.2rem;
-							text-decoration: none;
-						}
-						a.active{
-							background:$btnPrimary;
-						}
+						vertical-align: middle;
+						margin-right: 0.1rem;
+						border-radius:0.2rem;
+						text-decoration: none;
+						background:$bgDefaultLightC;
 					}
-					li.bond{
+					a.actived{
+						background:$btnPrimary;
+					}
+				}
+				li.willBond{
+					float:right;
+					a.willBond{
 						border-radius: 0.04rem;
 					}
 				}
 			}
-			#list{
-				.list{
-					height:100%;
-				}
+			div.willBondHead{
+				width:100%;
+				height:0.32rem;
+				text-align:center;
+				line-height:0.32rem;
+				background:none;
+			}
+		}
+		header#condition.bgNo{
+			background:$bgDefault;
+		}
+		#list{
+			.list{
+				height:100%;
 			}
 		}
 	}

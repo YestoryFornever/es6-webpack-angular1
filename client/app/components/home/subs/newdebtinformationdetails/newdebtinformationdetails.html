@@ -1,0 +1,209 @@
+
+    <div class="newdebt" iscroll ng-init="$ctrl.show_shengoudialog">
+    		<!-- 申购弹窗 1-->
+    		<div class="  shengoudialog" ng-If="$ctrl.aaaaa">
+		     	<div class="modal-content shengoudialog-header"  >
+			     		<div class="modal-header ng-scope" >
+			            	<p class="modal-title"  >我要分销</p> 
+			            	<i id="close_11"  ng-click="$ctrl.closefriendtipDialog()">
+			            		<img src="../../../../../resource/images/btn_close02_gray.png" height="10" width="10" alt="">
+			            	</i>
+			        	</div>
+
+				        <div class="modal-body ng-scope"  > 
+				       <span>确定参与该债券的分销？</span>
+				        </div>
+			       		<div class="modal-footer">
+			       			<button  type="button" class="btn " style="background:#FF671B;"   type="button" ng-click='$ctrl.NewdebtdialogModalService.open($ctrl.aachange);$ctrl.closefriendtipDialog();'>确定</button>
+			       			<button type="button" class="btn " ng-click="$ctrl.closefriendtipDialog();$ctrl.show_shengoudialog='null';" >取消</button>
+			       		</div>
+			       			
+				            
+			     </div>
+			</div>
+		
+    	<div class=" newdebt_nav">
+		    	<div class="newdebt_nav_lf">{{$ctrl.newobj_one.bondNm}}</div>
+		    	<span class="newdebt_nav_tou_01" ui-sref="home.cast()"><img ng-src="../../../../../resource/images/luyan_btn.png.jpg" height="30" width="80" alt=""></span>
+		    	<span class="newdebt_nav_tou">{{$ctrl.newobj_one.roleId |rolefilter}}</span>
+		    	<span ng-If="false">主承</span>
+		    	<div class="newdebt_nav_box">
+			    	<ul>
+			    		<li>期限:{{$ctrl.newobj_one.trm}}</li>
+			    		<li>申购利率:<e ng-show="$ctrl.newobj_one.sbrbIntrtLwrLmtBoder">[</e>   <e ng-show="!$ctrl.newobj_one.sbrbIntrtLwrLmtBoder">(</e> {{$ctrl.newobj_one.sbrbIntrtLwrLmt | dotFilter}}-{{$ctrl.newobj_one.sbrbIntrtUpLm | dotFilter }} <e ng-show="!$ctrl.newobj_one.sbrbIntrtUpLmBoder">)</e><e ng-show="$ctrl.newobj_one.sbrbIntrtUpLmBoder">]</e>%</li>
+			    		<li>发行量:{{$ctrl.newobj_one.issuNum}}</li>
+			    		<li>发债主体:{{$ctrl.newobj_one.entpTp | entpTpfilter}}</li>
+			    		<li>主/债:{{$ctrl.newobj_one.sbjRtg}}/{{$ctrl.newobj_one.dbtItmRtg}}</li>
+			    	</ul>
+		    	</div>
+		    	<span class="newdebt_nav_span" ng-If="false">我要分销</span>
+    	</div>
+    	<div class="header_nav_info " ng-init="tabkey_li=0"  >
+			<ul>
+				<li  ng-class="{'nav_back':tabkey_li==0}" ng-click="getrecommendedLists();tabkey_li=0">信用债</li>
+				<li  ng-class="{'nav_back':tabkey_li==1}" ng-click="messagelists(4, 1);tabkey_li=1">利率债</li>
+				
+			</ul>
+		</div>
+		
+	<div class="newdebt_content" >
+		<div class="newdebt_content_lf">
+			<div class="newdebt_content_header">基本资料</div>
+			<div class="newdebt_content_info" ng-init="isShow==0">
+	    		<div class="newdebt_content_info_content">
+	    				<ul>
+	    					<li>债券全称：{{$ctrl.newobj_two.bondNm}}</li>
+	    					<li>债券类型：{{$ctrl.newobj_two.bondTp |bondTpfilter}}</li>
+	    					<li>债券期限：{{$ctrl.newobj_two.trm}}</li>
+	    					<li>含权类型：{{$ctrl.newobj_two.wrghtTp | hanquanFilter}}</li>
+	    					<li>利率类型：{{$ctrl.newobj_two.intrtTp | rateTpfilter}}</li>
+	    					<li>基础利率名：{{$ctrl.newobj_two.baseIntrtNm}}</li>
+	    					<!-- <li>发行收益(%)：{{$ctrl.newobj_two.bondNm}}</li> -->
+	    					<li>付息频率：{{$ctrl.newobj_two.intpymtFrq}}</li>
+	    					<li>注承商：{{$ctrl.newobj_two.primUdwr}}</li>
+	    				</ul>
+	    		</div>
+	    		<div class="newdebt_content_info_button dropup " ng-click="$ctrl.opendialog()" >
+						<span class="btn  dropdown-toggle " type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    承销团
+						  </span>
+						  <ul class="dropdown-menu dropdown-menu-right " aria-labelledby="dropdownMenu2" >
+						    <li  class="disabled" ng-repeat="list in $ctrl.newdata_chengxiao " ><a href="javascript:0;">{{list.uwrtFullNm}}</a></li>
+						  </ul>
+
+	    		</div>
+
+	    		
+	    		<div class="newdebt_content_info_content">
+	    				<ul>
+	    					<li></li>
+	    					<!-- <li>是否城投债：</li> -->
+	    					<li>发行量(亿)：{{$ctrl.newobj_two.issuNum}}</li>
+	    					<li>还本方式：{{$ctrl.newobj_two.repypnpMod}}</li>
+	    					<li>票面利率(%)：{{$ctrl.newobj_two.faceintrate}}</li>
+	    					<li>基础利率：{{$ctrl.newobj_two.baseIntrt}}</li>
+	    					<li>发行价格(元)：{{$ctrl.newobj_two.issuPrc}}</li>
+	    					<!-- <li> 计息平率： {{$ctrl.newobj_two.bondNm}}</li> -->
+	    				</ul>
+	    		</div>
+	    		<!-- 弹窗 -->
+	    		<!-- <div class="newdebt_content_info_content_tanchuang" iscroll  ng-If="$ctrl.tanchuangflag" >
+	    			<ul>
+	    				<li   ng-repeat="list in $ctrl.newdata_chengxiao track by $index"  >{{list.uwrtFullNm}}</li>
+	    				
+	    			</ul>
+	    		</div> -->
+    		</div>
+    		<div class="newdebt_content_header" style="margin-top:10px;">发行人资料</div>
+			<div class="newdebt_content_info"  >
+	    		<div class="newdebt_content_info_content">
+	    				<ul>
+	    					<li>发行主体：{{$ctrl.newobj_three.issuSbj}}</li>
+	    					<li>主体类型：{{$ctrl.newobj_three.sbjTp}}</li>
+	    					<li>一级行业：{{$ctrl.newobj_three.fstIdy}}</li>
+	    					<li>地区(省)：{{$ctrl.newobj_three.prvc}}</li>
+	    					<li>控股股东：{{$ctrl.newobj_three.hldgShrh}}</li>
+	    					<li>控股比例(%)：{{$ctrl.newobj_three.hldgPct |dotFilter}}</li>
+	    					<li>实际控制人：{{$ctrl.newobj_three.actCntlr}}</li>
+	    				</ul>
+	    		</div>
+	    		<div class="newdebt_content_info_content">
+	    				<ul>
+	    					<li></li>
+	    					<li>组织形式：{{$ctrl.newobj_three.orgForm}}</li>
+	    					<li>二级行业：{{$ctrl.newobj_three.secIdy}}</li>
+	    					<li>地区(市)：{{$ctrl.newobj_three.cityZon}}</li>
+	    					<!-- <li>中央国资委：{{$ctrl.newobj_three.actCntlr}}</li> -->
+	    					<li>注册资本：{{$ctrl.newobj_three.rgstCptl}}</li>
+	    					<!-- <li>中央国资委(亿元)：{{$ctrl.newobj_three.actCntlr}}</li> -->
+	    				</ul>
+	    		</div>
+	    		<div class="newdebt_content_info_range" ng-init="is_show=0" >
+		    		   <div class="newBox" >
+			    		   <div class="newBox-left"><span >经营范围：</span></div>
+			    		   <div class="newBox-right" >
+				    		  <p ng-class="{'span_a':is_show==0, 'span_b':is_show==1}"> {{$ctrl.newobj_three.oprtScop}}
+				    		   <!-- 公司秉承“科技改变生活”的理念，引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技公司秉承“科技改变生活”的理念，引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技术水平，促进并带动金融行业信息技术的长足发展为目标，创新科技、超越常规理念，力争提供行业内最优秀的信息技术服务公司秉承“科技改变生活”的理念，引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技术水平，促进并带动金融行业信息技术的长足发展为目标，创新科技、超越常规理念，力争提供行业内最优秀的信息技术服务 -->
+				    		   </p>
+								<!-- <p >
+				    		   <a id="open" href="javascript:0;" ng-click="$ctrl.doCheck(0);is_show=1"   ng-show="is_show==0"  >全部展开</a>
+				    		   <a href="javascript:0;" ng-click="$ctrl.doCheck(0);is_show=0"  ng-show="is_show==1"     >收起</a>
+				    		   </p> -->
+			    			</div>
+		    		   </div> 
+	    		</div>
+    		</div>
+		</div>
+		<div class="newdebt_content_rt">
+			<div class="newdebt_content_rt_header">我要申购</div>
+			<div class="newdebt_content_rt_content" iscroll  ng-init="isShow==0">
+				<span class="newdebt_content_rt_content_p">这些好友在分销此债券</span>
+				<ul>
+					<li ng-repeat="list in $ctrl.debtinfriendList track by $index" ng-init="is_showshengou=0">
+						<div class="newdebt_content_rt_title">
+							<img ng-src="{{list.userUrl}}" height="16" width="18" alt="">
+						</div>
+						<div class="newdebt_content_rt_name">
+							<span class="newdebt_content_rt_span">
+								<span class="newdebt_content_rt_names">{{list.userNm}}</span> 
+								<span ng-If="list.realNmCtfnEStatus=='实名认证'" ><img src="../../../../../resource/images/icon_realname.png" height="16" width="18" alt=""></span>
+								<span ng-show="list.realNmCtfnEStatus!='实名认证'" >{{list.realNmCtfnEStatus}} </span>
+								<span class="newdebt_content_rt_friend">好友</span>
+								<span class="newdebt_content_rt_group">{{list.roleNm|rolefilter}}再团</span>
+							</span>
+							<span class="newdebt_content_rt_span">{{list.instNm}}&nbsp;{{list.teamNm}}</span>
+						</div>
+						<div class="newdebt_content_rt_button2" ng-click="$ctrl.friendtipDialog(list);" >申购</div>
+					</li>
+
+				</ul>
+			</div>
+			<!-- 写代码 -->
+			<div class="newdebt_content_rt_header" style="margin-top:10px;">债券日历</div>
+			<div class="newdebt_content_rt_footer">
+				<div class="newdebt_content_rt_footer_one">
+					<ul>
+						<li>发行开始日</li>
+						<li>招标建档日</li>
+						<li>起息日</li>
+						<li>缴款日</li>
+						<!-- <li>上市日</li> -->
+					</ul>
+				</div>
+				<div class="newdebt_content_rt_footer_one">
+					<ul>
+						<li style="color:#65787F;">{{$ctrl.getBondCdrs_info.issuStDt}}</li>
+						<li style="color:#65787F;">{{$ctrl.getBondCdrs_info.bidinvBkbldDt}}</li>
+						<li>{{$ctrl.getBondCdrs_info.valDt}}</li>
+						<li>{{$ctrl.getBondCdrs_info.pyDt}}</li>
+						<!-- <li>{{$ctrl.getBondCdrs_info.issuStDt}}</li> -->
+					</ul>
+				</div>
+				<div class="newdebt_content_rt_footer_one">
+					<ul>
+						<li>--</li>
+						<li>--</li>
+						<li>{{$ctrl.getBondCdrs_info.vadDtCrndayDys}}</li>
+						<li>{{$ctrl.getBondCdrs_info.pyDtCrndayDys}}</li>
+						<!-- <li>上市日</li> -->
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+   
+   

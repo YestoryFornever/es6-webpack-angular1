@@ -1,83 +1,124 @@
 class ChatRoomTimer{
-	constructor(stamp){
+	constructor(stamp,obj){
 		"ngInject";
-		this.reset();
-		if(undefined!==stamp)
-			this._getTimeLeft(stamp);
+		if(undefined!==obj){
+			for(let i in obj){
+				this[i] = obj[i];
+			}
+		}
+		this.reset(stamp);
 	}
 	onZero(){
 		this.str = '已过期';
 		this.counting = false;
 	}
 	onStop(time){}
-	reset(){
-		if(this.stop)
-			this.stop();
-		this.counting = true;
-		this.str = '';
-	}
-	_getTimeLeft(stamp){
-		let timeleft = 5*60*1000 - ((new Date()).getTime()-(new Date(stamp)).getTime());
-		if(timeleft<0){
-			this.time = 0;
-			this.onZero();
-		}else{
-			this.time = timeleft;
+	reset(stamp){
+		if(undefined!==stamp){
+			let timeleft = 5*60*1000 - ((new Date()).getTime()-(new Date(stamp)).getTime());
+			if(timeleft>0){
+				this.counting = true;
+				this.time = timeleft;
+			}else{
+				this.time = 0;
+				this.onZero();
+			}
 		}
 	}
 }
 class ChatroomController {
-	/*刷新议价列表*/
+	changeList(rt){
+		this.$state.go(rt);
+		switch(rt){
+			case 'home.chatroom.friendslist':
+				this.state.cur = 'f';
+				this.state.bargain.killBargain = true;
+				this.asideUlClass = 'friendslist';
+				break;
+			case 'home.chatroom.groupslist':
+				this.state.cur = 'g';
+				this.state.bargain.killBargain = true;
+				this.asideUlClass = 'groupslist';
+				break;
+			case 'home.chatroom.bargainlist':
+				this.state.cur = 'b';
+				this.state.bargain.killBargain = false;
+				this.asideUlClass = 'bargainlist';
+				this._refreshBargainList();
+				break;
+		}
+	}
+	switchChatByFlag(flag,v){
+		this.state.chat.onChat = true;//显示聊天界面
+		this.state.chat.chatList = [];//清空聊天列表
+		switch(flag){
+			case 'f':
+				this.state.bargain.killBargain = true;
+				this.changeFriend(v);
+				break;
+			case 'g':
+				this.state.bargain.killBargain = true;
+				break;
+			case 'b':
+				// this.state.bargain.killBargain = false;移至创建倒计时对象之后
+				this.changeBargain(v);
+				break;
+		}
+		let curChatListUn = this.easeMobService.getCache(this.state.curFriend.userId);
+		if(curChatListUn&&curChatListUn.length>0){
+			curChatListUn.forEach((item,index)=>{
+				let m = item.iotype==="i"?item.data:item.msg;
+				this.popMsg(item.ext,m,item.iotype);
+			});
+		}
+		this._refreshBargainHistory(this.state.curFriend.userId);
+	}
+	changeFriend(user){
+		this.state.curFriend = {
+			userName:user.userName,
+			userId:user.oppositeUserId,
+			userIcon:user.iconUrl
+		};
+	}
+	changeBargain(bargain){
+		this.state.curFriend = {
+			userName:bargain.userName,
+			userId:bargain.userId,
+			userIcon:bargain.iconUrl
+		};
+		this.state.bargain.quoteId = bargain.bondOfrid;
+		this.state.bargain.bargainId = bargain.bondNegtprcid;
+		this._refreshBargainDetail();
+	}
+	/*议价列表*/
 	_refreshBargainList(){
 		this.$scope.$broadcast('refresh-bargain-list');
 	}
-	/*切换当前议价对象（userid）*/
-	changeBargain(bargain){
-		this.showChatList = true;//显示聊天界面
-		this.chatcontent = [];//清空聊天列表
-		this.OBargain.negtprcUserId = bargain.userId;
-		this.OBargain.bondNegtprcid = bargain.bondNegtprcid;
-		this.OBargain.bondOfrid = bargain.bondOfrid;
-		this.OBargain.iconUrl = bargain.iconUrl;
-		this._refreshBargainDetail();
-
-		let chatCache = this.easeMobService.getCache();
-		if(chatCache&&chatCache.length>0){//如果存在聊天缓存，依次弹出
-			let curChatListUn;
-			for(let i=0;i<chatCache.length;i++){
-				if(chatCache[i].userId === bargain.userId){
-					curChatListUn = chatCache[i].chatcontent;
-				}
-			}
-			if(curChatListUn&&curChatListUn.length>0){
-				curChatListUn.forEach((item,index)=>{
-					let m = item.iotype==="i"?item.data:item.msg;
-					this.popMsg(item.ext,m,item.iotype);
-				});
-			}
-		}
-	}
-
-	/*刷新议价详情*/
+	/*议价详情*/
 	_refreshBargainDetail(isQuote){//this.OBargain bondOfrid:报价id|bondNegtprcid:议价id|userId用户:id
-		this.chatroomService.queryBargainDetail(this.OBargain)
-			.then((data)=>{
-				if(!data.status===200){alert(data);}
-				if(data.data.status==="0"){
-					this._showBargainMessage(data.data.data,isQuote);
-				}else{
-					alert(data.data.msg);
-				}
-			},(data)=>{
-				console.warn("查询报价列表异常");
-			});
-		this.openBargainDrop();
-		this.closeInputs();
+		this.chatroomService.queryBargainDetail({
+			'bondOfrid':this.state.bargain.quoteId,
+			'bondNegtprcid':this.state.bargain.bargainId,
+			'negtprcUserId':this.state.curFriend.userId
+		}).then((data)=>{
+			if(!data.status===200){alert(data);}
+			if(data.data.status==="0"){
+				this.state.bargain.bondId = data.data.data.bondid;
+				this._showBargainMessage(data.data.data,isQuote);
+			}else{
+				alert(data.data.msg);
+			}
+		},(data)=>{
+			console.warn("查询议价详情异常");
+		});
 	}
-	/*填充议价详情*/
 	_showBargainMessage(data,isQuote){
-		data.userName && (this.friend.userName = data.userName);//切换用户姓名
+		/**
+		 * [来自报价大厅时切换用户姓名和头像]
+		 */
+		data.userName && (this.state.curFriend.userName = data.userName);//切换用户姓名
 		data.iconUrl && (this.OBargain.iconUrl = data.iconUrl);//切换用户头像
+		
 		let state = data.negtprcEStatus;
 		switch(state){
 			case '4':;
@@ -165,25 +206,53 @@ class ChatroomController {
 		 * @type {[boolean]}
 		 * 通常倒计时是否显示与交易按钮是否显示同步，只有一种情况例外：从报价界面进入聊天界面且议价记录为空时。
 		 */
-		this.showCurCounting = this.btnState.deal.enable;
+		this.state.bargain.onCounting = this.btnState.deal.enable;
 		if(isQuote)
 			if(!(data.negtprcDtlList && data.negtprcDtlList.length>0))
-				this.showCurCounting = false;
+				this.state.bargain.onCounting = false;
 		/**
 		 * [this.bargainDetailTime.reduction 重置倒计时]
 		 * @param  {[number]} [时间戳]
 		 */
-		if(this.bargainDetailTime&&this.bargainDetailTime.reduction){
-			this.bargainDetailTime.reduction(5*60*1000 - ((new Date()).getTime()-(new Date(stamp)).getTime()));
+		if(this.bargainDetailTime&&this.bargainDetailTime.onZero){
+			if(this.bargainDetailTime.reduction){
+				let timeleft = 5*60*1000 - ((new Date()).getTime()-(new Date(data.udtTm)).getTime());
+				if(timeleft>0){
+					this.bargainDetailTime.reduction(timeleft);
+				}else{
+					this.bargainDetailTime.stop();
+				}
+				this.bargainDetailTime.reset(data.udtTm);
+			}else{
+				this.bargainDetailTime = new ChatRoomTimer(data.udtTm);
+			}
+		}else {
+			this.bargainDetailTime = new ChatRoomTimer(data.udtTm,this.bargainDetailTime);
+			let that = this;
+			this.bargainDetailTime.onZero = function(time){
+				this.str = '已过期';
+				this.counting = false;
+				that.btnState.deal.enable = false;//交易按钮不可用
+			}
+			if(this.bargainDetailTime.reduction){
+				let timeleft = 5*60*1000 - ((new Date()).getTime()-(new Date(data.udtTm)).getTime());
+				if(timeleft>0){
+					this.bargainDetailTime.reduction(timeleft);
+				}else{
+					this.bargainDetailTime.stop();
+				}
+				this.bargainDetailTime.reset(data.udtTm);
+			}
 		}
 		if(!this.bargainDetailTime.counting){
 			this.btnState.deal.enable = false;//交易按钮不可用
 		}
+		this.state.bargain.killBargain = false;
 		/**
 		 * [当前议价详情]
 		 */
 		this.IBargain = data;
-		this.OBargain.msgNum = this.IBargain.msgNum;
+		this.state.chat.num = this.IBargain.msgNum;
 		if(data.negtprcDtlList&&data.negtprcDtlList.length>0){
 			let curb = data.negtprcDtlList[data.negtprcDtlList.length-1];
 			this.OBargain.yield = this.chatroomUEService.__y(curb.yldrto,true);
@@ -208,21 +277,24 @@ class ChatroomController {
 			this.foldListH1 = false;
 			this.foldListH0 = true;
 		}
-		this._refreshBargainHistory(this.OBargain.negtprcUserId);
 		this.openBargainDrop();
 		this.closeInputs();
 	}
 	/*拒绝报价*/
 	reject(){
-		let promise = this.chatroomService.updateBargainState(this.IBargain,this.OBargain,'5');
-		promise.then((data)=>{
+		this.chatroomService.updateBargainState({
+			'bondOfrid':this.state.bargain.quoteId,//债券报价id
+			'bondNegtprcid':this.state.bargain.bargainId,//债券议价id
+			'negtprcUserId':this.state.curFriend.userId,//议价用户
+			'negtprcEStatus':'5'
+		}).then((data)=>{
 			if(data.data.status=="0"){
 				data.data.data.forEach((item)=>{
 					this.sendCmd('23',item);
 				});
 			}
 		},(data)=>{console.warn("更改用户状态异常");});
-		this.sendCmd('23',this.friend.userId);
+		this.sendCmd('23',this.state.curFriend.userId);
 		this.afterRejectOrDeal();
 		this.btnState = {
 			bargain:{enable:false,name:'议价'},
@@ -233,16 +305,20 @@ class ChatroomController {
 	}
 	/*报价成交*/
 	deal(){
-		let promise = this.chatroomService.updateBargainState(this.IBargain,this.OBargain,'3');
-		promise.then((data)=>{
+		this.chatroomService.updateBargainState({
+			'bondOfrid':this.state.bargain.quoteId,//债券报价id
+			'bondNegtprcid':this.state.bargain.bargainId,//债券议价id
+			'negtprcUserId':this.state.curFriend.userId,//议价用户
+			'negtprcEStatus':'3'
+		}).then((data)=>{
 			if(data.data.status=="0"){
 				data.data.data.forEach((item)=>{
 					this.sendCmd('26',item);
 				});
 			}
 		},(data)=>{console.warn("更改用户状态异常");});
-		this.sendCmd('24',this.friend.userId);
-		this.sendCmd('26',this.friend.userId);
+		this.sendCmd('24',this.state.curFriend.userId);
+		this.sendCmd('26',this.state.curFriend.userId);
 		this.afterRejectOrDeal();
 		this.btnState = {
 			bargain:{enable:false,name:'议价'},
@@ -260,7 +336,7 @@ class ChatroomController {
 	sendQuote(){
 		let that = this;
 		var modalInstance = that.$uibModal.open({
-			animation: that.animationsEnabled,
+			animation: that.state.pop.onAnimations,
 			component:'quotemodal',
 			windowClass:'my-quote',
 			size: 'xl',//'lg',//'sm',
@@ -288,18 +364,10 @@ class ChatroomController {
 						sbjRtg:item.sbjRtg,
 						ofrUserId:(""+BONDCONFIG.USERINFO.uid)
 					}
-					this.quoteListChecked.push({
-						'bondid':item.bondid,
-						'drc':item.drc,//==="买入"?"-1":item.drc==="卖出"?"1":"",
-						'num':item.num,
-						'yldrto':item.yield,
-						'netprc':item.netprc,
-						'wthrAnon':item.wthrAnon,
-						'wthrListg':item.wthrAnon,
-						'rmrk':item.remark
-					});
-					let promise = that.chatroomService.sendBondQuote(item.bondOfrid,that.IBargain.negtprcUserId);
-					promise.then((data)=>{//先通过后台获取议价ID再向环信发送议价对象
+					that.chatroomService.sendBondQuote({
+						'bondOfrid':item.bondOfrid,//债券报价id
+						'negtprcUserId':that.state.curFriend.userId,//议价用户id
+					}).then((data)=>{//先通过后台获取议价ID再向环信发送议价对象
 						if(data.data.status==="0"){
 							curQuote.bondNegtprcid=data.data.data;//债券议价id
 							// debugger;
@@ -318,31 +386,37 @@ class ChatroomController {
 	}
 	/*发布报价*/
 	publishBargain(){
+		this.btnState.publish.enable=false;//busy-btn
 		let y = this.chatroomUEService.__y(this.OBargain.yield,false),
 			p = this.chatroomUEService.__p(this.OBargain.netprc,false),
 			n = this.chatroomUEService.__n(this.OBargain.num,false),
 			s = this.OBargain.setamt;
-		let promise = this.chatroomService.publishBargain(
-			this.IBargain,
-			y,p,n,s
-		);
-		promise.then((data)=>{
+		this.chatroomService.publishBargain({
+			'bondOfrid':this.state.bargain.quoteId,
+			'bondNegtprcid':this.state.bargain.bargainId,//债券议价id
+			'negtprcUserId':this.state.curFriend.userId,//议价用户
+			'bondid':this.state.bargain.bondId,//债券id
+			'yldrto':y,
+			'netprc':p,
+			'num':n,
+			'setamt':s
+		}).then((data)=>{
 			this._refreshBargainDetail();
 			this._refreshBargainList();
-			this._refreshBargainHistory(this.OBargain.negtprcUserId);
-			this.showCurCounting = false;
+			this._refreshBargainHistory(this.state.curFriend.userId);
+			this.state.bargain.onCounting = false;
 			if(data.data.status=="0"){
 				this.sendMsg({
 					'ext_msg_type':'21',
 					'ext_message':'您收到一条议价',
-					'bondid':this.IBargain.bondid,//债券id
+					'bondid':this.state.bargain.bondId,//债券id
 					'bondShrtnm':this.IBargain.bondShrtnm,//债券简称
 					'bondCd':this.IBargain.bondCd,//债券编码
 					'drc':this.IBargain.ofrDrc,//报价方向
 					'yldrto':this.chatroomUEService.__y(this.OBargain.yield,false),//议价收益率
 					'netprc':this.chatroomUEService.__p(this.OBargain.netprc,false),//议价净价
 					'num':this.chatroomUEService.__n(this.OBargain.num,false),//议价数量
-					'bondOfrid':this.OBargain.bondOfrid,//报价id
+					'bondOfrid':this.state.bargain.quoteId,//报价id
 					'bondNegtprcid':data.data.data//议价id
 				});
 			}
@@ -353,9 +427,12 @@ class ChatroomController {
 
 	/*刷新议价记录（议价对象）*/
 	_refreshBargainHistory(userId){//userId:议价用户
-		let promise = this.chatroomService.getBargainHistory(userId);
-		promise.then((data)=>{
-			this.bargainHistory = data.data.data.map((item)=>{
+		// debugger;
+		this.chatroomService.getBargainHistory({
+			'negtprcUserId':userId,//议价用户
+		}).then((data)=>{
+			this.state.history.historyList = data.data.data.map((item)=>{
+				// debugger;
 				item.fold=true;
 				return item;
 			});
@@ -366,73 +443,89 @@ class ChatroomController {
 	
 	/*向聊天列表追加信息*/
 	popMsg(ext,msg,flag){
-		let msgObj = this.chatroomUEService.createMsgObj(ext,msg,flag);
+		let msgObj = this.easeMobService.createMsgObj(ext,msg,flag);
 		if(msgObj)
-			this.chatcontent.push(msgObj);
+			this.state.chat.chatList.push(msgObj);
 		/*倒计时*/
 		if(ext&&(ext.ext_msg_type=="20"||ext.ext_msg_type=="21")){
-			// debugger;
-			ext.timer = new ChatRoomTimer(ext.udtTm);
+			if(ext.udtTm){
+				ext.timer = new ChatRoomTimer(ext.udtTm,ext.timer);
+			}
 		}
 		/*滚动条*/
 		this.chatContentScroll();
 	}
 	/*发送信息*/
 	sendMsg(extObj){
-		if(!extObj && this.message===""){
+		if(!extObj && this.state.chat.message===""){
 			alert('发送内容为空');
 			return false;
 		}
-		let msgNum = Number(this.OBargain.msgNum);
+		let msgNum = Number(this.state.chat.num);
 		if(msgNum!==0){//-1,1,2,3
-			this.easeMobService.sendMsg(this.message,extObj,this.OBargain.negtprcUserId);
-			this.popMsg(extObj,this.message,'o');
+			// debugger;
+			this.easeMobService.sendMsg(this.state.chat.message,extObj,this.state.curFriend.userId);
+			this.popMsg(extObj,this.state.chat.message,'o');
 			if(!extObj){
-				this.message = "";
+				this.state.chat.message = "";
 			}
 			if(msgNum>0){
-				this.OBargain.msgNum = (msgNum-1);
+				this.state.chat.num = msgNum-1;
 				this.updateMsgNum(msgNum-1);
 			}
 		}else{
-			alert('陌生人只能发送三条消息');
+			this.state.chat.chatList.push({type:'sys',message:'您和对方还不是好友，对方回复前，只可以发3条消息'});
+			// this.popMsg(message.ext,'陌生人只能发送三条消息','sys');
 		}
 	}
 
 	updateMsgNum(num){
 		this.chatroomService.updateMsgNum({
-			'bondOfrid':this.IBargain.bondOfrid,
+			'bondOfrid':this.state.bargain.quoteId,
 			'msgNum':num,
-			'bondNegtprcid':this.IBargain.bondNegtprcid,
-			'negtprcUserId':this.IBargain.negtprcUserId
-		}).then((data)=>{
-			console.log(data);
-		},(data)=>{
-			console.warn("更新消息条数异常");
-		});
+			'bondNegtprcid':this.state.bargain.bargainId,
+			'negtprcUserId':this.state.curFriend.userId
+		}).then(
+			data=>console.log(data),
+			data=>console.warn("更新消息条数异常")
+		);
 	}
 
 	sendCmd(type,user){
 		if(!type || !user)return;
 		this.easeMobService.sendCmd(type,user);
 	}
+
 	/*点击聊天列表的报价*/
 	showCurBargain(chat){
-		this.OBargain.bondOfrid = chat.message.bondOfrid;
-		this.OBargain.bondNegtprcid = chat.message.bondNegtprcid;
-		!!chat.message.ofrUserId && (this.OBargain.negtprcUserId = chat.message.ofrUserId);
+		this.state.bargain.quoteId = chat.message.bondOfrid;
+		this.state.bargain.bargainId = chat.message.bondNegtprcid;
+		!!chat.message.ofrUserId && (this.state.curFriend.userId = chat.message.ofrUserId);
 		this._refreshBargainDetail();
 	}
 	yieldKeyup(){
 		if(event.target.value===this.focusValue){return false;}
+		this.yieldClick();
+	}
+	_getCurDate(){
+		var curDate = new Date(),
+			month = '' + (curDate.getMonth() + 1),
+			day = '' + curDate.getDate(),
+			year = curDate.getFullYear();
+		if (month.length < 2) month = '0' + month;
+		if (day.length < 2) day = '0' + day;
+		return [year, month, day].join('-');
+	}
+	yieldClick(){
 		let yld = this.chatroomUEService.__y(this.OBargain.yield,false);
 		let num = this.chatroomUEService.__n(this.OBargain.num,false);
-		let promise = this.chatroomService.opYield(
-			this.IBargain.bondid,
-			num,
-			yld
-		);
-		promise.then((data)=>{
+		this.chatroomService.opYield({
+			'bondid':this.state.bargain.bondId,
+			'dealDate':this._getCurDate(),
+			'clearSpeed':"0",
+			'dealNum':num,
+			'yield':yld,
+		}).then((data)=>{
 			if(data.data.status==="0"){
 				this.OBargain.netprc = this.chatroomUEService.__p(data.data.data.cleanPrice,true);
 				this.OBargain.setamt = data.data.data.settlementAmount;
@@ -445,12 +538,13 @@ class ChatroomController {
 		if(event.target.value===this.focusValue){return false;}
 		let num = this.chatroomUEService.__n(this.OBargain.num,false);
 		let prc = this.chatroomUEService.__p(this.OBargain.netprc,false);
-		let promise = this.chatroomService.opNetprc(
-			this.IBargain.bondid,
-			num,
-			prc
-		);
-		promise.then((data)=>{
+		this.chatroomService.opNetprc({
+			'bondid':this.state.bargain.bondId,
+			'dealDate':this._getCurDate(),
+			'clearSpeed':"0",
+			'dealNum':num,
+			'cleanPrice':prc,
+		}).then((data)=>{
 			if(data.data.status==="0"){
 				this.OBargain.yield = this.chatroomUEService.__y(data.data.data.yield,true);
 				this.OBargain.setamt = data.data.data.settlementAmount;
@@ -463,12 +557,13 @@ class ChatroomController {
 		if(event.target.value===this.focusValue){return false;}
 		let yld = this.chatroomUEService.__y(this.OBargain.yield,false);
 		let num = this.chatroomUEService.__n(this.OBargain.num,false);
-		let promise = this.chatroomService.opNum(
-			this.IBargain.bondid,
-			num,
-			yld
-		);
-		promise.then((data)=>{
+		this.chatroomService.opNum({
+			'bondid':this.state.bargain.bondId,
+			'dealDate':this._getCurDate(),
+			'clearSpeed':"0",
+			'dealNum':num,
+			'yield':yld,
+		}).then((data)=>{
 			if(data.data.status==="0"){
 				//this.OBargain.netprc = this.chatroomUEService.__p(data.data.data.cleanPrice,true);
 				this.OBargain.setamt = data.data.data.settlementAmount;
@@ -482,25 +577,22 @@ class ChatroomController {
 	}
 	/*UI控制*/
 	toggleChatHistory(){//切换是否显示议价记录
-		this.showChatHistory = !this.showChatHistory;
+		this.state.history.onHistory = !this.state.history.onHistory;
 		this.$timeout(()=>{
-			this.historyListHeight = document.getElementById('bargainAllHistory').clientHeight;
+			this.state.history.historyListHeight = document.getElementById('bargainAllHistory').clientHeight;
 		},0);
 	}
 	openBargainDrop(){
-		this.bargainfold = false;
-	}
-	closeBargainDrop(){
-		this.bargainfold = true;
+		this.state.bargain.offBargain = false;
 	}
 	openInputs(){
-		this.bargainInputFold = false;
+		this.state.bargain.offInput = false;
 	}
 	closeInputs(){
-		this.bargainInputFold = true;
+		this.state.bargain.offInput = true;
 	}
 	closeChatList(){
-		this.showChatList = false;
+		this.state.chat.onChat = false;
 	}
 	chatContentScroll(){
 		setTimeout(()=>{
@@ -508,134 +600,59 @@ class ChatroomController {
 			!!objDiv && (objDiv.scrollTop = objDiv.scrollHeight);
 		},10);
 	}
-	_countDownBroadcast(){
-		this.$rootScope.$broadcast('count-down-broadcast');
-	}
 	toggleBargainListState(){
-		this.unfoldBargain = !this.unfoldBargain;
+		this.state.bargain.unfoldBargainHistory = !this.state.bargain.unfoldBargainHistory;
 	}
 	togglehistorylist(bond){
 		bond.fold = !bond.fold;
 	}
-	constructor($rootScope,$scope,$log,$state,$stateParams,$uibModal,$timeout,$interval,ProxyRequestService,chatroomService,easeMobService,chatroomUEService) {
-		"ngInject";
-		this.$rootScope = $rootScope;
-		this.$scope = $scope;
-		this.$state = $state;
-		this.$uibModal = $uibModal;
-		this.$log = $log;
-		this.$timeout = $timeout;
-		this.ProxyRequestService = ProxyRequestService;
-		this.chatroomService = chatroomService;
-		this.easeMobService = easeMobService;
-		this.chatroomUEService = chatroomUEService;
-	}
-	$onInit(){
-		//当前用户头像
-		this.curUserUrl = '../../../../../resource/images/img_defaulthead_group.png';
-		(!!BONDCONFIG.USERINFO.iconUrl) && (this.curUserUrl = BONDCONFIG.USERINFO.iconUrl);
-		(!!BONDCONFIG.USERINFO.uid) && (this.curUserId = BONDCONFIG.USERINFO.uid);
-		//测试数据
-		this.$scope.bargain="议价记录";
-		//弹窗交互数据
-		this.dataForModal = {
-			quoteList:[]
-		};
-		//待发送报价列表
-		this.quoteListChecked = [];
-		//展示弹窗是否显示动画
-		this.animationsEnabled = true;
-		//当前聊天好友(与好友、议价等列表交互)
-		this.friend={};
-		//显示议价记录
-		this.showChatHistory = false;
-		//待发送信息
-		this.message = "";//"世界你好";
-		//隐藏议价界面
-		this.bargainfold = true;
-		//隐藏议价输入框
-		this.bargainInputFold = true;
-		this.showChatList = false;
-		this.unfoldBargain = false;
-		this.showCurCounting = true;
-		this.historyListHeight = '470';
-
-		/**
-		 * 倒计时预备对象创建
-		 */
-		this.bargainDetailTime = new ChatRoomTimer();
-		let that = this;
-		this.bargainDetailTime.onZero = function(time){
-			this.str = '已过期';
-			this.counting = false;
-			that.btnState.deal.enable = false;//交易按钮不可用
+	messageInput(){
+		if(event.keyCode===13){
+			this.sendMsg();
 		}
-
-		this.OBargain = {
-			bondNegtprcid:'',//议价id
-			bondOfrid:'',//报价id
-			negtprcUserId:'',//议价用户id
-			bondid:'',//债券id
-			yldrto:'',//收益率
-			netprc:'',//净价
-			num:'',//数量
-			setamt:'',//结算金额
-			iconUrl:'../../../../../resource/images/img_defaulthead_group.png'
-		};
-		this.IBargain = {
-			yield:'',
-			netprc:'',
-			num:'',
-			setamt:'',
-			bondOfrid:'',//债券报价id
-			bondNegtprcid:'',//债券议价id
-			negtprcUserId:'',//议价用户
-			bondid:'',//债券id
-		};
-		this.bargainHistory = [];
-		this.chatcontent = [
-			/*{
-				type:'sys',
-				message:'已拒绝'
-			}*/
-		];
-
-		this.easeMobService.init((message)=>{
+	}
+	_getUserInfo(){
+		if(!BONDCONFIG.USERINFO.lid){console.warn('用户未登录');}
+		(!!BONDCONFIG.USERINFO.iconUrl) && (this.state.curUser.headUrl = BONDCONFIG.USERINFO.iconUrl);//当前用户头像
+		(!!BONDCONFIG.USERINFO.uid) && (this.state.curUser.userId = BONDCONFIG.USERINFO.uid);
+	}
+	initEaseMob(){
+		this.easeMobService.login();
+		this.$scope.$on('ease:msg',(event,message)=>{
 			message.ext.udtTm=(new Date().getTime());
-			this.easeMobService.setCache(message,'i');
-			// debugger;
+			this.state.chat.num!=-1&&this.updateMsgNum(-1);//对方回复消息后，消息条数限制置为-1
 			if(message.ext.ext_msg_type=="20"||message.ext.ext_msg_type=="21"){
 				// 刷新议价列表
 				this._refreshBargainList();
 			}
-			if(this.OBargain.negtprcUserId==message.from&&BONDCONFIG.USERINFO.uid==message.to){//当前聊天对象id与发送方id相同时
+			if(this.state.curFriend.userId==message.from&&BONDCONFIG.USERINFO.uid==message.to){//当前聊天对象id与发送方id相同时
 				if(message.ext.ext_msg_type=="21"){
 					// 刷新议价界面
 					this._refreshBargainDetail();
 				}
+				this.easeMobService.setCache(message,'i');
 				this.$scope.$apply(()=>{
 					// console.info("消息类型:"+message.type);
 					// console.info(message.data||"Text");
 					this.popMsg(message.ext,message.data,'i');
 				});
 			}
-			if(this.OBargain.negtprcUserId==message.to&&BONDCONFIG.USERINFO.uid==message.from){//当前聊天对象id与接收方id相同时
+			if(this.state.curFriend.userId==message.to&&BONDCONFIG.USERINFO.uid==message.from){//当前聊天对象id与接收方id相同时
 				if(message.ext.ext_msg_type=="21"){
 					// 刷新议价界面
 					this._refreshBargainDetail();
 				}
+				this.easeMobService.setCache(message,'o');
 				this.$scope.$apply(()=>{
 					// console.info("消息类型:"+message.type);
 					// console.info(message.data||"Text");
 					this.popMsg(message.ext,message.data,'o');
 				});
-			}
-		},(message)=>{
+			};
+		});
+		this.$scope.$on('ease:cmd',(event,message)=>{
 			console.log('收到命令消息',message.ext.bond_type);
-			// console.log(this);
-			// debugger;
-			console.log(message);
-			if(this.OBargain.negtprcUserId==message.from&&BONDCONFIG.USERINFO.uid==message.to){//当前聊天对象id与发送方id相同时
+			if(this.state.curFriend.userId==message.from&&BONDCONFIG.USERINFO.uid==message.to){//当前聊天对象id与发送方id相同时
 				switch(message.ext.bond_type){
 					case "23":
 						this.popMsg(message.ext,'对方已拒绝您的议价','sys');
@@ -674,24 +691,116 @@ class ChatroomController {
 				}
 			}
 		});
-		this.easeMobService.login();
-		if(!BONDCONFIG.USERINFO.lid){console.warn('用户未登录');}
-		this.chatContentScroll();
+	}
+	fromLobby(){
 		/*来自报价大厅的跳转处理*/
 		let ofrUserId = this.$state.params.ofrUserId;
 		let bondOfrid = this.$state.params.bondOfrid;
 		if(ofrUserId && bondOfrid){
-			this.showChatList = true;//显示聊天界面
-			this.chatcontent = [];//清空聊天列表
-			this.OBargain.bondOfrid = bondOfrid;
-			this.OBargain.bondNegtprcid = undefined;
-			this.OBargain.negtprcUserId = ofrUserId;
+			this.state.chat.onChat = true;//显示聊天界面
+			this.state.chat.chatList = [];//清空聊天列表
+			this.state.bargain.quoteId = bondOfrid;
+			this.state.bargain.bargainId = undefined;
+			this.state.curFriend.userId = ofrUserId;
 			this._refreshBargainDetail(true);//参数表明是报价
 		}
 	}
-	messageInput(){
-		if(event.keyCode===13){
-			this.sendMsg();
+	constructor(
+		$rootScope,
+		$scope,
+		$log,
+		$state,
+		$stateParams,
+		$uibModal,
+		$timeout,
+		$interval,
+		ProxyRequestService,
+		chatroomService,
+		easeMobService,
+		chatroomUEService
+	){
+		"ngInject";
+		this.$rootScope = $rootScope;
+		this.$scope = $scope;
+		this.$state = $state;
+		this.$uibModal = $uibModal;
+		this.$log = $log;
+		this.$timeout = $timeout;
+		this.ProxyRequestService = ProxyRequestService;
+		this.chatroomService = chatroomService;
+		this.easeMobService = easeMobService;
+		this.chatroomUEService = chatroomUEService;
+	}
+	$onInit(){
+		this.state = {
+			cur:'',
+			curUser:{
+				userId:'',
+				headUrl:'../../../../../resource/images/img_defaulthead_group.png',
+			},
+			curFriend:{
+				userName:'',
+				userId:'',
+				userIcon:'../../../../../resource/images/img_defaulthead_group.png'
+			},
+			curGroup:{},
+			bargain:{
+				killBargain:false,
+				offBargain:true,
+				offInput:true,//隐藏议价输入框
+				unfoldBargainHistory:false,
+				onCounting:true,
+				quoteId:'',
+				bargainId:'',
+			},
+			chat:{
+				onChat:false,
+				chatList:[
+					/*{
+						type:'sys',
+						message:'已拒绝'
+					}*/
+				],
+				message:'',//待发送信息
+				num:''
+			},
+			history:{
+				onHistory:false,
+				historyList:[],
+				historyListHeight:'470'
+			},
+			pop:{
+				onAnimations:true,//展示弹窗是否显示动画
+				quote:{}
+			}
 		}
+		this.bargainDetailTime = {};
+		this._getUserInfo();
+		//测试数据
+		this.$scope.bargain="议价记录";
+		//弹窗交互数据
+		this.dataForModal = {
+			quoteList:[]
+		};
+
+		let routeArr = this.$state.$current.name.split('.');
+		this.asideUlClass = routeArr[routeArr.length-1];
+		switch(this.asideUlClass){
+			case 'friendslist':this.state.cur = 'f';break;
+			case 'groupslist':this.state.cur = 'f';break;
+			case 'bargainlist':this.state.cur = 'b';break;
+			default:this.state.cur='b';
+		}
+		
+		this.OBargain = {
+			yldrto:'',//收益率
+			netprc:'',//净价
+			num:'',//数量
+			setamt:'',//结算金额
+		};
+		this.IBargain = {};
+		this.chatContentScroll();
+		this.initEaseMob();
+		this.fromLobby();
 	}
 }

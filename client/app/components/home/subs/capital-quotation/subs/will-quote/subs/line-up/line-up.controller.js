@@ -1,7 +1,8 @@
 class LineUpController {
-	constructor(netCapitalQuoteService) {
+	constructor(netCapitalQuoteService,$state) {
 		"ngInject";
 		this.netCapitalQuoteService = netCapitalQuoteService;
+		this.$state = $state;
 
 		this.drc = this.netCapitalQuoteService.drc;
 		this.trmTp = this.netCapitalQuoteService.trmTp;
@@ -88,6 +89,11 @@ class LineUpController {
 		promise.then(function(res) {
 			
 		});
+		// this.toFater();
+
+	}
+	toFater(){
+		this.$state.go('home.capitalQuotation')
 	}
 	deleteList(index){
 		this.ofrDscList.splice(index,1);

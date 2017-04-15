@@ -1,0 +1,324 @@
+.mywealth_html{
+    width:100%;
+    height:100%;
+    font-size: .16rem;
+   /*  background:url('../images/wealth.png') no-repeat right .6rem bottom 0;
+   background-size:2.06rem 2.51rem; */
+    margin-left:-.5rem;
+    margin-top:-.2rem;
+    overflow-x:hidden;  
+} 
+.mywealth_banner{
+    width:100%;
+    height:1.92rem;
+    overflow:hidden;
+    position:relative;
+}
+.mywealth_banner_left{
+    width:3.1rem;
+    height:1.92rem;
+    background:rgba(0,0,0,.4);
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:100;
+}
+.mywealth_banner_left h1{
+    font-size:.18rem;
+    line-height:.29rem;
+    color:#ffeb62;
+    margin-top:.4rem;
+    margin-left:.2rem;
+
+}
+.mywealth_banner_left h2{
+    font-size:.50rem;
+    color:#ffeb62;
+    margin-left:.2rem;
+}
+.mywealth_banner_left div{
+    width:2rem;
+    height:.3rem;
+    margin-left:.2rem;
+    margin-top:.2rem;
+}
+.mywealth_banner_left div button{
+    width:.9rem;
+    height:.3rem;
+    background:#ff671b;
+    color:#fff;
+    text-align:center;
+    line-height:.3rem;
+    border-radius:.06rem; 
+    border:none; 
+    font-size:.14rem;
+}
+.mywealth_banner_right{
+    width:11.65rem;
+    height:1.92rem;
+    background:red;
+}
+.mywealth_liwu{
+    width:100%;
+    height:auto;
+    margin:.2rem auto .2rem auto;
+}
+.mywealth_liwu h1.h1{
+    width:1rem;
+    height:.3rem;
+    color:#ffeb62;
+    font-size:.16rem;
+    line-height:.29rem;
+    background:url('../images/lp_bg.png') no-repeat left center;
+    background-size:.04rem .2rem;
+    padding-left:.1rem;
+}
+.mywealth_liwu dl{
+    width:2.72rem;
+    height:1.2rem;
+    border-right:1px #3c5159 solid;
+    border-bottom:1px #3c5159 solid;
+    float:left;
+    margin-bottom:0;
+    padding:.15rem .1rem;
+}
+.mywealth_liwu dl:last-child{
+    margin-bottom:.3rem;
+}
+.mywealth_liwu dl dt{
+    width:.8rem;
+    height:.9rem;
+    margin:0 .1rem 0 0;
+    float:left;
+}
+.mywealth_liwu dl.dl dt{
+    margin-left: 0;
+}
+.mywealth_liwu dl dt img{
+    width:100%;
+    height:100%;
+}
+.mywealth_liwu dl dd{
+    width:1.6rem;
+    height:auto;
+    overflow:hidden;
+    font-size:.14rem;
+    float:left;
+}
+.mywealth_liwu>dl>dd>h1{
+    width:1.6rem;
+    height:.2rem;
+    color:#b8d1dd;
+    line-height:.2rem;
+    font-size:.14rem;
+    overflow:hidden;
+}
+.mywealth_liwu dl dd p{
+    color:#ffeb62;
+    line-height:.2rem;
+    background:url('../images/golub.png') no-repeat left center;
+    background-size:.18rem .16rem;
+    padding-left:.3rem;
+}
+.mywealth_liwu dl dd button{
+    width:.8rem;
+    height:.2rem;
+    background:#667882;
+    color:#fff;
+    font-size: .14rem;
+    border:none; 
+    border-radius: .04rem;
+}
+.mywealth_liwu dl dd button:active{
+    background:#ff671b;
+}
+.mywealth_liwu dl dd button:hover{
+    background:#ff671b;
+}
+.mywealth_liwu dl dd button:disabled{
+    background:#2e4c57;
+    color:#667882;
+    cursor:not-allowed;
+}
+.mywealth_liwu dl dt:hover{
+    width:.8rem;
+    height:.9rem;
+    border:  .01rem #ff671b solid;
+    overflow:hidden;
+}
+.mywealth_liwu>dl>dd>h1:hover{
+    color:#ff671b;
+}
+.mywealth_list{
+    width:100%;
+    height:auto;
+    clear:both;
+    padding-bottom:.7rem;
+    margin:0 auto;
+    background:#2d424c;
+}
+.mywealth_list ul{
+    width:100%;
+    height:.31rem;
+    background:url('../images/caifu_bg.jpg') repeat-x;
+}
+.mywealth_list ul li{
+    line-height:.3rem;
+    font-size:.14rem;
+    float:left;
+    color:#b8d1dd;
+}
+.mywealth_list ul li a{
+    line-height:.3rem;
+    font-size:.14rem;
+    color:#b8d1dd;
+}
+.tab_table1{
+    width:100%;
+    height:auto;
+    background:url('../images/wealth.png') no-repeat right .3rem bottom;
+    background-size:2.06rem 2.51rem;
+}
+.nav-tabs{
+    border:none;
+}
+.nav>li>a{
+    padding:.1rem .2rem;
+    display:inline;
+}
+.nav-tabs>li>a{
+    height:.3rem;
+    line-height:.3rem;
+    font-size:.14rem;
+    color:#b8d1dd;
+    border:none;
+    border-radius:0;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus{
+    border:none;
+    background:#ff671b;
+    color:#fff;
+}
+.nav-tabs>li.active>a:hover{
+    height:.3rem;
+}
+.nav-tabs>li.active>a{
+    line-height:.3rem;
+    font-size:.14rem;
+    color:#b8d1dd;
+    border:none;
+    background:none;
+}
+.mywealth_list ul li:hover,.mywealth_list ul li a:hover{
+    background:#ff671b;
+    color:#fff;
+}
+.nav-tabs>li.active>a{
+    background:#ff671b;
+    color:#fff;
+    border:none;
+}
+.mywealth_table{
+    width:7.7rem;
+    border-right:none;
+    border-left:none;
+
+}
+.mywealth_table tbody tr:hover{
+    background:#243941;
+}
+.mywealth_table tbody tr td{
+    padding-left:.5rem;
+    font-size:.14rem;
+    border-top:1px #344d56 solid;
+    color:#b8d1dd;
+    height:.45rem;
+    line-height:.45rem;
+}
+.mywealth_table tbody tr:last-child{
+    border-bottom:1px #344d56 solid;
+}
+.mywealth_table tbody tr td:nth-child(3){
+    color:#ffeb62;
+}
+
+.mywealth_jilu{
+    width:100%;
+    height:auto;
+    clear:both;
+    background:url('../images/wel_bg2.png') no-repeat right .3rem bottom;
+    background-size:2.38rem 2.68rem;
+}  
+.mywealth_jilu dl{
+    height:.9rem;
+    width:8rem;
+    border-bottom:1px #36474f solid;
+    margin-bottom:0;
+    padding:.15rem 0 .15rem .3rem;
+    position:relative;
+}
+.mywealth_jilu dl:hover{
+    background:#243941;
+}
+.mywealth_jilu dl.top_line{
+    border-top:1px #36474f solid;
+}
+.mywealth_jilu dl dt{
+    width:.6rem;
+    height:.6rem;
+    float:left;
+}
+.mywealth_jilu dl dt img{
+    width:100%;
+    height:100%;
+}
+.mywealth_jilu dl dd{
+    padding:0rem 0 0rem .1rem;
+    font-size:.14rem;
+    float:left;
+}
+.mywealth_jilu dl dd.dd1{
+    width:5.9rem;
+}
+.mywealth_jilu dl dd.dd2{
+    width:.64rem;
+    float:right;
+    position:relative;
+    margin-right:.1rem;
+}
+.mywealth_jilu dl dd.dd2 img{
+    width:.6rem;
+    height:.6rem;
+}
+.mywealth_jilu dl dd div{
+    float:left;
+}
+.mywealth_jilu dl dd div.mywealth_list_name{
+    width:4.1rem;
+    color:#b8d1dd; 
+    font-size:.16rem;
+} 
+.mywealth_jilu dl dd div.mywealth_list_name span{
+    color:#6b838e; 
+    margin-right:.1rem;
+} 
+.mywealth_jilu dl dd div.mywealth_list_name span.jujue{
+    color:#ff671b;
+    font-size:.14rem;
+    background:url('../images/bjj.png') no-repeat left center;
+    background-size:.12rem .12rem;
+    padding-left:.15rem;
+}
+.mywealth_jilu dl dd div.mywealth_list_status{
+    width:1.6rem;
+    height:.3rem;
+    color:#b8d1dd;
+    margin-top:.05rem;  
+    text-align:center;
+    line-height:.25rem;
+    float:right;
+    text-align:right;
+    font-size:.14rem;
+    display:inline;
+}
+

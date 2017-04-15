@@ -1,0 +1,86 @@
+<div class="personal_sup_html">
+    <ul class="personal_sup_ul"> 
+        <li class="sup_style_height">
+            <div class="sup_ul_left2">个人签名</div>
+            <div class="sup_ul_middle2">放假啊冷风机放假啊乐山大佛房间卡啥地方解放路开始的减肥拉萨防静电服啦发件方拉的屎京东方两三点发放假啊冷风机放假啊乐山大佛房间卡啥地方解放路开始的减肥拉萨防静电服啦发件方拉的屎京东方两三点发</div>
+            <div class="sup_ul_right2" ng-click="isAutograph=!isAutograph">修改</div>
+        </li>    
+        <li class="sup_amend_input sup_amend_textarea" ng-if="isAutograph==true">  
+            修改签名
+            <textarea class="sup_atograph_text">积分拉德芳斯放假爱丽丝发放假啊搜</textarea>
+            <button type="button" class="sup_upload_file_cannel" style="margin-top:.3rem;">确定</button>   
+        </li>
+        <li>   
+            <div class="sup_ul_left">昵称</div> 
+            <div class="sup_ul_middle">张一元</div>
+            <div class="sup_ul_right" ng-click="isNickName=!isNickName">修改</div> 
+        </li> 
+        <li class="sup_amend_input" ng-if="isNickName==true">  
+            修改昵称
+            <input type="text" placeholder="请输入修改内容" class="amend_input2"/>
+            <button type="button" class="sup_upload_file_cannel">确定</button>   
+        </li>
+        <li>
+            <div class="sup_ul_left">性别</div>
+            <div class="sup_ul_middle">张一元</div>
+            <div class="sup_ul_right" ng-click="isSex=!isSex">修改</div>
+        </li>
+        <li class="sup_amend_input" ng-if="isSex==true">   
+            修改性别
+            <select class="sup_sex_option" style="margin-right:2.2rem;"> 
+                <option>男</option>
+                <option>女</option>
+            </select>
+            <button type="button" class="sup_upload_file_cannel">确定</button>   
+        </li>
+        <li>
+            <div class="sup_ul_left">生日</div>
+            <div class="sup_ul_middle">张一元</div>
+            <div class="sup_ul_right" ng-click="isBirthday=!isBirthday">修改</div>
+        </li> 
+        <li class="sup_amend_input" ng-if="isBirthday==true">   
+            修改生日
+            <input type="text" placeholder="请输入修改内容" class="amend_input2" uib-datepicker-popup="{{format}}" ng-model="$ctrl.tody" is-open="true" datepicker-options="dateOptions"   close-text="Close" alt-input-formats="altInputFormats"/>
+            <span class="date" ng-click='isOpen = !isOPen'></span>
+            <button type="button" class="sup_upload_file_cannel">确定</button>   
+        </li>
+        <li> 
+            <div class="sup_ul_left">家乡</div>
+            <div class="sup_ul_middle">张一元</div>
+            <div class="sup_ul_right" ng-click="isHometown=!isHometown">修改</div>
+        </li>
+        <li class="sup_amend_input" ng-if="isHometown==true">  
+            修改家乡
+            <select class="sup_sex_option"> 
+                <option>省/直辖市</option>
+                <option>北京市</option>
+                <option>北京市</option>
+                <option>北京市</option>
+                <option>北京市</option>
+            </select>
+            <select class="sup_sex_option" style="margin-right:.96rem;"> 
+                <option>市/县区</option>
+                <option>海淀区</option>
+                <option>丰台区</option>
+                <option>市/县区</option>
+                <option>市/县区</option>
+            </select>
+            <button type="button" class="sup_upload_file_cannel">确定</button>   
+        </li>
+        <li class="sup_style_height2">
+            <div class="sup_ul_left">名片</div>
+            <div class="sup_ul_middle_img"> 
+                <img src="../images/card.png" ng-click="isCard=!isCard"/>
+            </div>
+        </li> 
+        <li class="upload_img" ng-if="isCard==true"> 
+            <div class="zhanshi_img">已选图片<input type="text" value="已选图片" /></div>
+            <div class="file_btn"> 
+                <button type="button" id="upload_file_no">确定</button>
+                <button type="button" id="upload_file_yes">更换</button>
+                <button type="button" id="sup_upload_file_cannel">取消</button>   
+            </div>
+        </li>
+    </ul>
+
+</div> 

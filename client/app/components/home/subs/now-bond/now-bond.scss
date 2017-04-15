@@ -6,7 +6,6 @@
 }
 .my-now-bond{
 	.modal-wfxl.modal-dialog {
-		z-index:999999;
 		width: 12rem;
 		.modal-content{
 			color:$textD;
@@ -17,9 +16,6 @@
 			box-sizing: border-box;
 			.modal-body{
 				width: 12rem;
-			}
-			.modal-footer{
-				left: 2.7rem;
 			}
 		}
 	}
@@ -84,7 +80,6 @@
 		}
 		div.modal-body{
 
-			// background: $bgDefault;
 			.hideSelf{
 				display: none;
 			}
@@ -142,8 +137,14 @@
 					}
 					padding:0.1rem 0.05rem;
 					.className{
-						width:100px;
+						width:1rem;
 						height:0.3rem;
+						.ui-select-match-item{
+							background:#ccc
+						}
+						input.ui-select-search.input-xs{
+							width:1rem;
+						}
 					}
 					.cont_l,.cont_r{
 						display:inline-block;

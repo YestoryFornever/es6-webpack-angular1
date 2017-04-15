@@ -1,0 +1,321 @@
+<div class="all_main">
+	<!-- //导航 -->
+		<div class="nav ">
+				<div class="nav_nav">
+					<ul>
+						<li class="nav_top" ng-class="{'clear':tabkey==0}" ui-sref="home.message({tag:0,page:1, reload: true })">推荐</li>
+						<li class="nav_top" ng-class="{'clear':tabkey==6}" ui-sref="home.message({tag:6,page:1, reload: true })">扫雷</li>
+						<li class="nav_top" ng-class="{clear:tabkey==1}" ui-sref="home.message({tag:1,page:1,reload:true})">负面</li>
+						<li class="nav_top" ng-class="{clear:tabkey==2}" ui-sref= "home.message({tag:2,page:1,reload:true})">自媒体</li>
+						<li class="nav_top" ng-class="{clear:tabkey==7}" ui-sref= "home.message({tag:7,page:1,reload:true})">日报</li>
+						<li class="nav_top all_show" ng-class="{clear:tabkey==3}" ui-sref="home.message({tag:3,page:1,reload:true})">全部</li>
+						<li class="nav_top" ng-class="{clear:tabkey==4}" ui-sref="home.message({tag:4,page:1,reload:true})">收藏({{num_one}})</li>
+						<li class="nav_top result_one" ng-class="{clear:tabkey==5}" ng-click="doSearch()" ng-if="params.search.length>0" >
+							搜索结果 
+							<span  ng-click="closeSearch()">
+								<img src="../../../../../resource/images/btn_close02_gray.png" alt="">
+							</span>
+						</li>
+							<!-- <li  ui-sref="home.newdebtinformation()">33333</li> -->
+					</ul>
+				</div>
+				<div class="nav_all">
+						<div class="nav_one">
+							<!-- <img ng-src="../../../../../../resource/images/btn_refresh_normal.png" height="24" width="40" alt=""> -->
+						</div>
+						<div class="nav_two">
+							<input type="text" ng-model="params.search">
+							<i class="nav_two_close" ng-click="params.search=null" ng-If="params.search.length>0">
+								<!-- <img src="../../../../../../resource/images/btn_clear2_normal" alt=""> -->
+							</i>
+							<i ng-click="doSearch()">
+								<img src="../../../../../resource/images/icon_search_hover.png" alt="">
+							</i>
+						</div>
+			</div>
+				
+		</div>
+		<!-- tab内容 -->
+		<div class="clearfix"></div>
+	<div class="table_all">
+		<div class="table" >
+
+			<!-- 负面页面 -->
+			<div class="list introduced"   >
+			<!-- on-bottom="fn()" -->
+				<div class="introduced_center" iscroll    on-top="upload() ">
+					
+					<div class="introduced_center_ul" ng-If="flashKey!=6">
+						<!-- 日报 -->
+					<div class="headerTime_ribao" ng-If="flashKey==7">
+							<span class="headerTime_ribao_one">1</span>
+							<span class="headerTime_ribao_two">债金所日报</span>
+							<span class="headerTime_ribao_three">22</span>
+					</div>
+					<!-- 日报头信息 -->
+						<ul  >
+							<div class="ribao_class" ng-If="flashKey==7">
+								<span>政策导向</span>
+							</div>
+							<li ng-click='$ctrl.activeTab1()' ng-repeat="lt in one track by $index">
+								<div class="introduced_lf"  >
+									<div class="introduced_center_pp">
+										<img ng-src="{{lt.img}}" alt="">
+									</div>
+									
+									<div class="introduced_center_bb">
+										<h4 ui-sref="home.messagedetail({iid:(lt.iid||lt.info_id)})">{{lt.title}}</h4>
+										<p class="introduced_center_bb_filter" ng-bind-html="lt.note|color: params.search"></p>
+										<p class="introduced_center_bb_pp">
+										<span class="introduced_center_bb_span_img">
+										<img ng-src="{{lt.source_logo}}" alt="">
+										</span>
+										<span>{{lt.source}}</span> 
+										<span >{{lt.time_str}}</span>
+										<span>{{lt.favorite_time}}</span>
+										</p>
+										
+									</div>
+								</div>
+							</li>
+							
+						</ul>
+					</div>
+
+					<!-- 扫雷开始 -->
+					<div class="introduced_center_ul  introduced_center_ul02" ng-If="flashKey==6">
+						<div class="headerTime">
+							<span   >4月6日</span>
+						</div>
+				        <ul > 
+				           <!--渲染的数据-->
+					        <li> 
+						        <div class="introduced_lf   " style="height:140px;clear:both;" >
+						            <div class="messagelist_left" style="height:140px;">
+						            <!-- <i><img ng-src="../../../../../resource/images/yuan.png" alt="" height="10" width="10"></i> -->
+						                <span>12:30</span>
+						            </div>
+						            <div class="introduced_center_bb introduced_center_b01" style="height:140px;">
+											<h4 ui-sref="home.messagedetail({iid:(lt.iid||lt.info_id)})">公司秉承“科技改变生活”的理念，引进、研发并推动发展金融行业先进的信息技术，以提</h4>
+											<p class="introduced_center_bb_filter">高金融行业信息技公司秉承“科技改变生活”的理念，引进、研发并推动发展金融行业先进的信息技术，以提高金融行业信息技术水平，促进并带动金融行业信息技术的长足发展为目标，创新科技、超越常规理念，</p>
+											<p class="introduced_center_bb_filter02">
+												<span class="introduced_center_bb_filter02_one">11</span>
+												<span class="introduced_center_bb_filter02_two">22</span>
+												<span class="introduced_center_bb_filter02_three">33</span>
+												<span class="introduced_center_bb_filter02_four">44</span>
+												<span class="introduced_center_bb_filter02_five">55</span>
+											</p>
+
+
+											<!-- 5评论梨数 -->
+											<p class="introduced_center_bb_pp" ng-if="false">
+											<!-- <span class="introduced_center_bb_span_img02"></span>  -->
+											<span ><img ng-src="../../../../../resource/images/icon_dilei1.png" alt=""></span>
+											<span><img ng-src="../../../../../resource/images/icon_dilei1.png" alt=""></span>
+											<span ><img ng-src="../../../../../resource/images/icon_dilei1.png" alt=""></span>
+											<span><img ng-src="../../../../../resource/images/icon_dilei1.png" alt=""></span>
+											<span ><img ng-src="../../../../../resource/images/icon_dilei1.png" alt=""></span>
+											</p>
+											<!-- 无评论梨数 -->
+											<p class="introduced_center_bb_pp" ng-if="false">
+											<span ><img ng-src="../../../../../resource/images/icon_dilei2.png" alt=""></span>
+											<span><img ng-src="../../../../../resource/images/icon_dilei2.png" alt=""></span>
+											<span ><img ng-src="../../../../../resource/images/icon_dilei2.png" alt=""></span>
+											<span><img ng-src="../../../../../resource/images/icon_dilei2.png" alt=""></span>
+											<span ><img ng-src="../../../../../resource/images/icon_dilei2.png" alt=""></span>
+											</p>
+											<!-- 1评论梨数 -->
+											<p class="introduced_center_bb_pp" ng-if="false">
+											<span ><img ng-src="../../../../../resource/images/icon_dilei1.png" alt=""></span>
+											<span><img ng-src="../../../../../resource/images/icon_dilei2.png" alt=""></span>
+											<span ><img ng-src="../../../../../resource/images/icon_dilei2.png" alt=""></span>
+											<span><img ng-src="../../../../../resource/images/icon_dilei2.png" alt=""></span>
+											<span ><img ng-src="../../../../../resource/images/icon_dilei2.png" alt=""></span>
+											</p>
+
+											<!-- 2评论梨数 -->
+											<p class="introduced_center_bb_pp" ng-if="false">
+											<span ><img ng-src="../../../../../resource/images/icon_dilei1.png" alt=""></span>
+											<span><img ng-src="../../../../../resource/images/icon_dilei1.png" alt=""></span>
+											<span ><img ng-src="../../../../../resource/images/icon_dilei2.png" alt=""></span>
+											<span><img ng-src="../../../../../resource/images/icon_dilei2.png" alt=""></span>
+											<span ><img ng-src="../../../../../resource/images/icon_dilei2.png" alt=""></span>
+											</p>
+
+											<!-- 3评论梨数 -->
+											<p class="introduced_center_bb_pp" ng-if="true">
+											<span ><img ng-src="../../../../../resource/images/icon_dilei1.png" alt=""></span>
+											<span><img ng-src="../../../../../resource/images/icon_dilei1.png" alt=""></span>
+											<span ><img ng-src="../../../../../resource/images/icon_dilei1.png" alt=""></span>
+											<span><img ng-src="../../../../../resource/images/icon_dilei2.png" alt=""></span>
+											<span ><img ng-src="../../../../../resource/images/icon_dilei2.png" alt=""></span>
+											</p>
+
+											<!-- 4评论梨数 -->
+											<p class="introduced_center_bb_pp" ng-if="false">
+											<span ><img ng-src="../../../../../resource/images/icon_dilei1.png" alt=""></span>
+											<span><img ng-src="../../../../../resource/images/icon_dilei1.png" alt=""></span>
+											<span ><img ng-src="../../../../../resource/images/icon_dilei1.png" alt=""></span>
+											<span><img ng-src="../../../../../resource/images/icon_dilei1.png" alt=""></span>
+											<span ><img ng-src="../../../../../resource/images/icon_dilei2.png" alt=""></span>
+											</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+										</div>
+						         </div>
+					        </li>
+						</ul>
+					</div>
+
+					<!-- 扫雷结束 -->
+					<div class="jiazhai "  ng-click="fn()">
+							<span>加载更多</span>
+					</div>
+					<div class="clearfix"></div>
+					<!-- 收藏 -->
+					<div class="img_img"  style="width:300px;height:80px;" ng-show="one.length<=0 && tabkey==4" >
+								<div class="img_img_tu" style="height:60px;width:50px;margin:0 auto;">
+								<img ng-src="../../../../../resource/images/icon_hint_noresult.png" height="" width="" alt="">
+								</div>
+								<p style="text-align:center;">暂无收藏</p>
+					</div>
+
+					<div class="img_img" ng-If='one.length<=0 && tabkey!=5 && tabkey!=4'>
+						<img src="../../../../../resource/images/img_head_systemmessage.png" height="" width="" alt="">
+					</div>
+						<!-- 搜索结果 -->
+					
+					<div class="img_img"  style="width:300px;height:80px;" ng-show="one.length<=0 && tabkey==5" >
+								<div class="img_img_tu" style="height:60px;width:60px;margin:0 auto;"><img src="../../../../../resource/images/icon_hint_noresult.png" height="" width="" alt=""></div>
+								<p style="text-align:center;">暂无和 <span style="color:#FF9973;">&nbsp;"{{params.search}}"&nbsp;</span>相关的搜索结果</p>
+					</div>
+				</div>
+
+			</div>
+		
+	<!-- 添加滚动条 -->
+	 
+	</div>
+	<!-- 推荐快讯 -->
+	<div  ng-If="flashKey==0"   class="introduced_rt" iscroll  >
+		
+		<div class="introduced_rt_top">
+			<span>要闻</span>
+		</div>
+		<div class="introduced_rt_center">
+			<ul ng-repeat="lis in importantListsarray">
+				<li ng-init="is_show=0">
+						<span  class="span_a" ng-class="{'span_a':is_show==0, 'span_b':is_show==1}" ng-click="$ctrl.doCheck()">1111</span>
+					<!-- <span ng-show='$ctrl.target' ></span> -->
+					<p><span class="introduced_rt_center_time" >2</span><span class="open">
+					<a class="rrrr "  href="javascript:0;" ng-click="$ctrl.doCheck($index);is_show=1" ng-show="is_show==0" > 展开</a>
+					<a class="rrrr"  href="javascript:0;" ng-click="$ctrl.doCheck($index);is_show=0"  ng-show="is_show==1" > 收起</a>
+					<!-- <a href="javascript:0;" ng-click="$ctrl.doCheck()"  ng-show="$ctrl.target" ><i class=" icon-angle-up"></i> 收起</a> -->
+					</span></p>
+					</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ul>
+		</div>
+		<div class="introduced_rt_center_daily">
+			<span class="introduced_rt_center_daily_one"></span>
+			<span class="introduced_rt_center_daily_two">债金所日报</span>
+			<span class="introduced_rt_center_daily_three">时间</span>
+			<span class="introduced_rt_center_daily_four"></span>
+		</div>
+		<div class="introduced_rt_center">
+				<ul ng-repeat="lis in flash_one" >
+					<li ng-init="is_show=0">
+						<span  class="span_a" ng-class="{'span_a':is_show==0, 'span_b':is_show==1}" ng-click="$ctrl.doCheck()">{{lis.data[0].content}}</span>
+					<!-- <span ng-show='$ctrl.target' ></span> -->
+					<p><span class="introduced_rt_center_time" >{{lis.data[0].time_str}}</span><span class="open">
+					<a class="rrrr "  href="javascript:0;" ng-click="$ctrl.doCheck($index);is_show=1" ng-show="is_show==0" > 展开</a>
+					<a class="rrrr"  href="javascript:0;" ng-click="$ctrl.doCheck($index);is_show=0"  ng-show="is_show==1" > 收起</a>
+					<!-- <a href="javascript:0;" ng-click="$ctrl.doCheck()"  ng-show="$ctrl.target" ><i class=" icon-angle-up"></i> 收起</a> -->
+					</span></p>
+					</li>
+					
+				</ul>
+				<div class="img_img" ng-If='$ctrl.fullmarks_flash'>
+				<img src="../../../../../resource/images/img_head_systemmessage.png" height="" width="" alt="">
+				</div>
+
+		</div> 
+		<!-- <div class="jiazhai "  ng-click="fn()">
+							<span>加载更多</span> -->
+						<!-- <button class="btn   more_btn">加载</button> -->
+		<!-- </div> -->
+	</div>
+	<!-- 推荐快讯结束 -->
+	<div  ng-If="flashKey!=0&&flashKey!=7"   class="introduced_rt" iscroll on-bottom="qinfoLists()" on-top="upload()">
+		
+		<div class="introduced_rt_top">
+			<span>快讯</span>
+		</div>
+		<div class="introduced_rt_center">
+				<ul ng-repeat="lis in flash_one" >
+					<li ng-init="is_show=0">
+						<span  class="span_a" ng-class="{'span_a':is_show==0, 'span_b':is_show==1}" ng-click="$ctrl.doCheck()">{{lis.data[0].content}}</span>
+					<!-- <span ng-show='$ctrl.target' ></span> -->
+					<p><span class="introduced_rt_center_time" >{{lis.data[0].time_str}}</span><span class="open">
+					<a class="rrrr "  href="javascript:0;" ng-click="$ctrl.doCheck($index);is_show=1" ng-show="is_show==0" > 展开</a>
+					<a class="rrrr"  href="javascript:0;" ng-click="$ctrl.doCheck($index);is_show=0"  ng-show="is_show==1" > 收起</a>
+					<!-- <a href="javascript:0;" ng-click="$ctrl.doCheck()"  ng-show="$ctrl.target" ><i class=" icon-angle-up"></i> 收起</a> -->
+					</span></p>
+					</li>
+					
+				</ul>
+				<div class="img_img" ng-If='$ctrl.fullmarks_flash'>
+				<img src="../../../../../resource/images/img_head_systemmessage.png" height="" width="" alt="">
+				</div>
+
+		</div> 
+		<!-- <div class="jiazhai "  ng-click="fn()">
+							<span>加载更多</span> -->
+						<!-- <button class="btn   more_btn">加载</button> -->
+		<!-- </div> -->
+	</div>
+	<!-- 日报快讯 -->
+	<div  ng-If="flashKey==7"   class="introduced_rt" iscroll  >
+					
+					<div class="introduced_rt_top">
+						<span>债金所日报列表</span>
+					</div>
+					
+					<div class="introduced_rt_center">
+							<ul>
+								<li>
+									<div class="introduced_rt_center_daily02">
+										<span class="introduced_rt_center_daily_one01"></span>
+										<span class="introduced_rt_center_daily_two">债金所日报</span>
+										<span class="introduced_rt_center_daily_three">时间</span>
+										<!-- <span class="introduced_rt_center_daily_four"></span> -->
+									</div>
+								</li>
+							</ul>
+							<div class="img_img" ng-If='$ctrl.fullmarks_flash'>
+							<img src="../../../../../resource/images/img_head_systemmessage.png" height="" width="" alt="">
+							</div>
+
+					</div> 
+					<div class="jiazhai "  ng-click="fn()">
+										<span>加载更多</span> 
+									<!-- <button class="btn   more_btn">加载</button> -->
+					 </div>
+	</div>
+	<!-- 日报快讯结束 -->
+</div>
+
+</div>

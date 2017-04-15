@@ -1,10 +1,6 @@
-<!-- <div>
-	<p>{{ $ctrl.name }}</p>
-</div> -->
 <!-- 弹窗 -->
-
 <div class="bondTrial " >
-	<!-- <div class="modal-content"  > -->
+	<!-- <div class="modal-wfcontent"  > -->
 		<div class="modal-header ng-scope">
 			<p class="modal-title" id="modal-title">债券试算 
 				<i class="fa fa-times pull-right" aria-hidden="true" ng-click="$ctrl.cancel()"></i>
@@ -15,6 +11,7 @@
 				<div class="cont_l">
 					<span class="tit">债券代码</span>
 					<input type="text"
+						placeholder="请输入代码或简称" 
 						ng-model="$ctrl.bondCd"
 						uib-typeahead="list as list.bondCd for list in  $ctrl.queryQuote($viewValue)"
 						typeahead-template-url="bondTrial_item.html"
@@ -24,23 +21,23 @@
 				</div>
 				<div class="cont_r">
 					<span class="tit">债券简称</span>
-					<span class="content">{{$ctrl.infoList.bondShrtnm}}</span>
+					<span class="wfcontent">{{$ctrl.infoList.bondShrtnm |addTwoLine}}</span>
 				</div>
 				<div class="cont_l">
 					<span class="tit">剩余期限</span>
-					<span class="content">{{$ctrl.infoList.rsdtrm | addYearFilter}}</span>
+					<span class="wfcontent">{{$ctrl.infoList.rsdtrm | addYearFilter |addTwoLine}}</span>
 				</div>
 				<div class="cont_r">
 					<span class="tit">主/债评级</span>
-					<span class="content">{{$ctrl.infoList.sbjRtg}}/{{$ctrl.infoList.bondRank}}</span>
+					<span class="wfcontent">{{$ctrl.infoList.sbjRtg |addTwoLine}}/{{$ctrl.infoList.bondRank |addTwoLine}}</span>
 				</div>
 				<div class="cont_l">
 					<span class="tit">票面利率(%)</span>
-					<span class="content">{{$ctrl.infoList.bondRate | yldrtoFilter}}</span>
+					<span class="wfcontent">{{$ctrl.infoList.bondRate | yldrtoFilter |addTwoLine}}</span>
 				</div>
 				<div class="cont_r">
 					<span class="tit">票息类型</span>
-					<span class="content">{{$ctrl.infoList.rateType}}</span>
+					<span class="wfcontent">{{$ctrl.infoList.rateType |addTwoLine}}</span>
 				</div>
 			</div>
 			<div class="cont">
@@ -51,88 +48,82 @@
 				</div>
 				<div class="cont_r">
 					<span class="tit">清算速度</span>
-					<span class="content">
-						<!-- <label >
-							<img src="../../../../resource/images/btn_selectbox_round_normal.png" alt="">&nbsp;T+1
-						</label> -->
+					<span class="wfcontent">
 						<label ng-model='$ctrl.getCalcIndicators.clearSpeed' uib-btn-radio="'1'"   ng-click='$ctrl.getCalSettlementDate("1")'>
 							<span class="choice" ng-class='{"unChoice" : $ctrl.getCalcIndicators.clearSpeed =="0"}'></span>&nbsp;T+1
 						</label>
 						<label ng-model='$ctrl.getCalcIndicators.clearSpeed' uib-btn-radio="'0'" ng-click='$ctrl.getCalSettlementDate("0")'>
 							<span class="choice" ng-class='{"unChoice" : $ctrl.getCalcIndicators.clearSpeed =="1"}'></span>&nbsp;T+0
 						</label>
-						<!-- <label >
-							<img src="../../../../resource/images/btn_selectbox_round_select.png" alt="">&nbsp;T+0
-						</label> -->
 					</span>
 				</div>
 				<div class="cont_l">
 					<span class="tit">结算日期</span>
-					<span class="content">{{$ctrl.settlementDate}}</span>
+					<span class="wfcontent">{{$ctrl.calcDaysList.settlementDate |addTwoLine}}</span>
 				</div>
 				<div class="cont_r">
 					<span class="tit">&nbsp;</span>
-					<span class="content">&nbsp;</span>
+					<span class="wfcontent">&nbsp;</span>
 				</div>
 				<div class="cont_l">
 					<span class="tit">数量(万)</span>
-					<span class="content"><input type="text" ng-blur='$ctrl.getMoneyForNum()' ng-model='$ctrl.getCalcIndicators.dealNum'></span>
+					<span class="wfcontent"><input type="text" ng-blur='$ctrl.getMoneyForNum()' ng-model='$ctrl.getCalcIndicators.dealNum'></span>
 				</div>
 				<div class="cont_r">
 					<span class="tit">结算金额</span>
-					<span class="content">{{$ctrl.settlementAmount  | number:2}}</span>
+					<span class="wfcontent">{{$ctrl.settlementAmount  | number:2 |addTwoLine}}</span>
 				</div>
 			</div>
 			<div class="cont">
 				<div class="cont_l marT10">
 					<span class="tit">到期收益率(%)</span>
-					<span class="content"><input type="text" ng-model='$ctrl.getCalcIndicators.yield' ng-blur='$ctrl.calcIndicatorsYield()'  placeholder="请输入内容"></span>
+					<span class="wfcontent"><input type="text" ng-model='$ctrl.getCalcIndicators.yield' ng-blur='$ctrl.calcIndicatorsYield()'  placeholder="请输入内容"></span>
 				</div>
 				<div class="cont_r">
 					<span class="tit">计息天数</span>
-					<span class="content">{{$ctrl.calcDaysList.calcDays}}</span>
+					<span class="wfcontent">{{$ctrl.calcDaysList.calcDays |addTwoLine}}</span>
 				</div>
 				<div class="cont_l ">
 					<span class="tit">行权收益率(%)</span>
-					<span class="content"><input style="background: #ccc" type="text" disabled="true" placeholder="请输入内容"></span>
+					<span class="wfcontent"><input style="background: #ccc" type="text" disabled="true" placeholder="请输入内容"></span>
 				</div>
 				<div class="cont_r">
 					<span class="tit">应计利息</span>
-					<span class="content">{{$ctrl.calcIndicatorsList.accruedInterest  | numPointFourFilter }}</span>
+					<span class="wfcontent">{{$ctrl.calcIndicatorsList.accruedInterest  | numPointFourFilter  |addTwoLine}}</span>
 				</div>
 				<div class="cont_l ">
 					<span class="tit">净价(元)</span>
-					<span class="content"><input type="text"  ng-focus='$ctrl.focusPrice("cleanPrice")' ng-model='$ctrl.getCalcIndicators.cleanPrice' ng-blur='$ctrl.calcIndicatorsForWeb("cleanPrice")' placeholder="请输入内容"></span>
+					<span class="wfcontent"><input type="text"  ng-focus='$ctrl.focusPrice("cleanPrice")' ng-model='$ctrl.getCalcIndicators.cleanPrice' ng-blur='$ctrl.calcIndicatorsForWeb("cleanPrice")' placeholder="请输入内容"></span>
 				</div>
 				<div class="cont_r">
 					<span class="tit">兑付日</span>
-					<span class="content">{{$ctrl.calcDaysList.maturedDay}}</span>
+					<span class="wfcontent">{{$ctrl.calcDaysList.maturedDay |addTwoLine}}</span>
 				</div>
 				<div class="cont_l ">
 					<span class="tit">全价(元)</span>
-					<span class="content"><input type="text" ng-focus='$ctrl.focusPrice("fullRate")'  ng-model='$ctrl.getCalcIndicators.fullRate ' ng-blur='$ctrl.calcIndicatorsForWeb("fullRate")' placeholder="请输入内容"></span>
+					<span class="wfcontent"><input type="text" ng-focus='$ctrl.focusPrice("fullRate")'  ng-model='$ctrl.getCalcIndicators.fullRate ' ng-blur='$ctrl.calcIndicatorsForWeb("fullRate")' placeholder="请输入内容"></span>
 				</div>
 				<div class="cont_r">
 					<span class="tit">行权日</span>
-					<span class="content">{{$ctrl.calcDaysList.execDay}}</span>
+					<span class="wfcontent">{{$ctrl.calcDaysList.execDay |addTwoLine}}</span>
 				</div>
 			</div>
 			<div class="cont marNone">
 				<div class="cont_l marT10">
 					<span class="tit">麦氏久期</span>
-					<span class="content">{{$ctrl.calcIndicatorsList.rmclDuration  | numPointFourFilter |addTwoLine }}</span>
+					<span class="wfcontent">{{$ctrl.calcIndicatorsList.rmclDuration  | numPointFourFilter |addTwoLine }}</span>
 				</div>
 				<div class="cont_r">
 					<span class="tit">PVBP</span>
-					<span class="content">{{$ctrl.calcIndicatorsList.rbPV  | numPointFourFilter  |addTwoLine }}</span>
+					<span class="wfcontent">{{$ctrl.calcIndicatorsList.rbPV  | numPointFourFilter  |addTwoLine }}</span>
 				</div>
 				<div class="cont_l ">
 					<span class="tit">修正久期</span>
-					<span class="content">{{$ctrl.calcIndicatorsList.rmdfDuration  | numPointFourFilter   |addTwoLine }}</span>
+					<span class="wfcontent">{{$ctrl.calcIndicatorsList.rmdfDuration  | numPointFourFilter   |addTwoLine }}</span>
 				</div>
 				<div class="cont_r">
 					<span class="tit">凸性</span>
-					<span class="content">{{$ctrl.calcIndicatorsList.rconvexity   | numPointFourFilter |addTwoLine }}</span>
+					<span class="wfcontent">{{$ctrl.calcIndicatorsList.rconvexity   | numPointFourFilter |addTwoLine }}</span>
 				</div>
 			</div>
 		</div>

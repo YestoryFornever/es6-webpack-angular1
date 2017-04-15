@@ -2,11 +2,12 @@
  * 代理请求
  * @type {[type]}
  */
-app.factory('ProxyRequestService',['$http','$q', 'userStatusService', function($http,$q, userStatusService){
+app.factory('ProxyRequestService', function($http,$q, userStatusService){
+
 	return {
 		_prefix: (function(){
 			// return '/api';
-			return BONDCONFIG.getIP();
+			return window.Host;
 		})(),
 		get(url, params, header)
 		{
@@ -54,4 +55,4 @@ app.factory('ProxyRequestService',['$http','$q', 'userStatusService', function($
 			return deferred.promise;
 		}
 	}
-}]);
+});

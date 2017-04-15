@@ -32,9 +32,10 @@ var app = angular.module('website', [
 	// @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions
 	// #how-to-configure-your-server-to-work-with-html5mode
 	// $locationProvider.html5Mode(true).hashPrefix('!');
-	$urlRouterProvider.otherwise('/login');
-}).run(($rootScope, $state) =>{
+	$urlRouterProvider.otherwise('/home/message/');
+}).run(($rootScope, $state, userStatusService) =>{
 	$rootScope.$state = $state;
+	$rootScope.userStatusService = userStatusService;
 	// $rootScope.CoAuth = CoAuth;
 	// $rootScope.WindowInfo = WindowInfo;
 });

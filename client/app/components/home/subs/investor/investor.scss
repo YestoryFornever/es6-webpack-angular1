@@ -1,0 +1,121 @@
+.myApplicationTitle {
+  background-color: #3c3e33;
+  height: 35px;
+  line-height: 35px;
+  padding: 0 10px;
+  color: #fdf6c4;
+  margin: 5px;
+}
+.myApplicationTitle .applicationTitleOne {
+  color: #fff;
+  background: url(../../../../../resource/images/tag_02.png) 0 3px no-repeat;
+  padding: 5px 30px 5px 10px;
+}
+.myApplicationTitle .applicationTitleTwo, .applicationTitleThree {
+  margin-right: 40px;
+}
+.applicationTitleSix {
+  background-color: #997f55;
+  padding: 0 10px;
+  font-size: 12px;
+  margin-left: 10px;
+  border-radius: 3px;
+}
+.applicationBtn {
+  color: #ffffff;
+  background-color: #627982;
+  padding: 0 20px;
+  font-size: 12px;
+  border-radius: 3px;
+  margin-right: 10px;
+}
+.cursor {
+  cursor: pointer;
+}
+.applicationColor {
+  color: #fdf6c4;
+  margin-left: 10px;
+}
+.applicationColor:hover {
+  color: #fdf6c4;
+}
+.investor .table {
+  margin: 5px;
+}
+.investor table tr {
+  background-color: #2d424c;
+}
+.investor table tr td, .investor table tr th {
+  text-align: center;
+}
+.addApp {
+  font-size: 14px;
+}
+.addApp table {
+  margin: 10px 0;
+}
+.addApp table tr {
+  background: #1f3a42;
+  border-bottom: 1px solid #33474f;
+  height: 32px;
+  line-height: 32px;
+}
+.addApp table tr.clicked {
+  background: #1c4f63;
+  border: #205163;
+}
+.addApp table tr td, .addApp table tr th {
+  text-align: center;
+}
+.addApp input, .addApp select {
+  height: 20px;
+  line-height: 20px;
+  background: #153036;
+  border: none;
+  width: 80px;
+  text-align: center;
+}
+.addApp .appUser {
+  width: 200px;
+}
+.selectUser {
+  position: absolute;
+  top: 20px;
+  left: 100px;
+  background: #153036;
+  padding: 10px;
+  border: 1px solid #205163;
+  z-index: 999;
+}
+.myTab .nav-tabs {
+  margin-left: 66%;
+}
+
+.myTab .nav-tabs>li>a {
+  border: none;
+}
+.myTab .nav-tabs {
+  border: none;
+}
+.myTab .nav>li>a {
+  padding: 5px 50px;
+  color: #fdf6c4;
+  -webkit-border-radius:0;
+  -moz-border-radius:0;
+  border-radius:0;
+}
+.myTab .nav-tabs>li.active>a,
+.myTab .nav-tabs>li.active>a:focus,
+.myTab .nav-tabs>li.active>a:hover,
+.myTab .nav-tabs>li>a:hover{
+  background-color: #193a42;
+  color: #fdf6c4;
+  cursor: default;
+  border: none;
+  -webkit-border-radius:0;
+  -moz-border-radius:0;
+  border-radius:0;
+}
+.marginFive {
+  margin: 5px;
+}

@@ -1,21 +1,19 @@
-
 app.config(($stateProvider, $urlRouterProvider) => {
 
 	$stateProvider
 		.state('home.capitalQuotation.lineDownQuotation', {
-			url: '/lineDownQuotation',
+			url: '/lineDownQuotation?:drc?:trmTp?:trmLwrLmtVal?:trmLwrLmtUnit?:trmUpLmVal?:trmUpLmUnit?:intRtStrtVal?:intRtEndVal?:ctlg?:pageSize?:cltnEStatus?:pageNum',
 			views: {
 				'list@home.capitalQuotation': {
 					component: 'lineDownQuotation'
 				}
 			},
-			cache:false
+		}).state('home.capitalQuotation.lineDownQuotation.create', {
+			url: '/create?:ofrid',
+			views: {
+				'linedownCreat@home.capitalQuotation.lineDownQuotation': {
+					component: 'lineDownComponent'
+				}
+			},
 		});
 })
-.component('lineDownQuotation', {
-	restrict: 'E',
-	bindings: {},
-	templateUrl:'./line-down-quotation.html',
-	controller:LineDownQuotationController
-})
-

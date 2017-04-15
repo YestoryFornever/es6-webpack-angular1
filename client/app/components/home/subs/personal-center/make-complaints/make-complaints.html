@@ -1,0 +1,15 @@
+<div class="make_com_html">
+    <h1>我要吐槽</h1>
+    <textarea class="make_com_text" placeholder="行情不及时？资讯不喜欢？想要的功能没有？都快快向我们吐槽吧！"></textarea>
+    <h2>你还可以选择上传图片（6张）</h2>
+    <div class="addimg">
+        <div ng-if="images.length>0" ng-repeat="ima in images">
+            <img src="ima" ng-click='delImage($index)'/> 
+        </div>
+        <div ng-if="images.length<=6">
+            <img src="../images/add_img.png" id='addPic' ng-click="addPic($event)"/>
+            <input type="file" multiple style="display: none;" ngChange="onFileChange()">
+        </div>
+    </div>
+    <div class="make_com_btn"><button type="button" id="make_com_btn">确认</button></div>
+</div> 

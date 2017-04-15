@@ -1,0 +1,29 @@
+<!--我的申购-->
+<div class="myApplicationTitle">
+    <div class="row">
+        <div class="col-sm-8">
+            <span class="applicationTitleOne">我的申购</span>
+            <span class="applicationTitleTwo">利率区间: {{$ctrl.myapp.sbrbIntrtLwrLmt}}%-{{$ctrl.myapp.sbrbIntrtUpLm}}%</span>
+            <span class="applicationTitleThree">申购总数: {{$ctrl.myapp.sbrbTnum}}E</span>
+            <span class="applicationTitleFour">中标总量: {{$ctrl.myapp.winbidTnum!=null?$ctrl.myapp.winbidTnum:0}}E</span>
+        </div>
+        <div class="col-sm-4 text-right">
+            <span class="applicationTitleFive">当前团队负责人: {{$ctrl.admin.userNm}}</span>
+            <span class="applicationTitleSix" ng-if="$ctrl.admin.userNm != $ctrl.username" ng-click="$ctrl.gotoAdmin()">我是负责人</span>
+        </div>
+    </div>
+</div>
+<div class="marginFive">
+    <div class="row">
+        <div class="col-xs-12 myTab">
+            <uib-tabset active="active">
+                <uib-tab index="1" heading="消息">
+                    <application-msg></application-msg>
+                </uib-tab>
+                <uib-tab index="2" heading="中标结果">
+                    <checked-result></checked-result>
+                </uib-tab>
+            </uib-tabset>
+        </div>
+    </div>
+</div>

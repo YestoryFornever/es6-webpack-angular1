@@ -1,0 +1,19 @@
+<div class="personal_html">
+    <div class="personal_left"><!--左侧栏-->
+        <ul ng-if="realCertifyState==3">
+            <li class="personal_ess_infor" ui-sref="home.personalcenter.essentialInformationYes">基本信息</li>
+            <li class="personal_supp_infor" ui-sref="home.personalcenter.supplementaryInformation">补充信息</li>
+            <li class="personal_service_tag" ui-sref="home.personalcenter.serviceTag">业务标签</li>
+            <li class="personal_my_wealth" ui-sref="home.personalcenter.myWealth">我的财富</li>
+            <li class="personal_spokes_man" ui-sref="home.personalcenter.spokesMan">代言人</li>
+            <li class="personal_tucao"  ui-sref="home.personalcenter.makeComplaints">我要吐糟</li>
+            <li class="personal_mor_set" ui-sref="home.personalcenter.moreSettingsYes">更多设置</li>
+        </ul>
+        <ul ng-if="realCertifyState==1">
+            <li class="personal_ess_infor" ui-sref="home.personalcenter.essentialInformationNo">基本信息</li>
+            <li class="personal_supp_infor" ui-sref="home.personalcenter.moreSettingsNo">更多设置</li>
+        </ul>
+    </div>
+    <div class="personal_right" ui-view="person"></div><!--右边的组件-->
+</div>
+

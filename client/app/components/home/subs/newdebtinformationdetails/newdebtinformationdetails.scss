@@ -1,0 +1,441 @@
+
+h1,h2,h3,h4,h5,h6{
+	margin: 0; 
+	padding: 0;
+}
+.newdebt{
+	height:100%;
+	width:100%;
+	overflow:hidden;
+	font-size:12px;
+	color:#fff;
+	float:left;
+	position:relative;
+	left:0;
+	top:0;
+	.shengoudialog{//申购第一层弹窗
+		display:block;
+		// display:none;
+		width: 3rem;
+		height:2.7rem;
+		background: #243841;
+		position:absolute;
+		left:35%;
+		top:0;
+		z-index:500;
+		.shengoudialog-header{
+			width: 3rem;
+			height:2.7rem;
+			background: #243841;
+			position:relative;
+			left:0;
+			top:0;
+			// background:green;
+			.modal-header{
+				height: .5rem;
+				width: 100%;
+				// background:red;
+				.modal-title{
+					display:inline-block;
+					height: .2rem;
+					width:94%;
+				}
+				i{
+					display:inline-block;
+					height: .2rem;
+					width:.1rem;
+				}
+			}
+			.modal-body{
+				width: 100%;
+				height: 1.5rem;
+				span{
+					display:block;
+					height: .3rem;
+					width: 2rem;
+					margin:.6rem auto;
+					font-size:18px;
+					color:#ffeb62;
+				}
+			}
+			.modal-footer{
+			height: .5rem;
+			width: 1.5rem;
+			margin:0 auto;
+			border:none;
+			// background:yellow;
+			}
+		}
+	
+}
+	// .shengoudialog_a{
+	// 			display:none;
+	// 		}
+	// .shengoudialog_b{
+	// 			display:block;
+	// 		}
+
+
+	.newdebt_nav{//导航
+		height:.4rem;
+		line-height:0.4rem;
+		width:100%;
+		float:left;
+		background:#253942 ;
+		position:relative;
+		left:0;
+		top:0;
+		.newdebt_nav_lf{
+			display:inline-block;
+		 	padding-left:.16rem;
+		 	height:.4rem;
+		 	width:auto;
+		 	float:left;
+		 	color:#ffeb62;
+		 	font-size: 18px;
+		 	border:none;
+		 	// font-weight:700;
+		 }
+		 span{
+			display:inline-block;
+			float:left;
+			height:.3rem;
+			width:.8rem;
+			border-radius:.05rem;
+			line-height:.3rem;
+			text-align:center;
+			margin:0.05rem .06rem;
+			cursor:pointer;
+			
+			// background:red ;
+		}
+		.newdebt_nav_box{
+			height:.4rem;
+			line-height:.4rem;
+			width:60%;
+
+			float:left;
+			li{
+				height: 100px;
+				width: 16%;
+				font-size:12px;
+				float:left;
+				text-align:center;
+				e{
+					font-size:12px;
+				}
+			}
+		}
+		.newdebt_nav_span{
+			position:absolute;
+			right:0;
+			bottom:0;
+			color: #F7EFB5;
+			background:#997E51;
+		}
+		.newdebt_nav_tou{
+			border:1px solid #4A7C88;
+			background:#1B4960;
+		}
+		.newdebt_nav_tou_01{
+			img{
+				height: 100%;
+				width: 100%;
+			}
+		}
+		
+	}
+	.header_nav_info{//债券资料/申购助手
+		height:.4rem;
+		width:100%;
+		font-size: 14px;
+		color:#fff;
+		background: #2D414C;
+			li{
+				height:.4rem;
+				width:1rem;
+				line-height:.4rem;
+				text-align: center;
+				float:left;
+			}
+			.nav_back{
+				background:#FF671B;
+			}
+		}
+	.newdebt_content{
+		width: 100%;
+		height: 7rem;
+		margin-top:.06rem;
+		overflow:hidden;
+		clear:both;
+		background: #243841;
+	}
+	.newdebt_content_lf{
+		width: 49.5%;
+		height: 100%;
+		float:left;
+		background:#20333A;
+		// background: red;
+		.newdebt_content_header{//基本资料
+			height:.4rem;
+			line-height:.4rem;
+			padding-left:.16rem;
+			font-size:12px;
+			font-weight:700;
+			color:#fff;
+			background:#2E424D;
+			}
+		.newdebt_content_info{
+			height:2.6rem;
+			clear:both;
+			font-size:12px;
+			// background:green;
+			position:relative;
+			left:0;
+			top:0;
+			.newdebt_content_info_content{
+				height:100%;
+				width:50%;
+				float:left;
+				padding-left:.16rem;
+				padding-top:.1rem;
+				ul{
+					list-style:none;
+					}
+				li{
+					font-size:12px;
+					height:.25rem;
+					}
+			}
+			.newdebt_content_info_button{//button按钮(多处用)
+				display:block;
+				float:left;
+				// height:.3rem;
+				// width:.8rem;
+				border-radius:.05rem;
+				// line-height:.3rem;
+				text-align:center;
+				margin:0.05rem .06rem;
+				cursor:pointer;
+				background:#677983;
+				position:absolute;
+				right:.2rem;
+				bottom:0rem;
+				ul{
+					background:#1b2f36;
+					color:#fff;
+				}
+				li{
+					
+					a{
+						color:#fff;
+						cursor:default;
+					}
+				}
+			}
+			.newdebt_content_info_button:hover{
+				background:	#FF671B;
+				}
+
+			.newdebt_content_info_content_tanchuang {//承销团弹窗
+				// display:none;
+				height: 90%;
+				width: 40%;
+				overflow:hidden;
+				padding-left:.1rem;
+				background:#1b2f36;
+				position:absolute;
+				left:60%;
+				top:-.06rem;
+				z-index:1000;
+				li{
+					width:100%;
+					height:.2rem;
+					line-height:.2rem;
+					text-align:center;
+					// background: red;
+					margin-top:.1rem;
+					border-bottom:1px solid #36474F;
+
+				}
+			}
+			
+			.newdebt_content_info_range{//经营范围
+				font-size:12px;
+				position:absolute;
+				left:0;
+				top:1.9rem;
+				// bottom:0;
+				.newBox{
+					overflow:hidden;
+					width:100%;
+					float:left;
+					white-space:wrap;
+					.newBox-left{
+					height:100%;
+					width:12%;
+					padding-left:.16rem;
+					float:left;
+					span{
+						display:inline-block;
+						height: .2rem;
+						width: .6rem;
+						// background: red;
+					}	
+					}
+					.newBox-right{
+						height:100%;
+						width:88%;
+						float:left;
+						.span_a{
+							width:100%;
+							font-size:12px;
+							word-break:break-all;
+							text-overflow:ellipsis;
+							display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+					    	-webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+					    	-webkit-line-clamp: 4; /** 显示的行数 **/
+					    	overflow: hidden;  /** 隐藏超出的内容 **/
+							}
+						.span_b{
+							width:100%;	
+							font-size:12px;
+							overflow:hidden;	
+							}		    	
+					}
+				}
+
+			}
+		}
+	}
+	.newdebt_content_rt{
+		width: 49.5%;
+		height: 100%; 
+		float:right;
+		background:#20333A;
+		// background:red;
+		.newdebt_content_rt_header{//基本资料
+			height:.4rem;
+			line-height:.4rem;
+			padding-left:.16rem;
+			font-size:12px;
+			font-weight:700;
+			color:#fff;
+			background:#2E424D;
+			// margin-top:.1rem;
+			}
+		.newdebt_content_rt_content{
+			width:98%;
+			height:62%;
+			margin:0rem auto;
+			overflow:hidden;
+			// background:red;
+			.newdebt_content_rt_content_p{
+				display:block;
+				width: 100%;
+				height: .3rem;
+				line-height:.3rem;
+				// background:red;
+				// border-bottom:1px solid #36474F;
+			}
+			li{
+				width: 100%;
+				height: .6rem;
+				padding-top:.04rem;
+				float:left;
+				// background:red;
+				border-top:1px solid #36474F;
+				.newdebt_content_rt_title{
+					width:.5rem;
+					height:.5rem;
+					float:left;
+					// background:green;
+					img{
+						height: 100%;
+						width: 100%;
+					}
+				}
+				.newdebt_content_rt_name{
+					width: 80%;
+					height: .5rem;
+					float:left;
+					span{
+						display:inline-block;
+						height: .25rem;
+						line-height:.25rem;
+
+						// width: .4rem;
+						margin: 0rem .08rem;
+					}
+					// background:yellow;
+					.newdebt_content_rt_span{
+						display:block;
+						height:.25rem;
+						width: 100%;
+						// background: red;
+						.newdebt_content_rt_names{
+							display:inline-block;
+							height:.25rem;
+							margin:0;
+
+						}
+						// line-height:.25rem;
+					}
+					.newdebt_content_rt_friend,.newdebt_content_rt_group{
+						border-radius:.08rem;
+						text-align:center;
+					}
+					.newdebt_content_rt_friend{
+						width: .6rem;
+						border:1px solid #4995CF;	
+					}
+					.newdebt_content_rt_group{
+						width: .8rem;
+						color:#D9CC98;
+						border:1px solid #D9CC98;
+					}
+				}
+				.newdebt_content_rt_button2{
+					display:block;
+					float:left;
+					height:.3rem;
+					width:.6rem;
+					border-radius:.05rem;
+					line-height:.3rem;
+					text-align:center;
+					margin:0.1rem .06rem;
+					cursor:pointer;
+					background:#677983;
+				}
+				.newdebt_content_rt_button2:hover{
+					background:	#FF671B;
+				}
+			}
+		}
+		.newdebt_content_rt_footer{
+			width:100%;
+			height:100%;
+			// background: green;
+			float:left;
+			.newdebt_content_rt_footer_one{
+				height: 100%;
+				width: 30%;
+				padding-left:.15rem;
+				float:left;
+				ul{
+					margin-top:.1rem;
+					li{
+					height: 25px;
+					width: 100%;
+					}
+				}
+				
+			}
+
+		}
+	}
+
+}
+
+	
+

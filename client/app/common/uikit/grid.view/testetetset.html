@@ -1,0 +1,104 @@
+
+<table  class="table-responsive  table my-table" >
+					<thead>
+						<tr class="bg">
+							<th ng-click="searchWthrFcs()" ng-if='searchQuery.queryFlag !="B"' ng-class="{'starNor' : searchQuery.wthrFcs==0 ,'starSelect': searchQuery.wthrFcs==1 }">
+							</th>
+							<th style="min-width: 0.4rem"  ng-if='searchQuery.queryFlag =="B"'>方向
+							</th>
+							<th ng-click='searchQuery.desc=searchQuery.desc==1?2:1;'>债券代码<span style="position: relative;"><i ng-class="{sortDown:searchQuery.desc==2,sortUp:searchQuery.desc==1}"></i></span>
+							</th>
+							<th  ng-click='searchQuery.desc=searchQuery.desc==1?2:1;'>债券简称
+								<span style="position: relative;"><i ng-class="{sortDown:searchQuery.desc==2,sortUp:searchQuery.desc==1}"></i></span>
+
+							</th>
+							<th ng-click='searchQuery.desc=searchQuery.desc==1?2:1;'>数量(万)<span style="position: relative;"><i ng-class="{sortDown:searchQuery.desc==2,sortUp:searchQuery.desc==1}"></i></span>
+
+							</th>
+							<th style="min-width: 0.4rem"  ng-if='searchQuery.queryFlag !="B"'  > 方向	</th>
+							<th ng-click='searchQuery.desc=searchQuery.desc==1?2:1;'>收益率%<span style="position: relative;"><i ng-class="{sortDown:searchQuery.desc==2,sortUp:searchQuery.desc==1}"></i>
+								<!-- <img src="../../../" alt=""> -->
+							</th>
+							<th  ng-click='searchQuery.desc=searchQuery.desc==1?2:1;'>净价(元)<span style="position: relative;"><i ng-class="{sortDown:searchQuery.desc==2 && searchQuery.order==5,sortUp:searchQuery.desc==1 && searchQuery.order==5}"></i>
+							</th>
+							<th ng-click='searchQuery.desc=searchQuery.desc==1?2:1;'>剩余期限<span style="position: relative;"><i ng-class="{sortDown:searchQuery.desc==2 && searchQuery.order==6,sortUp:searchQuery.desc==1 && searchQuery.order==6}"></i>
+							</th>
+							<th ng-click='searchQuery.desc=searchQuery.desc==1?2:1;'>主/债评级<span style="position: relative;"><i ng-class="{sortDown:searchQuery.desc==2 && searchQuery.order==7,sortUp:searchQuery.desc==1 && searchQuery.order==7}"></i>
+							</th>
+							<th  ng-if='searchQuery.queryFlag !="B"'>挂牌方</th>
+							<th  ng-if='searchQuery.queryFlag =="B"'>挂牌类型</th>
+							<th  ng-if='searchQuery.queryFlag =="B"'>状态</th>
+							<th  >备注</th>
+							<th >操作</th>
+						</tr>
+					</thead>
+					<tbody style="border: none; " id="bodyTr" ng-init="$ctrl.tr_active=0">
+						<tr  ng-repeat='item in QueryQuoteList' ng-dblclick='toDetail(item.bondid)'  ng-click='getDetail(item.bondid);$ctrl.tr_active=$index' ng-class='{"active": $index == $ctrl.tr_active}'>
+							<td ng-click='$ctrl.changeCareInfo(item,"wthrFcs" ,$event);'   ng-if='searchQuery.queryFlag !="B"'><!-- 是否关注 -->
+								<span class="star" ng-class='{"active":item.wthrFcs == true}' ng-if='item.ifpresentUser==0'></span>
+							</td>
+							<td  ng-if='searchQuery.queryFlag =="B"' ng-class="{ 'colorH' : item.drc=='1' ,'colorI':item.drc=='-1' }">{{item.drc | bondQuotationDrc}}</td><!-- 方向 -->
+							<td>{{item.bondCd}}</td>
+							<td  style="max-width: 0.8rem">
+								<span class="bondShrtnm"
+									tooltip-placement='bottom'
+									uib-tooltip='{{item.bondShrtnm}}'>
+									{{item.bondShrtnm}}
+								</span>
+							</td>
+							<td>{{item.num  | numFilter}}</td>
+							<td style="width: 0.4rem"  ng-if='searchQuery.queryFlag !="B"' ng-class="{ 'colorH' : item.drc=='1' ,'colorI':item.drc=='-1' }">{{item.drc | bondQuotationDrc}}</td>
+							<td class="colorI">{{item.yldrto | yldrtoFilter  }}</td>
+							<td>{{item.netprc | number:4 }}</td>
+							<td>{{item.rsdtrm}}</td>
+							<td>
+								<span>{{item.sbjRtg}}/{{item.dbtitmRtg}}</span>
+							</td>
+							<td ng-if='searchQuery.queryFlag !="B"'>
+								<span
+									ng-if='item.wthrAnon=="1"'
+									uib-tooltip='匿名'
+									tooltip-placement='bottom'
+									ng-class='{"unShowName"  : item.wthrAnon=="1"}'>&nbsp;&nbsp;&nbsp;&nbsp;
+								</span>
+								<span class="ofrUserNm"
+									ng-if='item.wthrAnon=="0"'
+									tooltip-placement='bottom'
+									uib-tooltip-template="'myTooltipTemplate.html'">
+									{{item.organizationShrtNm}}-{{item.ofrUserNm}}
+								</span>
+							</td>
+							<td
+								ng-if='searchQuery.queryFlag =="B"'
+								ng-class='{"colorH" : item.wthrListg=="0", "colorN" : item.wthrListg=="1"}'>
+								<!-- 我的报价  挂牌类型 -->
+								{{item.wthrListg | bondQuotationWthrListg}}
+							</td>
+							<td  ng-if='searchQuery.queryFlag =="B"'><!-- 我的报价  状态 -->
+								{{item.ofrEStatus | bondQuotationOfrEStatus}}
+							</td>
+							<td  class="toopRmrk"><!-- 备注 -->
+								<span class="rmrk"
+									tooltip-placement='bottom'
+									uib-tooltip-template="'rmrkTemplate.html'">
+									{{item.rmrk}}
+								</span>
+							</td>
+							<td style="min-width: 1.2rem"><!-- 操作  -->
+								<div style="display: inline;"
+									ui-sref="home.chatroom({ofrUserId:item.ofrUserId , bondOfrid:item.bondOfrid})" ui-sref-active="actived">
+									<span class="chatRoom"   ng-if='item.ifpresentUser=="0" ' ></span>
+								</div>
+								<span class="calculator" ng-if='item.ifpresentUser=="0" '  ng-click='$ctrl.NetBondquotationService.openCalculator(item)'></span>
+
+								<span class="change"  ng-if='item.ifpresentUser=="1" && item.ofrEStatus!="3"' ng-click='$ctrl.openChange(item,$event,bondDetail.nameAll)'></span>
+
+								<span class="addNew"  ng-if='item.ofrEStatus=="3" || item.ofrEStatus=="2"' ng-click='$ctrl.sendQuote(item)'></span>
+								<span class="delete" ng-if='item.ifpresentUser=="1" && item.ofrEStatus=="1" ' ng-click='$ctrl.changeCareInfo(item,"ofrEStatus",$event)'></span>
+
+								<span class="send" ng-if='item.ifpresentUser=="1" && item.ofrEStatus=="1"' ng-click='$ctrl.openFirendOrOnLine(item)'></span>
+
+							</td>
+						</tr>
+					</tbody>
+				</table>

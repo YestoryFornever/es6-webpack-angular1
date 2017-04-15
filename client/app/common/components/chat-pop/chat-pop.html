@@ -1,0 +1,106 @@
+<div class="sys-dialog" ng-if="$ctrl.popType=='sys'">
+	<span class="sys-dialog-message" ng-bind="$ctrl.popMessage"></span>
+</div>
+
+<div ng-if="$ctrl.popType=='text'&&$ctrl.popDrc=='i'" 
+	ng-class="{'text-dialog':$ctrl.popType=='text','i-dialog':$ctrl.popDrc=='i'}">
+	<div class="text-dialog-head">
+		<div class="text-dialog-time">{{$ctrl.popTime|date:"HH:mm"}}</div>
+		<img ng-src="{{$ctrl.icono}}" alt="">
+	</div>
+	<div class="arrow"><div class="cutoff"></div></div>
+	<span class="text-dialog-message">
+		<div ng-repeat="x in $ctrl.popMessage" ng-bind-html="x|emoji"></div>
+	</span>
+</div>
+
+<div ng-if="$ctrl.popType=='text'&&$ctrl.popDrc=='o'" 
+	ng-class="{'text-dialog':$ctrl.popType=='text','o-dialog':$ctrl.popDrc=='o'}">
+	<span class="text-dialog-message">
+		<div ng-repeat="x in $ctrl.popMessage" ng-bind-html="x|emoji"></div>
+	</span>
+	<div class="arrow"><div class="cutoff"></div></div>
+	<div class="text-dialog-head">
+		<div class="text-dialog-time">{{$ctrl.popTime|date:"HH:mm"}}</div>
+		<img ng-src="{{$ctrl.icono}}" alt="">
+	</div>
+</div>
+
+<div class="quote-dialog" 
+	ng-if="$ctrl.popType=='quote'&&$ctrl.popDrc=='i'"
+	ng-class="{'quote-dialog':$ctrl.popType=='text','i-dialog':$ctrl.popDrc=='i'}">
+	<div class="text-dialog-head">
+		<div class="text-dialog-time">{{$ctrl.popTime|date:"HH:mm"}}</div>
+		<img ng-src="{{$ctrl.icono}}" alt="">
+	</div>
+	<div class="arrow"><div class="cutoff"></div></div>
+	<div class="quote-dialog-pop" ng-click="$ctrl.showCurBargain(chat)">
+		<div class="quote-tips">
+			<span class="drc">
+				<span ng-if="$ctrl.popMessage.drc=='-1'">买入</span>
+				<span ng-if="$ctrl.popMessage.drc=='1'">卖出</span>
+				<span ng-if="$ctrl.popMessage.drc=='2'">我方买入</span>
+				<span ng-if="$ctrl.popMessage.drc=='3'">我方卖出</span>
+			</span>
+			<span class="timer-container">
+				<img src="images/icon_time.png" alt="">
+				<span class="timer">
+					<count-down format='mm:ss' ctrl="$ctrl.popMessage.timer" ng-if="$ctrl.popMessage.timer.counting"></count-down>
+					<span ng-if="!$ctrl.popMessage.timer.counting" ng-bind="$ctrl.popMessage.timer.str"></span>
+				</span>
+			</span>
+		</div>
+		<div class="contents">
+			<span class="contents-shortname">{{$ctrl.popMessage.bondShrtnm}}[{{$ctrl.popMessage.bondCd}}]</span>
+			<ul class="contents-detail">
+				<li class="contents-detail-title">
+					<span class="contents-price">价格</span>
+					<span class="contents-num">数量(万)</span>
+				</li>
+				<li class="contents-detail-body">
+					<span class="contents-price">{{$ctrl.popMessage.yldrto|yldrtoFilter}}%/{{$ctrl.popMessage.netprc|number:4}}元</span>
+					<span class="contents-num">{{$ctrl.popMessage.num|numFilter}}</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div ng-if="$ctrl.popType=='quote'&&$ctrl.popDrc=='o'"
+	ng-class="{'quote-dialog':$ctrl.popType=='quote','o-dialog':$ctrl.popDrc=='o'}">
+	<div class="quote-dialog-pop">
+		<div class="quote-tips">
+			<span class="drc">
+				<span ng-if="$ctrl.popMessage.drc=='-1'">买入</span>
+				<span ng-if="$ctrl.popMessage.drc=='1'">卖出</span>
+				<span ng-if="$ctrl.popMessage.drc=='2'">我方买入</span>
+				<span ng-if="$ctrl.popMessage.drc=='3'">我方卖出</span>
+			</span>
+			<span class="timer-container">
+				<img src="images/icon_time.png" alt="">
+				<span class="timer">
+					<count-down format='mm:ss' ctrl="$ctrl.popMessage.timer" ng-if="$ctrl.popMessage.timer.counting"></count-down>
+					<span ng-if="!$ctrl.popMessage.timer.counting" ng-bind="$ctrl.popMessage.timer.str"></span>
+				</span>
+			</span>
+		</div>
+		<div class="contents">
+			<span class="contents-shortname">{{$ctrl.popMessage.bondShrtnm}}[{{$ctrl.popMessage.bondCd}}]</span>
+			<ul class="contents-detail">
+				<li class="contents-detail-title">
+					<span class="contents-price">价格</span>
+					<span class="contents-num">数量(万)</span>
+				</li>
+				<li class="contents-detail-body">
+					<span class="contents-price">{{$ctrl.popMessage.yldrto|yldrtoFilter}}%/{{$ctrl.popMessage.netprc|number:4}}元</span>
+					<span class="contents-num">{{$ctrl.popMessage.num|numFilter}}</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="arrow"><div class="cutoff"></div></div>
+	<div class="text-dialog-head">
+		<div class="text-dialog-time">{{$ctrl.popTime|date:"HH:mm"}}</div>
+		<img ng-src="{{$ctrl.icono}}" alt="">
+	</div>
+</div>

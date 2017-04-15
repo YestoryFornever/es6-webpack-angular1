@@ -1,6 +1,6 @@
 <div class="pagetab">
 	<ul>
-		<li ng-repeat="tab in pagetabService._tabs" ng-class="{'active':tab.tabKey==pagetabService.activeTabKey}" ng-click="pagetabService.activeTab(tab);pagetabService.activeIndex=$index">
+		<li ng-repeat="tab in pagetabService._tabs" ng-class="{'active':tab.tabKey==pagetabService.activeTabKey}" ng-click="pagetabService.activeTab(tab);pagetabService.activeIndex=$index;tab.click()">
 			<a>{{tab.routeLabel}}
 				<span class="close-tab" ng-click="pagetabService.closeTab(tab, $event)">
 					<i class="fa fa-times" aria-hidden="true"></i>

@@ -1,0 +1,31 @@
+<div><!-- ng-style="$ctrl.styleObj" -->
+	<header>
+		<div class="switch-btn" ng-if="!$ctrl.msg.isSingle" ng-click="$ctrl.toggleChatPattern()">单聊</div>
+		<div class="switch-btn" ng-if="$ctrl.msg.isSingle" ng-click="$ctrl.toggleChatPattern()">群发</div>
+		<h5>您正在和 {{$ctrl.singleInfo.userName}} 聊天</h5>
+	</header>
+	<main id="chat_model_content" ng-class="{'main-multiple':!$ctrl.msg.isSingle}">
+		<div ng-if="!$ctrl.msg.isSingle" class="users-name" uib-tooltip="{{$ctrl.multipleUserNames}}">已选中:{{$ctrl.multipleUserNames}}</div>
+		<div id="chatModelContentDiv">
+			<ul id="chat_model_content_ul" slimscroll="{height:{{$ctrl.msg.scrollHeight}}}" slimscroll-watch="$ctrl.msg.scrollHeight" slim-resize='chatModelContentDiv'>
+				<li ng-repeat="msg in $ctrl.msg.messages">
+					<chat-pop pop-drc="msg.drc" pop-type="msg.type" pop-message="msg.message" pop-time="msg.time"></chat-pop>
+				</li>
+			</ul>
+		</div>
+	</main>
+	<nav>
+		<button type="button" ng-click="$ctrl.addQuickInfo('am')">+全场倍数</button>
+		<button type="button" ng-click="$ctrl.addQuickInfo('mm')">+边际倍数</button>
+		<button type="button" ng-click="$ctrl.addQuickInfo('my')">+边际利率</button>
+		<button type="button" ng-click="$ctrl.addQuickInfo('tet')">+截标时间</button>
+	</nav>
+	<footer>
+		<textarea placeholder="请输入会话" name="" ng-model="$ctrl.msg.message" ng-keyup="$ctrl.messageInput()"></textarea>
+		<div class="btn-area">
+			<button type="button" class="btn-quick btn btn-default">快捷回复</button>
+			<button type="button" class="btn-send btn btn-primary" ng-click="$ctrl.sendMsg()">发送</button>
+			<button type="button" class="btn-qq btn btn-default">发到QQ</button>
+		</div>
+	</footer>
+</div>

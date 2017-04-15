@@ -1,0 +1,19 @@
+table#gridview{
+	border:none;
+	tr{
+		border:none;
+	}
+	tr.active{
+		background: $bgDefaultLightB;
+		td{
+			background: $bgDefaultLightB;
+		}
+	}
+	th,td{
+		border:none;
+		white-space:nowrap;
+	}
+	td{
+		border-bottom:1px solid $borderDefault;
+	}
+}

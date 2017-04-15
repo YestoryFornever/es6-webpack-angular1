@@ -1,0 +1,4 @@
+<a data-id="{{match.model.userId}}">
+	<!-- <span>{{match.model.instNm}}</span>-<span>{{match.model.teamNm}}</span>- -->
+	<span ng-bind-html="match.label | uibTypeaheadHighlight:query" ></span>
+</a>

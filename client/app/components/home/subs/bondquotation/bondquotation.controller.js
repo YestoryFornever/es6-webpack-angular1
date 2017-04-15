@@ -1,20 +1,19 @@
 // var echarts = require('echarts');
 
 class BondquotationController {
-	constructor(bondquotationService,$uibModal,$mdDialog,pagetabService,$state,netAlertModalService,easeMobService,ChangeBondService,nowBondService,SendAlertService,$timeout) {
+	constructor(NetBondquotationService,$uibModal,$mdDialog,pagetabService,$state,AlertModalService,easeMobService,NetChangeBondService,nowBondService,SendAlertService,$timeout) {
 		"ngInject";
 		this.name ="债券报价";
-		this.bondquotationService = bondquotationService;
-		this.netAlertModalService = netAlertModalService;
+		this.NetBondquotationService = NetBondquotationService;
+		this.AlertModalService = AlertModalService;
 		this.easeMobService = easeMobService;
 		this.pagetabService = pagetabService;
-		this.ChangeBondService = ChangeBondService;
+		this.NetChangeBondService = NetChangeBondService;
 		this.nowBondService = nowBondService;
 		this.SendAlertService = SendAlertService;
 		this.$uibModal = $uibModal;
 		this.$state = $state;
-		// 基于准备好的dom，初始化echarts实例
-		this.myChart = echarts.init(document.getElementById('settleChart'));
+
 		this.searchBondBreedInfo = {
 			keyWord:'',
 			queryFlag:'A',
@@ -63,35 +62,33 @@ class BondquotationController {
 	}
 	$onInit(){
 
-		this.location =this.bondquotationService.location;
-		this.year =this.bondquotationService.year;
-		this.section = this.bondquotationService.section;
+		this.location =this.NetBondquotationService.location;
+		this.year =this.NetBondquotationService.year;
+		this.section = this.NetBondquotationService.section;
 
-		this.tabLablel=this.bondquotationService.tabLablel;
-		this.myChart.resize();
+		this.tabLablel=this.NetBondquotationService.tabLablel;
 		// 地区 数据
-		this.bondTp=[];
 		// 复选
 		this.initMySelect();
-		this.bond = this.bondquotationService.bondTp;
+		this.bond = this.NetBondquotationService.bondTp;
 		/*BP差*/
-		this.valtbpMns=this.bondquotationService.valtbpMns;
-		this.yldrto=this.bondquotationService.yldrto;
-		this.sbjRtg=this.bondquotationService.sbjRtg;
+		this.valtbpMns=this.NetBondquotationService.valtbpMns;
+		this.yldrto=this.NetBondquotationService.yldrto;
+		this.sbjRtg=this.NetBondquotationService.sbjRtg;
 		//复选
-		this.dbtitmRtg=this.bondquotationService.dbtitmRtg
+		this.dbtitmRtg=this.NetBondquotationService.dbtitmRtg
 		//复选
-		this.issuEntp=this.bondquotationService.issuEntp;
+		this.issuEntp=this.NetBondquotationService.issuEntp;
 		//复选;
-		this.wrnt=this.bondquotationService.wrnt;
+		this.wrnt=this.NetBondquotationService.wrnt;
 		//复选
-		this.wrght=this.bondquotationService.wrght;
+		this.wrght=this.NetBondquotationService.wrght;
 		//复选
-		this.face=this.bondquotationService.face;
+		this.face=this.NetBondquotationService.face;
 		//复选
-		this.crclMkt=this.bondquotationService.crclMkt;
+		this.crclMkt=this.NetBondquotationService.crclMkt;
 		//复选
-		this.rsdtrm=this.bondquotationService.rsdtrm;
+		this.rsdtrm=this.NetBondquotationService.rsdtrm;
 		//方案列表
 		this.queryScmList=[];
 		this.sendQueryScmListInfo={
@@ -118,8 +115,6 @@ class BondquotationController {
 
 		}
 		this.currentPage = this.sendQueryQuoteListInfo.pageNum;
-		this.issuPsn = {};
-		
 		this.scmid = '';
 		this.getQueryScmList();//获取方案名称
 		this.getQueryQuoteList();
@@ -169,18 +164,18 @@ class BondquotationController {
 	}
 	// 获取结算行情
 	getCBLatestWeekValuation(id){
-		let promise = this.bondquotationService.getCBLatestWeekValuation({bondid :id});
+		let promise = this.NetBondquotationService.getCBLatestWeekValuation({bondid :id});
 			promise.then((res)=>{
-				this.axisData =[];
-				this.yieldData =[];
-				this.dealAmountData =[];
+				var axisData =[];
+				var yieldData =[];
+				var dealAmountData =[];
 				for(let obj of res.data.data){
-					this.axisData.push( obj.date );
-					obj.yield = this.bondquotationService.__y(obj.yield/100,true) ;
-					this.yieldData.push( obj.yield );
-					this.dealAmountData.push(obj.dealAmount);
+					axisData.push( obj.date );
+					obj.yield = this.NetBondquotationService.__y(obj.yield/100,true) ;
+					yieldData.push( obj.yield );
+					dealAmountData.push(obj.dealAmount);
 				}
-				this.myChart.setOption({
+				this.myChart = ({
 				    tooltip : {
 				        trigger: 'axis',
 				        formatter: "{b} <br/> {a0}:  {c0} %  <br/> {a1}:  {c1} "
@@ -189,25 +184,26 @@ class BondquotationController {
 				    xAxis : [{
 					            type : 'category',
 					            boundaryGap : false,
-					            data : this.axisData
+					            data : axisData
 				    }],
 				    yAxis : [{type : 'value'}],
 				    series : [{
-				            name:'收益率',
-				            type:'line',
-				            stack: '总量',
-				            areaStyle: {normal: {}},
-				            data:this.yieldData
-				        },{
-				            name:'成交量',
-				            type:'line',
-				            stack: '总量',
-				            areaStyle: {normal: {}},
-				            data:this.dealAmountData
-				        }]
-					});
+			            name:'收益率',
+			            type:'line',
+			            stack: '总量',
+			            areaStyle: {normal: {}},
+			            data:yieldData
+			        },{
+			            name:'成交量',
+			            type:'line',
+			            stack: '总量',
+			            areaStyle: {normal: {}},
+			            data: dealAmountData
+			        }]
 				});
-			}
+				
+			});
+		}
 	//
 	sendQuote(item){//打开发送报价弹窗
 		let that = this;
@@ -247,7 +243,7 @@ class BondquotationController {
 	queryQuote(val){
 		this.searchBondBreedInfo.keyWord = val;
 		this.searchBondBreedInfo.queryFlag = this.sendQueryQuoteListInfo.queryFlag;
-		let promise = this.bondquotationService.searchBondBreed(this.searchBondBreedInfo);
+		let promise = this.NetBondquotationService.searchBondBreed(this.searchBondBreedInfo);
 		return promise.then(function(res) {
 			if(res.data.data ){
 				return res.data.data;
@@ -257,7 +253,7 @@ class BondquotationController {
 	}
 	// 发行人搜索
 	fullName(val){
-		let promise = this.bondquotationService.getIssuerListByFullName({'organizationFullName':val});
+		let promise = this.NetBondquotationService.getIssuerListByFullName({'organizationFullName':val});
 		return promise.then(function(res) {
 			if(res.data.data ){
 				return res.data.data;
@@ -273,7 +269,7 @@ class BondquotationController {
 		}
 		this.sendQueryQuoteListInfo.order = this.orderList.length>1	?	this.orderList[0]:'';
 		this.sendQueryQuoteListInfo.desc  = this.orderList.length>1	?	this.orderList[1]:'';
-		let promise = this.bondquotationService.queryQuoteList(this.sendQueryQuoteListInfo);
+		let promise = this.NetBondquotationService.queryQuoteList(this.sendQueryQuoteListInfo);
 		promise.then((res)=>{
 			if(res.data.status=='0'){
 				this.QueryQuoteList = res.data.data;
@@ -285,17 +281,12 @@ class BondquotationController {
 
 				}
 				this.getQueryScmList();
-			}else{
-				this.netAlertModalService.openBox({
-						'tittle':'',
-						'content':res.data? res.data.msg : res.msg,
-					});
 			}
 		});
 	}
 	// 获取方案列表
 	getQueryScmList(){
-		let promise = this.bondquotationService.queryScmList(this.sendQueryScmListInfo);
+		let promise = this.NetBondquotationService.queryScmList(this.sendQueryScmListInfo);
 		promise.then((res)=>{
 			if(res.data.status=='0'){
 				this.queryScmList = res.data.data;
@@ -307,16 +298,16 @@ class BondquotationController {
 		if(this.scmid){//删除按钮
 			id = this.scmid;
 		}
-		let promise = this.bondquotationService.deleteScm({scmid :id});
+		let promise = this.NetBondquotationService.deleteScm({scmid :id});
 		promise.then((res)=>{
 			if(res.data.status=='0'){
 				this.getQueryScmList();//获取方案名称
-				this.netAlertModalService.openBox({
+				this.AlertModalService.open({
 					'tittle':'删除自选方案',
 					'content':'删除自选方案成功',
 				});
 			}else{
-				this.netAlertModalService.openBox({
+				this.AlertModalService.open({
 						'tittle':'',
 						'content':res.data? res.data.msg : res.msg,
 					});
@@ -329,7 +320,7 @@ class BondquotationController {
 			this.addScmInfo.scmid = this.scmid;
 		}
 		if(!this.addScmInfo.scmNm){
-			this.netAlertModalService.openBox({
+			this.AlertModalService.open({
 				'tittle':'',
 				'content':'请输入方案名称',
 			});
@@ -361,18 +352,18 @@ class BondquotationController {
 	}
 	// 新增自选方案
 	newAddScm(addScmInfo){
-			let promise = this.bondquotationService.addScm(addScmInfo);
+			let promise = this.NetBondquotationService.addScm(addScmInfo);
 			promise.then((res)=>{
 				if(res.data.status=='0' ){
 					this.getQueryQuoteList();
 					this.getQueryScmList();//获取方案名称
-					this.netAlertModalService.openBox({
+					this.AlertModalService.open({
 							'tittle':'新增自选方案',
 							'content':'新增自选方案成功',
 						});
 				}else{
 					this.inputTrue();
-					this.netAlertModalService.openBox({
+					this.AlertModalService.open({
 							'tittle':'',
 							'content':res.data ? res.data.msg : res.msg,
 						});
@@ -381,18 +372,18 @@ class BondquotationController {
 	}
 	// 修改自选方案
 	changeScm(addScmInfo){
-		let promise = this.bondquotationService.updateScm(addScmInfo);
+		let promise = this.NetBondquotationService.updateScm(addScmInfo);
 			promise.then((res)=>{
 				if(res.data.status =='0' ){
 					this.getQueryQuoteList();//方案列表
 					this.getQueryScmList();//获取方案名称
-					this.netAlertModalService.openBox({
+					this.AlertModalService.open({
 							'tittle':'修改自选方案',
 							'content':'修改自选方案成功',
 						});
 				}else{
 					this.inputTrue();
-					this.netAlertModalService.openBox({
+					this.AlertModalService.open({
 							'tittle':'',
 							'content':res.data ? res.data.msg : res.msg,
 						});
@@ -408,16 +399,16 @@ class BondquotationController {
 			this.yldrtoList[0] = this.addScmInfo.yldrto.split(",")[0];
 			this.yldrtoList[1] = this.addScmInfo.yldrto.split(",")[1];
 		}
-		this.yldrtoList[0] = this.yldrtoList[0] ? this.bondquotationService.__y( this.yldrtoList[0] ,true) :null ;
-		this.yldrtoList[1] = this.yldrtoList[1] ? this.bondquotationService.__y(  this.yldrtoList[1] ,true) :null;
-		this.valtbpMnsList[0] = this.valtbpMnsList[0] ? this.bondquotationService.__BP( this.valtbpMnsList[0] ,true) :null ;//乘以1万
-		this.valtbpMnsList[1] = this.valtbpMnsList[1] ? this.bondquotationService.__BP(  this.valtbpMnsList[1] ,true) :null;//乘以1万
+		this.yldrtoList[0] = this.yldrtoList[0] ? this.NetBondquotationService.__y( this.yldrtoList[0] ,true) :null ;
+		this.yldrtoList[1] = this.yldrtoList[1] ? this.NetBondquotationService.__y(  this.yldrtoList[1] ,true) :null;
+		this.valtbpMnsList[0] = this.valtbpMnsList[0] ? this.NetBondquotationService.__BP( this.valtbpMnsList[0] ,true) :null ;//乘以1万
+		this.valtbpMnsList[1] = this.valtbpMnsList[1] ? this.NetBondquotationService.__BP(  this.valtbpMnsList[1] ,true) :null;//乘以1万
 	}
 	inputFlse(){//发送请求 收益率 bp差
-		this.yldrtoList[0] = this.yldrtoList[0] ? this.bondquotationService.__y( this.yldrtoList[0] ,false) :null ;
-		this.yldrtoList[1] = this.yldrtoList[1] ? this.bondquotationService.__y(  this.yldrtoList[1] ,false) :null;
-		this.valtbpMnsList[0] = this.valtbpMnsList[0] ? this.bondquotationService.__BP( this.valtbpMnsList[0],false  ):null ;//除以1万
-		this.valtbpMnsList[1] = this.valtbpMnsList[1] ? this.bondquotationService.__BP( this.valtbpMnsList[1],false ) :null;//除以1万
+		this.yldrtoList[0] = this.yldrtoList[0] ? this.NetBondquotationService.__y( this.yldrtoList[0] ,false) :null ;
+		this.yldrtoList[1] = this.yldrtoList[1] ? this.NetBondquotationService.__y(  this.yldrtoList[1] ,false) :null;
+		this.valtbpMnsList[0] = this.valtbpMnsList[0] ? this.NetBondquotationService.__BP( this.valtbpMnsList[0],false  ):null ;//除以1万
+		this.valtbpMnsList[1] = this.valtbpMnsList[1] ? this.NetBondquotationService.__BP( this.valtbpMnsList[1],false ) :null;//除以1万
 		
 	}
 	// 获取详情
@@ -429,7 +420,7 @@ class BondquotationController {
 		if(ev){
 			ev.stopPropagation();
 		}
-		let promise = this.bondquotationService.queryBondBaseInfo({bondid:id});
+		let promise = this.NetBondquotationService.queryBondBaseInfo({bondid:id});
 		promise.then((res)=>{
 			if(res.data.status=="0"){
 				this.bondDetail = res.data.data;
@@ -443,7 +434,7 @@ class BondquotationController {
 	newAddShow(){
 		this.changeScmid =false;
 		if(this.queryScmList.length>=5){
-			this.netAlertModalService.openBox({
+			this.AlertModalService.open({
 				'tittle':'',
 				'content':'最多添加5个自选方案',
 			});
@@ -466,7 +457,7 @@ class BondquotationController {
 		this.changeScmid = true;
 		this.isCollapsed =!this.isCollapsed;
 		let id = this.sendQueryQuoteListInfo.queryFlag;
-		let promise = this.bondquotationService.getScmDetail({'scmid':id});
+		let promise = this.NetBondquotationService.getScmDetail({'scmid':id});
 		promise.then((res)=>{
 			if(res.data.status=="0"){
 				this.scmid = res.data.data.scmid;
@@ -572,14 +563,14 @@ class BondquotationController {
 				item.wthrFcs = false;
 			}
 		}
-		let promise = this.bondquotationService.updateQuoteState(this.careInfo,name);
+		let promise = this.NetBondquotationService.updateQuoteState(this.careInfo,name);
 		promise.then((res)=>{
 			if(res.data.status=="0"){
 				if(name == 'ofrEStatus'){
 					res.data.data.forEach((item)=>{
 						this.easeMobService.sendCmd('25',item);
 					});
-					this.netAlertModalService.openBox({
+					this.AlertModalService.open({
 						'tittle':'',
 						'content':'操作成功',
 					});
@@ -644,10 +635,10 @@ class BondquotationController {
 		}
 	}
 	// openCalculator(item){//计算器 弹窗
-	// 	this.bondquotationService.openCalculator(item);
+	// 	this.NetBondquotationService.openCalculator(item);
 	// }
 	openChange(item ,ev,nameAll){//修改报价
-		let promise = this.ChangeBondService.openChange(item,this.nameAll);
+		let promise = this.NetChangeBondService.openChange(item,this.nameAll);
 		promise.then((res)=>{
 			this.getQueryQuoteList();//刷新列表
 		});
@@ -670,18 +661,18 @@ class BondquotationController {
 				if(res['onLine']){
 					item.num = item.num/10000;
 					item.yldrto = item.yldrto*100;
-					let promise3 = this.bondquotationService.updateBondQuote(item);
+					let promise3 = this.NetBondquotationService.updateBondQuote(item);
 					promise3.then((res)=>{
 						this.sendQueryQuoteListInfo.queryFlag = "A";
 						this.getQueryQuoteList();
 					})
 				}
 				if(res['friend']){
-					this.bondquotationService.openFirend(item);
+					this.NetBondquotationService.openFirend(item);
 				}
 			},(data)=>{});
 		}else{
-			this.bondquotationService.openFirend(item);
+			this.NetBondquotationService.openFirend(item);
 		}
 	}
 	// 分页

@@ -1,0 +1,365 @@
+//@import '../../../../../common/css/common';
+h1,h2,h3,h4,h5,h6{
+	margin: 0; 
+	padding: 0;
+}
+#newAll_info{
+	.btn,.btn:hover,.btn.focus,.btn.active,.btn.visited,.btn:focus{
+		// background-color:$bgDefaultLightC;
+		outline: none;
+		box-shadow:none;
+		color:$textD;
+		border:none;
+	}
+
+	.btn-primary,.btn-primary:hover,.btn-primary.focus,.btn-primary.active,.btn-primary.visited,.btn-primary:focus{
+		// background-color:$bgDefaultLightC;
+		outline: none;
+		box-shadow:none;
+		color:$textD;
+		border:none;
+	}
+	color:$textD;
+	font-size:0.12rem;
+	input,textarea{
+		border:$bgDefaultLightA;
+		background: none;
+
+	}
+	textarea{
+		overflow: visible;
+		height: 0.24rem;
+		resize: none;
+	}
+	.bg{
+		background:url('../../../../../resource/images/img_bg_title.png')  center;
+	}
+	.btn.active{
+		background-color:$btnPrimary;
+		outline: none;
+		box-shadow:none;
+		// color:$textD;
+		border:none;
+	}
+	.drc{
+		background:$bgDefaultLightC;
+	}
+	.drc.active{
+		background-color:$bgGold;
+		outline: none;
+		box-shadow:none;
+		// color:$textD;
+		border:none;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	height:100%;
+	width:100%;
+	font-size:12px;
+	color:#fff;
+	float:left;
+	position:relative;
+	left:0;
+	top:0;
+	.btn,.btn:hover,.btn.focus,.btn.active,.btn.visited,.btn:focus{
+		outline: none;
+		color:$textD;
+		border:none;
+	}
+	.btn.active{
+		background-color:$bgGold;
+	}
+	.header_nav_info{
+		height:.4rem;
+		width:100%;
+		font-size: 14px;
+		color:#fff;
+		
+			li{
+				height:.4rem;
+				width:.6rem;
+				line-height:.4rem;
+				text-align: center;
+				float:left;
+				// background:yellow;
+			}
+			.nav_back{
+				background:#36474f;
+				color:#ff671b;
+			}
+		}
+	.new_content{
+		height:auto;
+		width:100%;
+		background:#2B3F4A;
+		.tab_change{//发行中导航
+		height:.4rem;
+		width:100%;
+		float:left;
+		background:#36474f;
+			li{
+				height:.25rem;
+				width:1rem;
+				line-height:.25rem;
+				border-radius:.08rem;
+				cursor: pointer;
+				float:left;
+				text-align: center;
+				background:#a3c8d9;
+				margin:.08rem .1rem;
+
+			}
+			.tab_change_back{
+				background: #FF661B;
+			}
+		}
+		.heightsearch_all{//未来发行或未公告的搜索
+		height:.6rem;
+		width:100%;
+		float:left;
+		// background:red;
+		.inp_heightsearch {
+			height:.3rem;
+			width:30%;
+			float:left;
+			border-radius:.15rem;
+			background:#15272E;
+			margin:.15rem .2rem ; 
+			input{
+				border:none;
+				height:100%;
+				width:89%;
+				margin-left: .12rem;
+				background:#15272E;
+				// background:red;
+				color:#fff;
+				}
+			}
+		.btn_heightsearch{
+			height:.3rem;
+			width:.8rem;
+			line-height:.3rem;
+			text-align:center;
+			border-radius:.15rem;
+			background:#2E4C57;
+			margin-top:.15rem;
+			float:left;
+			cursor:pointer;
+			span{
+				display:block;
+				height:100%;
+				width:100%;
+				border-radius:.15rem;
+			}
+			.btn_heightsearch_bg{
+				background:#999999;
+				}
+			.btn_heightsearch_bg2{
+				// background:#2E4C57;
+				}
+			}
+		
+		.btn_heightsearch:hover{
+			background: #FF661B;
+			}
+		}
+		.hide_heightsearch{
+			height:.6rem;
+			width:100%;
+			margin-bottom: .1rem;
+			// background:green;
+			clear:both;
+			float:left;
+			position:relative;
+			left:0;
+			top:0;
+			.mutile_search{
+				height:.3rem;
+				width:50%;
+				float:left;
+				border-right:1px solid #2F434C;
+				.span{
+					display:inline-block;
+					height:.3rem;
+					width:.6rem;
+					float:left;
+					line-height:.3rem;
+					text-align: center;
+					margin-left: 1px;
+				}
+				.btn-group{
+					display:inline-block;
+					height:.3rem;
+					width:83%;
+					// background:green;
+					float:left;
+					label{
+					display: inline-block;
+    				// padding: 0px 5px;
+    				font-size: 12px;
+    				margin-bottom: 0;
+   					font-weight: 400;
+    				line-height: 1.42857143;
+    				text-align: center;
+    				white-space: nowrap;
+    				vertical-align: middle;
+					}
+				}
+			}
+			.mutile_search_last{
+				width:50%;
+			}
+			.mutile_search_one{
+				width:28%;
+				border:none;
+			}
+			.packup{
+				height:.3rem;
+				width:1rem;
+				// background:red;
+				float:left;
+				margin-left:19%;
+				position:relative;
+				left:0;
+				top:0;
+				span{
+					display: block;
+					height:.2rem;
+					width:.6rem;
+					float:left;
+					// border-bottom:1px solid #2F434C;
+					position:absolute;
+					left:30%;
+					bottom:0;
+					i{
+						display:inline-block;
+						height:.2rem;
+						width:.2rem;
+						float:left;
+						background:url("../../../../../resource/images/btn_arrow_packup.png") no-repeat;
+					}
+					i:hover{
+						background:url("../../../../../resource/images/btn_arrow_packup1_hover.png") no-repeat;
+					}
+					a{
+						color:#fff;
+					}
+				}
+			}
+		}
+		.table-body{
+			height:auto;
+			width:100%;
+			clear:both;
+			// position:relative;
+			// left:0;
+			// top:0;
+			// background:red;
+			.my-table{//tab表格
+				width::100%;
+			}
+			table{
+				th,td{
+					text-align: center;
+				}
+				td{
+					border-top: 1px solid $borderDefault;
+					// .purchase,.distribution
+					.hhh1,.hhh2{
+						display:inline-block;
+						height:.2rem;
+						width:.6rem;
+						font-size: 12px;
+						line-height:.2rem;
+						text-align: center;
+						border-radius:.08rem;
+					}
+					.hhh{
+						display:none;
+					}
+					// .purchase
+					.hhh1{
+						background:#1ba1ff;
+					}
+					// .distribution
+					.hhh2{
+						background:#FF661B;;
+					}
+				}
+				th {
+					padding:0;
+					height: 0.32rem;
+					border-bottom: none;
+					vertical-align: middle;
+				}
+				tr:hover{
+					.fenxiao:hover{
+							color:#ff671b;
+						}
+				}
+				tr.active{
+					background: $bgDefaultLightB;
+					td{
+						background: $bgDefaultLightB;
+						
+					}
+
+				}
+				th.active{
+					background: none;
+				}
+				// height: 100%;
+				// overflow-y: scroll;
+			}
+			thead tr{
+				background:$bgDefaultLightA;
+			}
+			tbody tr{
+				cursor:pointer;
+			}
+			
+		}
+		
+
+	}
+	.myPage{//分页
+				// position: absolute;
+				// bottom:0;
+				// right:0.1rem;
+				height: 0.4rem;
+				clear:both;
+				text-align: right;
+				.pagination{
+					margin:0;
+				}
+				span{
+					display: inline-block;
+					padding:0 5px;
+					margin:0 0.1rem;
+					line-height: 0.34rem;
+				}
+			}
+
+}
+
+
+
+
+
+
+

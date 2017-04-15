@@ -8,58 +8,129 @@
 	ownerid="直播编号" 生产直播连接的join后面的编码
 	authcode 普通参加者口令，如果为空可选。
 -->
-<div style="background: #373b42">
-    <div class="container" style="height: 650px">
-        <p class="trailer"><span>{{$ctrl.data.state | caststate}}</span> {{$ctrl.data.title}}</p>
-        <table style="width: 100%; height: 100%">
+<div>
+    <div class="content">
+        <p class="exchange"><a ng-click="$ctrl.exchange()"><img src="../../../../../resource/images/exchange.png"/></a>
+        </p>
+        <p class="trailer">
+            <span>{{$ctrl.live.state | caststate}}
+            <count-down ng-if="$ctrl.live.state == 2"
+                        format='mm:ss'
+                        ctrl="$ctrl.ctrl">
+            </count-down>
+            </span>
+            {{$ctrl.live.title}}
+        </p>
+        <table ng-style="{'width': '100%', 'height': '{{$ctrl.height-40}}px'}">
             <tr valign="top">
                 <!--聊天视频模块-->
-                <td width="300" height="200" style="background: #26292e">
-                    <gs:video-live
-                            site="ylzx.gensee.com"
-                            ownerid="e9c2f4a546c04e918602dba53f4623e9"
-                            uid={{$ctrl.uid}}
-                            uname={{$ctrl.uname}}
-                    />
+                <td width="350" ng-style="{'background': '#26292e', 'height': '300px'}">
+                    <div ng-show="$ctrl.showNormal">
+                        <div ng-if="$ctrl.state != 4" ng-style="{'height': '300px'}">
+                            <gs:video-live
+                                    site="ylzx.gensee.com"
+                                    ownerid={{$ctrl.live.live_id}}
+                                    uid={{$ctrl.uid}}
+                                    uname={{$ctrl.uname}}
+                                    bar="true"
+                            />
+                        </div>
+                        <div ng-if="$ctrl.state == 4" ng-style="{'height': '300px'}">
+                            <gs:doc
+                                    site="ylzx.gensee.com"
+                                    ownerid={{$ctrl.his_id}}
+                                    bgcolor="#2222222"
+                            />
+                        </div>
+                    </div>
+
+                    <div ng-show="!$ctrl.showNormal">
+                        <div ng-if="$ctrl.state != 4" ng-style="{'height':'300px'}">
+                            <gs:doc
+                                    site="ylzx.gensee.com"
+                                    ownerid={{$ctrl.live.live_id}}
+                                    bgcolor="#2222222"
+                            />
+                        </div>
+                        <div ng-if="$ctrl.state == 4" ng-style="{'height':'300px'}">
+                            <gs:video-vod
+                                    site="ylzx.gensee.com"
+                                    ownerid={{$ctrl.his_id}}
+                                    uid={{$ctrl.uid}}
+                                    uname={{$ctrl.uname}}
+                                    bar=true
+                            />
+                        </div>
+                    </div>
                 </td>
                 <!--聊天文档模块-->
-                <td rowspan="2" class="castDocument" height="560">
-                    <!--ownerid="{{$ctrl.data.live_id}}"-->
-                    <!--ownerid="e9c2f4a546c04e918602dba53f4623e9"-->
-                    <gs:doc
-                            site="ylzx.gensee.com"
-                            ownerid="e9c2f4a546c04e918602dba53f4623e9"
-                            bgcolor="#2222222"
-                    />
+                <td rowspan="2" class="castDocument">
+                    <div ng-show="$ctrl.showNormal">
+                        <div ng-if="$ctrl.state != 4" ng-style="{'height':'{{$ctrl.height-40}}px'}">
+                            <gs:doc
+                                    site="ylzx.gensee.com"
+                                    ownerid={{$ctrl.live.live_id}}
+                                    bgcolor="#2222222"
+                            />
+                        </div>
+                        <div ng-if="$ctrl.state == 4" ng-style="{'height':'{{$ctrl.height-40}}px'}">
+                            <gs:video-vod
+                                    site="ylzx.gensee.com"
+                                    ownerid={{$ctrl.his_id}}
+                                    uid={{$ctrl.uid}}
+                                    uname={{$ctrl.uname}}
+                                    bar=true
+                            />
+                        </div>
+                    </div>
+
+                    <div ng-show="!$ctrl.showNormal">
+                        <div ng-if="$ctrl.state != 4" ng-style="{'height':'{{$ctrl.height-40}}px'}">
+                            <gs:video-live
+                                    site="ylzx.gensee.com"
+                                    ownerid={{$ctrl.live.live_id}}
+                                    uid={{$ctrl.uid}}
+                                    uname={{$ctrl.uname}}
+                                    bar="true"
+                            />
+                        </div>
+                        <div ng-if="$ctrl.state == 4" ng-style="{'height':'{{$ctrl.height-40}}px'}">
+                            <gs:doc
+                                    site="ylzx.gensee.com"
+                                    ownerid={{$ctrl.his_id}}
+                                    bgcolor="#2222222"
+                            />
+                        </div>
+                    </div>
                 </td>
                 <!--大纲和观众列表-->
-                <td width="300" rowspan="2">
-                    <div class="castFree" style="background: #25292e;">
-                        <div class="col-xs-6 text-center" style="border-right: 1px solid #444">
+                <td width="350" rowspan="2">
+                    <div class="castFree" ng-style="{'background': '#25292e'}">
+                        <div class="col-xs-6 text-center" ng-style="{'border-right': '1px solid #444'}">
                             <div class="bord" ng-class="{'rightTabActive': $ctrl.rightTabActive}"><a
                                     ng-click="$ctrl.outline()">本期大纲</a>
                             </div>
                         </div>
                         <div class="col-xs-6 text-center">
                             <div class="bord" ng-class="{'rightTabActive': !$ctrl.rightTabActive}"><a
-                                    ng-click="$ctrl.audience()">观众 · <span>{{$ctrl.data.sum_online}}</span></a>
+                                    ng-click="$ctrl.audience()">观众 · <span>{{$ctrl.userListLength}}</span></a>
                             </div>
                         </div>
 
                     </div>
                     <div class="clear: both"></div>
-                    <div class="documentPlace">
+                    <div class="documentPlace"
+                         ng-style="{'height':'{{$ctrl.height-83}}px', 'width': '350px', 'overflow-x': 'auto'}">
                         <!--单机的时候调用不同的数据来替换这里的内容-->
-                        <div ng-show="$ctrl.rightTabActive">
-                            {{$ctrl.data.note}}
+                        <div ng-show="$ctrl.rightTabActive" ng-bind-html="$ctrl.noteHtml">
+
                         </div>
-                        <div ng-show="!$ctrl.rightTabActive">
-                            <ul>
+                        <div ng-show="!$ctrl.rightTabActive" iscroll on-bottom="$ctrl.userMore()">
+                            <ul style="list-style-type: none;">
                                 <li ng-repeat="item in $ctrl.userList track by $index" class="castUser"
-                                    style="background: url(http://imgsrc.baidu.com/forum/pic/item/4193a851f3deb48fffedc8f7f11f3a292cf578f8.jpg) no-repeat; background-size: 35px 35px">
-                                    <!--<li ng-repeat="item in $ctrl.userList track by $index" class="castUser" style="background: url({{item.name}})">-->
-                                    <p class="pBottom">{{item.name}}</p>
-                                    <p class="space">{{item.role}}</p>
+                                    ng-style="{'min-height': '40px', 'background': 'url({{item.head_url}}) no-repeat', 'background-size': '35px 35px'}">
+                                    <p class="pBottom">{{item.u_name}}</p>
+                                    <p class="space">{{item.u_org}} {{item.u_dept}}</p>
                                 </li>
                             </ul>
                         </div>
@@ -69,6 +140,7 @@
             <tr valign="top">
                 <!--聊天和提问模块-->
                 <td>
+                    <!--tab标签-->
                     <div class="castFree" style="background: #25292e;">
                         <div class="col-xs-6 text-center" style="border-right: 1px solid #444">
                             <div class="bord" ng-class="{'castTabActive': $ctrl.castActive}"><a ng-click="$ctrl.free()">自由发言</a>
@@ -80,41 +152,80 @@
 
                         </div>
                     </div>
+                    <!--表情-->
+                    <div class="msgIco" ng-show="$ctrl.icoState">
+                        <ul>
+                            <li>
+                                <a ng-click="$ctrl.icoHide($ctrl.msgIco.prefix, item.url, item.zh_CN)"
+                                   title="{{item.zh_CN}}"
+                                   ng-repeat="item in $ctrl.msgIco.list track by $index">
+                                    <img ng-src="{{$ctrl.msgIco.prefix}}{{item.url}}"/>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
                     <div class="oneTab" ng-show="$ctrl.castActive">
-                        <ul class="freePlace" id="scroll">
+                        <!--直播聊天-->
+                        <ul class="freePlace" id="scroll" ng-if="$ctrl.state != 4"
+                            ng-style="{'height':'{{$ctrl.height-438}}px'}">
                             <li ng-repeat="item in $ctrl.msgInfo track by $index" class="castUser"
-                                style="background:
-                                url(http://imgsrc.baidu.com/forum/pic/item/4193a851f3deb48fffedc8f7f11f3a292cf578f8.jpg)
-                                no-repeat; background-size: 35px 35px">
-                                <p class="pBottom">{{item.sender}}</p>
-                                <p class="pBottom" ng-if="item.sender == null">我</p>
-                                <p><span
-                                        ng-class="{'msgBg': item.sender==null}">{{item.content}}</span>
+                                ng-style="{'background': 'url({{item.iconUrl | unurl}}) no-repeat', 'background-size': '35px 35px'}">
+                                <p class="pBottom">{{item.sender==$ctrl.uname?"我":item.sender}}</p>
+                                <p class="pDown" ng-class="{'msgBg': item.sender==$ctrl.uname}"
+                                   ng-bind-html="item.richtext | icochange">
                                 </p>
                             </li>
                         </ul>
-                        <div class="castSend">
-                            <textarea type="text" ng-model="$ctrl.content" class="castInput"></textarea>
-                            <a class="castIcon"><i class="fa fa-frown-o"></i></a>
-                            <button ng-click="$ctrl.send()" class="castBtn">发送</button>
+                        <!--点播聊天-->
+                        <ul class="freePlace" iscroll on-top="$ctrl.msgMore()" start-value="-$ctrl.msgScroll"
+                            id="oneTabSrc"
+                            ng-if="$ctrl.state == 4"
+                            ng-style="{'height':'{{$ctrl.height-385}}px'}">
+                            <li ng-repeat="item in $ctrl.endMsg.slice().reverse() track by $index" class="castUser"
+                                ng-style="{'min-height': '40px', 'background': 'url({{item.head_url}}) no-repeat', 'background-size': '35px 35px'}">
+                                <p class="pBottom space pDown">{{item.u_name}}</p>
+                                <p class="pDown" ng-bind-html="item.content  | icochange">
+                                </p>
+                            </li>
+                        </ul>
+                        <div class="castSend" ng-show="$ctrl.state != 4">
+                            <p style="position: absolute; bottom: 50px; left: 20px">{{$ctrl.message}}</p>
+                            <textarea type="text" ng-model="$ctrl.content" class="castInput"
+                                      ng-focus="$ctrl.textFocus()"></textarea>
+                            <a class="castIcon" ng-click="$ctrl.icoShow()" ng-mouseover="$ctrl.timeScroll()"><i
+                                    class="fa fa-frown-o"></i></a>
+                            <button ng-click="$ctrl.send()" class="castBtn" ng-mouseover="$ctrl.timeScroll()">发送
+                            </button>
                         </div>
                     </div>
                     <div class="twoTab" ng-show="!$ctrl.castActive">
-                        <div class="freePlace">
-                            <div ng-repeat="item in $ctrl.questInfo track by $index">
-                                <ul>
-                                    <li class="castUser"
-                                        style="background: url(http://imgsrc.baidu.com/forum/pic/item/4193a851f3deb48fffedc8f7f11f3a292cf578f8.jpg) no-repeat; background-size: 35px 35px">
-                                        <p class="pBottom">{{item.submitor}}</p>
-                                        <!--<p class="castContent"><span>{{item.content}}</span></p>-->
-                                        <p>{{item.question}}</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="castSend">
-                            <textarea type="text" ng-model="$ctrl.q" class="castInput"></textarea>
-                            <a class="castIcon"><i class="fa fa-frown-o"></i></a>
+                        <ul class="freePlace" id="scroll2" ng-if="$ctrl.state != 4"
+                            ng-style="{'height':'{{$ctrl.height-435}}px'}">
+                            <li ng-repeat="item in $ctrl.questInfo track by $index"
+                                class="castUser"
+                                ng-style="{'background': 'url({{item.answer}}) no-repeat', 'background-size': '35px 35px'}">
+                                <p class="pBottom">{{item.submitor==$ctrl.uname?"我":item.submitor}}</p>
+                                <p ng-class="{'msgBg': item.submitor==$ctrl.uname}" class="pDown"><span
+                                        style="color: #d0a45e">提问: </span>{{item.question}}</p>
+                            </li>
+                        </ul>
+                        <ul class="freePlace" iscroll on-top="$ctrl.questionMore()" start-value="-$ctrl.msgScroll"
+                            ng-if="$ctrl.state == 4"
+                            ng-style="{'height':'{{$ctrl.height-385}}px'}">
+                            <li ng-repeat="item in $ctrl.questionList.slice().reverse() track by $index"
+                                class="castUser"
+                                ng-style="{'background': 'url({{item.head_url}}) no-repeat', 'background-size': '35px 35px'}">
+                                <p class="pBottom space">{{item.u_name}}</p>
+                                <p ng-class="{'msgBg': item.u_name==$ctrl.uname}"><span
+                                        style="color: #d0a45e">提问: </span>{{item.content}}</p>
+                            </li>
+                        </ul>
+                        <div class="castSend" ng-show="$ctrl.state != 4">
+                            <p style="position: absolute; bottom: 50px; left: 20px">{{$ctrl.message}}</p>
+                            <input type="text" style="width: 270px" ng-model="$ctrl.q" class="castInput"
+                                   ng-focus="$ctrl.questionFocus()"/>
+                            <!--<a class="castIcon"><i class="fa fa-frown-o"></i></a>-->
                             <button ng-click="$ctrl.qt()" class="castBtn">提问</button>
                         </div>
                     </div>
@@ -122,4 +233,7 @@
             </tr>
         </table>
     </div>
+    <p class="warningMsg">
+        <flash-player></flash-player>
+    </p>
 </div>

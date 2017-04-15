@@ -1,85 +1,116 @@
-<div class="onlineBond">
+<div class="onlineBond" ui-view='lineupCreat'>
 	<header id="top">
 		<div class="col">
-			<span class="tit">{{$ctrl.drc.name}}</span>
+			<span class="tit">{{drc.name}}</span>
 			<div class="btn-group">
-				<label class="btn " ng-repeat= "item in  $ctrl.drc.value" ng-model="item.value">{{item.name}}</label>
+				<label class="btn btn-default"
+				ng-repeat= "item in  drc.value"
+				uib-btn-radio="item.value"
+				ng-model="searchConditions.drc">
+				{{item.name}}</label>
 			</div>
 		</div>
 		<div class="col">
 			<span class="tit">期限</span>
-			<div class="btn-group">
-				<label class="btn " ng-repeat= "item in  $ctrl.trmTp.value" ng-model="item.value" >{{item.name}}</label>
+			<div class="btn-group marR1">
+				<label class="btn "
+					ng-model="searchConditions.trmTpBtn"
+					uib-btn-radio="''"
+					ng-click='searchConditions.trmTpSelecteds={}'>
+					全部</label>
+				<label class="btn "
+					ng-repeat= "(key,item) in  trmTp.value"
+					ng-model="searchConditions.trmTpBtnSelecteds[key]"
+					uib-btn-checkbox
+					btn-checkbox-true="item.value"
+					ng-hide='item.value==11|| item.value==0'
+					ng-click='allOrNoAll()'>
+					{{item.name}}</label>
 			</div>
-		</div>
+			<input type="text" ng-model='searchConditions.trmLwrLmtVal'>
+			<select ng-model='searchConditions.trmLwrLmtUnit'>
+				<option value="1">天</option>
+				<option value="2">月</option>
+				<option value="3">年</option>
+			</select>
+			&nbsp;&nbsp; 至&nbsp;&nbsp;
+			<input type="text" ng-model='searchConditions.trmUpLmVal'>
+			<select ng-model='searchConditions.trmUpLmUnit'>
+				<option value="1">天</option>
+				<option value="2">月</option>
+				<option value="3">年</option>
+			</select>
+		</div><br>
 		<div class="col">
 			<span class="tit">模式</span>
 			<div class="btn-group">
-				<label class="btn " ng-repeat= "item in  $ctrl.mode.value" ng-model="item.value" >{{item.name}}</label>
+				<label class="btn "
+				ng-model="searchConditions.mode"
+				uib-btn-radio="''"
+				ng-click='searchConditions.modeSelecteds={}'>
+				全部</label>
+				<label class="btn "
+				ng-repeat= "(key,item) in  mode.value"
+				ng-model="searchConditions.modeSelecteds[key]"
+				uib-btn-checkbox
+				ng-hide='item.value==0'
+				btn-checkbox-true="item.value"
+				ng-click='allOrNoAll()'>
+				{{item.name}}</label>
 			</div>
 		</div>
 		<div class="col">
 			<span class="tit">利率</span>
-			<div class="btn-group">
-				<label class="btn " ng-repeat= "item in  $ctrl.intrtTp.value" ng-model="item.value" >{{item.name}}</label>
+			<div class="btn-group marR1">
+				<label class="btn "
+					ng-repeat= "(key,item) in  intrtTp.value"
+					ng-if='item.value != 4'
+					ng-model="searchConditions.intrtTpBtn"
+					uib-btn-radio="item.value">
+					{{item.name}}</label>
 			</div>
-			<input type="text" name="" id="">&nbsp;&nbsp; 至&nbsp;&nbsp;
-			<input type="text" name="" id="">
-		</div>
+			<input type="text"
+				ng-disabled="searchConditions.intrtTpBtn==1"
+				ng-model='searchConditions.intRtStrtVal'>
+				&nbsp;&nbsp; 至&nbsp;&nbsp;
+			<input type="text"
+				ng-disabled="searchConditions.intrtTpBtn==1"
+				ng-model='searchConditions.intRtEndVal'>&nbsp;{{searchConditions.intrtTpBtn | percentOrBpFilter}}
+		</div><br>
 		<div class="col">
 			<span class="tit">金额</span>
-			<div class="btn-group">
-				<label class="btn " >全部</label>
+			<div class="btn-group marR1">
+				<label class="btn active">全部</label>
 			</div>
-			<input type="text" name="" id="">&nbsp;&nbsp; 至&nbsp;&nbsp;
-			<input type="text" name="" id="">
+			<input type="text" ng-model='searchConditions.amtStrt'>
+				&nbsp;&nbsp; 至&nbsp;&nbsp;
+			<input type="text" ng-model='searchConditions.amtEnd'>
+			<select ng-model='searchConditions.amtUnit'>
+				<option value="1">万</option>
+				<option value="2">亿</option>
+			</select>
 		</div>
+		<button class="btn btn-primary" ng-click='getList()'> 查询 </button>
 	</header>
-	<section>
-	    <div class="table-responsive" >
-			<table class="table">
-				<thead>
-					<tr class="bg">
-						<th class="bgStar"></th>
-						<th >期限</th>
-						<th >金额</th>
-						<th >利率</th>
-						<th >模式</th>
-						<th >备注</th>
-						<th >发布时间</th>
-						<th >状态</th>
-						<th >操作</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td >方向</td>
-						<td >期限</td>
-						<td >金额</td>
-						<td >利率</td>
-						<td >模式</td>
-						<td >备注</td>
-						<td >发布时间</td>
-						<td >状态</td>
-						<td >操作</td>
-					</tr>
-				</tbody>
-		 	</table>
-		</div>
+	<section id="onLineBond">
+		<grid-view fields="fields"
+			query="searchConditions"
+			items="infoList">
+		</grid-view>
 		<div class="myPage1" >
 			<ul  uib-pagination
 				boundary-links="true"
-				total-items="$ctrl.totalItems"
-				ng-model="$ctrl.currentPage"
+				total-items="totalPage"
+				ng-model="searchConditions.pageNum"
 				previous-text="&lsaquo;"
 				next-text="&rsaquo;"
 				first-text="&laquo;"
 				last-text="&raquo;"
-				items-per-page='$ctrl.sendQueryQuoteListInfo.pageSize'
-				num-pages="$ctrl.numPages"
-				ng-change='$ctrl.pageNumChange($ctrl.currentPage)'
+				items-per-page='searchConditions.pageSize'
+				num-pages="numPages"
+				ng-change='getList()'
 				></ul>
-			<!-- <span style="float: right">{{$ctrl.currentPage}} / {{$ctrl.numPages}}</span> -->
+			<span style="float: right">{{searchConditions.pageNum}} / {{numPages}}</span>
 		</div>
 	</section>
 </div>

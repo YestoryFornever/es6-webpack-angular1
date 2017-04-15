@@ -1,0 +1,63 @@
+.make_com_html{
+    width:100%;
+    height:100%;
+    font-size: .16rem;
+    background:url('../images/tucao.png') no-repeat right .6rem bottom 0;
+    background-size:2.32rem 2.3rem;
+    overflow:auto;   
+}
+.make_com_html h1{
+    height:.34rem;
+    color:#fff6bf;
+    line-height:.34rem;
+    font-size:.14rem;
+    margin-top:.2rem;
+}
+.make_com_text{
+    width:7.6rem;
+    height:2.04rem;
+    border:none;
+    border-radius:.08rem;
+    background:#1b2f37;
+    color:#ff671b;
+    font-size:.16rem;
+    line-height:.25rem;
+    padding:.1rem;
+}
+.make_com_html h2{
+    height:.64rem;
+    color:#b8d1dd;
+    line-height:.64rem;
+    font-size:.16rem;
+    margin-top:.2rem;
+}
+.addimg{
+    width:7.6rem;
+    height:1.1rem;
+    margin:0rem 0rem .2rem 0rem;
+}
+.addimg div{
+    width:1.1rem;
+    height:1.1rem;
+    float:left;
+}
+.addimg div img{
+    width:1.1rem;
+    height:1.1rem;
+}
+.make_com_btn{
+    width:.9rem;
+    height:.3rem;
+    margin-top:.4rem;
+}
+#make_com_btn{
+    width:.9rem;
+    height:.3rem;
+    color:#fff;
+    text-align:center;
+    line-height:.3rem;
+    font-size:.16rem;
+    background:#ff671b;
+    border:none;
+    border-radius:.04rem;
+}

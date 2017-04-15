@@ -13,7 +13,7 @@ class countDownController {
 
 	$onInit(){
 		var ths = this;
-		var time = this.ctrl.time||60*5*1000;
+		var time = undefined!==this.ctrl.time?this.ctrl.time:60*5*1000;
 		this.time = this.ctrl.time = time;
 		this.ctrl.start = function(){
 			ths.start();
@@ -29,16 +29,16 @@ class countDownController {
 	}
 
 	reduction(stamp){
-		this.time = stamp||this.ctrl.time;
+		this.time = undefined!==stamp?stamp:this.ctrl.time;
 		this.start();
 	}
 
 	start(){
 		this.$interval.cancel(this.process);
 		this.process = this.$interval(()=>{
+			console.log(this.time);
 			if (this.time>=1000) {
 				this.time -= 1000;
-				//console.log(this.time, this.ctrl);
 			}else{
 				if (this.ctrl && this.ctrl.onZero) {
 					this.ctrl.onZero();

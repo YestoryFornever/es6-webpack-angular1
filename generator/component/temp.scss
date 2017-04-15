@@ -1,5 +1,5 @@
-@import '../../common/css/common';
-
 <%= name %> {
-	color: #000;
+	display:block;
+	color: $textF;
+	font-size:.12rem;
 }

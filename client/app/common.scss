@@ -25,7 +25,7 @@ $bgDefaultLightC:#677983;
 $bgDefaultLightB:#3a5664;
 $bgDefaultLightA:#2d424c;
 $bgDefault:#243941;
-/* $bgDefaultDark:#1b2f37; */
+$bgDefaultDark:#1b2f37;
 $bgDefaultDarkA:#192d35;
 /* $bgDefaultDark:#192d35; */
 $bgDefaultDarkB:#15272e;
@@ -33,7 +33,7 @@ $bgDefaultDarkB:#15272e;
 $bgDefaultDarkC:#111f25;
 
 //按钮
-$btnPrimary:#ff671b;
+$btnPrimary:$textM;
 
 //border
 $borderDefault:#36474f;
@@ -53,3 +53,34 @@ $tabH:.32rem;
 $headerH:$navH+$tabH;
 $footerH:.3rem;
 $tipsH:.32rem; 
+
+@mixin radius($rd:.04rem) {
+	border-radius: $rd;
+	-moz-border-radius: $rd;
+	-webkit-border-radius: $rd;
+}
+@mixin mixheight($h){
+	height:$h;
+	line-height:$h;
+}
+@mixin absolutePos($t,$r,$b,$l){
+	display:block;
+	position:absolute;
+	top:$t;
+	bottom:$b;
+	left:$l;
+	right:$r;
+}
+@mixin background($url,$color,$size){
+	background-image:url($url);
+	background-color:$color;
+	background-size:$size;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+@mixin ellipsis{
+	word-break:keep-all;/* 不换行 */ 
+	white-space:nowrap;/* 不换行 */ 
+	overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */ 
+	text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}

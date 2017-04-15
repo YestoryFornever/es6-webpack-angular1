@@ -4,7 +4,7 @@ app.component('pagetab', {
 		tabs:'=',
 	},
 	templateUrl: './pagetab.html',
-	controller: function($scope, pageheaderService,$state,$stateParams,$uibModal,$mdDialog, pagetabService){
+	controller: function($scope, $state,$stateParams,$uibModal,$mdDialog, pagetabService){
 		$scope.pagetabService = pagetabService;
 
 		/*$doCheck(){

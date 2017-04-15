@@ -1,20 +1,18 @@
 class PagenavController {
-	constructor(pagetabService,bondquotationService, netUserService) {
+	constructor(pagetabService,NetBondquotationService, userStatusService) {
 		"ngInject";
 		this.pagetabService = pagetabService;
-		this.bondquotationService = bondquotationService;
+		this.NetBondquotationService = NetBondquotationService;
 		this.name = 'pagenav';
 		this.navs = [
 			{
-				routeState:"",
 				routeLabel:"债券报价",
-				routeClass:"",
 				children:[
 					{
 						tabKey: 'home.bondquotation',
 						routeState:"home.bondquotation",
 						routeLabel:"债券报价",
-						routeClass:"",
+						ngif: userStatusService.realCertifyState==3,
 						onClick: function()
 						{
 							pagetabService.activeTab({
@@ -25,10 +23,10 @@ class PagenavController {
 						}
 					},
 					{
-						tabKey: 'home.chatroom',
-						routeState:"home.chatroom",
+						tabKey: 'home.chatroom.bargainlist',
+						routeState:"home.chatroom.bargainlist",
 						routeLabel:"消息中心",
-						routeClass:"",
+						ngif: userStatusService.realCertifyState==3,
 						onClick: function()
 						{
 							pagetabService.activeTab({
@@ -45,14 +43,16 @@ class PagenavController {
 						routeClass:"",
 						onClick: function()
 						{
-							bondquotationService.openCalculator();
+							NetBondquotationService.openCalculator();
 						}
 					},
+
 					{
-						tabKey: 'home.message',
-						routeState:'home.message',
-						routeLabel:'资讯',
+						tabKey: 'home.newdebtinformation',
+						routeState:'home.newdebtinformation',
+						routeLabel:'新债信息',
 						routeClass:'',
+						// ngif: false,
 						onClick: function()
 						{
 							pagetabService.activeTab({
@@ -62,56 +62,38 @@ class PagenavController {
 							});
 						}
 					},
-					// {
-					// 	tabKey: 'home.capitalQuotation',
-					// 	routeState:'home.capitalQuotation',
-					// 	routeLabel:'资金报价',
-					// 	routeClass:'',
-					// 	onClick: function()
-					// 	{
-					// 		pagetabService.activeTab({
-					// 			tabKey: this.tabKey,
-					// 			routeState: this.routeState,
-					// 			routeLabel: this.routeLabel,
-					// 		});
-					// 	}
-					// },
-					// {
-					// 	tabKey: 'home.messagedetail',
-					// 	routeState:'home.messagedetail',
-					// 	routeLabel:'资讯详情',
-					// 	routeClass:'',
-					// 	onClick: function()
-					// 	{
-					// 		pagetabService.activeTab({
-					// 			tabKey: this.tabKey,
-					// 			routeState: this.routeState,
-					// 			routeLabel: this.routeLabel
-					// 		});
-					// 	}
-					// },
-					// {
-					// 	tabKey: 'home.cast',
-					// 	routeState:'home.cast',
-					// 	routeLabel:'直播',
-					// 	routeClass:'',
-					// 	onClick: function()
-					// 	{
-					// 		pagetabService.activeTab({
-					// 			tabKey: this.tabKey,
-					// 			routeState: this.routeState,
-					// 			routeLabel: this.routeLabel
-					// 		});
-					// 	}
-					// }
+					{
+						tabKey: 'home.newdebtinformationdetails',
+						routeState:'home.newdebtinformationdetails',
+						routeLabel:'新债详情信息',
+						routeClass:'',
+						// ngif: false,
+						onClick: function()
+						{
+							pagetabService.activeTab({
+								tabKey: this.tabKey,
+								routeState: this.routeState,
+								routeLabel: this.routeLabel
+							});
+						}
+					},
+					{
+						tabKey: 'home.newdebtdialog',
+						routeState:'home.newdebtdialog',
+						routeLabel:'弹窗',
+						routeClass:'',
+						// ngif: false,
+						onClick: function()
+						{
+							pagetabService.activeTab({
+								tabKey: this.tabKey,
+								routeState: this.routeState,
+								routeLabel: this.routeLabel
+							});
+						}
+					},
 				]
 			}
 		];
-
-		// netUserService.getMenuList().then(function(data){
-		// 	console.log('getMenuList',data);
-		// }).catch((error)=>{
-		// 	console.log('fail',error);
-		// });
 	}
 }

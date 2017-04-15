@@ -7,9 +7,9 @@
 			</div>
 			<div class="header-right" id="header_right">
 				<a href="http://www.alphabond.com.cn/" class="on">首页</a>
-				<a href="http://www.alphabond.com.cn/newmessage.html">最新资讯</a>
-				<a href="http://www.alphabond.com.cn/aboutus.html">关于我们</a>
-				<a href="http://www.alphabond.com.cn/download.html">下载</a>
+				<a href="http://www.alphabond.com.cn/html/newmessage.html">最新资讯</a>
+				<a href="http://www.alphabond.com.cn/html/aboutus.html">关于我们</a>
+				<a href="http://www.alphabond.com.cn/html/download.html">下载</a>
 				<button id="register" type="button" class="btn">注册</button>
 			</div>
 		</header>
@@ -35,23 +35,23 @@
 						<input type="password" id="password" ng-model="$ctrl.password"><!-- {{$ctrl.password}} -->
 					</div>
 				</div>
-				<!-- <div class="login-tr">
+				<div class="login-tr">
 					<span class="login-tr-icon">
 						<img id="login-icon-account" src="./images/icon_login_CAPTCHA.png" alt="">
 					</span>
-					<div class="login-tr-input">
-						<input type="generator" id="generator" ng-model="$ctrl.generator">
+					<div class="login-tr-input" style="text-align: left;">
+						<input type="text" id="picGenerationCode" ng-model="$ctrl.picGenerationCode">
+						<img class="pic-generation-img" ng-src="{{$ctrl.picGenerationUrl}}" ng-click="$ctrl.reloadPicGenerationUrl($ctrl.account)">
 					</div>
-				</div> -->
+				</div>
 				<div class="login-tr">
 					<span class="login-tr-icon"></span>
 					<div class="login-tr-input">
-						<button type="button" id="loginbtn" ng-click="$ctrl.login()">登录</button>
+						<button type="button" id="loginbtn" ng-click="$ctrl.login()">{{$ctrl.loginLabel}}</button>
 					</div>
 				</div>
 				<div class="login-tr">
 					<a href="#">注册账号</a>|<a href="#">忘记密码</a>
-					<button class="btn btn-default" type="button" ng-click="$ctrl.hack()">HACK</button>
 				</div>
 			</div>
 		</main>

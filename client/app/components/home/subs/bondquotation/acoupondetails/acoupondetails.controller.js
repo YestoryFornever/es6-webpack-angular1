@@ -1,9 +1,9 @@
 class AcoupondetailsController {
-	constructor(acoupondetailsService, $state, $stateParams, $uibModal, $mdDialog, pagetabService, bondquotationService) {
+	constructor(acoupondetailsService, $state, $stateParams, $uibModal, $mdDialog, pagetabService, NetBondquotationService) {
 		"ngInject";
 		this.name = 'acoupondetails';
 		this.acoupondetailsService = acoupondetailsService;
-		this.bondquotationService = bondquotationService;
+		this.NetBondquotationService = NetBondquotationService;
 		this.$stateParams = $stateParams;
 		this.$uibModal = $uibModal;
 		this.$mdDialog = $mdDialog;
@@ -60,7 +60,7 @@ class AcoupondetailsController {
 
 	}
 	openCalculator(list) {
-		this.bondquotationService.openCalculator(this.list);
+		this.NetBondquotationService.openCalculator(this.list);
 		// let that =this;
 		// that.dataForModal ={
 		// 	itemInfo:{
@@ -273,7 +273,6 @@ class AcoupondetailsController {
 		}
 		// **********************
 	activeTab1() {
-		
 		this.bond.routeLabel = this.list.bondShrtnm;
 		this.pagetabService.activeTab(this.bond);
 	}

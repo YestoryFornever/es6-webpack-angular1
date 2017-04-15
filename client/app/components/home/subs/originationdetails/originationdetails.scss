@@ -1,0 +1,253 @@
+//@import '../../../../../common/css/common';
+h1,h2,h3,h4,h5,h6{
+	margin: 0; 
+	padding: 0;
+}
+.origination_main{
+		position: absolute;
+		height:100%;
+		width:100%;
+		float:left;
+		overflow-y:hidden;
+		background:#fff;
+		color:#2A383F;
+		.origination_nav{
+			height:.4rem;
+			width:100%;
+			float:left;
+			margin-bottom:.2rem;
+			background:#F0F0F2;
+			.origination_main_title{
+				height:.4rem;
+				width:70%;
+				padding-left:.2rem;
+				float:left;
+				span{
+					font-family: PingFangSC-Regular;
+					font-size: 18px;
+					color: #FF671B;
+				}
+				
+			}
+			.origination_all{
+			height:.4rem;
+			width:30%;
+			float:right;
+				.origination_one{
+					height:.3rem;
+					width:.4rem;
+					margin-top:.085rem;
+					//margin-right:.2rem;
+					float:left;
+					background:url("../../../../../resource/images/btn_refresh_normal.png") no-repeat;
+				}
+				.origination_one:hover{
+				background:url("../../../../../resource/images/btn_refresh_hover.png") no-repeat;
+				}
+				.origination_two{
+				height:.3rem;
+				width:3.2rem;
+				float:right;
+				position:relative;
+				margin-top:.05rem;
+				input{
+					border:none;
+					display:inline-block;
+					height:.3rem;
+					width:3rem;
+					padding-left:.1rem;
+					border-radius:.15rem;
+					float:left;
+					cursor:pointer;
+					color:#FE6917;
+				}
+				input:hover{
+					border:1px solid #FE6917;
+				}
+				i{
+					display:inline-block;
+					height:.3rem;
+					width:.4rem;
+					float:left;
+					position:absolute;
+					left:2.7rem;
+					top:.046rem;
+					//background:red;
+				}
+				.origination_two_close{
+					//display:none;
+					display:inline-block;
+					height:.3rem;
+					width:.4rem;
+					float:left;
+					background:url('../../../../../resource/images/btn_clear2_normal.png') no-repeat;
+					position:absolute;
+					left:2.5rem;
+					top:.1rem;
+				}
+				.origination_two_close:hover{
+				background:url('../../../../../resource/images/btn_clear2_hover.png') no-repeat;
+				}
+
+				}
+			}
+		}
+//清除浮动
+.clearfix:after{
+		clear:both;
+		content:' ';
+		display:block;
+		width: 0;
+		height: 0;
+		visibility:hidden;
+	}
+	.clearfix {zoom:1;} 
+//table切换
+.origination_table_all{
+		position:absolute;
+		left:0;
+		top:0.6rem;
+		right:0;
+		bottom:0;
+}
+.origination_table_all .origination{
+		height:100%;
+		width:70%;
+		float:left;
+		overflow:hidden;
+		margin:0 auto;
+		position:relative;
+			left:0;
+			top:0;
+	}		
+.origination_table_all	.origination_rt{
+	height:100%;
+	width:30%;
+	float:left;
+	overflow:hidden;
+	// overflow-y: auto;
+	background:#fff;
+	margin-top:-.1rem;
+.origination_rt	.origination_rt_top{
+		height:.4rem;
+		padding-left:.1rem;
+		line-height:.4rem;
+		width:96%;
+		background:#F7F7F7;
+		// margin:.1rem auto;
+		span{
+			font-size:.14rem;
+			font-weight:700;
+			color:#15262D;
+		}
+
+	}
+
+.origination_rt	.origination_rt_center{
+		//height:1rem;
+		height:auto;
+		width:96%;
+		background:#fff;
+		clear:both;
+		margin:.1rem auto;
+		li{
+			display:block; 
+			height:100%;
+			width:100%;
+			
+			.span_a{
+				width:100%;
+				//height:.6rem;
+				font-size:12px;
+				padding-left:.1rem;
+				word-break:break-all;
+				text-overflow:ellipsis;
+				display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+				-webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+				-webkit-line-clamp: 2; /** 显示的行数 **/
+				overflow: hidden;  /** 隐藏超出的内容 **/
+		    }
+		    .span_b{
+				width:100%;
+				padding-left:.1rem;
+				font-size:12px;
+				overflow:hidden;
+				text-overflow:hidden;
+		    }
+		p{
+			display:block;
+			height:.3rem;
+			line-height:.3rem;
+			color:#CDCDCD;
+			//background:red;
+			width:100%;
+			float:left;
+			.origination_rt_center_time{
+				font-size:12px;
+				padding-left:.1rem;
+			}
+			.open{
+				display:block;
+				height:.3rem;
+				width:.7rem;
+				text-align:center;
+				line-height:.3rem;
+				float:right;
+				//background:blue;
+				.rrrr{
+					font-size:10px;
+					color:#2EA0FB;
+				}
+			}
+			
+		}
+		}
+		li:hover{
+		color:#FD671A;
+		}
+		//背景图片
+		.img_img{
+			//display:none;
+			height:.4rem;
+			width:1rem;
+			margin:3rem auto;
+		}
+
+}
+	
+.jiazhai{
+					height:.5rem;
+					width:1.5rem;
+					text-align: center;
+					margin:.1rem auto;
+					clear:both;
+					cursor:pointer;
+					span{
+						display: inline-block;
+						width:1.5rem;
+						// width:3.28rem;
+						height: .5rem;
+						// width: 45%;
+						font-size: 15px;
+						text-align: center;
+						line-height:.5rem;
+						margin-left: .1rem;
+						background:url('../../../../../resource/images/xiala.png') no-repeat right .2rem center;
+						background-size:.16rem .09rem;
+					}
+					.more_btn{
+						margin-top:.15rem;
+						margin-left:.15rem;
+					}
+				}
+	}
+}
+
+
+
+
+
+
+
+
+

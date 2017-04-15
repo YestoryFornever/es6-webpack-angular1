@@ -1,79 +1,138 @@
-<div class="lineUp">
-	<header id="top">
-		<textarea class="cont" ng-model='$ctrl.ofrDscListInfo'></textarea>
-		<button class="btn-default pull-right" ng-click="$ctrl.onlineAnalysisOfr()">提交</button>
-		<div style="clear: both;"></div>
+<div class="willQuote">
+	<div class="tit">
+		资金报价
+	</div>
+	<header id="condition">
+		<ul class="head">
+			<li>
+				<a id="lineUp "  ui-sref="home.capitalQuotation.onLineBond.create" ui-sref-active="actived"> 线上资金</a>
+			</li>
+			<li>
+				<a id="lineDown"  ui-sref="home.capitalQuotation.lineDownQuotation.create" ui-sref-active="actived"> 线下资金</a>
+			</li>
+		</ul>
 	</header>
-	<section id="lineUpCont">
-		<div class="head">
-			预览：<div class="plus" ng-click="$ctrl.addBondList()"><span class="bgPlus"></span></div>
-		</div>
-		<div id="table">
-			<div class="table-responsive">
-				<table class="table">
-					<thead>
-						<tr class="bg">
-							<th>方向</th>
-							<th>期限</th>
-							<th>金额</th>
-							<th>模式</th>
-							<th>利率</th>
-							<th>交易限制</th>
-							<th>备注</th>
-							<th>操作</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat='item in  $ctrl.ofrDscList'>
-							<td>
-								<select name="" id="">
-									<option value="1">{{item.drc}}</option>
-									<option value="2">融出</option>
-								</select>
-								<!-- <downlist ng-model="" list-data="{}"></downlist> -->
-							</td>
-							<td>
-								<select name="" id="">
-									<option value="">隔夜</option>
-									<option value="">7天</option>
-								</select>
-							</td>
-							<td>
-								<input type="text">&nbsp;
-								<select name="" id="">
-									<option value="">万</option>
-									<option value="">亿</option>
-								</select>
+	<div id="secondList" style="height:100%;">
+		<div class="lineUp">
+			<header id="top">
+				<form name='textarea'>
+					<textarea class="cont" ng-model='ofrDscListInfo' placeholder="请再此粘贴报价" required></textarea>
+					<span style="color:#ccc">示例： 出14天或1个月资金3000万，押利率，限银行农信。欢迎小窗</span>
+					<button class="btn-default pull-right" ng-click="onlineAnalysisOfr()" ng-disabled="changeStatus">提取</button>
+					<div style="clear: both;"></div>
+				</form>
+			</header>
+			<section id="lineUpCont">
+				<div class="head">
+					预览：
+					<button class="plus" ng-disabled="changeStatus" ng-click="addBondList()"><span class="bgPlus"></span></button>
+				</div>
+				<form name="tableForm" id='form' ng-submit='addOrChange()' >
+					<div id="table">
+						<table class="table table-responsive">
+							<thead>
+								<tr class="bg">
+									<th><i style="color:yellow">* </i>方向</th>
+									<th><i style="color:yellow">* </i>期限</th>
+									<th>金额</th>
+									<th>模式</th>
+									<th>利率</th>
+									<th>交易限制</th>
+									<th>备注</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat='item in  ofrDscList'>
+									<td>
+										<select ng-model='item.drc' required>
+											<option value=''>请选择</option>
+											<option
+												ng-repeat='list in drc.value;'
+												ng-if="$index>0"
+												value="{{list.value}}">
+												{{list.name}}
+											</option>
+										</select>
+									</td>
+									<td>
+										<select  ng-model='item.trmTp' required>
+											<option value=''>请选择</option>
+											<option
+												ng-repeat='list in trmTp.value;'
+												ng-if="$index>0"
+												value="{{list.value}}">
+												{{list.name}}
+											</option>
+										</select>
+										<input type="text" ng-if='item.trmTp ==11' ng-model='item.trmLwrLmtVal' ng-required='item.trmTp ==11'>
+										<select ng-if='item.trmTp ==11' value='1'  ng-model='item.trmLwrLmtUnit'>
+											<option value="1">天</option>
+											<option value="2">月</option>
+											<option value="3">年</option>
+										</select>
+										<span ng-if='item.trmTp ==11'>&nbsp;至&nbsp;</span>
+										<input type="text" ng-if='item.trmTp ==11'  ng-model='item.trmUpLmVal' ng-required='item.trmTp ==11'>
+										<select ng-if='item.trmTp ==11' value='1'  ng-model='item.trmUpLmUnit'>
+											<option value="1">天</option>
+											<option value="2">月</option>
+											<option value="3">年</option>
+										</select>
+									</td>
+									<td>
+										<input type="text" ng-model='item.amt'>&nbsp;
+										<select ng-model='item.amtUnit'>
+											<option value="1">万</option>
+											<option value="2">亿</option>
+										</select>
 
-							</td>
-							<td>
-								<select name="" id="">
-									<option value="">押利率</option>
-									<option value="">押信用</option>
-								</select>
-							</td>
-							<td>
-								<input type="text">
-							</td>
-							<td>
-								<select name="" id="">
-									<option value="">押利率</option>
-									<option value="">押信用</option>
-								</select>
-							</td>
-							<td>
-								<input type="text">
-							</td>
-							<td>
-								<span class="delete" ng-click="$ctrl.deleteList($index)"></span>
-							</td>
-						</tr>
-					</tbody>
-			 	</table>
-			</div>
+									</td>
+									<td>
+										<select ng-model='item.mode'>
+											<option ng-repeat='list in mode.value' value ="{{list.value}}">{{list.name}}</option>
+										</select>
+									</td>
+									<td>
+										<select ng-model='item.intrtTp' value=''>
+											<option value="" >请选择</option>
+											<option
+												ng-repeat='list in intrtTp.value'
+												ng-if="$index>0"
+												value="{{list.value}}" >
+												{{list.name}}
+											</option>
+										</select>
+										<input type="text" ng-model='item.intrtVal' ng-if='item.intrtTp == 2|| item.intrtTp == 3 || item.intrtTp ==4'>
+										<span ng-if='item.intrtTp == 2|| item.intrtTp == 3 || item.intrtTp ==4'>{{item.intrtTp  | percentOrBpFilter }}</span>
+									</td>
+									<td>
+										<select ng-model='item.txnRst' >
+											<option value="" >请选择</option>
+											<option
+												ng-repeat='list in txnRst.value'
+												value="{{list.value}}" >
+												{{list.name}}
+											</option>
+										</select>
+									</td>
+									<td>
+										<input style="width: 100%" type="text"
+										uib-tooltip='{{item.rmrk}}'
+										ng-model='item.rmrk'>
+									</td>
+									<td>
+										<button ng-disabled="changeStatus" class="delete" ng-click="deleteList($index)"></button>
+									</td>
+								</tr>
+							</tbody>
+					 	</table>
+					</div>
+					<div class="footer">
+						<input type='submit' style="width:1rem" class="btn btn-primary" ng-disabled='ofrDscList.length<=0 ' value='确认发布' />
+					</div>
+				</form>
+			</section>
 		</div>
-		<div class="footer">
-			<button class="btn btn-primary" ng-click='$ctrl.onlineAddOfr()'>确认发布</button>
-		</div>
-	</section>
+	</div>
 </div>
+

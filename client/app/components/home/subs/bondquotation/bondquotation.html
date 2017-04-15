@@ -6,70 +6,70 @@
 					<span>债券信息</span>
 				</header>
 				<main id="BondMain">
-					<div class="tit">{{$ctrl.bondDetail.bondShrtnm}}&nbsp;[ {{$ctrl.bondDetail.bondCd}}{{$ctrl.bondDetail.marketType | bondQuotationMarkeTType}}]</div>
+					<div class="tit">{{bondDetail.bondShrtnm}}&nbsp;[ {{bondDetail.bondCd}}{{bondDetail.marketType | bondQuotationMarkeTType}}]</div>
 					<div class="cont_l" >
 						<div class="col">
 							<span >剩余期限：</span>
-							<span>{{$ctrl.bondDetail.rsdtrm | addYearFilter}}</span>
+							<span>{{bondDetail.rsdtrm | addYearFilter}}</span>
 						</div>
 						<div class="col">
 							<span>债券类型：</span>
-							<span>{{$ctrl.bondDetail.creditType }}</span>
+							<span>{{bondDetail.creditType }}</span>
 						</div>
 						<div class="col">
 							<span>固定利率：</span>
-							<span>{{$ctrl.bondDetail.bondRate | yldrtoFilter}}</span>
+							<span>{{bondDetail.bondRate | yldrtoFilter}}</span>
 						</div>
 						<div class="col">
 							<span>距下一付息日：</span>
-							<span>{{$ctrl.bondDetail.nextPayInterestDate}}</span>
+							<span>{{bondDetail.nextPayInterestDate}}</span>
 						</div>
 						<div class="col">
 							<span>发行规模(亿)：</span>
-							<span>{{$ctrl.bondDetail.issueAmount | numChangeYiFilter}}</span>
+							<span>{{bondDetail.issueAmount | numChangeYiFilter}}</span>
 						</div>
 						<div class="col">
 							<span>交易市场：</span>
-							<span>{{$ctrl.bondDetail.marketType}}</span>
+							<span>{{bondDetail.marketType}}</span>
 						</div>
 					</div>
 
 					<div class="cont_r" >
 						<div class="col">
 							<span >到期日：</span>
-							<span>{{$ctrl.bondDetail.maturedDay}}</span>
+							<span>{{bondDetail.maturedDay}}</span>
 						</div>
 						<div class="col">
 							<span>票息类型：</span>
-							<span>{{$ctrl.bondDetail.rateTypeName}}</span>
+							<span>{{bondDetail.rateTypeName}}</span>
 						</div>
 						<div class="col">
 							<span>久期：</span>
-							<span>{{$ctrl.bondDetail.rmclDuration}}</span>
+							<span>{{bondDetail.rmclDuration}}</span>
 						</div>
 						<div class="col">
 							<span>期限(年)：</span>
-							<span>{{$ctrl.bondDetail.enterMaturity}}</span>
+							<span>{{bondDetail.enterMaturity}}</span>
 						</div>
 						<div class="col">
 							<span>发行价格(元)：</span>
-							<span>{{$ctrl.bondDetail.issuePrice}}</span>
+							<span>{{bondDetail.issuePrice}}</span>
 						</div>
 						<div class="col">
 							<span>评级：</span>
-							<span>{{$ctrl.bondDetail.sbjRtg}}/{{$ctrl.bondDetail.bondRank}}</span>
+							<span>{{bondDetail.sbjRtg}}/{{bondDetail.bondRank}}</span>
 						</div>
 					</div>
 					<div class="col">
 						<div class="tit_l">发行人：</div>
-						<div class="textOverHidden">{{$ctrl.bondDetail.issueInfoDtos[0].name  }}
+						<div class="textOverHidden">{{bondDetail.issueInfoDtos[0].name  }}
 						</div>
 					</div>
 					<div class="col">
 						<div class="tit_l">主承销商：</div>
-						<span class="textOverHidden">{{$ctrl.bondDetail.underwriterName}}</span>
+						<span class="textOverHidden">{{bondDetail.underwriterName}}</span>
 					</div>
-					<div ui-sref="home.acoupondetails({bondid:($ctrl.bondDetail.bondid)})" ui-sref-active="actived" ><span class="bgMore" ng-click='$ctrl.activeTab1()'></span></div>
+					<div ui-sref="home.acoupondetails({bondid:(bondDetail.bondid)})" ui-sref-active="actived" ><span class="bgMore" ng-click='$ctrl.activeTab1()'></span></div>
 				</main>
 			</section>
 
@@ -78,363 +78,40 @@
 				<header class="title bg">
 					<span>计算行情</span>
 				</header>
-				<main id="settleChart"></main>
+				<echarts options="myChart" width="370" height="210"></echarts>
 				<div style="clear: both;"></div>
 			</section>
 		</div>
 	</aside>
 	<div class="hallTable" >
-		<header id="condition" class="bg">
-			<div class="head">
-				<!-- 全部  我的报价 -->
-				<div
-					class="btn btn-default mar_L10"
-					ng-repeat="item in $ctrl.tabLablel.value"
-					ng-click='$ctrl.getQueryQuoteList()'
-					ng-model='$ctrl.sendQueryQuoteListInfo.queryFlag' uib-btn-radio='item.value'>{{item.name}}</div>
-				<!-- 自选方案 -->
-				<div
-					class="btn mar_L10  btn-default padR"
-					ng-repeat='item in $ctrl.queryScmList'
-					ng-click='$ctrl.getQueryQuoteList()'
-					ng-model='$ctrl.sendQueryQuoteListInfo.queryFlag'
-					uib-btn-radio='{{item.scmid}}' >{{item.scmNm}}
-					<span class="myBond pull-right"   ng-click='$ctrl.deleteScm(item.scmid)'></span>
-				</div>
-				<!-- 添加按钮 -->
-				<div
-					class="padd5"
-					ng-click='$ctrl.newAddShow()'>
-					<span class="plus"></span>
-				</div>
-				<!-- 修改按钮 -->
-				<span
-					ng-click="$ctrl.changeAddShow()"
-					ng-class="{'active' : $ctrl.isCollapsed ==false}"
-					class="SelectDownBox">
-				</span>
-				<!-- 搜索框 -->
-				<div class="titSearchBox">
-					<input type="text"
-						ng-model="$ctrl.customSelected"
-						uib-typeahead="list as list.bondShrtnm for list in  $ctrl.queryQuote($viewValue)"
-						typeahead-template-url="customTemplate123.html"
-						placeholder="请输入债券代码或简称">
-					<span class="searchBg " ng-click='$ctrl.search()'></span>
-				</div>
-			</div>
-
-		</header>
-
-		<div id="_body_"  uib-collapse="!$ctrl.isCollapsed">
-				<div class="btn-group pull-right btnSave">
-					<label
-						class="btn btn-primary pull-right"
-						style="margin:0 10px;"
-						ng-click='$ctrl.deleteScm();$ctrl.isCollapsed = !$ctrl.isCollapsed;'>
-						删除
-					</label>
-					<label
-						class="btn btn-primary pull-right"
-						ng-click="$ctrl.addScm()">
-						<span >保存</span>
-					</label>
-				</div>
-				<section class=" col-xs-6 wid45 ">
-					<div class="padd10 form-inline">
-						<span class="tit pull-left">自选方案</span>
-						<input  type="text" ng-model='$ctrl.addScmInfo.scmNm' required placeholder="未命名" >
-					</div>
-					<div class="padd10">
-						<span class="tit pull-left">方向</span>
-						<div class="btn-group">
-							<label class="btn" ng-model="$ctrl.addScmInfo.drc" uib-btn-radio='"-1"' >买入</label>
-							<label class="btn" ng-model="$ctrl.addScmInfo.drc" uib-btn-radio='"1"' >卖出</label>
-						</div>
-					</div>
-					<div class="padd10">
-						<span class="tit pull-left">债券类型</span>
-						<label class="btn pull-left"
-							ng-model="$ctrl.addScmInfo.bondTp"
-							uib-btn-checkbox
-							btn-checkbox-true="''"
-							ng-click='$ctrl.bondTpInit()'>全部</label>
-						<div class="btn-group">
-							<label class="btn"
-								ng-repeat='(key,item) in $ctrl.bond.value1'
-								ng-model="$ctrl.bondTpList1[key]"
-								uib-btn-checkbox
-								btn-checkbox-true="item.value"
-								ng-click='$ctrl.checkedUpAll($ctrl.bondTpList1,key)'>{{item.name}}
-							</label>
-							<div class="spacePlace" ></div><br>
-							<label class="btn"
-								ng-repeat='(key,item) in $ctrl.bond.value2'
-								ng-model="$ctrl.bondTpList2[key]"
-								uib-btn-checkbox
-								btn-checkbox-true="item.value"
-								ng-click='$ctrl.checkedDownAll($ctrl.bondTpList2,key)'>{{item.name}}
-							</label>
-						</div>
-					</div>
-					<div class="padd10">
-						<span class="tit pull-left">{{$ctrl.sbjRtg.name}}</span>
-						<div class=" btn-group">
-							<label class="btn"
-								ng-repeat='(key,item) in $ctrl.sbjRtg.value'
-								ng-model="$ctrl.sbjRtgList[key]"
-								uib-btn-checkbox
-								btn-checkbox-true="item.value"
-								ng-click='$ctrl.allOrNoAll($ctrl.sbjRtgList,key)' >{{item.name}}
-							</label>
-						</div>
-
-					</div>
-					<div class="padd10 mar_T14">
-						<span class="tit pull-left">{{$ctrl.dbtitmRtg.name}}</span>
-						<div class="btn-group">
-							<label class="btn"
-								ng-repeat='(key,item) in $ctrl.dbtitmRtg.value'
-								ng-model="$ctrl.dbtitmRtgList[key]"
-								uib-btn-checkbox
-								btn-checkbox-true="item.value"
-								ng-click='$ctrl.allOrNoAll($ctrl.dbtitmRtgList,key)' >{{item.name}}
-							</label>
-						</div>
-					</div>
-					<div class="padd10">
-						<span class="tit pull-left">{{$ctrl.wrght.name}}</span>
-						<div class="btn-group">
-							<label class="btn"
-								ng-repeat='(key,item) in $ctrl.wrght.value'
-								ng-model="$ctrl.wrghtList[key]"
-								uib-btn-checkbox
-								btn-checkbox-true="item.value"
-								ng-click='$ctrl.allOrNoAll($ctrl.wrghtList,key)' >{{item.name}}
-							</label>
-						</div>
-					</div>
-					<div class="padd10">
-						<span class="tit pull-left">{{$ctrl.crclMkt.name}}</span>
-						<div class=" btn-group">
-							<label class="btn"
-								ng-repeat='(key,item) in $ctrl.crclMkt.value'
-								ng-model="$ctrl.crclMktList[key]"
-								uib-btn-checkbox
-								btn-checkbox-true="item.value"
-								ng-click='$ctrl.allOrNoAll($ctrl.crclMktList,key)' >{{item.name}}
-							</label>
-						</div>
-					</div>
-					<div class="padd10 form-inline">
-						<span class="tit pull-left">行业</span>
-						<muti-select ng-class='{className: true}' ></muti-select>
-						<span class="clearSelect" ></span>
-					</div>
-					<div class="padd10 form-inline">
-						<span class="tit pull-left ">年份</span>
-						<muti-select ng-class='{className: true}' ></muti-select>
-						<span class="clearSelect"  ></span>
-					</div>
-				</section>
-				<section class=" col-xs-6 wid55">
-					<div class="padd10 form-inline">
-						<span class="tit pull-left">收益率%</span>
-						<span  ng-repeat='(key,item) in $ctrl.yldrto.value; ' >
-							<input type="text"
-								ng-model='$ctrl.yldrtoList[key]'
-								placeholder="请输入大于0 的数">
-							<span ng-if="$index==0">&nbsp;至&nbsp;</span>
-						</span>
-					</div>
-					<div class="padd10 form-inline">
-						<span class="tit pull-left">估值BP差</span>
-						<span  ng-repeat='(key,item) in $ctrl.valtbpMns.value; ' >
-							<input type="text"
-								ng-model='$ctrl.valtbpMnsList[key]'
-								placeholder="请输入大于0 的数">
-							<span ng-if="$index==0">&nbsp;至&nbsp;</span>
-						</span>
-					</div>
-					<div class="padd10 form-inline">
-						<span class="tit pull-left">剩余期限</span>
-						<div class=" btn-group">
-							<label class="btn"
-							ng-repeat='(key,item) in $ctrl.rsdtrm.value'
-							ng-model="$ctrl.rsdtrmList[key]"
-							uib-btn-checkbox
-							btn-checkbox-true="item.value"
-							ng-click='$ctrl.allOrNoAll($ctrl.rsdtrmList,key)' >{{item.name}}
-						</label>
-						</div>
-					</div>
-					<div class="padd10 mar_T14">
-						<span class="tit pull-left">发行人</span>
-						<!-- 搜索框 -->
-						<div class=" peoplePro" ng-init ="$ctrl.SearchSelected ='' ">
-							<input type="text"
-								ng-model="$ctrl.SearchSelected"
-								uib-typeahead="list as list.organizationFullName  for list in  $ctrl.fullName($viewValue)"
-								placeholder="">
-						</div>
-						<span class="clearSelect" ng-click='$ctrl.SearchSelected =""'></span>
-					</div>
-					<div class="padd10">
-						<span class="tit pull-left">{{$ctrl.issuEntp.name}}</span>
-						<div class="btn-group">
-							<label class="btn"
-								ng-repeat='(key,item) in $ctrl.issuEntp.value'
-								ng-model="$ctrl.issuEntpList[key]"
-								uib-btn-checkbox
-								btn-checkbox-true="item.value"
-								ng-click='$ctrl.allOrNoAll($ctrl.issuEntpList,key)' >{{item.name}}
-							</label>
-						</div>
-					</div>
-					<div class="padd10">
-						<span class="tit pull-left">{{$ctrl.wrnt.name}}</span>
-						<div class="wrap btn-group">
-							<label class="btn" ng-repeat='(key,item) in $ctrl.wrnt.value' ng-model="$ctrl.wrntList[key]" uib-btn-checkbox btn-checkbox-true="item.value" ng-click='$ctrl.allOrNoAll($ctrl.wrntList,key)' >{{item.name}}</label>
-						</div>
-					</div>
-					<div class="padd10">
-						<span class="tit pull-left">{{$ctrl.face.name}}</span>
-						 <div class="btn-group">
-							<label class="btn" ng-repeat='(key,item) in $ctrl.face.value' ng-model="$ctrl.faceList[key]" uib-btn-checkbox btn-checkbox-true="item.value" ng-click='$ctrl.allOrNoAll($ctrl.faceList,key)' >{{item.name}}</label>
-						</div>
-					</div>
-					<div class="padd10 form-inline" ng-init="test=[]" >
-						<span class="tit pull-left">地区</span>
-						<muti-select ng-class='{className: true}' items="$ctrl.location.data" ng-model ='test'>
-							<span uib-tooltip='{{test}}'></span>
-						</muti-select>
-						<span class="clearSelect" ng-click="test=[]"></span>
-					</div>
-				</section>
-			</div>
+		
+		<bondquotation-scm search-query="searchQuery" is-collapsed="$ctrl.isCollapsed"></bondquotation-scm>
+		
 		<main id='main' ng-class='{"top35":$ctrl.isCollapsed,"top3":!$ctrl.isCollapsed}'  >
 			<!-- <div iscroll> -->
-				<table  class="table-responsive  table my-table" >
-					<thead>
-						<tr class="bg">
-							<th ng-click='$ctrl.searchWthrFcs();' ng-if='$ctrl.sendQueryQuoteListInfo.queryFlag !="B"' ng-class="{'starNor' : $ctrl.sendQueryQuoteListInfo.wthrFcs=='0' ,'starSelect': $ctrl.sendQueryQuoteListInfo.wthrFcs=='1' }">
-							</th>
-							<th style="min-width: 0.4rem"  ng-if='$ctrl.sendQueryQuoteListInfo.queryFlag =="B"'>方向
-							</th>
-							<th ng-click='$ctrl.is_one=!$ctrl.is_one; $ctrl.order(1,$ctrl.is_one); '>债券代码<span style="position: relative;"><i class="{{ $ctrl.is_one == false ? 'sortDown' : ($ctrl.is_one == true ?  'sortUp' : '')}}"></i></span>
-							</th>
-							<th  ng-click='$ctrl.is_two=!$ctrl.is_two;$ctrl.order(2,$ctrl.is_two);'>债券简称
-								<span style="position: relative;"><i class="{{ $ctrl.is_two == false ? 'sortDown' : ($ctrl.is_two == true ?  'sortUp' : '')}}"></i></span>
-
-							</th>
-							<th ng-click='$ctrl.is_three=!$ctrl.is_three;$ctrl.order(3,$ctrl.is_three);'>数量(万)<span style="position: relative;"><i class="{{ $ctrl.is_three == false ? 'sortDown' : ($ctrl.is_three == true ?  'sortUp' : '')}}"></i></span>
-
-							</th>
-							<th style="min-width: 0.4rem"  ng-if='$ctrl.sendQueryQuoteListInfo.queryFlag !="B"'  > 方向	</th>
-							<th ng-click='$ctrl.is_four=!$ctrl.is_four;$ctrl.order(4,$ctrl.is_four);'>收益率%<span style="position: relative;"><i class="{{ $ctrl.is_four == false ? 'sortDown' : ($ctrl.is_four == true ?  'sortUp' : '')}}"></i>
-								<!-- <img src="../../../" alt=""> -->
-							</th>
-							<th  ng-click='$ctrl.is_five =!$ctrl.is_five;$ctrl.order(5,$ctrl.is_five);'>净价(元)<span style="position: relative;"><i class="{{ $ctrl.is_five == false ? 'sortDown' : ($ctrl.is_five == true ?  'sortUp' : '')}}"></i>
-							</th>
-							<th ng-click='$ctrl.is_six =!$ctrl.is_six;$ctrl.order(6,$ctrl.is_six);'>剩余期限<span style="position: relative;"><i class="{{ $ctrl.is_six == false ? 'sortDown' : ($ctrl.is_six == true ?  'sortUp' : '')}}"></i>
-							</th>
-							<th ng-click='$ctrl.is_seven =!$ctrl.is_seven;$ctrl.order(7,$ctrl.is_seven);'>主/债评级<span style="position: relative;"><i class="{{ $ctrl.is_seven == false ? 'sortDown' : ($ctrl.is_seven == true ?  'sortUp' : '')}}"></i>
-							</th>
-							<th  ng-if='$ctrl.sendQueryQuoteListInfo.queryFlag !="B"'>挂牌方</th>
-							<th  ng-if='$ctrl.sendQueryQuoteListInfo.queryFlag =="B"'>挂牌类型</th>
-							<th  ng-if='$ctrl.sendQueryQuoteListInfo.queryFlag =="B"'>状态</th>
-							<th  >备注</th>
-							<th >操作</th>
-						</tr>
-					</thead>
-					<tbody style="border: none; " id="bodyTr" >
-						<tr  ng-repeat='item in $ctrl.QueryQuoteList' ng-dblclick='$ctrl.toDetail(item)'  ng-click=' $ctrl.onClick(item,$index) ;' ng-class='{"active": $index == $ctrl.index}'>
-							<td ng-click='$ctrl.changeCareInfo(item,"wthrFcs" ,$event);'   ng-if='$ctrl.sendQueryQuoteListInfo.queryFlag !="B"'><!-- 是否关注 -->
-								<span class="star" ng-class='{"active":item.wthrFcs == true}' ng-if='item.ifpresentUser==0'></span>
-							</td>
-							<td  ng-if='$ctrl.sendQueryQuoteListInfo.queryFlag =="B"' ng-class="{ 'colorH' : item.drc=='1' ,'colorI':item.drc=='-1' }">{{item.drc | bondQuotationDrc}}</td><!-- 方向 -->
-							<td>{{item.bondCd}}</td>
-							<td  style="max-width: 0.8rem">
-								<span class="bondShrtnm"
-									tooltip-placement='bottom'
-									uib-tooltip='{{item.bondShrtnm}}'>
-									{{item.bondShrtnm}}
-								</span>
-							</td>
-							<td>{{item.num  | numFilter}}</td>
-							<td style="width: 0.4rem"  ng-if='$ctrl.sendQueryQuoteListInfo.queryFlag !="B"' ng-class="{ 'colorH' : item.drc=='1' ,'colorI':item.drc=='-1' }">{{item.drc | bondQuotationDrc}}</td>
-							<td class="colorI">{{item.yldrto | yldrtoFilter  }}</td>
-							<td>{{item.netprc | number:4 }}</td>
-							<td>{{item.rsdtrm}}</td>
-							<td>
-								<span>{{item.sbjRtg}}/{{item.dbtitmRtg}}</span>
-							</td>
-							<td ng-if='$ctrl.sendQueryQuoteListInfo.queryFlag !="B"'>
-								<span
-									ng-if='item.wthrAnon=="1"'
-									uib-tooltip='匿名'
-									tooltip-placement='bottom'
-									ng-class='{"unShowName"  : item.wthrAnon=="1"}'>&nbsp;&nbsp;&nbsp;&nbsp;
-								</span>
-								<span class="ofrUserNm"
-									ng-if='item.wthrAnon=="0"'
-									tooltip-placement='bottom'
-									uib-tooltip-template="'myTooltipTemplate.html'"
-									tooltip-placement="top">
-									{{item.organizationShrtNm}}-{{item.ofrUserNm}}
-								</span>
-							</td>
-							<td
-								ng-if='$ctrl.sendQueryQuoteListInfo.queryFlag =="B"'
-								ng-class='{"colorH" : item.wthrListg=="0", "colorN" : item.wthrListg=="1"}'>
-								<!-- 我的报价  挂牌类型 -->
-								{{item.wthrListg | bondQuotationWthrListg}}
-							</td>
-							<td  ng-if='$ctrl.sendQueryQuoteListInfo.queryFlag =="B"'><!-- 我的报价  状态 -->
-								{{item.ofrEStatus | bondQuotationOfrEStatus}}
-							</td>
-							<td  class="toopRmrk"><!-- 备注 -->
-								<span class="rmrk"
-									tooltip-placement='bottom'
-									uib-tooltip-template="'rmrkTemplate.html'">
-									{{item.rmrk}}
-								</span>
-							</td>
-							<td style="min-width: 1.2rem"><!-- 操作  -->
-								<div style="display: inline;"
-									ui-sref="home.chatroom({ofrUserId:item.ofrUserId , bondOfrid:item.bondOfrid})" ui-sref-active="actived">
-									<span class="chatRoom"   ng-if='item.ifpresentUser=="0" ' ></span>
-								</div>
-								<span class="calculator" ng-if='item.ifpresentUser=="0" '  ng-click='$ctrl.bondquotationService.openCalculator(item)'></span>
-
-								<span class="change"  ng-if='item.ifpresentUser=="1" && item.ofrEStatus!="3"' ng-click='$ctrl.openChange(item,$event,$ctrl.bondDetail.nameAll)'></span>
-
-								<span class="addNew"  ng-if='item.ofrEStatus=="3" || item.ofrEStatus=="2"' ng-click='$ctrl.sendQuote(item)'></span>
-								<span class="delete" ng-if='item.ifpresentUser=="1" && item.ofrEStatus=="1" ' ng-click='$ctrl.changeCareInfo(item,"ofrEStatus",$event)'></span>
-
-								<span class="send" ng-if='item.ifpresentUser=="1" && item.ofrEStatus=="1"' ng-click='$ctrl.openFirendOrOnLine(item)'></span>
-
-							</td>
-						</tr>
-					</tbody>
-				</table>
+			<grid-view fields="fields"
+				query="searchQuery"
+				items="QueryQuoteList"
+				tr-click="getDetail($item.bondid)"
+				tr-dblclick="toDetail($item.bondid)">
+			</grid-view>
 			<!-- </div> -->
+			<div class="myPage" >
+				<ul  uib-pagination
+					boundary-links="true"
+					total-items="totalItems"
+					ng-model="searchQuery.pageNum"
+					previous-text="&lsaquo;"
+					next-text="&rsaquo;"
+					first-text="&laquo;"
+					last-text="&raquo;"
+					items-per-page='searchQuery.pageSize'
+					num-pages="numPages"
+					></ul>
+				<span style="float: right">{{searchQuery.pageNum}} / {{numPages}}</span>
+			</div>
 		</main>
-		<div class="myPage" >
-			<ul  uib-pagination
-				boundary-links="true"
-				total-items="$ctrl.totalItems"
-				ng-model="$ctrl.currentPage"
-				previous-text="&lsaquo;"
-				next-text="&rsaquo;"
-				first-text="&laquo;"
-				last-text="&raquo;"
-				items-per-page='$ctrl.sendQueryQuoteListInfo.pageSize'
-				num-pages="$ctrl.numPages"
-				ng-change='$ctrl.pageNumChange($ctrl.currentPage)'
-				></ul>
-			<span style="float: right">{{$ctrl.currentPage}} / {{$ctrl.numPages}}</span>
-		</div>
+		
 	</div>
 </div>
 

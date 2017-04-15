@@ -1,0 +1,33 @@
+<div class="more_setting_no_html">
+    <h1>安全设置</h1>
+     <ul class="more_settings_no_ul"> 
+        <li>
+            <div class="more_settings_ul_left2">修改登录密码</div>
+            <div class="more_settings_ul_right2" ng-click="isPassward=!isPassward">修改</div>
+        </li>
+        <li class="more_settings_amend_input2" ng-if="isPassward==true">
+            <div class="settings_amend_input_left2"> 
+                <p>原始登录密码<input type="text" placeholder="请输入原始登录密码..." class="amend_input"/></p>
+                <p>新登录密码<input type="passward" class="amend_input amend_input2"/></p>
+                <p>确认新密码<input type="passward" class="amend_input amend_input2"/></p>
+            </div>   
+            <div class="settings_amend_input_right2" style="float:right;"> 
+                <button type="button" class="upload_file_cannel">确定</button>
+            </div>
+        </li>
+        <li>
+            <div class="more_settings_ul_left2">修改注册手机号</div>
+            <div class="more_settings_ul_right2" ng-click="isAmendPhone=!isAmendPhone">修改</div>
+        </li>
+        <li class="more_settings_amend_input2" ng-if="isAmendPhone==true">   
+            <div class="settings_amend_input_left2"> 
+                <p>原始登录密码<input type="text" placeholder="请输入登录密码..." class="amend_input"/></p>
+                <p>新注册手机号<input type="number" class="amend_input"/></p>
+                <p>短信验证码<input type="number" class="amend_input amend_input2 amend_input3"/><input type="button" class="amend_input amend_input4" value="获取验证码"/></p>
+            </div>  
+            <div class="settings_amend_input_right2" style="float:right;"> 
+                <button type="button" class="upload_file_cannel">确定</button>
+            </div>   
+        </li>
+    </ul>
+</div> 

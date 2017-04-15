@@ -1,0 +1,95 @@
+<div class="addApp">
+    <div class="row">
+        <div class="col-sm-12">
+            <table width="100%" style="margin-top: 0">
+                <tr>
+                    <th>机构</th>
+                    <th>利率(%)</th>
+                    <th>申购量(亿)</th>
+                    <th>交割方式</th>
+                    <th>分销方式</th>
+                    <th>申购状态</th>
+                    <th>申购渠道</th>
+                    <th>申购时间</th>
+                    <th>备注</th>
+                    <th>
+                        中标结果
+                    </th>
+                    <th>
+                        中标量(亿)
+                    </th>
+                    <th>
+                        票面利率(%)
+                    </th>
+                </tr>
+                <tr ng-dblclick="$ctrl.outModel(item.sndrTeamId, item.rcptyTeamId)"
+                    ng-repeat="item in $ctrl.dataList track by $index" ng-click="$ctrl.trClick($index)"
+                    ng-class='{clicked: $index==$ctrl.trClicked}'>
+                    <td>
+                        {{item.rcptyInstNm+"-"+item.rcptyTeamNm+"-"+item.rcptyUserNm}}
+                    </td>
+                    <td>
+                        {{item.sbrbIntrt}}
+                    </td>
+                    <td>
+                        {{item.sbrbNum}}
+                    </td>
+                    <td>
+                        {{item.dlvTp | applicationTransaction}}
+                    </td>
+                    <td>
+                        {{item.sellrMod | applicationSale}}
+                    </td>
+                    <td>
+                        <select ng-model="item.sndrSbrbEStatus">
+                            <option value='1'>未发送</option>
+                            <option value='2'>已发送</option>
+                            <option value='3'>新消息</option>
+                            <option value='4'>已读</option>
+                            <option value='5'>已撤销</option>
+                            <option value='6'>对方撤销</option>
+                            <option value='7'>已拒绝</option>
+                            <option value='8'>对方拒绝</option>
+                            <option value='9'>已失效</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select ng-model="item.sbrbChnl">
+                            <option value='1'>平台</option>
+                            <option value='2'>QQ</option>
+                            <option value='3'>微信</option>
+                            <option value='4'>录入</option>
+                        </select>
+                    </td>
+                    <td>
+                        {{item.createTime}}
+                    </td>
+                    <td>
+                        {{item.rmrk}}
+                    </td>
+                    <td>
+                        {{item.winbidEStatus!=null?item.winbidEStatus:"--"}}
+                    </td>
+                    <td>
+                        {{item.winbidNum!=null?item.winbidNum:"--"}}
+                    </td>
+                    <td>
+                        {{item.winbidIntrt!=null?item.winbidIntrt:"--"}}
+                    </td>
+                </tr>
+            </table>
+            <ul
+                    uib-pagination
+                    boundary-links="true"
+                    total-items="$ctrl.pages.totalResult"
+                    ng-model="$ctrl.pages.currentPage"
+                    class="pagination-sm"
+                    previous-text="&lsaquo;"
+                    next-text="&rsaquo;"
+                    first-text="&laquo;"
+                    last-text="&raquo;"
+                    ng-change="$ctrl.pageChange($ctrl.pages.currentPage)"
+            ></ul>
+        </div>
+    </div>
+</div>

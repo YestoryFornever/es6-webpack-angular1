@@ -2,20 +2,12 @@
 .my-send-alert{
 	.modal-xs.modal-dialog {
 		width: 3.7rem;
-		position: fixed;
-		margin: auto;
-		top:0;
-		left: 0;
-		bottom: 0;
-		right:0;
-		z-index:999999;
+		.modal-header{
+			border-color:$borderDefault;
+		}
 		.modal-content{
 			background: $bgDefault;
 			height: auto;
-			border:0;
-			-webkit-box-sizing: border-box;
-			-moz-box-sizing: border-box;
-			box-sizing: border-box;
 			.modal-body{
 				width: 3.7rem;
 				height: auto;
@@ -50,6 +42,7 @@
 		}
 	}
 	.modal-footer{
+		border-color:$borderDefault;
 		padding:0;
 		width:100%;
 		background: $bgDefault;

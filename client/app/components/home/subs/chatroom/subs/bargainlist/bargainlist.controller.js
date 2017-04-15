@@ -29,10 +29,8 @@ class BargainlistController {
 			console.warn("获取议价列表异常");
 		});
 	}
-	changeUser(user){
-		// console.log(user);
-		this.friend = user;
-		this.changeFriend({friend:user});
+	changeBargain(b){
+		this.switchBargain({flag:'b',v:b});
 	}
 	togglelist(bargain){
 		bargain.fold = !bargain.fold;

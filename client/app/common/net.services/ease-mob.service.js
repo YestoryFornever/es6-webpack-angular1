@@ -1,4 +1,4 @@
-app.service('easeMobService',function(){
+app.service('easeMobService',function($rootScope){
 	this.register = function(username,password,nickname){//注册环信
 		var options = { 
 			username: 'webstar_g',
@@ -16,6 +16,7 @@ app.service('easeMobService',function(){
 		this.conn.registerUser(options);
 	};
 	this.login = function(){
+		this.init();
 		//登录环信
 		var options = {
 			apiUrl: WebIM.config.apiURL,
@@ -95,11 +96,113 @@ app.service('easeMobService',function(){
 			});
 		}
 	};
-	this.getCache = function(){
-		return this.chatCache;
+	this.getCache = function(userid){
+		if(this.chatCache&&this.chatCache.length>0){//如果存在聊天缓存，依次弹出
+			let curChatListUn;
+			for(let i=0;i<this.chatCache.length;i++){
+				if(this.chatCache[i].userId === userid){
+					curChatListUn = this.chatCache[i].chatcontent;
+				}
+			}
+			return curChatListUn;
+		}
+		return false;
 	};
+	this.createMsgObj = (ext,msg,flag)=>{
+		let result = false;
+		if(ext && (ext.ext_msg_type||ext.bond_type)){
+			let type = ext.ext_msg_type||ext.bond_type;
+			switch(type){
+				case "0"://无扩展消息
+					if(msg){
+						msg = msg.split("\n");
+					}
+					result = {
+						drc:flag,
+						type:'text',
+						message:msg
+					};
+					break;
+				case "1":break;//添加好友
+				case "2":break;//解除好友关系
+				case "3":break;//群内添加人
+				case "4":break;//群内踢人
+				case "5":break;//解散群-无法实现
+				case "6":break;//退出群-主动退群无法实现
+				case "7":break;//创建群
+				case "8":break;//修改群名称
+				case "9":break;//修改群公告
+				case "10":break;//修改群头像
+				case "11":break;//群主设置/取消群成员
+				case "20"://发送报价
+					result = {
+						drc:flag,
+						type:'quote',
+						message:ext
+					};
+					break;
+				case "21"://发送议价
+					result = {
+						drc:flag,
+						type:'quote',
+						message:ext
+					};
+					break;
+				case "22":break;//发送金币
+				case "23":
+					result = {
+						drc:flag,
+						type:flag,
+						message:msg
+					};
+					break;//拒绝报价
+				case "24":
+					result = {
+						drc:flag,
+						type:flag,
+						message:msg
+					};
+					break;//交易报价
+				case "25":
+					result = {
+						drc:flag,
+						type:flag,
+						message:msg
+					};
+					break;//撤销报价
+				case "26":
+					result = {
+						drc:flag,
+						type:flag,
+						message:msg
+					};
+					break;//报价已交易
+				case "27":
+					result = {
+						drc:flag,
+						type:flag,
+						message:msg
+					};
+					break;//修改报价
+			}
+		}else{
+			if(msg){
+				msg = msg.split("\n");
+			}
+			result = {
+				drc:flag,
+				type:'text',
+				message:msg
+			};
+		}
+		result.time=(new Date().getTime());
+		// debugger;
+		return result;
+	};
+	this.hasINIT = false;
 	/*环信初始化*/
-	this.init = function(text,cmd){
+	this.init = function(){
+		if(this.hasINIT)return false;
 		this.conn = new WebIM.connection({
 			isMultiLoginSessions: WebIM.config.isMultiLoginSessions,
 			https: typeof WebIM.config.https === 'boolean' ? WebIM.config.https : location.protocol === 'https:',
@@ -118,7 +221,10 @@ app.service('easeMobService',function(){
 				//所以无需调用conn.setPresence();
 				console.log("环信连接成功");
 			},
-			onTextMessage:text, //收到文本消息
+			//onTextMessage:text, //收到文本消息
+			onTextMessage: function(message){
+				$rootScope.$broadcast('ease:msg',message);
+			},
 			onEmojiMessage: function (message) {//收到表情消息
 				// 当为WebIM添加了Emoji属性后，若发送的消息含WebIM.Emoji里特定的字符串，connection就会自动将
 				// 这些字符串和其它文字按顺序组合成一个数组，每一个数组元素的结构为{type: 'emoji(或者txt)', data:''}
@@ -143,7 +249,9 @@ app.service('easeMobService',function(){
 				};
 				WebIM.utils.download.call(this.conn, options);       // 意义待查
 			},
-			onCmdMessage: cmd,//收到命令消息
+			onCmdMessage: function(message){
+				$rootScope.$broadcast('ease:cmd',message);
+			},//收到命令消息
 			onAudioMessage: function (message) {//收到音频消息
 				console.log("Audio");
 			},
@@ -230,5 +338,6 @@ app.service('easeMobService',function(){
 				console.log(list);
 			}
 		});
+		this.hasINIT = true;
 	};
 });

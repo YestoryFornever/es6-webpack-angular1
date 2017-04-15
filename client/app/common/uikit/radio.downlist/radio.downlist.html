@@ -1,0 +1,9 @@
+<span class="aa">
+	<ui-select  ng-model="res.selecteds" ng-class="{className:class.className}" >
+		<ui-select-match placeholder="请选择" >{{$item.label}}</ui-select-match>
+
+		<ui-select-choices repeat="item in _items" group-by="group">
+			<div ng-bind-html="item.label"></div>
+		</ui-select-choices>
+	</ui-select>
+</span>

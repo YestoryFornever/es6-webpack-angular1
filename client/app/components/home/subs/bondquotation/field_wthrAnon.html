@@ -1,0 +1,14 @@
+<span
+	ng-if='$item.wthrAnon=="1"'
+	uib-tooltip='匿名'
+	tooltip-placement='bottom'
+	class='unShowName'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>
+<span
+	style='display: inline-block;max-width:0.5rem '
+	class="ofrUserNm"
+	ng-if='$item.wthrAnon=="0"'
+	tooltip-placement='bottom'
+	uib-tooltip-template="'myTooltipTemplate.html'">
+	{{$item.organizationShrtNm}}-{{$item.ofrUserNm}}
+</span>

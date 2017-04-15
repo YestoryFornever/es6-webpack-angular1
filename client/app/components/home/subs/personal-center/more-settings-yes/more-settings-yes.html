@@ -1,0 +1,71 @@
+<div class="more_setting_html">
+    <h1>隐私设置</h1>
+    <ul class="more_settings_ul"> 
+        <li> 
+            <div class="more_settings_ul_left">谁可以看我的手机号</div>
+            <div class="more_settings_ul_right"> 
+                <select class="more_settings_option"> 
+                    <option>仅好友</option>
+                    <option>所有人</option>
+                </select>
+            </div> 
+        </li> 
+        <li>
+            <div class="more_settings_ul_left">谁可以看我的资料</div>
+            <div class="more_settings_ul_right"> 
+                <select class="more_settings_option" > 
+                    <option>仅好友</option>
+                    <option>所有人</option>
+                </select>
+            </div>
+        </li>
+        <li> 
+            <div class="more_settings_ul_left">谁可以给我发消息</div>
+            <div class="more_settings_ul_right"> 
+                <select class="more_settings_option"> 
+                    <option>仅好友</option>
+                    <option>所有人</option>
+                </select>
+            </div>
+        </li>
+        <li>
+            <div class="more_settings_ul_left">允许他人搜索到我</div>
+            <div class="more_settings_ul_right">修改</div>
+        </li>
+        <li>
+            <div class="more_settings_ul_left">允许系统推荐我给他人</div>
+            <div class="more_settings_ul_right">修改</div>
+        </li>
+    </ul>
+    <h1 style="margin-top:.6rem">安全设置</h1>
+     <ul class="more_settings_ul"> 
+        <li>
+            <div class="more_settings_ul_left">修改登录密码</div>
+            <div class="more_settings_ul_right" ng-click="isPassward=!isPassward">修改</div>
+        </li>
+        <li class="more_settings_amend_input" ng-if="isPassward==true">
+            <div class="settings_amend_input_left"> 
+                <p>原始登录密码<input type="text" placeholder="请输入原始登录密码..." class="amend_input"/></p>
+                <p>新登录密码<input type="passward" class="amend_input amend_input2"/></p>
+                <p>确认新密码<input type="passward" class="amend_input amend_input2"/></p>
+            </div>   
+            <div class="settings_amend_input_right" style="float:right;"> 
+                <button type="button" class="upload_file_cannel">确定</button>
+            </div>
+        </li>
+        <li>
+            <div class="more_settings_ul_left">修改注册手机号</div>
+            <div class="more_settings_ul_right" ng-click="isAmendPhone=!isAmendPhone">修改</div>
+        </li>
+        <li class="more_settings_amend_input" ng-if="isAmendPhone==true">   
+            <div class="settings_amend_input_left"> 
+                <p>原始登录密码<input type="text" placeholder="请输入登录密码..." class="amend_input"/></p>
+                <p>新注册手机号<input type="number" class="amend_input"/></p>
+                <p>短信验证码<input type="number" class="amend_input amend_input2 amend_input3"/><input type="button" class="amend_input amend_input4" value="获取验证码"/></p>
+            </div>  
+            <div class="settings_amend_input_right" style="float:right;"> 
+                <button type="button" class="upload_file_cannel">确定</button>
+            </div>   
+        </li>
+    </ul>
+</div> 

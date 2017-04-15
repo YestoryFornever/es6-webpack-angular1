@@ -34,7 +34,7 @@ div#altarea{
 		padding: 0 0rem;
 	}
 	#logo{
-		margin:0 .1rem;
+		margin:0 .45rem 0 .1rem;
 		a{
 			color: #fbffff;
 		}
@@ -52,9 +52,9 @@ div#altarea{
 	}
 	#nav{
 		width: auto;
-		margin-left: .45rem;
 	}
 	.dropdown-menu {
+		margin-top:-0.03rem;
 		background: #192D35;
 	}
 
@@ -70,6 +70,11 @@ div#altarea{
 			width: 1.5rem;
 			display: inline-block;
 			text-align: center;
+		}
+	}
+	.dropdown-menu {
+		>li>a {
+			line-height: 0.4rem;
 		}
 	}
 }
@@ -90,8 +95,3 @@ div#altarea{
 	}
 }
 
-.my-space-list {
-	>li>a {
-		line-height: 0.4rem;
-	}
-}

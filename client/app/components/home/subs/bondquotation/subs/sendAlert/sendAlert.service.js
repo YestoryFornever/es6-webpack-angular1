@@ -1,26 +1,18 @@
-app.factory('SendAlertService',['$http','$q','bondquotationService','$uibModal',function($http,$q,bondquotationService,$uibModal){
+app.factory('SendAlertService', function($http,$q,$uibModal){
 	return {
 		/**
 		 * 提示框 发送给好友  挂牌到大厅
 		 */
-		openFirendOrOnLine(item){
-			let that =this;
-			let deferred = $q.defer();
-			that.dataModal={};
-			$uibModal.open({
+		open(item){
+			return $uibModal.open({
 				animation: true,
 				component:'sendAlert',
 				windowClass:'my-send-alert',
 				size: 'xs',//'lg',//'sm',
 				resolve: {
-					dataModal:function(){
-						return that.dataModal ;
-					}
+					item: item
 				}
-			}).result.then(function (res) {
-				deferred.resolve(that.dataModal)
-			},that);
-			return deferred.promise;
-		}
+			}).result;
+		},
 	}
-}]);
+});

@@ -109,6 +109,7 @@
         <classfier>dev</classfier>
         <serverIp>http://11.177.15.104/</serverIp>
         <easemobAppKey>lz0817#javatest</easemobAppKey>
+        <officialnUrl>http://11.177.15.104/</officialnUrl>
       </properties>
     </profile>
     
@@ -118,6 +119,7 @@
         <classfier>test</classfier>
         <serverIp>http://11.177.15.254/</serverIp>
         <easemobAppKey>1125161011178944#alphabondtest</easemobAppKey>
+        <officialnUrl>http://11.177.15.105:8091/official_ebsite/</officialnUrl>
       </properties>
     </profile>
   
@@ -126,8 +128,9 @@
       <properties>
         <classfier>product</classfier>
         <!--<serverIp>https://app.alphabond.com.cn/</serverIp> -->
-        <serverIp>https://bond-exchange.com.cn/</serverIp>
+        <serverIp>https://alphain.com.cn/</serverIp>
         <easemobAppKey>1125161011178944#alphabond</easemobAppKey>
+        <officialnUrl>http://www.alphabond.com.cn/</officialnUrl>
       </properties>
     </profile>
   </profiles>

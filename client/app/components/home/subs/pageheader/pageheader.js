@@ -1,1 +1,0 @@
-app.component('pageheader', pageheaderComponent);

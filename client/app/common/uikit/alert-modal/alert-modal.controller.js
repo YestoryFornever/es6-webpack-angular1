@@ -1,18 +1,19 @@
 class AlertModalController {
-	constructor(netAlertModalService) {
+	constructor() {
 		this.name = 'alertModal';
-		this.netAlertModalService = netAlertModalService;
 	}
 	$onInit(){
-		this.info = this.resolve.modalData ? this.resolve.modalData.itemInfo: {tittle:'',content:'操作成功'};
+		var info = this.resolve.info;
+		info.title = info.title||'';
+		info.content = info.content||'操作成功';
+		this.info = info;
 	}
 
 	ok() {
-
 		this.modalInstance.close();
 	}
-	// cancel() {
-	// 	this.modalInstance.dismiss('cancel');
+	cancel() {
+		this.modalInstance.dismiss('cancel');
 
-	// }
+	}
 }

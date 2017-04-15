@@ -1,9 +1,9 @@
 class nowBondController {
-	constructor(nowBondService,netAlertModalService,$state,bondquotationService) {
+	constructor(nowBondService,AlertModalService,$state,NetBondquotationService) {
 		"ngInject";
 		this.nowBondService = nowBondService;
-		this.netAlertModalService = netAlertModalService;
-		this.bondquotationService = bondquotationService;
+		this.AlertModalService = AlertModalService;
+		this.NetBondquotationService = NetBondquotationService;
 		this.$state = $state;
 		this.drc = '1';
 		var mydate = new Date();
@@ -36,6 +36,7 @@ class nowBondController {
 	$onInit(){
 		this.disabledButton =false;//禁用发送按钮
 		this.face = this.nowBondService.face;
+		console.log(this.face)
 		this.faceList =[];
 		this.bondTpList =[];
 		this.sbjRtgList =[];
@@ -47,10 +48,10 @@ class nowBondController {
 			if(this.quoteList[0]){
 
 				this.drc = this.quoteList[0].drc;
-				this.quoteList[0].num = this.bondquotationService.__n( (this.quoteList[0].num ?  this.quoteList[0].num : "0") ,true);
+				this.quoteList[0].num = this.NetBondquotationService.__n( (this.quoteList[0].num ?  this.quoteList[0].num : "0") ,true);
 				this.quoteList[0].wthrAnon = this.quoteList[0].wthrAnon =='0' ? false : true;
-				this.quoteList[0].yield = this.bondquotationService.__y(this.quoteList[0].yldrto,true);
-				this.quoteList[0].netprc = this.bondquotationService.__p(this.quoteList[0].netprc,true);
+				this.quoteList[0].yield = this.NetBondquotationService.__y(this.quoteList[0].yldrto,true);
+				this.quoteList[0].netprc = this.NetBondquotationService.__p(this.quoteList[0].netprc,true);
 			}
 		}else{
 			this.isShow =true;
@@ -77,6 +78,7 @@ class nowBondController {
 			// cleanPrice:'0',
 			yield:'0',
 		}
+		this._fields = ['bondTp', 'face', 'sbjRtg'];
 	}
 
 	// 计算收益率
@@ -108,7 +110,7 @@ class nowBondController {
 			// body...
 			if(res.data.data ){
 				that.netprcInfo.yield =  res.data.data.yield;
-				item.yield = that.bondquotationService.__y(res.data.data.yield,true);
+				item.yield = that.NetBondquotationService.__y(res.data.data.yield,true);
 				// item.yield = item.yield >100? 100: item.yield <0 ? 0: item.yield ;
 			}
 		});
@@ -142,7 +144,7 @@ class nowBondController {
 			if(res.data.data ){
 				if(res.data.data.cleanPrice){
 					that.netprcInfo.cleanPrice =  res.data.data.cleanPrice;
-					item['netprc'] = that.bondquotationService.__p (res.data.data.cleanPrice,true);
+					item['netprc'] = that.NetBondquotationService.__p (res.data.data.cleanPrice,true);
 				}
 			}
 		});
@@ -175,7 +177,7 @@ class nowBondController {
 		let flag = true;
 		
 		if(that.quoteList.length==0){
-			that.netAlertModalService.openBox({
+			that.AlertModalService.open({
 				'tittle':'',
 				'content':'请输入信息',
 			});
@@ -203,48 +205,36 @@ class nowBondController {
 		});
 		angular.forEach(that.quoteListChecked, function(item,index) {
 			item['drc'] = that.drc ;
-			item.yldrto = item.yldrto ? that.bondquotationService.__y(item.yldrto,false)  :'';
-			item.netprc = item.netprc ? that.bondquotationService.__p(item.netprc,false)  :'';
+			item.yldrto = item.yldrto ? that.NetBondquotationService.__y(item.yldrto,false)  :'';
+			item.netprc = item.netprc ? that.NetBondquotationService.__p(item.netprc,false)  :'';
 			item.num = item.num ? item.num*10000  :"";
 			item.wthrAnon = item.wthrAnon ==true? '1' : item.wthrAnon ==false ? '0' : "1";
-			item.wthrListg =item.wthrListg ==true? '1'  : item.wthrListg =='0' ? "1"  : item.wthrListg ==false ? '0' : "1" ;
+			item.wthrListg =item.wthrListg ==true? '1'  :  item.wthrListg ==false ? '0' : "1" ;
 			item.bondid = that.quoteList[index].bondid ? that.quoteList[index].bondid :that.quoteList[index].bondCd.bondid;
 			item.bondCd = that.quoteList[index].bondCd.bondCd ? that.quoteList[index].bondCd.bondCd :that.quoteList[index].bondCd;
 			if(!item.bondid  ){
-				that.netAlertModalService.openBox({
-					'tittle':'错误信息',
-					'content':'债券代码或者简称 不能为空',
-				});
+				that.AlertModalService.open('错误信息','债券代码或者简称 不能为空');
 				flag = false;
 				return false;
 			}
 			if(item.num==''   || item.num<0){
-				that.netAlertModalService.openBox({
-					'tittle':'错误信息',
-					'content':'数量不能为空，且大于0',
-				});
+				that.AlertModalService.open('错误信息','数量不能为空，且大于0');
 				flag = false;
 				return false;
 			}
 			if(item.yldrto=='' || item.yldrto<0 || item.yldrto>100){
-				that.netAlertModalService.openBox({
-					'tittle':'错误信息',
-					'content':'收益率0至100',
-				});
+				that.AlertModalService.open('错误信息','收益率0至100');
 				flag = false;
 				return false;
 			}
 			if(item.netprc=='' ||  item.netprc<0 || item.netprc>200){
-				that.netAlertModalService.openBox({
-					'tittle':'错误信息',
-					'content':'净价0至200',
-				});
+				that.AlertModalService.open('错误信息','净价0至200');
 				flag = false;
 				return false;
 			}
 			// item['drc'] = that.drc ;
-			// item.yldrto = item.yldrto ? that.bondquotationService.__y(item.yldrto,false)  :'';
-			// item.netprc = item.netprc ? that.bondquotationService.__p(item.netprc,false)  :'';
+			// item.yldrto = item.yldrto ? that.NetBondquotationService.__y(item.yldrto,false)  :'';
+			// item.netprc = item.netprc ? that.NetBondquotationService.__p(item.netprc,false)  :'';
 			// item.num = item.num ? item.num*10000  :"";
 			// item.wthrAnon = item.wthrAnon ==true? '1' : item.wthrAnon ==false ? '0' : "1";
 			// item.wthrListg =item.wthrListg ==true? '1'  : item.wthrListg =='0' ? "1"  : item.wthrListg ==false ? '0' : "1" ;
@@ -257,23 +247,18 @@ class nowBondController {
 			promise.then((res)=>{
 				if(res.data.status=="0"){
 					// that.searchList = data.data.data;
-					that.netAlertModalService.openBox({
-						'tittle':'',
-						'content':'操作成功',
-					});
+					that.AlertModalService.open(null,'操作成功');
 					that.modalInstance.close();
+					that.$state.go('home.bondquotation',{}, {reload: true});
 				}else{
-
-					that.netAlertModalService.openBox({
-						'tittle':'',
-						'content':res.data? res.data.msg : res.msg,
-					});
+					let msg =res.data? res.data.msg : res.msg
+					that.AlertModalService.open(null,msg);
 				}
 				that.disabledButton =false;
 			},(res)=>{});
 		}
 		// else{
-		// 	that.netAlertModalService.openBox({
+		// 	that.AlertModalService.open({
 		// 		'tittle':'',
 		// 		'content':'请输入完整信息',
 		// 	});
@@ -286,6 +271,7 @@ class nowBondController {
 		this.hideRight = !this.hideRight;//隐藏右侧的搜索
 	}
 	searchBonds(){
+		this.beforSaveScmInfo();
 		this.searchConditions['rateType'] = this.makeSelect(this.face.data);
 		let promise = this.nowBondService.searchBonds(this.searchConditions);
 		promise.then((data)=>{
@@ -309,7 +295,7 @@ class nowBondController {
 			obj.wthrListg=true;
 			this.quoteList.push(obj);
 			if(obj.yield){
-				obj.yield = this.bondquotationService.__y( obj.yield, true);
+				obj.yield = this.NetBondquotationService.__y( obj.yield, true);
 				this.netprc(obj,obj);
 			}
 			this.customSelected = obj;
@@ -389,6 +375,30 @@ class nowBondController {
 		});
 
 	}
+	/**
+	 * 保存之前处理数据
+	 * @return {[type]} [description]
+	 */
+	beforSaveScmInfo(){
+		var valueArray = [];
+		if (this.searchConditions['rgonSelecteds']) {
+			valueArray = _.map(this.searchConditions['rgonSelecteds'], 'id');
+			this.searchConditions['rgon'] = valueArray.join(',');
+		};
+		if (this.searchConditions['yrSelecteds']) {
+			valueArray = _.map(this.searchConditions['yrSelecteds'], 'id');
+			this.searchConditions['yr'] = valueArray.join(',');
+		}else{
+			this.searchConditions['yr'] = '';
+		};
+		if (this.searchConditions['idySelecteds']) {
+			valueArray = _.map(this.searchConditions['idySelecteds'], 'id');
+			this.searchConditions['idy'] = valueArray.join(',');
+		};
+
+		console.log(this.searchConditions, 'beforSaveScmInfo');
+	}
+
 	// 期限单位 D Y
 	changeStatus(ev){
 		this.isActive = true;

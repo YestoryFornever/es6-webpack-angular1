@@ -1,0 +1,15 @@
+<div style="min-width: 1.1rem">
+	<span title="消息中心" class="chatRoom" ui-sref="home.chatroom({ofrUserId:$ctrl.item.ofrUserId , bondOfrid:$ctrl.item.bondOfrid})" ui-sref-active="actived"	ng-if='$ctrl.item.ifpresentUser=="0" '></span>
+
+	<span title="计算器" class="calculator" ng-if='$ctrl.item.ifpresentUser=="0"' ng-click='netBondTrialService.openCalculator($ctrl.item)'></span>
+
+	<span title="修改" class="change"  ng-if='$ctrl.item.ifpresentUser=="1" && $ctrl.item.ofrEStatus!="3"'  ng-click='openChange($ctrl.item)'></span>
+
+	<span title="挂牌" class="addNew"  ng-if='$ctrl.item.ofrEStatus=="3" || $ctrl.item.ofrEStatus=="2"'   ng-click='sendQuote($ctrl.item,$event)'></span>
+
+	<span title="撤销" class="delete" ng-if='$ctrl.item.ifpresentUser=="1" && $ctrl.item.ofrEStatus=="1" '  ng-click='bondDown($ctrl.item,$event)'></span>
+
+	<span title="发送" class="send" ng-if='$ctrl.item.ifpresentUser=="1" && $ctrl.item.wthrListg=="0"' ng-click='openFirendOrOnLine($ctrl.item)'></span>
+	<span title="发送" class="send" ng-if='$ctrl.item.ifpresentUser=="1" && $ctrl.item.wthrListg=="1"' ng-click='FriendsModalService.open($ctrl.item)'></span>
+
+</div>

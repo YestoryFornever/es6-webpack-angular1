@@ -8,49 +8,49 @@
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<th style="width:.39rem"></th>
-						<th style="width:.46rem">方向</th>
-						<th style="width:.90rem">债券代码</th>
-						<th style="width:1.17rem">债券简称</th>
-						<th style="width:.66rem">数量(万)</th>
-						<th style="width:.67rem">收益率</th>
-						<th style="width:.71rem">净价(元)</th>
-						<th style="width:.57rem">匿名</th>
-						<th style="width:1.43rem">备注</th>
-						<th style="width:.68rem">大厅挂牌</th>
+						<th></th>
+						<th>方向</th>
+						<th>债券代码</th>
+						<th>债券简称</th>
+						<th>数量(万)</th>
+						<th>收益率</th>
+						<th>净价(元)</th>
+						<th>匿名</th>
+						<th>备注</th>
+						<th>大厅挂牌</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="item in $instanceCtrl.quoteList">
-						<td style="width:.39rem">
+						<td>
 							<input type="checkbox" ng-model="item.checked">
 						</td>
-						<td style="width:.46rem">
+						<td class="drc">
 							<span class="drc-buy" ng-if="item.drc!='1'">买入</span>
 							<span class="drc-sell" ng-if="item.drc=='1'">卖出</span>
 						</td>
-						<td style="width:.90rem">
+						<td class="bondCd">
 							<span>{{item.bondCd}}</span>
 						</td>
-						<td style="width:1.17rem">
-							<span class="shrtnm">{{item.bondShrtnm}}</span>
+						<td class="bondShrtnm">
+							<span>{{item.bondShrtnm}}</span>
 						</td>
-						<td style="width:.66rem">
+						<td class="num">
 							<span>{{item.num|numFilter}}</span>
 						</td>
-						<td style="width:.67rem">
-							<span class="yld">{{item.yldrto|yldrtoFilter}}%</span>
+						<td class="yldrto">
+							<span>{{item.yldrto|yldrtoFilter}}%</span>
 						</td>
-						<td style="width:.71rem">
+						<td class="netprc">
 							<span>{{item.netprc|number:4}}</span>
 						</td>
-						<td style="width:.57rem">
+						<td class="wthrAnon">
 							<input type="checkbox" ng-checked="item.wthrAnon==='1'" disabled>
 						</td>
-						<td style="width:1.43rem">
-							<span>{{item.rmrk}}</span>
+						<td class="rmrk">
+							<span uib-tooltip="{{item.rmrk}}">{{item.rmrk}}</span>
 						</td>
-						<td style="width:.68rem">
+						<td class="wthrListg">
 							<input type="checkbox" ng-checked="item.wthrListg==='1'" disabled>
 						</td>
 					</tr>

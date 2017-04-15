@@ -3,19 +3,19 @@ app.config(($stateProvider, $urlRouterProvider) => {
 
 	$stateProvider
 		.state('home.capitalQuotation.mineQuotation', {
-			url: '/mineQuotation',
+			url: '/mineQuotation?:active?:isShowHead?:ofrid:pageSize?:pageNum?:mine',
 			views: {
 				'list@home.capitalQuotation': {
 					component: 'mineQuotation'
+				},
+			},
+		})
+		.state('home.capitalQuotation.mineQuotation.create', {
+			url: '/create',
+			views: {
+				'mineCreat@home.capitalQuotation.mineQuotation': {
+					component: 'lineUpComponent'
 				}
 			},
-			cache:false
 		});
 })
-.component('mineQuotation', {
-	restrict: 'E',
-	bindings: {},
-	templateUrl:'./mine-quotation.html',
-	controller:MineQuotationController
-})
-

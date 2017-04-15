@@ -8,15 +8,10 @@ app.config(($stateProvider, $urlRouterProvider) => {
 					component: 'capitalQuotation',
 				},
 				'list@home.capitalQuotation': {
-					component: 'onLineBond',
+					component: 'onLineBond'
 				}
 			}
-		});
+		})
 })
-.component('capitalQuotation', {
-	restrict: 'E',
-	bindings: {},
-	templateUrl:'./capital-quotation.html',
-	controller:CapitalQuotationController
-})
+.component('capitalQuotation',CapitalQuotationComponent )
 

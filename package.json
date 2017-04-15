@@ -46,7 +46,8 @@
     "serve": "gulp serve",
     "start": "gulp default",
     "test": "karma start",
-    "bower": "bower install"
+    "bower": "bower install",
+    "bower-offline": "bower install --offline"
   },
   "keywords": [
     "angular",

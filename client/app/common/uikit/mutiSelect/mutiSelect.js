@@ -10,7 +10,12 @@ app.directive('mutiSelect', function($parse){
 		},
 		templateUrl: './mutiSelect.html',
 		link: function(scope){
-
+			// $('#usertype').selectpicker({
+			//                 'selectedText': 'cat'
+			//             }).on('changed.bs.select', function (e) {
+			//   // do something...
+			//   $scope.model = [];
+			// });
 			var list = scope.items;
 
 			var items = [];

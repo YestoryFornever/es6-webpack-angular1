@@ -3,14 +3,14 @@
  * @type {String}
  */
 window.Host = '${serverIp}';
+window.officialnUrl = '${officialnUrl}';
 
 /**
  * 环信APPKEY
  * @type {String}
  */
 var WebIM_appKey = '${easemobAppKey}';
-// WebIM_appKey = WebIM_appKey.indexOf('easemobAppKey')>0?'lz0817#javatest':WebIM_appKey;
-	WebIM_appKey = WebIM_appKey.indexOf('easemobAppKey')>0?'1125161011178944#alphabondtest':WebIM_appKey;
+	// WebIM_appKey = WebIM_appKey.indexOf('easemobAppKey')>0?'1125161011178944#alphabondtest':WebIM_appKey;
 	/**
 	 * git do not control webim.config.js
 	 * everyone should copy webim.config.js.demo to webim.config.js

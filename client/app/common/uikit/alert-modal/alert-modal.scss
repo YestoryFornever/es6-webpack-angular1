@@ -1,15 +1,10 @@
 .my-alert-modal{
 	.modal-xxx.modal-dialog {
 		width: 3.7rem;
-		height: auto;
-		z-index:999999;
+		
 		.modal-content{
+			width: 3.7rem;
 			background: $bgDefault;
-			height: auto;
-			border:0;
-			-webkit-box-sizing: border-box;
-			-moz-box-sizing: border-box;
-			box-sizing: border-box;
 			.modal-header{
 				border-color:$borderDefault;
 			}
@@ -29,6 +24,9 @@
 			    border: none;
 			    text-align: center;
 			}
+		}
+		#modal-title{
+			color:$textG;
 		}
 	}
 }

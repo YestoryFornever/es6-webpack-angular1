@@ -2,7 +2,7 @@
  * 存储服务
  * @type {[type]}
  */
-app.factory('storageService',['$http','$q',function($http,$q){
+app.factory('storageService', function($http,$q){
 	return {
 		set: function(key, value)
 		{
@@ -20,4 +20,4 @@ app.factory('storageService',['$http','$q',function($http,$q){
 			return (value && value[0])?value[0]:null;
 		}
 	}
-}]);
+});

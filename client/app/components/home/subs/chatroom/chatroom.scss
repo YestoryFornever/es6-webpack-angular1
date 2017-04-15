@@ -1,8 +1,3 @@
-@mixin radius($rd:.04rem) {
-	border-radius: $rd;
-	-moz-border-radius: $rd;
-	-webkit-border-radius: $rd;
-}
 .md-button.md-default-theme.md-primary.md-raised, .md-button.md-primary.md-raised, .md-button.md-default-theme.md-primary.md-fab, .md-button.md-primary.md-fab{
 	background-color:$btnPrimary;
 }
@@ -52,54 +47,48 @@ div#chatroom{
 				a#bargainlist{
 					background-image:url('../../../../../resource/images/icon_yijia_03_normal.png');
 				}
-				a:active,a:focus,a.actived{
-					background-color:$bgDefaultLightA;
-				}
-				a#friendslist:active,a#friendslist:focus,a#friendslist.actived{
-					background-image:url('../../../../../resource/images/icon_yijia_01_current.png');
-				}
-				a#groupslist:active,a#groupslist:focus,a#groupslist.actived{
-					background-image:url('../../../../../resource/images/icon_yijia_02_current.png');
-				}
-				a#bargainlist:active,a#bargainlist:focus,a#bargainlist.actived{
-					background-image:url('../../../../../resource/images/icon_yijia_03_current.png');
-				}
-
 			}
-			li.actived{
-				a{
-					color:$textB;
-					text-shadow:.04rem .04rem .04rem #444;
-					background-color:$bgDefaultLightA;
-					background-repeat: no-repeat;
-					background-position: center;
-				}
-				a#friendslist{
-					background-image:url('../../../../../resource/images/icon_yijia_01_current.png');
-				}
-				a#groupslist{
-					background-image:url('../../../../../resource/images/icon_yijia_02_current.png');
-				}
-				a#bargainlist{
-					background-image:url('../../../../../resource/images/icon_yijia_03_current.png');
+			&.friendslist{
+				li{
+					a#friendslist{
+						color:$textB;
+						text-shadow:.04rem .04rem .04rem #444;
+						@include background('../../../../../resource/images/icon_yijia_01_current.png',$bgDefaultLightA,auto);
+					}
 				}
 			}
-			/* li:first-child{
-				height:.1rem;
-			} */
+			&.groupslist{
+				li{
+					a#groupslist{
+						color:$textB;
+						text-shadow:.04rem .04rem .04rem #444;
+						@include background('../../../../../resource/images/icon_yijia_02_current.png',$bgDefaultLightA,auto);
+					}
+				}
+			}
+			&.bargainlist{
+				li{
+					a#bargainlist{
+						color:$textB;
+						text-shadow:.04rem .04rem .04rem #444;
+						@include background('../../../../../resource/images/icon_yijia_03_current.png',$bgDefaultLightA,auto);
+					}
+				}
+			}
 		}
+
 	}
 	div#list{
 		float:left;
 		width: $listW;
-		background-color:$bgDefaultLightA;
+		background-color:#243941;//$bgDefaultLightA;
 		overflow:auto;
 	}
 	$tipsHeaderH:.32rem;
 	$infoH:.8rem;
 	$btnsH:.4rem;
 	$operateHeaderH:.26rem;
-	$operateBodyH:.4rem;
+	$operateBodyH:.3rem;
 	$foldListH1:.24rem;
 	$foldListH3:.52rem;
 	$sendareaH: 1.6rem;
@@ -130,14 +119,14 @@ div#chatroom{
 				left:0;
 				right:0;
 				z-index:10;
-				background:$bgDefaultLightB;
+				background:$bgDefaultLightA;
 				padding:0 .1rem;
 				div.info{
 					/* background-color:green; */
 					height:$infoH;
 					font-size:.12rem;
 					padding:.1rem 0;
-					border-bottom:.01rem solid $textF;
+					border-bottom:.01rem solid #3f4d54;
 					div.abbr{
 						color:$textD;
 						margin-top:.02rem 0;
@@ -189,10 +178,7 @@ div#chatroom{
 						margin-top:.04rem;
 						background-color:$btnPrimary;
 						border:0;
-						$radius:.04rem;
-						border-radius: $radius;
-						-moz-border-radius: $radius;
-						-webkit-border-radius: $radius;
+						@include radius(.04rem);
 						color:$textD;
 						margin-right:.02rem;
 					}
@@ -232,23 +218,22 @@ div#chatroom{
 								height:$operateHeaderH;
 								line-height:$operateHeaderH;
 							}
+							$operateBodyH26:0.26rem;
 							div.input-content{
 								text-align: center;
-								height:$operateBodyH;
+								height:$operateBodyH26;
 								line-height:$operateBodyH;
+								margin:0 .04rem;
 								input{
 									width:100%;
 									height:100%;
 									text-align:center;
 									background:$bgDefaultDarkA;
 									border:0;
-									$radius:.04rem;
-									border-radius: $radius;
-									-moz-border-radius: $radius;
-									-webkit-border-radius: $radius;
+									@include radius(.02rem);
 									padding:0 .1rem;
 								}
-								span{
+								>span{
 									display:inline;//inline-block;
 									word-break:keep-all;/* 不换行 */ 
 									white-space:nowrap;/* 不换行 */ 
@@ -256,6 +241,36 @@ div#chatroom{
 									//text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
 									font-size:.16rem;
 									color:$textG;
+								}
+								g-spinner{
+									>div{
+										height:$operateBodyH26;
+										line-height:$operateBodyH;
+									}
+									>div.g-spinner-input{
+										margin-right:.18rem;
+										input{}
+									}
+									>div.g-spinner-spin{
+										float:right;
+										width:.16rem;
+										span{
+											display:block;
+											height:$operateBodyH/2-.01;
+											line-height:$operateBodyH/2-.01;
+											background-color:#516974;
+											background-repeat: no-repeat;
+											background-size: .12rem;
+											background-position: center;
+										}
+										span.g-spinner-up{
+											background-image:url('../../../../../resource/images/btn_arrow_packup2_normal.png');
+										}
+										span.g-spinner-down{
+											background-image:url('../../../../../resource/images/btn_arrow_unfold2_normal.png');
+											margin-top:.02rem;
+										}
+									}
 								}
 							}
 						}
@@ -341,267 +356,6 @@ div#chatroom{
 				bottom:0;
 				right:0;
 				overflow-y:auto;
-				$imgWH:.4rem;
-				//箭头
-				div.arrow{
-					width:.08rem;
-					height:.08rem;
-					display:inline-block;
-					position:absolute;
-					div.cutoff{
-						width:100%;
-						height:100%;
-					}
-				}
-				div.quote-dialog{
-					position:relative;
-					div.quote-dialog-pop{
-						width:3.82rem;
-						height:1.5rem;
-						display:inline-block;
-						margin:0 .24rem;
-						background:$bgDefaultLightB;
-						border-bottom-right-radius: .06rem;
-						-moz-border-bottom-right-radius: .06rem;
-						-webkit-border-bottom-right-radius: .06rem;
-						border-bottom-left-radius: .06rem;
-						-moz-border-bottom-left-radius: .06rem;
-						-webkit-border-bottom-left-radius: .06rem;
-						text-align:left;
-						div.quote-tips{
-							height:$tipsH;
-							line-height:$tipsH;
-							background-image:url('../../../../../resource/images/img_bg_title.png');
-							background-repeat:repeat-x;
-							>span.drc{
-								margin-left:.1rem;
-							}
-							>span.timer-container{
-								float:right;
-								margin-right:.1rem;
-								span.timer{
-									vertical-align:middle;
-								}
-							}
-						}
-						div.contents{
-							height:1.18rem;
-							padding:.1rem;
-							.contents-shortname{
-								color:$textG;
-								font-size:.16rem;
-							}
-							>ul.contents-detail{
-								font-size:0;
-								margin-top:.1rem;
-								li.contents-detail-title>span{
-									color:$textK;
-									font-size:.12rem;
-									font-weight: normal;
-								}
-								li.contents-detail-body>span{
-									color:$textG;
-									font-size:.16rem;
-								}
-								li{
-									font-size:0;
-									>span{
-										display:inline-block;
-										word-break:keep-all;/* 不换行 */ 
-										white-space:nowrap;/* 不换行 */ 
-										overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
-									}
-									>span.contents-price{
-										width:2rem;
-										/* background:red; */
-									}
-									>span.contents-num{
-										width:1.6rem;
-										/* background:green; */
-									}
-								}
-							}
-						}
-						div.btns{
-							$btnH:.3rem;
-							height:$btnH;
-							line-height:$btnH;
-							font-size:0;
-							div{
-								height:$btnH;
-								line-height:$btnH;
-								font-size:.14rem;
-								display:inline-block;
-								text-align:center;
-								margin:0;
-								border-top:1px solid $bgDefaultLightC;
-								background:transparent;
-								color:$textD;
-								width:33.3%;
-								height:100%;
-							}
-							div:hover{
-								color:$textM;
-							}
-							div:first-child{
-								border-bottom-left-radius: .06rem;
-								-moz-border-bottom-left-radius: .06rem;
-								-webkit-border-bottom-left-radius: .06rem;
-								border-right:1px solid $bgDefaultLightC;
-							}
-							div:last-child{
-								border-bottom-right-radius: .06rem;
-								-moz-border-bottom-right-radius: .06rem;
-								-webkit-border-bottom-right-radius: .06rem;
-								border-left:1px solid $bgDefaultLightC;
-							}
-						}
-					}
-				}
-				>li:first-child{
-					margin-top:.1rem;
-				}
-				>li{
-					margin-top:.5rem;
-					margin-bottom:.2rem;
-					padding:0 .1rem;
-					div.text-dialog-head{
-						display:inline-block;
-						vertical-align:top;
-						img{
-							width:$imgWH;
-							height:$imgWH;
-							border-radius: $imgWH/2;
-							-moz-border-radius: $imgWH/2;
-							-webkit-border-radius: $imgWH/2;
-						}
-					}
-					span.text-dialog-message{
-						display:inline-block;
-						/* height:$imgWH; */
-						line-height:$imgWH;
-						padding:0 .24rem;
-						margin:0 .24rem;
-						color:$textD;
-						border-bottom-right-radius: .06rem;
-						-moz-border-bottom-right-radius: .06rem;
-						-webkit-border-bottom-right-radius: .06rem;
-						border-bottom-left-radius: .06rem;
-						-moz-border-bottom-left-radius: .06rem;
-						-webkit-border-bottom-left-radius: .06rem;
-					}
-				}
-				>li{
-					div.text-sys{
-						text-align:center;
-						span{
-							display:inline-block;
-							color:#6b838e;
-							background:#2d424c;
-							@include radius(.04rem);
-							min-width:1rem;
-							padding: 0 .2rem;
-						}
-					}
-				}
-				li.itext{
-					div.text-dialog{
-						position:relative;
-						div.arrow{
-							top:0;
-							left:.6rem;
-							background:$bgDefaultLightB;
-							div.cutoff{
-								background:$bgDefaultDarkC;
-								border-top-right-radius: 100%;
-								-moz-border-top-right-radius: 100%;
-								-webkit-border-top-right-radius: 100%;
-							}
-						}
-						span{
-							background-color:$bgDefaultLightB;
-							border-top-right-radius: .06rem;
-							-moz-border-top-right-radius: .06rem;
-							-webkit-border-top-right-radius: .06rem;
-						}
-					}
-				}
-				li.otext{
-					text-align:right;
-					div.text-dialog{
-						position:relative;
-						div.arrow{
-							top:0;
-							right:.6rem;
-							background:$bgGold;
-							div.cutoff{
-								background:$bgDefaultDarkC;
-								border-top-left-radius: 100%;
-								-moz-border-top-left-radius: 100%;
-								-webkit-border-top-left-radius: 100%;
-							}
-						}
-						span{
-							background-color:$bgGold;
-							border-top-left-radius: .06rem;
-							-moz-border-top-left-radius: .06rem;
-							-webkit-border-top-left-radius: .06rem;
-						}
-					}
-				}
-				li.iquote{
-					div.quote-dialog{
-						position:relative;
-						div.arrow{
-							top:0;
-							left:.6rem;
-							background:$bgDefaultLightA;
-							div.cutoff{
-								background:$bgDefaultDarkC;
-								border-top-right-radius: 100%;
-								-moz-border-top-right-radius: 100%;
-								-webkit-border-top-right-radius: 100%;
-							}
-						}
-						div.quote-dialog-pop{
-							border-top-right-radius: .06rem;
-							-moz-border-top-right-radius: .06rem;
-							-webkit-border-top-right-radius: .06rem;
-							div.quote-tips{
-								border-top-right-radius: .06rem;
-								-moz-border-top-right-radius: .06rem;
-								-webkit-border-top-right-radius: .06rem;
-							}
-						}
-					}
-				}
-				li.oquote{
-					text-align:right;
-					div.quote-dialog{
-						position:relative;
-						div.arrow{
-							top:0;
-							right:.6rem;
-							background:$bgDefaultLightA;
-							div.cutoff{
-								background:$bgDefaultDarkC;
-								border-top-left-radius: 100%;
-								-moz-border-top-left-radius: 100%;
-								-webkit-border-top-left-radius: 100%;
-							}
-						}
-						div.quote-dialog-pop{
-							border-top-left-radius: .06rem;
-							-moz-border-top-left-radius: .06rem;
-							-webkit-border-top-left-radius: .06rem;
-							div.quote-tips{
-								border-top-left-radius: .06rem;
-								-moz-border-top-left-radius: .06rem;
-								-webkit-border-top-left-radius: .06rem;
-							}
-						}
-					}
-				}
 			}
 			ul#chat_content.fold-list-h0{
 				top:$tipsHeaderH+$infoH+$btnsH+$operateHeaderH+$operateBodyH;
@@ -609,11 +363,17 @@ div#chatroom{
 			ul#chat_content.fold-list-h1{
 				top:$tipsHeaderH+$infoH+$btnsH+$operateHeaderH+$operateBodyH+$foldListH1;
 			}
+			&#chatcontent.off-bargain{
+				ul#chat_content,ul#chat_content.fold-list-h0,ul#chat_content.fold-list-h1{
+					top:$tipsHeaderH;
+				}
+			}
 		}
 		div#sendarea{
 			bottom:0;
 			height:$sendareaH;
 			min-height:1.6rem;
+			background-color:$bgDefaultLightA;
 			/* border-top:1px solid $primaryBg; */
 			>*{
 				display:block;
@@ -624,6 +384,7 @@ div#chatroom{
 			$fnAreaH: .32rem;
 			$btnAreaH: .6rem;
 			#fnarea{
+				color:#6b838e;
 				top:0;
 				height:$fnAreaH;
 				background-image:url('../../../../../resource/images/img_bg_title.png');
@@ -647,6 +408,7 @@ div#chatroom{
 				}
 			}
 			textarea#inputarea{
+				color:#6b838e;
 				font-size:.14rem;
 				top:$fnAreaH;
 				bottom:$btnAreaH;
@@ -693,6 +455,11 @@ div#chatroom{
 			ul#chat_content.fold-list-h1{
 				top:$tipsHeaderH+$infoH+$btnsH+$operateHeaderH+$foldListH1;
 			}
+			&#chatcontent.off-bargain{
+				ul#chat_content,ul#chat_content.fold-list-h0,ul#chat_content.fold-list-h1{
+					top:$tipsHeaderH;
+				}
+			}
 		}
 	}
 	main.list-unfold{
@@ -717,6 +484,11 @@ div#chatroom{
 			}
 			ul#chat_content.fold-list-h1{
 				top:$tipsHeaderH+$infoH+$btnsH+$operateHeaderH+$operateBodyH+$foldListH1;
+			}
+			&#chatcontent.off-bargain{
+				ul#chat_content,ul#chat_content.fold-list-h0,ul#chat_content.fold-list-h1{
+					top:$tipsHeaderH;
+				}
 			}
 		}
 	}
@@ -802,7 +574,7 @@ div#chatroom.show-chat-history{//chatchat
 			ul.bargain-all-history-list{
 				background: $bgDefaultDarkA;
 				>li{
-					border-bottom:.01rem solid $textK;
+					border-bottom:.01rem solid #36474f;//$textK;
 					padding:.06rem;
 					>div.all-history-item{
 						height:.6rem;

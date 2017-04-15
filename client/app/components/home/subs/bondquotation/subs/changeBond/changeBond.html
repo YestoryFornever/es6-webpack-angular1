@@ -3,7 +3,7 @@
 		<div class="modal-content" >
 				<div class="modal-header">
 					<p class="modal-title" id="modal-title">修改报价 
-						<i class="fa fa-times pull-right" aria-hidden="true" ng-click="$instanceCtrl.cancel()""></i>
+						<i class="fa fa-times pull-right" aria-hidden="true" ng-click="$instanceCtrl.modalInstance.dismiss('cancel')"></i>
 					</p>
 
 				</div>
@@ -11,47 +11,47 @@
 				    <div class="one cont_l">
 				    	<label><span>方向</span></label>
 						<div class="btn-group">
-							<span class="btn " ng-model = '$instanceCtrl.changeInfo.drc' uib-btn-radio="'-1'" disabled='true'>买入</span>
-							<span class="btn "  ng-model = '$instanceCtrl.changeInfo.drc'  uib-btn-radio="'1'" disabled='disabled'>卖出</span>
+							<span class="btn " ng-model = 'item.drc' uib-btn-radio="'-1'" disabled='true'>买入</span>
+							<span class="btn "  ng-model = 'item.drc'  uib-btn-radio="'1'" disabled='disabled'>卖出</span>
 						</div>
 					</div>
 				   <!-- 债券代码/简称 -->
 					<div class="one cont_r" >
 						<label><span class="colorH">债券代码/简称</span></label>
-						<div style="display: inline-block;">{{$instanceCtrl.changeInfo.bondShrtnm}}&nbsp;[{{$instanceCtrl.changeInfo.bondCd}}{{$instanceCtrl.changeInfo.marketType | bondQuotationMarkeTType}}]</div>
+						<div style="display: inline-block;">{{item.bondShrtnm}}&nbsp;[{{item.bondCd}}{{item.marketType | bondQuotationMarkeTType}}]</div>
 					</div>
 					<!-- 数量 -->
 					<div class="one cont_l">
 						<label><span>数量</span></label>
-						<input type="text"  ng-model = '$instanceCtrl.changeInfo.num'>
+						<input type="text"  ng-model = 'item.num'>
 						<span class="marL10">万</span>
 					</div>
 					<!-- 收益率 -->
 					<div class="one cont_r">
 						<label><span>收益率</span></label>
-						<input type="text" ng-model = '$instanceCtrl.changeInfo.yldrto' ng-blur='$instanceCtrl.netprcFn($instanceCtrl.changeInfo ,"yldrto")'>
+						<input type="text" ng-model = 'item.yldrto' ng-blur='netprcFn(item)'>
 						<span class="marL10">%</span>
 					</div>
 					<!-- 净价 -->
 					<div class="one cont_l">
 						<label><span>净价</span></label>
-						<input type="text" ng-model = '$instanceCtrl.changeInfo.netprc' ng-blur='$instanceCtrl.yldrtoFn($instanceCtrl.changeInfo ,"netprc")'>
+						<input type="text" ng-model = 'item.netprc' ng-blur='yldrtoFn(item)'>
 						<span class="marL10">元</span>
 					</div>
 
 						<!-- 是否匿名 -->
 					<div class="one cont_r">
 						<label><span>是否匿名</span></label>
-						<div ng-click='$instanceCtrl.changeInfoStatus()' ng-class='{"trueChoice" :$instanceCtrl.changeInfo.wthrAnon=="1" , "falseChoice" : $instanceCtrl.changeInfo.wthrAnon=="0"}'></div>
+						<div ng-click='item.wthrAnon=item.wthrAnon==1?0:1;' ng-class='{"trueChoice" :item.wthrAnon=="1" , "falseChoice" : item.wthrAnon=="0"}'></div>
 					</div>
 					<!-- 备注 -->
 					<div class="bot " >
-						<textarea  placeholder='备注' ng-model = '$instanceCtrl.changeInfo.rmrk' ng-change='$instanceCtrl.deleteRemark($instanceCtrl.changeInfo)'></textarea>
-						<span class="contNum">{{($instanceCtrl.changeInfo.rmrk).length}}/50</span>
+						<textarea  placeholder='备注' ng-model = 'item.rmrk' ng-change='deleteRemark(item)'></textarea>
+						<span class="contNum">{{(item.rmrk).length}}/50</span>
 					</div>
 					<div class="modal-footer " id='myFooter'>
 						<button type="button" class="btn btn-primary" type="button" ng-click="$instanceCtrl.ok()">确定</button>
-						<button  type="button" class="btn " type="button" ng-click="$instanceCtrl.cancel()">取消</button>
+						<button  type="button" class="btn " type="button" ng-click="$instanceCtrl.modalInstance.dismiss('cancel')">取消</button>
 						<!-- btn-warning -->
 						<div style="clear: both;"></div>
 					</div>

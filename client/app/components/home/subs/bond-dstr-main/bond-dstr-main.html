@@ -1,0 +1,91 @@
+<header class="bond-statistics">
+	<ul>
+		<li>
+			<label for="">全场:</label>
+			<span class="all-multiply">{{$ctrl.subSttstcs.am}}</span>
+			<!-- <input ng-model="$ctrl.subSttstcs.am" class="all-multiply" type="text"> -->
+		</li>
+		<li>
+			<label for="">边际:</label>
+			<span class="marginal-multiply">{{$ctrl.subSttstcs.mm}}</span>
+			<!-- <input ng-model="$ctrl.subSttstcs.mm" class="marginal-multiply" type="text"> -->
+		</li>
+		<li>
+			<label for="">边际利率:</label>
+			<span class="marginal-yield">{{$ctrl.subSttstcs.my}}</span>
+			<!-- <input ng-model="$ctrl.subSttstcs.my" class="marginal-yield" type="text"> -->
+		</li>
+		<li>
+			<label for="">截标时间:</label>
+			<span class="tender-end-time">{{$ctrl.subSttstcs.tet|date:"yyyy年MM月dd日 HH时mm分ss秒"}}</span>
+			<!-- <input ng-model="$ctrl.subSttstcs.tet" class="tender-end-time" type="text"> -->
+		</li>
+	</ul>
+	<aside>
+		<button type="button" ng-click="$ctrl.publishSubscribe()">发布申购数据</button>
+		<button type="button" ng-click="$ctrl.immClsBid()">立即截标</button>
+		<button type="button">邀请好友申购</button>
+	</aside>
+</header>
+<header class="bond-subscribe">
+	<div class="blue-arrow">
+		<div class="blue-arrow-content">客户申购</div><div class="blue-arrow-plus"></div>
+	</div>
+	<ul>
+		<li>
+			<label for="">申购总量:</label>
+			<span class="sbrb-t-num">{{$ctrl.cusSttstcs.sbrbTnum}}</span>
+			<!-- <input ng-model="$ctrl.cusSttstcs.sbrbTnum" class="sbrb-t-num" type="text"> -->
+		</li>
+		<li>
+			<label for="">申购利率:</label>
+			<span class="sbrb-i-ntrt">{{$ctrl.cusSttstcs.sbrbIntrt}}</span>
+			<!-- <input ng-model="$ctrl.cusSttstcs.sbrbIntrt" class="sbrb-i-ntrt" type="text"> -->
+		</li>
+		<li>
+			<label for="">全场:</label>
+			<span class="whl-tms-num">{{$ctrl.cusSttstcs.whlTmsNum}}</span>
+			<!-- <input ng-model="$ctrl.cusSttstcs.whlTmsNum" class="whl-tms-num" type="text"> -->
+		</li>
+		<li>
+			<label for="">边际:</label>
+			<span class="bdy-tms-num">{{$ctrl.cusSttstcs.bdyTmsNum}}</span>
+			<!-- <input ng-model="$ctrl.cusSttstcs.bdyTmsNum" class="bdy-tms-num" type="text"> -->
+		</li>
+		<li>
+			<label for="">边际利率:</label>
+			<span class="bdy-intrt">{{$ctrl.cusSttstcs.bdyIntrt}}</span>
+			<!-- <input ng-model="$ctrl.cusSttstcs.bdyIntrt" class="bdy-intrt" type="text"> -->
+		</li>
+	</ul>
+	<aside>
+		<span>当前团队负责人:{{$ctrl.leader.userNm}}</span>
+		<button type="button" ng-click="$ctrl.updatePnp()">我是负责人</button>
+	</aside>
+</header>
+<main class="bond-sub" ng-class="{'tab-m':$ctrl.tabFlag=='m','tab-b':$ctrl.tabFlag=='b'}">
+	<nav class="operate">
+		<section class="list">
+			<label for="">申购列表</label>
+			<aside class="tabs">
+				<button type="button" class="btn" ng-click="$ctrl.mineTableInit()">添加</button>
+				<button type="button" class="btn">导出</button>
+				<button type="button" class="btn">全部已读</button>
+			</aside>
+		</section>
+		<section class="tabs">
+			<div ng-click="$ctrl.toggleMsgTab('m')" class="tab tab-msg" ng-class="{actived:$ctrl.tabFlag=='m'}">消息</div>
+			<div ng-click="$ctrl.toggleMsgTab('b')" class="tab tab-bidding" ng-class="{actived:$ctrl.tabFlag=='b'}">中标分配</div>
+		</section>
+	</nav>
+	<section id="bondSubList" class="bond-sub-list">
+		<!-- <input type="text" ng-model="$ctrl.single"> -->
+		<div ng-class="{'show-mine-table':$ctrl.bools.showMineTable}" slimscroll="{alwaysVisible:true}" slim-resize="bondSubList">
+			<dstr-dygrid confirm="$ctrl.addCustSbrb()" ng-show="$ctrl.tabFlag=='m'" editabled="$ctrl.mine" diseditabled="$ctrl.lists" ids="$ctrl.ids" bools="$ctrl.bools"></dstr-dygrid>
+			<dstr-dygrid class="dstr-dygrid-b" confirm="$ctrl.addCustSbrb()" ng-show="$ctrl.tabFlag=='b'" editabled="$ctrl.mineB" diseditabled="$ctrl.listsB" ids="$ctrl.ids" bools="$ctrl.bools"></dstr-dygrid>
+		</div>
+	</section>
+	<section class="bond-chat">
+		<chat-model chat-option="{}" user-single="$ctrl.single" user-multiple="$ctrl.multiple" quick-info="$ctrl.subSttstcs"></chat-model>
+	</section>
+</main>

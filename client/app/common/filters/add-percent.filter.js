@@ -1,6 +1,10 @@
 app.filter('addPercentFilter',function(){
-	return function(addPercent){
-		addPercent = addPercent? addPercent + '%' : "";
+	return function(addPercent,bool){
+		if(bool){//只添加%
+			addPercent = addPercent ?   '%' : "";
+		}else{
+			addPercent = addPercent? addPercent + '%' : "";
+		}
 		// console.log(addyear/1)
 		// let reg = /\./;
 		// if(reg.test(addyear)){

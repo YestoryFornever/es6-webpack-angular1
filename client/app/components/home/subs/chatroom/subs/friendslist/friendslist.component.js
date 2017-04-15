@@ -1,6 +1,8 @@
 let friendslistComponent = {
 	restrict: 'E',
-	bindings: {},
+	bindings: {
+		switchFriend:'&switchChat'
+	},
 	templateUrl: './friendslist.html',
 	controller: FriendslistController
 };

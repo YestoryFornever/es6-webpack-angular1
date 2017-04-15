@@ -1,9 +1,9 @@
 class BondTrialController {
-	constructor(netBondTrialService,$scope,bondquotationService) {
+	constructor(netBondTrialService,$scope,NetBondquotationService) {
 		"ngInject";
 		this.name = 'bondTrial';
 	  	this.netBondTrialService = netBondTrialService;
-	  	this.bondquotationService = bondquotationService;
+	  	this.NetBondquotationService = NetBondquotationService;
 	  	this.$scope = $scope;
 		// this.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 	 //  	this.format = this.formats[0];
@@ -38,9 +38,9 @@ class BondTrialController {
 			if(this.bondid){
 				this.search({"bondid":this.bondid});
 			}
-			this.getCalcIndicators.dealNum = this.resolve.modalData.itemInfo.num ? this.bondquotationService.__n(this.resolve.modalData.itemInfo.num,true) :0;
-			this.getCalcIndicators.cleanPrice = this.resolve.modalData.itemInfo.netprc ? this.bondquotationService.__p(this.resolve.modalData.itemInfo.netprc,true) :0;
-			this.getCalcIndicators.yield = this.resolve.modalData.itemInfo.yldrto ? this.bondquotationService.__y(this.resolve.modalData.itemInfo.yldrto,true) :0;
+			this.getCalcIndicators.dealNum = this.resolve.modalData.itemInfo.num ? this.NetBondquotationService.__n(this.resolve.modalData.itemInfo.num,true) :0;
+			this.getCalcIndicators.cleanPrice = this.resolve.modalData.itemInfo.netprc ? this.NetBondquotationService.__p(this.resolve.modalData.itemInfo.netprc,true) :0;
+			this.getCalcIndicators.yield = this.resolve.modalData.itemInfo.yldrto ? this.NetBondquotationService.__y(this.resolve.modalData.itemInfo.yldrto,true) :0;
 			this.search(this.resolve.modalData.itemInfo);
 		}
 		// 获取结算日期
@@ -144,12 +144,12 @@ class BondTrialController {
 			if(res.data && res.data.data ){
 				that.getMoneyForNum();// 获取结算金额 和 收益率
 				if(name == 'fullRate'){
-					that.getCalcIndicators.yield = that.bondquotationService.__y(res.data.data.yield,true);
-					that.getCalcIndicators.cleanPrice = that.bondquotationService.__p(res.data.data.cleanPrice,true);
+					that.getCalcIndicators.yield = that.NetBondquotationService.__y(res.data.data.yield,true);
+					that.getCalcIndicators.cleanPrice = that.NetBondquotationService.__p(res.data.data.cleanPrice,true);
 				}
 				if(name == 'cleanPrice'){
-					that.getCalcIndicators.yield =  that.bondquotationService.__y(res.data.data.yield,true);
-					that.getCalcIndicators.fullRate = that.bondquotationService.__p(res.data.data.fullPrice,true);
+					that.getCalcIndicators.yield =  that.NetBondquotationService.__y(res.data.data.yield,true);
+					that.getCalcIndicators.fullRate = that.NetBondquotationService.__p(res.data.data.fullPrice,true);
 				}
 				that.calcIndicatorsList =  res.data.data;
 			}
@@ -168,12 +168,12 @@ class BondTrialController {
 			if(res.data && res.data.data ){
 				that.calcIndicatorsList = res.data.data;
 				if( res.data.data.cleanPrice){
-					that.getCalcIndicators.cleanPrice =  that.bondquotationService.__p(res.data.data.cleanPrice,true) ;
+					that.getCalcIndicators.cleanPrice =  that.NetBondquotationService.__p(res.data.data.cleanPrice,true) ;
 				}else{
 					that.getCalcIndicators.cleanPrice = "";
 				}
 				if(res.data.data.fullPrice){
-					that.getCalcIndicators.fullRate = that.bondquotationService.__p(res.data.data.fullPrice,true) ;
+					that.getCalcIndicators.fullRate = that.NetBondquotationService.__p(res.data.data.fullPrice,true) ;
 				}else{
 					that.getCalcIndicators.cleanPrice = "";
 				}

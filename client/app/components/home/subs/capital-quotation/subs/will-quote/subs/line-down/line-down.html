@@ -1,85 +1,143 @@
-<div class="lineDown">
-	<header id="top">
-		<textarea class="cont" ng-model='$ctrl.ofrDscListInfo' placeholder="请再次粘贴报价"></textarea>
-		<button class="btn-default pull-right" >提交</button>
-		<div style="clear: both;"></div>
-	</header>
-	<section id="lineUpCont">
-		<div class="head">
-			预览：<div class="plus" ng-click="$ctrl.addBondList()"><span class="bgPlus"></span></div>
-		</div>
-		<div id="table">
-			<div class="table-responsive">
-				<table class="table">
-					<thead>
-						<tr class="bg">
-							<th>方向</th>
-							<th>种类</th>
-							<th>隔夜</th>
-							<th>7天</th>
-							<th>14天</th>
-							<th>21天</th>
-							<th>1个月</th>
-							<th>2个月</th>
-							<th>3个月</th>
-							<th>6个月</th>
-							<th>9个月</th>
-							<th>一年</th>
-							<th>自定义</th>
-							<th>备注</th>
-							<th>操作</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat='item in  $ctrl.ofrDscList'>
-							<td>
-								<select name="" id="">
-									<option value="1">融入</option>
-									<option value="2">融出</option>
-								</select>
-							</td>
-							<td>
-								<select name="" id="">
-									<option value="">隔夜</option>
-									<option value="">7天</option>
-								</select>
-							</td>
-							<td>
-								<input type="text">&nbsp;
-								<select name="" id="">
-									<option value="">万</option>
-									<option value="">亿</option>
-								</select>
+<div class="willQuote">
+		<div class="tit">
+			资金报价
 
-							</td>
-							<td>
-								<select name="" id="">
-									<option value="">押利率</option>
-									<option value="">押信用</option>
-								</select>
-							</td>
-							<td>
-								<input type="text">
-							</td>
-							<td>
-								<select name="" id="">
-									<option value="">押利率</option>
-									<option value="">押信用</option>
-								</select>
-							</td>
-							<td>
-								<input type="text">
-							</td>
-							<td>
-								<span class="delete"></span>
-							</td>
-						</tr>
-					</tbody>
-			 	</table>
+		</div>
+		<header id="condition">
+			<ul class="head">
+				<li>
+					<a id="lineUp " ui-sref-active="actived" ui-sref="home.capitalQuotation.onLineBond.create" > 线上资金</a>
+				</li>
+				<li>
+					<a id="lineDown"  ui-sref="home.capitalQuotation.lineDownQuotation.create" ui-sref-active="actived"> 线下资金</a>
+				</li>
+			</ul>
+		</header>
+		<div id="secondList" style="height:100%;">
+			<div class="lineDown">
+				<header id="top">
+					<form name='textarea'>
+						<textarea class="cont" ng-model='ofrDscListInfo' placeholder="请再此粘贴报价" required></textarea>
+						<button class="btn-default pull-right" ng-click='offlineAnalysisOfr()'>提取</button>
+						<div style="clear: both;"></div>
+					</form>
+				</header>
+				<section id="lineUpCont">
+					<div class="head">
+						预览：出14天或1个月资金3000万，押利率，限银行农信。欢迎小窗
+						<div class="plus" ng-click="addBondList()"><span class="bgPlus"></span></div>
+
+					</div>
+					<form name="tableForm">
+						<div id="table">
+							<div class="table-responsive">
+								<table class="table">
+									<thead>
+										<tr class="bg">
+											<th>方向</th>
+											<th>种类</th>
+											<th>隔夜</th>
+											<th>7天</th>
+											<th>14天</th>
+											<th>21天</th>
+											<th>1个月</th>
+											<th>2个月</th>
+											<th>3个月</th>
+											<th>6个月</th>
+											<th>9个月</th>
+											<th>一年</th>
+											<th>自定义</th>
+											<th>备注</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat='item in  ofrDscList' >
+											<td>
+												<select ng-model='item.drc' required>
+													<option value=''>请选择</option>
+													<option
+														ng-repeat='list in drc.value;'
+														ng-if="$index>0"
+														value="{{list.value}}">
+														{{list.name}}
+													</option>
+												</select>
+											</td>
+											<td>
+												<select  ng-model='item.ctlg' required>
+													<option value=''>请选择</option>
+													<option
+														ng-repeat='list in ctlg.value;'
+														ng-if="$index>0"
+														value="{{list.value}}">
+														{{list.name}}
+													</option>
+												</select>
+											</td>
+											<td>
+												<input type="text" ng-model='item.dy1IntRtVal'>
+											</td>
+											<td>
+												<input type="text" ng-model='item.dy7IntRtVal'>
+											</td>
+											<td>
+												<input type="text" ng-model='item.dy14IntRtVal'>
+											</td>
+											<td>
+												<input type="text" ng-model='item.dy21IntRtVal'>
+											</td>
+											<td>
+												<input type="text" ng-model='item.mo1IntRtVal'>
+											</td>
+											<td>
+												<input type="text" ng-model='item.mo2IntRtVal'>
+											</td>
+											<td>
+												<input type="text" ng-model='item.mo3IntRtVal'>
+											</td>
+											<td>
+												<input type="text" ng-model='item.mo6IntRtVal'>
+											</td>
+											<td>
+												<input type="text" ng-model='item.mo9IntRtVal'>
+											</td>
+											<td>
+												<input type="text" ng-model='item.yr1IntRtVal'>
+											</td>
+											<td class="uDFTrmList" >
+												<span ng-repeat ='(key,list) in item.uDFTrmList; '>
+													<input type="text" ng-model='list.uDFTrm'>
+													<select  ng-model='list.uDFTrmUnit'>
+														<option value="1" >天</option>
+														<option value="2" >月</option>
+														<option value="3" >年</option>
+													</select>
+													<input type="text" ng-model='list.uDFInRtVal'>
+													<span class="plus" ng-if='(item.uDFTrmList.length == ($index+1))'  ng-click="adduDFTrmList(item)"><span class="bgPlus"></span></span>
+													<br>
+												</span>
+
+											</td>
+											<td>
+												<input style="width:100%" type="text"
+												uib-tooltip='{{item.rmrk}}'
+												ng-model='item.rmrk'>
+											</td>
+											<td>
+												<span class="delete" ng-click='deleteList($index)'></span>
+											</td>
+										</tr>
+									</tbody>
+							 	</table>
+							</div>
+						</div>
+						<div class="footer">
+							<button class="btn btn-primary" ng-disabled='ofrDscList.length>0 ? false : true' ng-click="offlineAddOfr()">确认发布</button>
+						</div>
+					</form>
+				</section>
 			</div>
 		</div>
-		<div class="footer">
-			<button class="btn btn-primary" ng-click="$ctrl.offlineAddOfr()">确认发布</button>
-		</div>
-	</section>
 </div>
+

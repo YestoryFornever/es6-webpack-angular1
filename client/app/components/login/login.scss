@@ -89,6 +89,7 @@ login {
 							}
 						}
 						div.login-tr-input{
+							position: relative;
 							margin-left:14%;
 							height:80%;
 							input{
@@ -189,5 +190,11 @@ login {
 				}
 			}
 		}
+	}
+	.pic-generation-img {
+		position:absolute;
+		top:0;
+		right: 0;
+		height:100%;
 	}
 }

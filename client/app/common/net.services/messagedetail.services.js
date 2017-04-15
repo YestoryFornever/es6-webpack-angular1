@@ -2,12 +2,12 @@
 * @Author: Administrator
 * @Date:   2017-03-21 19:21:42
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-03-22 17:31:21
+* @Last Modified time: 2017-04-05 19:02:29
 */
 /*
 * 资讯详情
 */
-app.factory('messagedetailService',['$http','$q','ProxyRequestService',function($http,$q,ProxyRequestService){
+app.factory('messagedetailService', function($http,$q,ProxyRequestService){
 	// console.log(BONDCONFIG);
 	return {
 
@@ -26,7 +26,7 @@ return ProxyRequestService.post('e-xpress/sns/addFavorite.json',{
 			act:obj.act,
 			uid:obj.uid,
 			p_type:'1',
-			p_id:''
+			p_id:obj.p_id
 				
 			});
 },
@@ -61,11 +61,11 @@ return ProxyRequestService.post('e-xpress/sns/publishComment.json',{
 			type:obj.type,
 			info_id:obj.info_id,
 			uid:obj.uid,
-			content:'',
-			add_weibo:'',
+			content:obj.content,
+			add_weibo:'1',
 			visible_status:'1',
 			// ats:[{}],
-			comm_id:''
+			comm_id:obj.comm_id
 			});
 },
 //删除评论
@@ -78,7 +78,7 @@ return ProxyRequestService.post('e-xpress/sns/deleteComment.json',{
 },
 // 4.4.1点赞、取消
 likes(obj){
-return ProxyRequestService.post('e-xpress/sns/sns/likes.json',{
+return ProxyRequestService.post('e-xpress/sns/likes.json',{
 			act:obj.act,
 			type:obj.type,
 			uid:obj.uid,
@@ -87,4 +87,4 @@ return ProxyRequestService.post('e-xpress/sns/sns/likes.json',{
 			});
 },
 }
-}]);
+});

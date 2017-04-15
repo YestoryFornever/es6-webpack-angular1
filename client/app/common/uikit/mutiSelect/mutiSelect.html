@@ -1,6 +1,6 @@
 <span class="aa">
 	<ui-select multiple ng-model="res.selecteds" ng-class="{className:class.className}" >
-		<ui-select-match placeholder="Pick one...">{{$item.label}}</ui-select-match>
+		<ui-select-match placeholder="请选择" >{{$item.label}}</ui-select-match>
 
 		<ui-select-choices repeat="item in _items" group-by="group">
 			<div ng-bind-html="item.label"></div>

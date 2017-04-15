@@ -75,10 +75,6 @@
 		margin-left: $marginL;
 		float:right;
 		div#_body_{
-			top:0;
-			left:0;
-			right:0;
-			bottom:0;
 			section.card{
 				position: relative;
 				$titleH:0.32rem;
@@ -92,16 +88,16 @@
 						margin-left:$titMarL;
 					}
 				}
-				main#settleChart{
-					width:3.7rem;
-					height:2.1rem;
-					background:$primaryBg;
-					position: absolute;
-					top:.3rem;
-					left:0;
-					right:0;
-					bottom:0;
-				}
+				// main#settleChart{
+				// 	width:3.7rem;
+				// 	height:2.1rem;
+				// 	background:$primaryBg;
+				// 	position: absolute;
+				// 	top:.3rem;
+				// 	left:0;
+				// 	right:0;
+				// 	bottom:0;
+				// }
 			}
 			section#bondInfo.card{
 				main#BondMain {
@@ -315,10 +311,8 @@
 					clear: both;
 					.spacePlace{
 						display: inline-block;
-						margin-bottom: 0.06rem;
-						height: 0.2rem;
 					}
-					.btn{
+					.btn,.spacePlace{
 						padding:0 0.06rem;
 						height: 0.2rem;
 					}
@@ -358,46 +352,43 @@
 					background: url('../../../../../resource/images/btn_changeday_select.png') no-repeat center;
 				}
 			}
-		
 
 		main{
 			position:absolute;
 			transition:all 0.5s;
 			width:100%;
-			bottom:0.4rem;
+			bottom:0.2rem;
 			top:0.32rem;
 			min-height:0.5rem;
 			overflow-y: auto;
-			overflow-x: hidden;
 			.my-table{
 				width::100%;
 			}
 			table{
 				th,td{
 					text-align: center;
+					white-space:nowrap;
+				}
+				td.bondCd,td.bondNm{
+					max-width:0.8rem;
 				}
 				td{
 					border-top: 1px solid $borderDefault;
-					.bondShrtnm{
+					.bondShrtnm,.ofrUserNm,.rmrk{
 						display: inline-block;
-						width: 100%;
 						text-overflow: ellipsis;
 						overflow: hidden;
 						white-space: nowrap;
+					}
+					.bondShrtnm{
+						width: 100%;
+						max-width:0.8rem;
 					}
 					.ofrUserNm{
-						display: inline-block;
 						width: 1rem;
-						overflow: hidden;
-						text-overflow: ellipsis;
-						white-space: nowrap;
 					}
 					.rmrk{
-						display: inline-block;
-						max-width:0.8rem;
-						overflow: hidden;
-						text-overflow: ellipsis;
-						white-space:nowrap;
+						max-width:0.3rem;
 					}
 				}
 				th {
@@ -436,22 +427,18 @@
 				.star.active{
 					background: url('../../../../../resource/images/btn_star_select.png') no-repeat center;
 				}
-				.sortDown{
+				.sortDown,.sortUp{
 					display:inline-block;
 					width:0.07rem ;
 					height:0.11rem;
 					position: absolute;
 					top:4px;
 					right:-12px;
+				}
+				.sortDown{
 					background: url('../../../../../resource/images/btn_sort_down.png') no-repeat  center;
 				}
 				.sortUp{
-					display:inline-block;
-					width:0.07rem ;
-					height:0.11rem;
-					position: absolute;
-					top:4px;
-					right:-12px;
 					background: url('../../../../../resource/images/btn_sort_up.png') no-repeat  center;
 				}
 				.starNor{
@@ -462,10 +449,12 @@
 					width:0.4rem;
 					background: url('../../../../../resource/images/btn_star_select.png') no-repeat center;
 				}
-				.chatRoom{
+				.chatRoom,.calculator{
 					display:inline-block;
 					width:0.17rem;
 					height: 0.17rem;
+				}
+				.chatRoom{
 					background: url('../../../../../resource/images/btn_chat_normal.png') no-repeat center;
 					margin-right: 0.2rem;
 				}
@@ -473,42 +462,33 @@
 					background: url('../../../../../resource/images/btn_chat_press.png') no-repeat center;
 				}
 				.calculator{
-					display:inline-block;
-					width:0.17rem;
-					height: 0.17rem;
 					background: url('../../../../../resource/images/btn_calculator_normal.png') no-repeat center;
 				}
 				.calculator:hover{
 					background: url('../../../../../resource/images/btn_calculator_hover.png') no-repeat center;
 				}
-				// height: 100%;
-				// overflow-y: scroll;
 			}
 			thead tr{
 				background:$bgDefaultLightA;
 			}
-			.change{
+			.change,.delete,.send,.addNew{
 				display: inline-block;
 				padding: 6px;
 				margin: 0 10px ;
+			}
+			.change{
 				background: url('../../../../../resource/images/btn_edite_normal.png')  no-repeat center;
 			}
 			.change:hover{
 				background: url('../../../../../resource/images/btn_edite_hover.png')  no-repeat center;
 			}
 			.delete{
-				display: inline-block;
-				padding: 6px;
-				margin: 0 10px;
 				background: url('../../../../../resource/images/btn_delete_normal.png') no-repeat  center;
 			}
 			.delete:hover{
 				background: url('../../../../../resource/images/btn_delete_hover.png') no-repeat  center;
 			}
 			.send{
-				display: inline-block;
-				padding: 6px;
-				margin: 0 10px;
 				background: url('../../../../../resource/images/btn_send_normal.png') no-repeat center;
 			}
 			.send:hover{
@@ -518,9 +498,6 @@
 				background: url('../../../../../resource/images/btn_person.png') no-repeat center;
 			}
 			.addNew{
-				display: inline-block;
-				padding: 6px;
-				margin: 0 10px ;
 				background: url('../../../../../resource/images/btn_guapai_normal.png') no-repeat  center;
 			}
 			.addNew:hover{
@@ -531,9 +508,6 @@
 			top: 3.5rem;
 		}
 		.myPage{//分页
-				position: absolute;
-				bottom:0;
-				right:0.1rem;
 				height: 0.4rem;
 				text-align: right;
 				.pagination{

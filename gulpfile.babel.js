@@ -54,7 +54,7 @@ var serve = browserSync.create();
 // map of all paths
 let paths = {
 	entrance: 'client/index.html',
-	vendor: ['client/vendor/**/*.*'],
+	vendor: ['vendor/**/*.*'],
 	bower: ['bower.json'],
 	scripts: ['!client/app/**/*.spec.js', 'client/app/configs/main.js', 'client/app/app.js', 'client/app/**/*.controller.js', "client/app/**/*.js"],
 	styles   : ['client/app/global.css', 'client/app/**/*.styl', 'client/app/common.scss', 'client/app/**/*.scss'],
@@ -69,6 +69,16 @@ gulp.task("scripts", function() {
 	.pipe(changed(build_dir))
 	.pipe(sourcemaps.init())
 	.pipe(data(htmlPath))
+	.pipe(data(function(file){
+		if (file.isBuffer() && file.path.indexOf('/configs/')) {
+	        file.contents = new Buffer(
+	        	String(file.contents)
+	        	.replace('${serverIp}', 'http://11.177.15.104/')
+	        	.replace('${easemobAppKey}', 'lz0817#javatest')
+	        	.replace('${officialnUrl}', 'http://11.177.15.104/official_ebsite/')
+        	);
+	  	}
+	}))
 	.pipe(concat('app.min.js'))
 	.pipe(babel({presets:[es2015]}))
 	.pipe(ngAnnotate({dynamic: false}))
@@ -162,36 +172,67 @@ gulp.task('serve', function(){
         port: process.env.PORT || 3001,
 		open: false,
 		notify: false,
+		files: [build_dir+'app.min.css', build_dir+'app.min.js', build_dir+"index.html"],
 		server: {
 			baseDir: wwwroot,
 			index: "index.html",
 		},
+		// serveStatic:[{
+	 //        route: '/alphabond/resource',
+	 //        dir: 'client/resource'
+	 //    }],
 		middleware: [
-			historyApiFallback(),
-			proxy(proxyOptions)
+			historyApiFallback({
+				index: '/alphabond/index.html',
+			}),
+			proxy(proxyOptions),
 		]
     });
 })
 
 gulp.task("watch", function() {
     gulp.watch(paths.scripts, ['scripts']).on('change', ($event)=>{
-    	serve.reload({stream: true});
+    	// serve.reload({stream: true});
     }).on('error', function(err){
     	console.log(err.stack);
     });
 	gulp.watch(paths.templates, ["templates"] ).on('change', ($event)=>{
-    	serve.reload({stream: true});
+    	// serve.reload({stream: true});
     });
 	gulp.watch(paths.styles, ['styles']).on('change', ($event)=>{
-    	serve.reload({stream: true});
+    	// serve.reload({stream: true});
     });
     gulp.watch(paths.entrance, ["index"] ).on('change', ($event)=>{
-    	serve.reload({stream: true});
+    	// serve.reload({stream: true});
     });
     gulp.watch(paths.bower, ["index"] );
 });
 
 gulp.task("build", function(){
-	sync(['index', 'images', "scripts-min", "styles-min", "templates"]);
+	sync(['index', 'images', "scripts-min", "styles-min", "templates", 'vendor']);
 });
-gulp.task("default", ['serve', 'index', 'images', "scripts", "styles", "templates", 'watch']);
+gulp.task("preview", ['serve', 'index', 'images', "scripts-min", "styles-min", "templates", 'vendor', 'watch']);
+gulp.task("default", ['serve', 'index','images', "templates", "scripts", "styles", 'vendor', 'watch']);
+
+let resolveToComponents = (glob = '') => {
+	return path.join('client', 'app/components', glob); // app/components/{glob}
+};
+gulp.task('component', () => {
+	const cap = (val) => {
+		return val.charAt(0).toUpperCase() + val.slice(1);
+	};
+	const name = yargs.argv.name;
+	const parentPath = yargs.argv.parent || '';
+	const destPath = path.join(resolveToComponents(), parentPath, name);
+
+	return gulp.src(path.join(__dirname, 'generator', 'component/**/*.**'))
+		.pipe(template({
+			name: name,
+			hump: name.replace(/(-\w)/g,item=>item[1].toUpperCase()),
+			upCaseName: cap(name).replace(/(-\w)/g,item=>item[1].toUpperCase())
+		}))
+		.pipe(rename((path) => {
+			path.basename = path.basename.replace('temp', name);
+		}))
+		.pipe(gulp.dest(destPath));
+});

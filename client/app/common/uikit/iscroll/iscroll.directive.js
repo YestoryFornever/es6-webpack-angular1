@@ -11,8 +11,10 @@ app.directive('iscroll', function($parse, $interval){
 		transclude: true,
 		scope: {
 			onBottom: '&',
+			onTop:'&',
 			height: '@',
-			width: '@'
+			width: '@',
+			startValue: '='
 		},
 		link: function(scope, element, attrs, ctrl) {
 			if (scope.width) {
@@ -21,24 +23,42 @@ app.directive('iscroll', function($parse, $interval){
 			if (scope.height) {
 				$(element).css('height', scope.height);
 			};
-			
+
 			var myScroll = new IScroll($(element).get(0), {
 			    // snap: false,
 				// hScrollbar: true,
 				// vScrollbar: false,
 				scrollbars: true,
 				mouseWheel: true,
+				startY: scope.startValue | 0
 				// scrollbars: true,
 				// fadeScrollbars: false,
 				// hideScrollbar: false,
 			});
+			var isScoller = false;
 			myScroll.on('scrollEnd', function(){
+
+				// console.log(this);
 				// console.log('finshed scrolling wrapper', this.x, this.y, this);
 				if (this.maxScrollY>=this.y) {
 					// console.log('到底部了');
 					scope.onBottom.call(this);
+				}else if(this.y==0){
+
+					scope.onTop.call(this);
 				};
+				// isScoller = false
 			});
+			// myScroll.on('scrollStart', function(){
+			// 	console.log(this,',,,');
+			// 	isScoller == true;
+
+			// });
+			// myScroll.on('scroll', function(){
+				// isScoller == true;
+			// 	console.log(this);
+				
+			// });
 
 			scope.$on('iscroll:refresh', function(){
 				myScroll.refresh();
@@ -47,7 +67,7 @@ app.directive('iscroll', function($parse, $interval){
 			var raw_height = $(element)[0].scrollHeight;
 			var timer = $interval(()=>{
 				if ($(element)[0].scrollHeight!=raw_height) {
-					console.log('iscroll 内部高度发生变化');
+					// console.log('iscroll 内部高度发生变化');
 					myScroll.refresh();
 					raw_height = $(element)[0].scrollHeight;
 				};

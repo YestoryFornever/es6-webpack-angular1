@@ -1,0 +1,22 @@
+<grid-view
+	fields = "offLinefields"
+	query = "offSearchCont"
+	items = "offlineList">
+</grid-view>
+<div class="myPage2" >
+	<ul  uib-pagination
+		boundary-links="true"
+		total-items="offTotalPage"
+		ng-model="offSearchCont.pageNum"
+		previous-text="&lsaquo;"
+		next-text="&rsaquo;"
+		first-text="&laquo;"
+		last-text="&raquo;"
+		max-size='maxSize'
+		force-ellipses='true'
+		ng-change='pageNumChange()'
+		items-per-page='offSearchCont.pageSize'
+		num-pages="numPages2"
+		></ul>
+	<span style="float: right">{{offSearchCont.pageNum}} / {{numPages2}}</span>
+</div>

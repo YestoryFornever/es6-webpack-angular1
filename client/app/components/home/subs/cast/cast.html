@@ -1,55 +1,33 @@
-<a ng-click="$ctrl.go()">测试单机</a>
-<div class="container">
-    <div class="row">
-
-        <div class="col-sm-3" ng-repeat="item in $ctrl.list track by $index">
-            <a ng-click="$ctrl.goClassRoom(item.lid)">
+<div iscroll on-bottom="$ctrl.moreInfo()">
+    <!--如果没有直播列表,提示没有直播-->
+    <p class="noCast" ng-if="$ctrl.list.length == 0">暂时还没有直播哦~</p>
+    <!--直播列表-->
+    <div class="row"  style="margin: 5px;">
+        <div class="col-sm-3" ng-repeat="item in $ctrl.list track by $index" ng-click="$ctrl.sessionInfo(item.lid, item.state, item.times)">
+            <a ng-click="$ctrl.showModel(item.state, item.lid)">
                 <div class="castCard">
                     <div class="castImg"
-                         style="background: url(http://img04.tooopen.com/images/20130701/tooopen_20083555.jpg)">
+                         ng-style="{'background': 'url({{item.logo}}) no-repeat', 'background-size': 'cover'}">
                         <p class="rightTop">
-                            <img src=""/> <span class="fa fa-video-camera"> {{item.state | caststate}}</span> <span> <count-down
-                                ng-if="item.state == 2" format='mm:ss' ctrl="$ctrl.ctrl"></count-down></span>
+                            <img src=""/> <span class="fa fa-video-camera"> {{item.state | caststate}}</span>
+                            <span><count-down ng-if="item.state == 2" format='mm:ss'
+                                              ctrl="$ctrl.ctrl[$index]"></count-down></span>
                         </p>
                     </div>
                     <div class="castInfo">
                         <p class="castTitle">{{item.title}}</p>
                         <div class="castOthers">
-                            <span>2017-09-22</span>
+                            <span>{{item.begin_time | changeTime}}</span>
                             <p class="castOtherRight">
                                 <span class="fa fa-map-marker"> </span><span> {{item.locale}}</span>
                                 <span class="fa fa-user"> </span><span
-                                    style="color: #fda700"> {{item.sum_online}}</span>
+                                    ng-style="{'color': '#fda700'}"> {{item.sum_online}}</span>
                             </p>
                         </div>
                     </div>
                 </div>
             </a>
-        </div>
-
-
-        <div class="col-sm-3">
-            <a ng-click="$ctrl.goClassRoom(item.lid)">
-                <div class="castCard">
-                    <div class="castImg"
-                         style="background: url(http://img04.tooopen.com/images/20130701/tooopen_20083555.jpg)">
-                        <p class="rightTop">
-                            <img src=""/> <span class="fa  fa-clock-o"> 马上开始</span><span> <count-down format='mm:ss'
-                                                                                                      ctrl="$ctrl.ctrl"></count-down></span>
-                        </p>
-                    </div>
-                    <div class="castInfo">
-                        <p class="castTitle">鬼吹灯之精绝古城/龙岭迷窟/云南虫谷/昆仑神山</p>
-                        <div class="castOthers">
-                            <span>2017-09-22</span>
-                            <p class="castOtherRight">
-                                <span class="fa fa-map-marker"> </span><span> 北京</span>
-                                <span class="fa fa-user"> </span><span style="color: #fda700"> 2323</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </a>
+            <p></p>
         </div>
     </div>
 </div>

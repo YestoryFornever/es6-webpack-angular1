@@ -1,0 +1,89 @@
+<div class="origination_main">
+	<!-- //导航 -->
+		<div class="origination_nav ">
+				<div class="origination_main title">
+					
+				</div>
+				<div class="nav_all">
+						<div class="nav_one">
+							<!-- <img ng-src="../../../../../../resource/images/btn_refresh_normal.png" height="24" width="40" alt=""> -->
+						</div>
+						<div class="nav_two">
+							<input type="text" ng-model="params.search">
+							<i class="nav_two_close" ng-click="params.search=null" ng-If="params.search.length>0">
+								<!-- <img src="../../../../../../resource/images/btn_clear2_normal" alt=""> -->
+							</i>
+							<i ng-click="doSearch()">
+								<img src="../../../../../resource/images/icon_search_hover.png" alt="">
+							</i>
+						</div>
+			</div>
+				
+		</div>
+		<!-- tab内容 -->
+		<div class="clearfix"></div>
+	<div class="table_all">
+		<div class="table" >
+
+			<!-- 负面页面 -->
+			<div class="list introduced"   >
+			<!-- on-bottom="fn()" -->
+				<div class="introduced_center" iscroll    on-top="upload() ">
+					
+					<div class="introduced_center_ul" >
+						
+						<ul  >
+							
+							
+							
+						</ul>
+					</div>
+
+					<!-- 扫雷开始 -->
+					
+
+					<!-- 扫雷结束 -->
+					<div class="jiazhai "  ng-click="fn()">
+							<span>加载更多</span>
+					</div>
+					<div class="clearfix"></div>
+					
+			</div>
+		
+	<!-- 添加滚动条 -->
+	 
+	</div>
+	
+	<div     class="introduced_rt" iscroll on-bottom="qinfoLists()" on-top="upload()">
+		
+		<div class="introduced_rt_top">
+			<span>快讯</span>
+		</div>
+		<div class="introduced_rt_center">
+				<ul ng-repeat="lis in flash_one" >
+					<li ng-init="is_show=0">
+						<span  class="span_a" ng-class="{'span_a':is_show==0, 'span_b':is_show==1}" ng-click="$ctrl.doCheck()">{{lis.data[0].content}}</span>
+					<!-- <span ng-show='$ctrl.target' ></span> -->
+					<p><span class="introduced_rt_center_time" >{{lis.data[0].time_str}}</span><span class="open">
+					<a class="rrrr "  href="javascript:0;" ng-click="$ctrl.doCheck($index);is_show=1" ng-show="is_show==0" > 展开</a>
+					<a class="rrrr"  href="javascript:0;" ng-click="$ctrl.doCheck($index);is_show=0"  ng-show="is_show==1" > 收起</a>
+					<!-- <a href="javascript:0;" ng-click="$ctrl.doCheck()"  ng-show="$ctrl.target" ><i class=" icon-angle-up"></i> 收起</a> -->
+					</span></p>
+					</li>
+					
+				</ul>
+				<div class="img_img" ng-If='$ctrl.fullmarks_flash'>
+				<img src="../../../../../resource/images/img_head_systemmessage.png" height="" width="" alt="">
+				</div>
+
+		</div> 
+		<!-- <div class="jiazhai "  ng-click="fn()">
+							<span>加载更多</span> -->
+						<!-- <button class="btn   more_btn">加载</button> -->
+		<!-- </div> -->
+	</div>
+	
+</div>
+
+</div>
+</div>

@@ -1,0 +1,99 @@
+.mywealthModalCss{
+    .modal-content{
+        width:5.4rem;
+        height:5rem;
+        margin:.4rem auto;
+        background:#233840; 
+    } 
+    .modal-header{
+        width:100%;
+        height:.53rem;
+        line-height:.33rem; 
+        color:#fff;
+        background:url('../images/bodal_bg.png') repeat-x;
+        font-size:.16rem;
+    }
+}
+.rial{
+    font-size:.16rem; 
+}
+.wealth_modal_body dl{
+    width:5rem; 
+    height:1.8rem;
+    padding:.2rem;
+    border-bottom:1px #36474f solid;
+}
+.wealth_modal_body dl dt{
+    width:1.4rem;
+    height:1.4rem;
+    margin-right:.2rem;
+    float:left;
+}
+.wealth_modal_body dl dt img{
+    width:100%;
+    height:100%;
+}
+.wealth_modal_body dl dd{
+    float:left;
+    width:2.95rem;
+}
+.wealth_modal_body dl dd h1{
+    width:2.95rem; 
+    height:.5rem;
+    font-size:.16rem;
+    line-height:.23rem;
+    color:#ffeb62;
+    overflow:hidden;
+}
+.wealth_modal_body dl dd p{
+    width:2.95rem; 
+    font-size:.14rem;
+    line-height:.23rem;
+    color:#b8d1dd;
+}
+.wealth_modal_body dl dd p span{
+    color:#ffeb62;
+}
+.wealth_modal_body div{
+    width:5rem;
+    height:.3rem;
+    margin-top:.1rem;
+    line-height:.3rem;
+    color:#b8d1dd;
+    font-size:.16rem;
+}
+.wealth_modal_body div input{
+    width:4.1rem;
+    height:.3rem;
+    line-height:.3rem;
+    color:#fff;
+    font-size:.16rem;
+    border:none;
+    background:#1b2f37;
+    border-radius:.04rem;
+    padding-left:.15rem;
+    margin-left:.2rem;
+} 
+.wealth_modal_body .yellow{
+    color:#ffeb62;
+}
+.wealth_modal_body div button{
+    width:.9rem;
+    height:.3rem;
+    border-radius:.04rem;
+    line-height:.3rem;
+    text-align:center;
+    color:#fff;
+    background:#ff671b;
+    border:none;
+    margin-top:.1rem;
+    margin-right:.17rem;
+    font-size:.14rem;
+}
+.wealth_modal_body div button:nth-child(2){
+    background:#677983;
+}
+.wealth_modal_body div button:disabled{
+    background:#677983;
+    cursor:not-allowed;
+}

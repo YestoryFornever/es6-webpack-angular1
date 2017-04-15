@@ -1,0 +1,98 @@
+chat-model {
+	font-size:.12rem;
+	@include absolutePos(0,0,0,0);
+	color:$textB;
+	background-color:$bgDefaultLightA;
+	$headerH:.32rem;
+	$navH:.32rem;
+	$footerH:.9rem;
+	header{
+		@include mixheight($headerH);
+		div.switch-btn{
+			position:absolute;
+			right:.06rem;
+			top:.06rem;
+			@include mixheight(.2rem);
+			padding:0 .12rem;
+			background-color:$textE;
+			@include radius(.12rem);
+		}
+		h5{
+			text-align: center;
+			@include mixheight($headerH);
+		}
+		background-image: url('./images/img_bg_title.png');
+	}
+	main{
+		@include absolutePos($headerH,0,$navH+$footerH,0);
+		background-color:#121f25;
+		// overflow-y:auto;
+		div.users-name{
+			@include ellipsis;
+			background-color:#264f63;
+			padding:.1rem;
+		}
+		div#chatModelContentDiv{
+			@include absolutePos(0,0,0,0);
+			ul{
+				@include absolutePos(0,0,0,0);
+				overflow-y:auto;
+				border-top:1px solid #3a683b;
+				border-left:1px solid #3a683b;
+				border-right:1px solid #3a683b;
+			}
+		}
+		&.main-multiple{
+			div#chatModelContentDiv{
+				top:.37rem;
+			}
+		}
+	}
+	nav{
+		@include absolutePos(auto,0,$footerH,0);
+		height:$navH;
+		border-top:1px solid #3a683b;
+		background-image: url('./images/img_bg_title.png');
+		button{
+			@include mixheight(.2rem);
+			padding:0 .12rem;
+			background-color:$textE;
+			@include radius(.12rem);
+			border:0;
+			margin-top:.04rem;
+			margin-left:.02rem;
+		}
+	}
+	footer{
+		@include absolutePos(auto,0,0,0);
+		height:$footerH;
+		background-color:$bgDefault;
+		textarea{
+			height:.58rem;
+			width:100%;
+			resize:none;
+			padding:.08rem;
+			background-color:$bgDefaultLightA;
+			border:0;
+		}
+		button.btn{
+			color:$textD;
+			font-size:.12rem;
+			@include mixheight(.2rem);
+			padding:0 .12rem;
+			background-color:$textE;
+			@include radius(.04rem);
+			border:0;
+			margin-top:.06rem;
+			margin-left:.04rem;
+		}
+		button.btn-qq,button.btn-send{
+			float:right;
+			margin-left:0;
+			margin-right:.04rem;
+		}
+		button.btn-send{
+			background-color:$btnPrimary;
+		}
+	}
+}

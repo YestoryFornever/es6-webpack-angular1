@@ -59,18 +59,22 @@ app.factory('netCapitalQuoteService',['$http','$q', 'userStatusService', 'ProxyR
 		/**
 		 *4.2.3 [线上资金报价	查询报价大厅]
 		 *{
-			drc:'1',方向
-			trmTp:'1,2',期限类型
-			trmLwrLmtVal:'',期限下限值
-			trmUpLmVal:'',期限上限值
-			trmUnit:'', 期限单位
-			amt:'',金额
-			amtUnit:'',金额单位
-			mode:'1,2',模式
-			intrtTp:'',利率类型
-			intrtVal:'',利率值,单位
-			txnRst:'',交易限制
-			rmrk:'',备注
+			drc:'',
+			trmTp:"",//期限类型
+			trmLwrLmtVal:'',//期限下限值
+			trmLwrLmtUnit:'',//期限下限单位
+			trmUpLmVal:'',//期限上限值
+			trmUpLmUnit:'',//期限上限单位
+			mode:'',//模式
+			intrtTp:'',//利率类型
+			intRtStrtVal:'',//利率开始值
+			intRtEndVal:'',//利率结束值
+			amtStrtVal:'',//金额开始值
+			amtEndVal:'',//金额结束值
+			amtUnit:'',//金额单位
+			cltnEStatus:'',//收藏状态
+			pageNum:1,
+			pageSize:50,
 		}
 		 */
 		onlineQueryOfrHall(obj){
@@ -79,15 +83,21 @@ app.factory('netCapitalQuoteService',['$http','$q', 'userStatusService', 'ProxyR
 					drc:obj.drc,
 					trmTp:obj.trmTp,
 					trmLwrLmtVal:obj.trmLwrLmtVal,
+					trmLwrLmtUnit:obj.trmLwrLmtUnit,
 					trmUpLmVal:obj.trmUpLmVal,
-					trmUnit:obj.trmUnit,
+					trmUpLmUnit:obj.trmUpLmUnit,
 					amt:obj.amt,
+					amtStrtVal:obj.amtStrtVal,
+					amtEndVal:obj.amtEndVal,
 					amtUnit:obj.amtUnit,
 					mode:obj.mode,
 					intrtTp:obj.intrtTp,
 					intrtVal:obj.intrtVal,
-					txnRst:obj.txnRst,
-					rmrk:obj.rmrk
+					intRtStrtVal:obj.intRtStrtVal,
+					intRtEndVal:obj.intRtEndVal,
+					cltnEStatus:obj.cltnEStatus,
+					pageNum:obj.pageNum,
+					pageSize:obj.pageSize,
 				});
 		},
 		/**
@@ -150,7 +160,27 @@ app.factory('netCapitalQuoteService',['$http','$q', 'userStatusService', 'ProxyR
 				txnRst:obj.txnRst,
 				rmrk:obj.rmrk,
 				eStatus:obj.eStatus,
+				pageNum:obj.pageNum,
+				pageSize:obj.pageSize,
 
+			});
+		},
+		/**线上
+		 * 根据 ID 获取详细信息 填充列表
+		 * @return {[type]} [description]
+		 */
+		getOnlineOfrDetails(ofrid){
+			return ProxyRequestService.post('/e-bondquote/capitalQuote/online/getOnlineOfrDetails',{
+				ofrid:ofrid,
+			});
+		},
+		/**线下
+		 * 根据 ID 获取详细信息 填充列表
+		 * @return {[type]} [description]
+		 */
+		getOfflineOfrDetails(ofrid){
+			return ProxyRequestService.post('/e-bondquote/capitalQuote/offline/getOfflineOfrDetails',{
+				ofrid:ofrid
 			});
 		},
 		/**
@@ -186,6 +216,19 @@ app.factory('netCapitalQuoteService',['$http','$q', 'userStatusService', 'ProxyR
 			cltnEStatus:'',收藏状态
 			pageNum: 当前页面
 			pageSize:每页显示条数
+			
+			drc:"",//方向
+			trmTp:"",//期限
+			trmLwrLmtVal:"",//期限下限值
+			trmLwrLmtUnit:"1",//期限下限值单位
+			trmUpLmVal:"",//期限上限值
+			trmUpLmUnit:"1",//期限上限单位
+			intRtStrtVal:"",//利率開始值
+			intRtEndVal:"",//利率結束值
+			ctlg:"",//种类
+			cltnEStatus:"",//收藏状态
+			pageNum:1,
+			pageSize:50,
 
 		}
 		 */
@@ -194,8 +237,9 @@ app.factory('netCapitalQuoteService',['$http','$q', 'userStatusService', 'ProxyR
 				drc:obj.drc,
 				trmTp:obj.trmTp,
 				trmLwrLmtVal:obj.trmLwrLmtVal,
+				trmLwrLmtUnit:obj.trmLwrLmtUnit,
 				trmUpLmVal:obj.trmUpLmVal,
-				trmUnit:obj.trmUnit,
+				trmUpLmUnit:obj.trmUpLmUnit,
 				intRtStrtVal:obj.intRtStrtVal,
 				intRtEndVal:obj.intRtEndVal,
 				ctlg:obj.ctlg,
@@ -221,6 +265,37 @@ app.factory('netCapitalQuoteService',['$http','$q', 'userStatusService', 'ProxyR
 		 *4.3.7	更新报价
 		 *{}
 		 */
+		templte:{
+			drc:'',//方向
+			ctlg:'',//种类
+			dy1IntRtVal :'',//隔夜
+			dy7IntRtVal :'',//7天
+			dy14IntRtVal:'',//14天
+			dy21IntRtVal:'',//21
+			mo1IntRtVal:'',//1月
+			mo2IntRtVal:'',//2月
+			mo3IntRtVal:'',//3月
+			mo6IntRtVal:'',//6个月
+			mo9IntRtVal :'',//9个月
+			yr1IntRtVal:'',//1年
+			rmrk:'',//
+			uDFTrmList:[],
+			uDFTrm1:'',
+			uDFTrmUnit1:'',
+			uDFInRtVal1:'',
+			uDFTrm2:'',
+			uDFTrmUnit2:"",
+			uDFInRtVal2:'',
+			uDFTrm3:"",
+			uDFTrmUnit3:"",
+			uDFInRtVal3:"",
+			uDFTrm4:"",
+			uDFTrmUnit4:"",
+			uDFInRtVal4:"",
+			uDFTrm5:"",
+			uDFTrmUnit5:"",
+			uDFInRtVal5:"",
+		},
 		offlineUpdateOfr(obj){
 			return ProxyRequestService.post('/e-bondquote/capitalQuote/offline/updateOfr',{
 				ofrid:obj.ofrid,//报价ID
@@ -298,6 +373,7 @@ app.factory('netCapitalQuoteService',['$http','$q', 'userStatusService', 'ProxyR
 					8:{name:'6个月',value:'8'},
 					9:{name:'9个月',value:'9'},
 					10:{name:'1年',value:'10'},
+					11:{name:'自定义',value:'11'},
 				}
 		},
 		/**
@@ -338,6 +414,9 @@ app.factory('netCapitalQuoteService',['$http','$q', 'userStatusService', 'ProxyR
 					2:{name:'加点',value:'2'},
 					3:{name:'减点',value:'3'},
 					4:{name:'自定义',value:'4'},
+				},
+			value2:{
+					4:{name:'自定义',value:'4'},
 					5:{name:'',value:''},
 					6:{name:'',value:''},
 				}
@@ -368,5 +447,15 @@ app.factory('netCapitalQuoteService',['$http','$q', 'userStatusService', 'ProxyR
 					5:{name:'协议存款',value:'5'},
 				}
 		},
+		txnRst:{
+			name:'交易限制',
+			value:{
+				1:{name:'限银行',value:'1'},
+				2:{name:'限农信',value:'2'},
+				3:{name:'限直连',value:'3'},
+				4:{name:'限存款机构',value:'4'},
+				5:{name:'其他',value:'5'},
+			}
+		}
 	}
 }]);

@@ -1,7 +1,6 @@
 @import "common";
 .app {
 	color:$textDefault;
-	background-color: $bgDefaultLightA;
 	position: relative;
 	min-width: 1300px;
 	min-height: 600px;
@@ -12,6 +11,7 @@
 	bottom:0;
 	font-size:.14rem;
 	overflow: hidden;
+	z-index: 1;
 	>div[ui-view]{
 		height:100%;
 	}
@@ -46,4 +46,45 @@ a,a:active,a:hover{
 	color: #fff;
 	background-color: #d44d0a;
 	border-color: #b73d01;
+}
+div.modal-g.modal-dialog,div.modal-g.modal-dialog.modal-lg,div.modal-g.modal-dialog.modal-sm{
+	font-size:.12rem;
+	color: $textF;
+	background:#233840;
+	div.modal-content{
+		@include radius(0);
+		border:0;
+		div.modal-header{
+			padding:0;
+			background-image: url('../resource/images/chat_baojia_frame_title_middle.png');
+			background-repeat:repeat-x;
+			height:.32rem;
+			border-bottom:1px solid #36474f;
+			h3.modal-title{
+				color:$textD;
+				line-height:.32rem;
+				font-size:.12rem;
+				padding-left:.1rem;
+				display:inline-block;
+			}
+			div.modal-close{
+				height: .32rem;
+				line-height: .32rem;
+				margin-right: .1rem;
+				float:right;
+				background-image: url('../resource/images/btn_close02_gray.png');
+				background-size: .1rem;
+				background-position: center;
+				background-repeat: no-repeat;
+				width: .1rem;
+			}
+		}
+		div.modal-body{}
+		div.modal-footer{
+			height: .4rem;
+			position:relative;
+			border:none;
+			padding:0;
+		}
+	}
 }
