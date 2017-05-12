@@ -1,0 +1,95 @@
+<div class="willQuote">
+	<div class="tit">
+		资金报价
+	</div>
+	<header id="condition">
+		<ul class="head">
+			<li>
+				<a id="lineUp "  ui-sref="home.capitalQuotation.onLineBond.create" ui-sref-active="actived"> 线上资金</a>
+			</li>
+			<li>
+				<a id="lineDown"  ui-sref="home.capitalQuotation.lineDownQuotation.create" ui-sref-active="actived"> 线下资金</a>
+			</li>
+		</ul>
+	</header>
+	<div id="secondList">
+		<div class="lineUp">
+			<header id="top">
+				<form name='textarea' ng-submit="onlineAnalysisOfr()">
+					<textarea class="cont" class="form-control" ng-model='ofrDscListInfo' placeholder="请再此粘贴报价" required></textarea>
+					<span style="color:#ccc">示例： 出14天或1个月资金3000万，押利率，限银行农信。欢迎小窗</span>
+					<button class="btn btn-default pull-right" ng-disabled="changeStatus==true" >提取</button>
+					<div style="clear: both;"></div>
+				</form>
+			</header>
+			<section id="lineUpCont">
+				<div class="head">
+					预览：
+					<button class="plus" type="button" ng-disabled="changeStatus==true" ng-click="addBondList()"><span class="bgPlus"></span></button>
+				</div>
+				<form name="tableForm" id='forms' ng-submit="addOrChange()" >
+					<div id="table">
+						<table class="table table-responsive">
+							<thead>
+								<tr class="bg">
+									<th><i style="color:yellow">* </i>方向</th>
+									<th><i style="color:yellow">* </i>期限</th>
+									<th>金额</th>
+									<th>模式</th>
+									<th>利率</th>
+									<th>交易限制</th>
+									<th>备注</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat='item in  ofrDscList'>
+									<td>
+										<new-select ng-init='itme.drc=""' ng-model='item.drc'  items='drcSelect'></new-select>
+									</td>
+									<td>
+										<new-select ng-model='item.trmTp'  items='trmTpSelect'></new-select>
+										<input class="form-control" type="text" ng-if='item.trmTp ==11' ng-model='item.trmLwrLmtVal' ng-required='item.trmTp ==11'>
+										<new-select ng-if='item.trmTp ==11' ng-model='item.trmLwrLmtUnit' items='dayMonSelect'></new-select>
+										<span ng-if='item.trmTp ==11'>&nbsp;至&nbsp;</span>
+										<input type="text" class="form-control" ng-if='item.trmTp ==11'  ng-model='item.trmUpLmVal' ng-required='item.trmTp ==11'>
+										<new-select ng-if='item.trmTp ==11' ng-model='item.trmUpLmUnit' items='dayMonSelect'></new-select>
+									</td>
+									<td>
+										<input type="text" class="form-control" ng-model='item.amt'>&nbsp;
+										<new-select  ng-model='item.amtUnit' items='moneySelect'></new-select>
+
+									</td>
+									<td>
+										<new-select multiple=1  ng-model='item.modeSelected' items='modeSelect'></new-select>
+									</td>
+									<td>
+										<new-select  ng-model='item.intrtTp' items='intrtTpSelect'></new-select>
+										<input type="text" class="form-control"  ng-model='item.intrtVal' ng-if='item.intrtTp == 2|| item.intrtTp == 3 || item.intrtTp ==4'>
+										<span ng-if='item.intrtTp == 2|| item.intrtTp == 3 || item.intrtTp ==4'>{{item.intrtTp  | percentOrBpFilter }}</span>
+									</td>
+									<td>
+										<new-select multiple  ng-model='item.txnRstSelected'  items='txnRstSelect'></new-select>
+									</td>
+									<td>
+										<input style="width: 100%" class="form-control" type="text"
+										uib-tooltip='{{item.rmrk}}'
+										ng-model='item.rmrk'>
+									</td>
+									<td>
+										<button type='button' ng-disabled="changeStatus==true" class="delete" ng-click="deleteList($index)"></button>
+									</td>
+								</tr>
+							</tbody>
+					 	</table>
+					</div>
+					<div class="footer">
+						<input type='submit' class="btn btn-primary typeBtn" ng-disabled='ofrDscList.length<=0' value='确认发布'>
+						<button type="button" style='width:1rem;' class="btn btn-default " ng-click='cancle()'>取消报价</button>
+					</div>
+				</form>
+			</section>
+		</div>
+	</div>
+</div>
+

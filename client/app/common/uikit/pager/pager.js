@@ -26,7 +26,7 @@ $scope.Pager = new Pager(10, 8);
 	$scope.Pager.setPage: 主动设置页码
 	$scope.Pager.setTotal: 设置总记录数，必须，不传则无法计算页数
 */
-app.factory('Pager', function ($state) {
+app.factory('UikitPager', function ($state) {
 	function generateUiData()
 	{
 		var total = this.total;
@@ -111,18 +111,23 @@ app.factory('Pager', function ($state) {
 			this._generateUiData();
 		};
 	};
-}).directive('uikitPager', function (Pager) {
+}).directive('uikitPager', function (UikitPager) {
 	return {
 		restrict: 'AE',
 		// require: 'ngModel',
 		templateUrl: './pager.html',
 		scope: {
 			pageModel: '=uikitPager',
+			nextShow:'@',
+			pagerHome:'@',
+			showPage:'@'
 		},
 		link: function(scope, element, attrs, ctrl) {
 			if(!scope.pageModel){
-				scope.pageModel = new Pager();
+				scope.pageModel = new UikitPager();
 			}
+			scope.showPage = scope.showPage ||  'true';
+			// scope.nextShow = true
 			scope.pageModel.init();
 			// console.log(scope.Pager);
 		}

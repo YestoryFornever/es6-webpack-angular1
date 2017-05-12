@@ -32,7 +32,9 @@ input[type=number]::-webkit-outer-spin-button{
     line-height: .6rem;
     margin-left:.2rem;
 }
-
+.more_setting_no_html .more_settings_no_ul>li:last-child{
+    margin-bottom:.5rem;
+}
 .more_setting_no_html .more_settings_no_ul>li.style_height{
     height:1rem;
     line-height: 1rem;
@@ -141,15 +143,26 @@ input[type=number]::-webkit-outer-spin-button{
     margin-left: .2rem;
     border-radius: .04rem; 
 }
+.more_settings_amend_input2 div.settings_amend_input_left2 p .amend_input5{
+    width:1rem;
+}
+.more_settings_amend_input2 div.settings_amend_input_left2 p img{
+    width:.8rem;
+    height:.26rem;
+    margin-top:-.02rem;
+    margin-left:.1rem; 
+    margin-right:.1rem;
+   
+}
 .more_settings_amend_input2 div.settings_amend_input_left2 p .amend_input:disabled{
     background:none;
     cursor:not-allowed;
 }
 .more_settings_amend_input2 div.settings_amend_input_left2 p .amend_input2{
-    margin-left:.36rem;
+    margin-left:.3rem;
 }
 .more_settings_amend_input2 div.settings_amend_input_left2 p .amend_input3{
-    width:1.8rem;
+    width:1.5rem;
 }
 .more_settings_amend_input2 div.settings_amend_input_left2 p .amend_input4{
     width:.9rem;

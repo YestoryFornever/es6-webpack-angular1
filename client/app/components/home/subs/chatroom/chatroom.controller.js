@@ -64,14 +64,17 @@ class ChatroomController {
 				this.changeBargain(v);
 				break;
 		}
-		let curChatListUn = this.easeMobService.getCache(this.state.curFriend.userId);
+		this.getChatList(this.state.curFriend.userId);
+		this._refreshBargainHistory(this.state.curFriend.userId);
+	}
+	getChatList(userId){
+		let curChatListUn = this.easeMobService.getCache(userId);
 		if(curChatListUn&&curChatListUn.length>0){
 			curChatListUn.forEach((item,index)=>{
 				let m = item.iotype==="i"?item.data:item.msg;
 				this.popMsg(item.ext,m,item.iotype);
 			});
 		}
-		this._refreshBargainHistory(this.state.curFriend.userId);
 	}
 	changeFriend(user){
 		this.state.curFriend = {
@@ -384,6 +387,26 @@ class ChatroomController {
 			that.$log.info('报价窗口关闭');
 		});
 	}
+	validateBargin(val,flag){
+		let errMsg = [];
+		if(!val){errMsg.push('不允许为空');}
+		switch(flag){
+			case 'y':
+				if(val>100||val<0){errMsg.push('需要在0到100之间');}
+				if(!/^\d+([.]\d{0,4})?$/.test(val)){errMsg.push('小数位数不能超过4');}
+				if(false){errMsg.push('卖方收益率不能大于买方收益率');}
+				break;
+			case 'p':
+				if(val>200){errMsg.push('不能大于200');}
+				if(!/^\d+([.]\d{0,4})?$/.test(val)){errMsg.push('小数位数不能超过4');}
+				break;
+			case 'n':
+				if(!/^[1-9]\d*$/.test(val)&&val!=''){errMsg.push('需要大于0的整数');}
+				if(false){errMsg.push('不能大于报价方的数量');}
+				break;
+		}
+		return errMsg.join(";");
+	}
 	/*发布报价*/
 	publishBargain(){
 		this.btnState.publish.enable=false;//busy-btn
@@ -443,7 +466,7 @@ class ChatroomController {
 	
 	/*向聊天列表追加信息*/
 	popMsg(ext,msg,flag){
-		let msgObj = this.easeMobService.createMsgObj(ext,msg,flag);
+		let msgObj = this.easeMobService.createMsgObj(ext,msg,flag,(new Date()).getTime());
 		if(msgObj)
 			this.state.chat.chatList.push(msgObj);
 		/*倒计时*/
@@ -483,7 +506,7 @@ class ChatroomController {
 		this.chatroomService.updateMsgNum({
 			'bondOfrid':this.state.bargain.quoteId,
 			'msgNum':num,
-			'bondNegtprcid':this.state.bargain.bargainId,
+			'bondNegtprcid':this.state.bargain.bargainId||null,
 			'negtprcUserId':this.state.curFriend.userId
 		}).then(
 			data=>console.log(data),
@@ -617,15 +640,15 @@ class ChatroomController {
 		(!!BONDCONFIG.USERINFO.uid) && (this.state.curUser.userId = BONDCONFIG.USERINFO.uid);
 	}
 	initEaseMob(){
-		this.easeMobService.login();
+		// this.easeMobService.login();
 		this.$scope.$on('ease:msg',(event,message)=>{
 			message.ext.udtTm=(new Date().getTime());
-			this.state.chat.num!=-1&&this.updateMsgNum(-1);//对方回复消息后，消息条数限制置为-1
 			if(message.ext.ext_msg_type=="20"||message.ext.ext_msg_type=="21"){
 				// 刷新议价列表
 				this._refreshBargainList();
 			}
 			if(this.state.curFriend.userId==message.from&&BONDCONFIG.USERINFO.uid==message.to){//当前聊天对象id与发送方id相同时
+				this.state.chat.num!=-1&&this.updateMsgNum(-1);//对方回复消息后，消息条数限制置为-1
 				if(message.ext.ext_msg_type=="21"){
 					// 刷新议价界面
 					this._refreshBargainDetail();
@@ -703,6 +726,9 @@ class ChatroomController {
 			this.state.bargain.bargainId = undefined;
 			this.state.curFriend.userId = ofrUserId;
 			this._refreshBargainDetail(true);//参数表明是报价
+
+			this.getChatList(this.state.curFriend.userId);
+			this._refreshBargainHistory(this.state.curFriend.userId);
 		}
 	}
 	constructor(
@@ -717,7 +743,8 @@ class ChatroomController {
 		ProxyRequestService,
 		chatroomService,
 		easeMobService,
-		chatroomUEService
+		chatroomUEService,
+		pagetabService
 	){
 		"ngInject";
 		this.$rootScope = $rootScope;
@@ -730,8 +757,15 @@ class ChatroomController {
 		this.chatroomService = chatroomService;
 		this.easeMobService = easeMobService;
 		this.chatroomUEService = chatroomUEService;
+		this.pagetabService = pagetabService;
 	}
 	$onInit(){
+		this.pagetabService.activeTab({
+			tabKey: 'home.chatroom',
+			routeState:'home.chatroom',
+			routeParams:angular.copy(this.$stateParams),
+			routeLabel:'消息中心',
+		});
 		this.state = {
 			cur:'',
 			curUser:{

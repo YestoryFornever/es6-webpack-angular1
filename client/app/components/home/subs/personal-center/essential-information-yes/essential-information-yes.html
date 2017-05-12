@@ -1,101 +1,141 @@
-<div class="personal_ess_html">
+<form name='essForm' class="personal_ess_html">
     <ul class="personal_ess_ul"> 
         <li class="style_height">
             <div class="ess_ul_left">我的头像</div>
-            <div class="ess_ul_right ess_ul_right_img"><img src="../images/header.png" ng-click="isHeaderImg=!isHeaderImg"></div>
+            <div class="ess_ul_right ess_ul_right_img">
+                <img src="{{headerimg}}" ng-click="isHeaderImg=!isHeaderImg"/>
+                <div class="chacha" ng-if="imgtrue==true" ng-click="delImage()"></div>
+            </div>
         </li> 
         <li class="upload_img" ng-if="isHeaderImg==true"> 
-            <div class="zhanshi_img">已选图片<input type="text" value="已选图片" /></div>
+            <div class="zhanshi_img">已选图片<input type="text" placeholder="已选图片" ng-model="fileNameHeader"/></div>
             <div class="file_btn"> 
-                <button type="button" id="upload_file_no">确定</button>
-                <button type="button" id="upload_file_yes">更换</button>
-                <button type="button" id="upload_file_cannel">取消</button>   
-            </div>
-        </li>
-        <li> 
+                <button type="button" id="upload_file_no" ng-disabled="isDisabled" ng-click="uoloadHeaderImg()">确定</button>
+                <button upload-img="changFun(files,imgs)" type="button">更换</button>
+                <button type="button" id="upload_file_cannel" ng-click="cannelFlies()">取消</button>   
+            </div> 
+        </li>  
+        <li>   
             <div class="ess_ul_left">用户姓名</div>
-            <div class="ess_ul_middle">张一元</div>
-            <div class="ess_ul_right" ng-click="isName=!isName">修改</div> 
+            <div class="ess_ul_middle">{{essentialInform.userName}}</div>
+            <div class="ess_ul_right" ng-click="NameStatue()" ng-show="us_name==1">修改</div> 
+            <div class="ess_ul_right" ng-click="uNameRemove()" ng-show="us_name==2">取消</div>
         </li> 
-        <li class="ess_amend_input" ng-if="isName==true">  
+        <li class="ess_amend_input " ng-if="isName==true">  
             修改姓名
-            <input type="text" placeholder="请输入修改内容" class="amend_input"/>
-            <button type="button" class="upload_file_cannel">申请修改</button>   
+            <input type="text" placeholder="请输入修改内容" class="amend_input" 
+            ng-model="defult.userName" 
+            ng-disabled="nameInput" 
+            validation-tooltip="valid_name($value,essForm.userN)"
+            name="userN"/>
+            <button type="button" class="upload_file_cannel" ng-click="amendName()" ng-disabled="nameDisabled">{{amendNameBtn}}</button>   
         </li>
         <li>
             <div class="ess_ul_left">机构名称</div>
-            <div class="ess_ul_middle">张一元</div>
-            <div class="ess_ul_right" ng-click="isOrganization=!isOrganization">修改</div>
+            <div class="ess_ul_middle">{{essentialInform.organizationFullName}}</div>
+            <div class="ess_ul_right" ng-click="OrgStatue()" ng-show="org_org==1">修改</div>
+            <div class="ess_ul_right" ng-click="OrgRemove()" ng-show="org_org==2">取消</div>
         </li>
-        <li class="ess_amend_input" ng-if="isOrganization==true">   
+        <!--机构模糊查询-->
+        <li class="ess_amend_input org_position" ng-if="isOrganization==true">   
             修改机构
-            <input type="text" placeholder="请输入修改内容" class="amend_input"/>
-            <button type="button" class="upload_file_cannel">申请修改</button>   
+            <input type="text"
+                placeholder="请输入修改内容"
+                class="amend_input"
+                ng-model="defult.organizationShortName"
+                ng-disabled="orgInput" 
+                uib-typeahead="list for list in orgInputChange($viewValue)"
+                validation-tooltip="valid_org($value,essForm.orgN)"
+                name="orgN"
+                />
+            <button type="button" class="upload_file_cannel" ng-disabled="orgDisabled" ng-click="amendOrg()">{{amendOrgBtn}}</button>   
         </li>
         <li>
             <div class="ess_ul_left">机构简称</div>
-            <div class="ess_ul_middle">张一元</div>
+            <div class="ess_ul_middle">{{essentialInform.organizationShortName}}</div>
         </li>
         <li> 
             <div class="ess_ul_left">部门名称</div>
-            <div class="ess_ul_middle">张一元</div>
-            <div class="ess_ul_right" ng-click="isDepartment=!isDepartment">修改</div>
+            <div class="ess_ul_middle">{{essentialInform.department}}</div>
+            <div class="ess_ul_right" ng-click="isDepartment=!isDepartment;dep_name=2" ng-show="dep_name==1">修改</div>  
+            <div class="ess_ul_right" ng-click="depRemove()" ng-show="dep_name==2">取消</div>
         </li>
-        <li class="ess_amend_input" ng-if="isDepartment==true">   
+        <li class="ess_amend_input depm_position" ng-if="isDepartment==true">   
             修改部门
-            <input type="text" placeholder="请输入修改内容" class="amend_input"/>
-            <button type="button" class="upload_file_cannel">申请修改</button>   
-        </li>
+            <input type="text" placeholder="请输入修改内容" 
+            class="amend_input" 
+            ng-model="defult.department"
+            uib-typeahead="de_list for de_list in DepartInputChange($viewValue)"
+            validation-tooltip="valid_dept($value,essForm.dep)"
+            name="dep"/>
+            <button type="button" class="upload_file_cannel" ng-click="amendDepartment()" ng-disabled="!essForm.dep.$valid">确定</button>   
+        </li> 
         <li> 
             <div class="ess_ul_left">职位名称</div>
-            <div class="ess_ul_middle">张一元</div>
-            <div class="ess_ul_right" ng-click="isPosition=!isPosition">修改</div>
+            <div class="ess_ul_middle">{{essentialInform.position}}</div>
+            <div class="ess_ul_right" ng-click="isPosition=!isPosition;pos_name=2" ng-show="pos_name==1">修改</div>
+            <div class="ess_ul_right" ng-click="posRemove()" ng-show="pos_name==2">取消</div>
         </li>
         <li class="ess_amend_input" ng-if="isPosition==true">  
             修改职位
-            <input type="text" placeholder="请输入修改内容" class="amend_input"/>
-            <button type="button" class="upload_file_cannel">申请修改</button>   
-        </li>
+            <input type="text" placeholder="请输入修改内容" class="amend_input" 
+            ng-model="defult.position"
+            validation-tooltip="valid_pos($value,essForm.pos)" 
+            name="pos"/>
+            <button type="button" class="upload_file_cannel" ng-click="amendPosition()" ng-disabled="!essForm.pos.$valid">确定</button>   
+        </li> 
         <li>
             <div class="ess_ul_left">联系电话</div>
-            <div class="ess_ul_middle">张一元</div>
-            <div class="ess_ul_right" ng-click="isContactNum=!isContactNum">修改</div>
+            <div class="ess_ul_middle">{{essentialInform.contactPhone}}</div>
+            <div class="ess_ul_right" ng-click="isContactNum=!isContactNum;con_ph=2" ng-show="con_ph==1">修改</div>
+            <div class="ess_ul_right" ng-click="conPhRemove()" ng-show="con_ph==2">取消</div>
         </li>
         <li class="ess_amend_input" ng-if="isContactNum==true">  
             修改电话
-            <input type="text" placeholder="请输入修改内容" class="amend_input"/>
-            <button type="button" class="upload_file_cannel">申请修改</button>   
+            <input type="text" placeholder="请输入修改内容" class="amend_input" ng-model="defult.contactPhone"
+            validation-tooltip="valid_cont($value,essForm.cPhone)"
+            name="cPhone"/>
+            <button type="button" class="upload_file_cannel" ng-click="amendContactPhone()" ng-disabled="!essForm.cPhone.$valid">确定</button>  
         </li>
         <li>
             <div class="ess_ul_left">办公电话</div>
-            <div class="ess_ul_middle">张一元</div>
-            <div class="ess_ul_right" ng-click="isWorkNum=!isWorkNum">修改</div>
+            <div class="ess_ul_middle">{{essentialInform.workPhone}}</div>
+            <div class="ess_ul_right" ng-click="isWorkNum=!isWorkNum;wo_ph=2" ng-show="wo_ph==1">修改</div>
+            <div class="ess_ul_right" ng-click="woPhRemove()" ng-show="wo_ph==2">取消</div>
         </li>
-        <li class="ess_amend_input" ng-if="isWorkNum==true">  
+        <li class="ess_amend_input" ng-show="isWorkNum==true">  
             修改电话
-            <input type="text" placeholder="请输入修改内容" class="amend_input"/>
-            <button type="button" class="upload_file_cannel">申请修改</button>   
+            <input type="number" placeholder="请输入修改内容" 
+            class="amend_input" 
+            ng-model="defult.workPhone" 
+            validation-tooltip="valid_wop($value,essForm.wPhone)"
+            name="wPhone"/>
+            <button type="button" class="upload_file_cannel" ng-click="amendWorkPhone()" ng-disabled="!essForm.wPhone.$valid">确定</button>   
         </li>
         <li>
             <div class="ess_ul_left">机构邮箱</div>
-            <div class="ess_ul_middle">张一元</div>
-            <div class="ess_ul_right" ng-click="isOrgEmail=!isOrgEmail">修改</div>
+            <div class="ess_ul_middle">{{essentialInform.companyMail}}</div>
+            <div class="ess_ul_right" ng-click="isOrgEmail=!isOrgEmail;org_email=2" ng-show="org_email==1">修改</div>
+            <div class="ess_ul_right" ng-click="orgEmailRemove()" ng-show="org_email==2">取消</div> 
         </li>
         <li class="ess_amend_input" ng-if="isOrgEmail==true">  
             修改邮箱
-            <input type="text" placeholder="请输入修改内容" class="amend_input"/>
-            <button type="button" class="upload_file_cannel">申请修改</button>   
-        </li>
+            <input type="text" placeholder="请输入修改内容" class="amend_input" ng-model="defult.companyMail" name="email" 
+            validation-tooltip="valid_email($value,essForm.email)"/>
+            <button type="button" name="email" class="upload_file_cannel" ng-click="amendCompanyMail()" ng-disabled="!essForm.email.$valid">确定</button>   
+        </li> 
         <li class="style_none">
             <div class="ess_ul_left">机构地址</div>
-            <div class="ess_ul_middle">张一元</div>
-            <div class="ess_ul_right" ng-click="isOrgAddress=!isOrgAddress">修改</div>
+            <div class="ess_ul_middle">{{essentialInform.workAddress}}</div>
+            <div class="ess_ul_right" ng-click="isOrgAddress=!isOrgAddress;org_ad=2" ng-show="org_ad==1">修改</div>
+            <div class="ess_ul_right" ng-click="orgAdRemove()" ng-show="org_ad==2">取消</div>
         </li>
         <li class="ess_amend_input" ng-if="isOrgAddress==true">  
             修改地址 
-            <input type="text" placeholder="请输入修改内容" class="amend_input"/>
-            <button type="button" class="upload_file_cannel">申请修改</button>   
+            <input type="text" placeholder="请输入修改内容" class="amend_input" 
+            ng-model="defult.workAddress" 
+            validation-tooltip="valid_addr($value,essForm)" name="orgAddr"/>
+            <button type="button" class="upload_file_cannel" ng-click="amendWorkAddress()" ng-disabled="!essForm.orgAddr.$valid">确定</button>    
         </li>
     </ul>
-
-</div> 
+</form> 

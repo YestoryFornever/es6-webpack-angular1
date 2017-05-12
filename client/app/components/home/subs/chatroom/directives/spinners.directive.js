@@ -1,4 +1,4 @@
-app.directive('gSpinner',['$parse','decimalsService', function($parse,decimalsService){
+app.directive('gSpinner',['$parse','transferService', function($parse,transferService){
 	return {
 		restrict: 'E',
 		template:`
@@ -31,14 +31,14 @@ app.directive('gSpinner',['$parse','decimalsService', function($parse,decimalsSe
 			function add(){
 				scope.gClick();
 				scope.$apply(()=>{
-					scope.gModel = decimalsService.decimals(Number(scope.gModel) + Number(scope.degree),4);
+					scope.gModel = transferService.decimals(Number(scope.gModel) + Number(scope.degree),4);
 				});
 				scope.gBlur();
 			}
 			function minus(){
 				scope.gClick();
 				scope.$apply(()=>{
-					scope.gModel = decimalsService.decimals(Number(scope.gModel) -  Number(scope.degree),4);
+					scope.gModel = transferService.decimals(Number(scope.gModel) -  Number(scope.degree),4);
 				});
 				scope.gBlur();
 			}

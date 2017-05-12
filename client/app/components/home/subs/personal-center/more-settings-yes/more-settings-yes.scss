@@ -4,7 +4,8 @@
     font-size: .16rem;
     background:url('../images/more_set.png') no-repeat right .6rem bottom 0;
     background-size:2.2rem 2.7rem;
-    overflow:auto;   
+    overflow-y:auto;  
+    overflow-x:hidden;  
 }
 .more_setting_html h1{
     height:.4rem;
@@ -25,10 +26,12 @@
     line-height: .6rem;
     margin-left:.2rem;
 }
-
+.more_setting_html .more_settings_ul>li:last-child{
+    margin-bottom:.5rem;
+} 
 .more_setting_html .more_settings_ul>li.style_height{
     height:1rem;
-    line-height: 1rem;
+    line-height: 1rem; 
     border:none;
 }
 .more_setting_html .more_settings_ul>li div{
@@ -131,8 +134,8 @@
     color:#ff671b; 
     background:#1b2f37;
     border:none;
-    margin-left: .2rem;
     border-radius: .04rem; 
+    margin-left: .2rem;
 }
 .more_settings_amend_input div.settings_amend_input_left p .amend_input:disabled{
     background:none;
@@ -142,7 +145,8 @@
     margin-left:.36rem;
 }
 .more_settings_amend_input div.settings_amend_input_left p .amend_input3{
-    width:1.8rem;
+    width:1.5rem;
+    margin-left:.3rem;
 }
 .more_settings_amend_input div.settings_amend_input_left p .amend_input4{
     width:.9rem;
@@ -154,7 +158,40 @@
     margin-left:0;
     font-size:.14rem;
 }
+.more_settings_amend_input div.settings_amend_input_left p .amend_input5{
+    width:1rem;
+}
+.more_settings_amend_input div.settings_amend_input_left p img{
+    width:.8rem;
+    height:.28rem;
+    margin-top:-.03rem;
+    margin-left:.1rem;
+    margin-right:.1rem;
+   
+}
 .more_settings_amend_input div.settings_amend_input_left p .amend_input4:disabled{
     color:#667882;
     cursor:not-allowed;
 }
+/*css滑动按钮*/
+.more_settings_ul_right .radio ~label {
+    background:url('../images/no_btn.png') no-repeat;
+    background-size:.53rem .16rem;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+.more_settings_ul_right .radio:checked ~ label {
+    background:url('../images/yes_btn.png') no-repeat;
+    background-size:.53rem .16rem;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+.more_settings_ul_right label {
+    display: inline-block;
+    position: relative;
+    height: .16rem;
+    width: .53rem;
+    margin-bottom:-.03rem;
+    border-radius:.08rem;
+}
+    

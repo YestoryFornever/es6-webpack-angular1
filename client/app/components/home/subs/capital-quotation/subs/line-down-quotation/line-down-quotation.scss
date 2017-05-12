@@ -16,48 +16,44 @@
 	}
 }
 .lineDownQuotation{
-	position: relative;
-	input{
-		width:0.5rem;
+	.colorH{
+		color:$textH;
 	}
-	height:100%;
+	.colorI{
+		color:$textI;
+	}
+	.colorF{
+		color:$textF;
+	}
+	.colorN{
+		color:$textN;
+	}
 	color: $textF;
-	// background: $bgDefaultLightB;
+	.btn.active{
+		background:#997E51;
+		color:#F7EFB5;
+	}
 	.bg{
 		background:url(../../../../../../../resource/images/img_bg_title.png) 100% 100%;
-	}
-	.btn,.btn:hover,.btn.focus,.btn.active,.btn.visited,.btn:focus{
-		outline: none;
-		color:$textD;
-		border:none;
-		padding:0.02rem 0.1rem;
-		vertical-align: middle;
-		text-align: center;
-
-	}
-	.btn-default,.btn-default:hover,.btn-default:focus,.btn-default.focus,.btn-default.active,.btn-default.visited,.btn-default:visited{
-		background-color:$bgDefaultLightC;
-		color:$textD;
-		border:none;
-		padding:0.02rem 0.1rem;
-		vertical-align: middle;
-		text-align: center;
-	}
-	.btn-default.active{
-		background: $bgGold;
-	}
-	.btn-primary,.btn-primary:hover,.btn-primary:focus,.btn-primary.focus,.btn-primary.active,.btn-primary.visited,.btn-primary:visited{
-		background-color:$bgGold;
-		border:none;
-	}
-	.btn.active{
-		background:$bgGold;
+		background-size: auto 100%;
 	}
 	header#top{
-		padding: 0.1rem 0.4rem;
-		label{
-			color: $textF;
+		input{
+			width:0.5rem;
 		}
+		select{
+			width:0.4rem;
+			padding:0;
+		}
+		.form-control{
+			display:inline-block;
+		}
+		input,select{
+			background:$bgDefaultDarkC;
+			border:none;
+			padding:0;
+		}
+		padding: 0.1rem 0.4rem;
 		background: $bgDefault;
 		.tit{
 			margin-right:0.2rem;
@@ -66,20 +62,17 @@
 			display: inline-block;
 			margin: 0  0.5rem 0.1rem 0;
 		}
-		input,select{
-			background:$bgDefaultDarkC;
-			border:none;
-		}
 
 	}
 	section#lineDownQuotation{
-		position: absolute;
-		top:0.9rem;
-		bottom:0.3rem;
-		width:100%;
-		overflow-y: auto;
 		table{
+			td,th{
+				text-align: center;
+			}
 			tbody{
+				td{
+					min-width:0.5rem;
+				}
 				td.tel{
 					span.phone,span.chat,span.qq{
 						display:inline-block;
@@ -107,14 +100,27 @@
 					}
 				}
 			}
-			.other{
+			td.maxWid15{
 				max-width:1rem;
 				overflow:hidden ;
 				text-overflow: ellipsis;
 				white-space:nowrap;
 			}
-			.otherTooltip,.other:hover{
+			.other,.txnRstNm,div.rmrk{
+				max-width:1rem;
+				overflow:hidden ;
+				text-overflow: ellipsis;
+				white-space:nowrap;
+			}
+			.otherTooltip,.other:hover,.txnRstNm:hover{
 				color:$textM;
+			}
+			.rmrk:hover{
+				color:$textM;
+			}
+			div.tooltip-inner{
+				color:$textM;
+				padding:0.05rem 0.1rem;
 			}
 		}
 		.wrkTel{
@@ -145,26 +151,16 @@
 			background:url('../../../../../../../resource/images/icon_QQ.png') no-repeat 0 0.1rem;
 		}
 		.bgStar{
+			width:0.4rem;
+			min-width:0.4rem;
 			background: url(../../../../../../../resource/images/btn_star_normal.png) no-repeat center;
 		}
 		.bgStar.active{
 			background: url(../../../../../../../resource/images/btn_star_select.png) no-repeat center;
 		}
-	}
-	.myPage1{//分页
-			// position: absolute;
-			// bottom:0.3rem;
-			// right:0.1rem;
-			height: 0.4rem;
-			text-align: right;
-			.pagination{
-				margin:0;
-			}
-			span{
-				display: inline-block;
-				padding:0 5px;
-				margin:0 0.1rem;
-				line-height: 0.34rem;
-			}
+		.bgStar.bgNone{
+			background-image:none;
+			text-align:center;
 		}
+	}
 }

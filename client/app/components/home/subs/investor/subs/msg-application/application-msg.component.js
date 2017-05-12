@@ -1,6 +1,9 @@
 app.component("applicationMsg", {
-        restrict: 'E',
-        bindings: {},
-        templateUrl: "./application-msg.html",
-        controller: ApplicationMsgController
-    });
+    restrict: 'E',
+    bindings: {
+        msgStatistics: "=",
+        msgClick: "&"
+    },
+    templateUrl: "./application-msg.html",
+    controller: ApplicationMsgController
+});

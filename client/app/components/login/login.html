@@ -1,29 +1,40 @@
-<div id="wrap">
+<div class="login-body">
+	<style type="text/css">
+		@media screen and (min-width: 1900px) {
+		    html {
+				font-size:140px;
+			}
+		}
+	</style>
 	<div class="bgbanner">
-		<img id="laptop" src="./images/img_login_UI.png" alt="">
 		<header>
 			<div class="header-left">
 				<img src="./images/top_logo1.png"/>
 			</div>
 			<div class="header-right" id="header_right">
-				<a href="http://www.alphabond.com.cn/" class="on">首页</a>
-				<a href="http://www.alphabond.com.cn/html/newmessage.html">最新资讯</a>
-				<a href="http://www.alphabond.com.cn/html/aboutus.html">关于我们</a>
-				<a href="http://www.alphabond.com.cn/html/download.html">下载</a>
-				<button id="register" type="button" class="btn">注册</button>
+				<a href="{{$root.window.officialnUrl}}" class="on">首页</a>
+				<a href="{{$root.window.officialnUrl}}/html/newmessage.html">最新资讯</a>
+				<a href="{{$root.window.officialnUrl}}/html/aboutus.html">关于我们</a>
+				<a href="{{$root.window.officialnUrl}}/html/download.html">下载</a>
+				<a id="register" href="{{$root.window.officialnUrl}}/html/register.html" >注册</a>
 			</div>
 		</header>
-		<main>
-			<div id="dialog">
+		<div class="main">
+			<img class="laptop" src="./images/img_login_UI.png" alt="">
+			
+			<div class="login-form-main">
+				<form class="login-form" ng-submit="$ctrl.login()" name="loginForm" novalidate="novalidate">
 				<div class="login-tr">
-					<div id="login">登录</div>
+					<div class="login-title">登录</div>
 				</div>
 				<div class="login-tr">
 					<span class="login-tr-icon">
 						<img id="login-icon-account" src="./images/icon_login_phone.png" alt="">
 					</span>
 					<div class="login-tr-input">
-						<input type="text" id="account" ng-model="$ctrl.account">
+						<input type="text" id="account" name="account" ng-model="$ctrl.account"
+						placeholder="注册手机号"
+						validation-tooltip="$ctrl.validdationAccount($value)">
 					</div>
 					<!-- {{$ctrl.account}} -->
 				</div>
@@ -32,7 +43,9 @@
 						<img id="login-icon-account" src="./images/icon_login_password.png" alt="">
 					</span>
 					<div class="login-tr-input">
-						<input type="password" id="password" ng-model="$ctrl.password"><!-- {{$ctrl.password}} -->
+						<input type="password" id="password" name="password" ng-model="$ctrl.password"
+						placeholder="登录密码"
+						validation-tooltip="$ctrl.validdationPassword($value)"><!-- {{$ctrl.password}} -->
 					</div>
 				</div>
 				<div class="login-tr">
@@ -40,29 +53,35 @@
 						<img id="login-icon-account" src="./images/icon_login_CAPTCHA.png" alt="">
 					</span>
 					<div class="login-tr-input" style="text-align: left;">
-						<input type="text" id="picGenerationCode" ng-model="$ctrl.picGenerationCode">
+						<input type="text" id="picGenerationCode" name="picGenerationCode" ng-model="$ctrl.picGenerationCode"
+						placeholder="图形验证码"
+						validation-tooltip="$ctrl.validdationCode($value)">
 						<img class="pic-generation-img" ng-src="{{$ctrl.picGenerationUrl}}" ng-click="$ctrl.reloadPicGenerationUrl($ctrl.account)">
 					</div>
 				</div>
 				<div class="login-tr">
 					<span class="login-tr-icon"></span>
 					<div class="login-tr-input">
-						<button type="button" id="loginbtn" ng-click="$ctrl.login()">{{$ctrl.loginLabel}}</button>
+						<button type="submit" class="loginbtn">
+							<span>{{$ctrl.loginLabel}}</span>
+						</button>
 					</div>
 				</div>
-				<div class="login-tr">
-					<a href="#">注册账号</a>|<a href="#">忘记密码</a>
+				<div class="login-tr login-tr-footer">
+					<a href="{{$root.window.officialnUrl}}html/register.html">注册账号</a>|<a href="#">忘记密码</a>
 				</div>
+				</form>
 			</div>
-		</main>
+			<div class="clearfix"></div>
+		</div>
 	</div>
 	<footer>
 		<div class="footer-con">
 			<dl class="footer-about">
 				<dt></dt>
 				<dd>
-					<p><a href="http://www.alphabond.com.cn/html/newmessage.html">最新资讯</a></p>
-					<p><a href="http://www.alphabond.com.cn/html/aboutus.html">关于我们</a></p>
+					<p><a href="{{$root.window.officialnUrl}}/html/newmessage.html">最新资讯</a></p>
+					<p><a href="{{$root.window.officialnUrl}}/html/aboutus.html">关于我们</a></p>
 					<p>服务条款</p>
 				</dd>
 			</dl>
@@ -85,20 +104,7 @@
 					<p>数码大厦A座22层</p>
 				</dd>
 			</dl>
+			<div class="clearfix"></div>
 		</div>
 	</footer>
 </div>
-<!-- <hr>
-<div>
-	<p>注册</p>
-	<span>账号</span><input type="text" id="acc" ng-model="$ctrl.acc">{{$ctrl.acc}}
-	<button type="button" ng-click="$ctrl.generate()">获取验证码</button>
-	<br>
-	<span>密码</span><input type="password" id="pas" ng-model="$ctrl.pas">{{$ctrl.pas}}
-	<br>
-	<button type="button" ng-click="$ctrl.register()">注册</button>
-</div>
-<pre>
-	13365439876 qwer 107802
-	13891179999 123456a 5304
-</pre> -->

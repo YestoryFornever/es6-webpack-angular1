@@ -5,7 +5,7 @@ app.component('sendAlert', {
 		resolve: "<",
 	},
 	templateUrl: './sendAlert.html',
-	controller: function($scope,$state, NetBondquotationService, FriendsModalService){
+	controller: function($scope,$state, $q, NetBondquotationService, FriendsModalService, SendAlertService){
 		"ngInject";
 		var item = this.resolve.item;
 		this.onLine = false;
@@ -26,7 +26,14 @@ app.component('sendAlert', {
 			};
 
 			if (this.friend) {
-				FriendsModalService.open(item);
+				var uiModal = FriendsModalService.open(function(friends,groups){
+					$q.all([
+						SendAlertService.sendBargainingToFriend(friends, item),
+						SendAlertService.sendBargainingToGroup(groups, item)
+					]).then((res)=>{
+						uiModal.close();
+					});
+				});
 			};
 				
 			this.modalInstance.close(item);

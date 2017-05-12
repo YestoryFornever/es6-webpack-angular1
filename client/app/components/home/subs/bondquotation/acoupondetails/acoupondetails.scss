@@ -53,6 +53,7 @@ h1,h2,h3,h4,h5,h6{
 				 	margin-top:0.15rem;
 				 	background:#2B414C;
 				 	border-radius:0.15rem;
+				 	z-index:200;
 				 	position:relative;
 				 	left:0;
 				 	top:0;
@@ -69,12 +70,13 @@ h1,h2,h3,h4,h5,h6{
 					 		//height:.3rem;
 					 		background:#FFFFFF;
 					 		border-radius:.05rem;
-					 		z-index:200;
+					 		
 					 		li{
 					 			height:.26rem;
 					 			width:2rem;
 					 			line-height:.3rem;
 					 			text-align:center;
+
 					 		}
 					 		li:hover{
 								background:#377DC2;
@@ -117,6 +119,7 @@ h1,h2,h3,h4,h5,h6{
 			height:2rem;
 			font-size:.12rem;
 			color:#a3cbd9;
+			z-index:100;
 			margin-top:.14rem;
 			div.content{
 				height:100%;

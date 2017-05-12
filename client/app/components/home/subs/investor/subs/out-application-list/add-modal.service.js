@@ -8,7 +8,8 @@ app.factory('addModelService', function ($uibModal) {
             return $uibModal.open({
                 animation: true,
                 component: 'outList',
-                size: "lg",
+                size: "wfxl",
+                windowClass: "my-now-bond",
                 resolve: {
                     params: {
                         sid: sid,

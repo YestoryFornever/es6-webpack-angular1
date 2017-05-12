@@ -20,8 +20,9 @@
 // import AppComponent from './app.component';
 
 // console.log(1);
-var app = angular.module('website', [
+window.app = angular.module('website', [
 	'ui.router',
+	'ui.router.state.events',
 	'ngMaterial',
 	'ui.bootstrap',
 	'ui.select',
@@ -36,6 +37,7 @@ var app = angular.module('website', [
 }).run(($rootScope, $state, userStatusService) =>{
 	$rootScope.$state = $state;
 	$rootScope.userStatusService = userStatusService;
+	$rootScope.window = window;
 	// $rootScope.CoAuth = CoAuth;
 	// $rootScope.WindowInfo = WindowInfo;
 });

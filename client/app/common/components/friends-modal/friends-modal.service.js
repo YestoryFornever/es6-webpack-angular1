@@ -1,21 +1,30 @@
+/**
+ * var uiModal = FriendsModalService.open(function(friends, groups){
+		uiModal.close();
+	});
+ */
 app.factory('FriendsModalService', function($uibModal){
 	return {
-		open: function(item){
-			let that =this;
-			that.dataFriendModal = {
-				friendObj:{}
-			}
+		_modal: null,
+		/**
+		 * [open description]
+		 * @param  {[type]}   item [description]
+		 * @param  {Function} callback   [description]
+		 * @return {[type]}        [description]
+		 */
+		open: function(callback){
 			return $uibModal.open({
 				animation: true,
 				component:'acoupond',
-				size: 'xl',//'lg',//'sm',
+				size: 'lg',//'lg',//'sm',
 				resolve: {
-					friendModal:function(){
-						that.dataFriendModal.friendObj = item ? item :{};
-						return that.dataFriendModal ;
+					onSend: function(){
+						return function(friends, groups){
+							if(callback)callback(friends, groups);
+						};
 					}
 				}
-			}).result.then(function (selectedItem) {},that);
-		}
+			});
+		},
 	}
 });

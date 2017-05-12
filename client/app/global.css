@@ -14,12 +14,17 @@ html {
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 }
+@media screen and (max-width: 1366px) {
+    html {
+		font-size:100px;
+	}
+}
+
 body {
-	font-size:100px;
+	font-size:.14rem;
 	margin: 0;
 }
 ul>li{
-	font-size:.14rem;
 	list-style:none;
 }
 a,a:active,a:hover{
@@ -27,3 +32,4 @@ a,a:active,a:hover{
 	text-decoration: none;
 	cursor: pointer;
 }
+

@@ -17,6 +17,7 @@
 	margin:0.1rem 0.05rem ;
 	.bg{
 		background: url('../../../../../../../resource/images/img_bg_title.png') center;
+		background-size: auto 100%;
 	}
 	header#mineQuotation{
 		ul.head{
@@ -37,49 +38,26 @@
 			}
 			li.active{
 				background: url('../../../../../../../resource/images/img_bg_title.png') center;
-				background-size:100%;
+				background-size: auto 100%;
 			}
-		}
-	}
-	.nav_nav{
-		.head{
-			.nav_top{
-				display:inline-block;
-				padding:0.07rem 0.1rem;
-			}
-			.nav_top.active{
-				background: url('../../../../../../../resource/images/img_bg_title.png') center;
-				background-size:100%;
-			}
-		}
-	}
-	.nav-tabs{
-		border:none;
-		li>a,li>a:hover{
-			background: none;
-			color:$textF;
-			border:none;
-		}
-
-		li.active>a,li.active>a:hover,li.active>a:focus{
-			background: url('../../../../../../../resource/images/img_bg_title.png') center;
-			background-size:100%;
-			color:$textD;
-			border:none;
 		}
 	}
 	section#mineQuotationList{
-		position: absolute;
-		top:0.75rem;
-		bottom:0.3rem;
-		width:100%;
-		overflow-y: auto;
 		font-size:0.14rem;
 		table{
+			td{
+				min-width:0.5rem;
+			}
 			th,td{
 				text-align: center;
 				white-space:nowrap;
 			}
+			td.maxWid15{
+						max-width:1rem;
+						overflow:hidden ;
+						text-overflow: ellipsis;
+						white-space:nowrap;
+					}
 			.field_handle{
 				span{
 					display:inline-block;
@@ -106,21 +84,31 @@
 					background:url('../../../../../../../resource/images/btn_edite_hover.png') no-repeat center;
 				}
 			}
-		}
-		.myPage1,.myPage2{//分页
-			// position: absolute;
-			// bottom:0.2rem;
-			// right:0.1rem;
-			height: 0.3rem;
-			text-align: right;
-			.pagination{
-				margin:0;
+			.other,.txnRstNm{
+				max-width:0.8rem;
+				overflow:hidden ;
+				text-overflow: ellipsis;
+				white-space:nowrap;
 			}
-			span{
-				display: inline-block;
-				padding:0 5px;
-				margin:0 0.1rem;
-				line-height: 0.34rem;
+			.otherTooltip,.other:hover,.txnRstNm:hover{
+				color:$textM;
+			}
+			.txnRstNm{
+				display:inline-block;
+			}
+			div.rmrk{
+				max-width:1.1rem;
+				display:inline-block;
+				overflow:hidden ;
+				text-overflow: ellipsis;
+				white-space:nowrap;
+			}
+			.rmrk:hover{
+				color:$textM;
+			}
+			div.tooltip-inner{
+				color:$textM;
+				padding:0.05rem 0.1rem;
 			}
 		}
 	}
@@ -128,7 +116,6 @@
 .mineCreat{
 	margin:0;
 	padding:0;
-	height:100%;
 		.head{
 			margin-bottom:0.1rem;
 			div.plus{
@@ -154,6 +141,12 @@
 					background-size:100%;
 				}
 				tbody{
+					td.maxWid15{
+						max-width:1.5rem;
+						overflow:hidden ;
+						text-overflow: ellipsis;
+						white-space:nowrap;
+					}
 					.delete{
 						display:inline-block;
 						width:0.24rem;
@@ -164,7 +157,6 @@
 						background:url(../../../../../../../../../resource/images/btn_delete_hover.png) no-repeat center;
 					}
 					.uDFTrmList{
-						position: relative;
 						input{
 							width:35%;
 						}

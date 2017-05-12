@@ -1,0 +1,88 @@
+<div class="dstr-main-history">
+	<!-- <div class="modal-wfcontent"  > -->
+	<div class="modal-header ng-scope">
+		<p class="modal-title newdebtdialog-title">Ta的全部申购记录
+			<i class="fa fa-times pull-right" aria-hidden="true" ng-click="$ctrl.close()"></i>
+		</p>
+	</div>
+	<div class="modal-body ng-scope addApp">
+		<p>本次申购合计: <span class="applicationColor">利率区间: {{$ctrl.sbrbSmy.sbrbIntrtLwrLmt}} - {{$ctrl.sbrbSmy.sbrbIntrtUpLm}}</span><span class="applicationColor">申购总量: {{$ctrl.sbrbSmy.sbrbTnum}}亿 </span></p>
+		<table width="100%">
+			<tr>
+				<th>申购人</th>
+				<th>票面利率(%)</th>
+				<th>综收利率(%)</th>
+				<th>返费</th>
+				<th>申购量(亿)</th>
+				<th>交割方式</th>
+				<th>销售方式</th>
+				<th>申购状态</th>
+				<th>申购渠道</th>
+				<th>申购时间</th>
+				<th>联系人</th>
+				<th class="rmrk">备注</th>
+			</tr>
+			<tr ng-repeat="item in $ctrl.data track by $index" ng-class="{noneffective:item.rcptySbrbEStatus=='9'}">
+				<td>
+					{{item.sndrInstNm + "-" + item.sndrTeamNm + "-" + item.sndrUserNm}}
+				</td>
+				<td>
+					{{item.sbrbIntrt}}
+				</td>
+				<td>
+					{{item.cprsvPftIntrt}}
+				</td>
+				<td>
+					{{item.retFee}}
+				</td>
+				<td>
+					{{item.sbrbNum}}
+				</td>
+				<td>
+					{{item.dlvTp | applicationTransaction}}
+				</td>
+				<td>
+					{{item.sellrMod | applicationSale}}
+				</td>
+				<td>
+					<!-- <select 
+						ng-focus="$ctrl.inputFocus()"
+						ng-model="item.rcptySbrbEStatus" name="rcptySbrbEStatus" 
+						ng-change="$ctrl.updateCustSbrbEstatus($item)">
+						<option value="3" ng-if="item.rcptySbrbEStatus=='3'" ng-selected="item.rcptySbrbEStatus=='3'">新消息</option>
+						<option value="4" ng-if="item.rcptySbrbEStatus=='3'||item.rcptySbrbEStatus=='4'" ng-selected="item.rcptySbrbEStatus=='4'">已读</option>
+						<option value="7" ng-selected="item.rcptySbrbEStatus=='7'">已拒绝</option>
+					</select> -->
+					{{item.rcptySbrbEStatus | applicationState}}
+				</td>
+				<td>
+					{{item.sbrbChnl | applicationChanel}}
+				</td>
+				<td>
+					{{item.createTime}}
+				</td>
+				<td>
+					{{item.rcptyUserNm}}
+				</td>
+				<td class="rmrk" uib-tooltip="{{item.rmrk}}">
+					{{item.rmrk}}
+				</td>
+			</tr>
+		</table>
+		<!-- 分页 -->
+		<ul
+				uib-pagination
+				boundary-links="true"
+				force-ellipses="true"
+				max-size="10"
+				total-items="$ctrl.pages.totalResult"
+				ng-model="$ctrl.pages.currentPage"
+				class="pagination-sm"
+				previous-text="&lsaquo;"
+				next-text="&rsaquo;"
+				first-text="&laquo;"
+				last-text="&raquo;"
+				ng-change="$ctrl.pageChange($ctrl.pages.currentPage)"
+		></ul>
+	</div>
+</div>

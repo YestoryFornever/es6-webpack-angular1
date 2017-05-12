@@ -4,39 +4,29 @@
 
 .my-change-bond{
 	.modal-xl.modal-dialog {
-		z-index:999999;
 		width: 4.9rem;
 		.modal-content{
 			margin-top:0.5rem;
-			border:0;
-			height: auto;
-			background: $bgDefault;
-			-webkit-box-sizing: border-box;
-			-moz-box-sizing: border-box;
-			box-sizing: border-box;
-			.modal-body{
-				width: 4.9rem;
-			}
-			.modal-footer{
-				left: 2.7rem;
-			}
 		}
 	}
 }
 .changeBond{
-	.btn.active{
-		background-color:$btnPrimary;
-		outline: none;
-		// color:$textD;
-		border:none;
+	.btn-default.active{
+		background: #997E51;
 	}
-	.btn,.btn:hover,.btn.focus,.btn.visited,.btn:focus{
-		// background-color:$bgDefaultLightC;
-		outline: none;
-		color:$textF;
+	.modal-header{
+		line-height: 0.32rem;
+		padding: 0 0.1rem ;
 		border:none;
+		background: url('./images/img_bg_title.png') 100%;
+		background-size: auto 100%;
+		i.fa{
+			line-height:0.32rem;
+		}
 	}
-	color:$textN;
+	input,textarea{
+		background: #1B2F36;
+	}
 	width:4.9rem;
 	color:$textD;
 	font-size:0.12rem;
@@ -44,23 +34,20 @@
 		font-weight:normal;
 	}
 	#modal-body{
-		height: auto;
-		width: 4.9rem;
+		background: #24383F;
 		padding:0.1rem;
 		color:$textF;
-		background: $bgDefault;
 		input{
 			width:120px;
+		}
+		.bondCd{
+			display: inline-block;
+			color:$textG;
 		}
 		.one{
 			float:left;
 			height: 0.4rem;
-			label i{
-				color:red;
-				display: none;
-			}
 			label span{
-				display: inline-block;
 				margin-right: 0.2rem;
 			}
 		}
@@ -72,21 +59,18 @@
 			label span{
 				display: inline-block;
 				width:.8rem;
-				// padding-right:0.2rem;
-				// margin-right: none;
 				text-align: right;
 			}
-			.trueChoice{
+			.falseChoice,.trueChoice{
 				display: inline-block;
 				width: 0.53rem;
 				height: 0.16rem;
-				background: url(../../../../../../../resource/images/btn_switch_on.png) no-repeat center;
+			}
+			.trueChoice{
+				background: url('./images/btn_switch_on.png') no-repeat center;
 			}
 			.falseChoice{
-				display: inline-block;
-				width: 0.53rem;
-				height: 0.16rem;
-				background: url(../../../../../../../resource/images/btn_switch_off.png) no-repeat center;
+				background: url('./images/btn_switch_off.png') no-repeat center;
 			}
 		}
 		.cont_l .marL10,.cont_r .marL10{
@@ -95,12 +79,10 @@
 		}
 		.bot{
 			width:4.7rem;
-			// border-top:1px solid $borderDefault;
 			textarea{
 				width:100%;
 				height: 0.5rem;
 				resize: none;
-				// height: 
 			}
 			.contNum{
 				float: right;
@@ -109,10 +91,11 @@
 				right:0.1rem;
 			}
 		}
+		.form-control{
+			display:inline-block;
+		}
 	}
 	.modal-footer#myFooter{
-		height: auto;
-		position: static;
 		text-align: center;
 	}
 }

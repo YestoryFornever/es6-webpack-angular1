@@ -1,5 +1,5 @@
 .mywealth_html{
-    width:100%;
+    
     height:100%;
     font-size: .16rem;
    /*  background:url('../images/wealth.png') no-repeat right .6rem bottom 0;
@@ -55,8 +55,22 @@
 }
 .mywealth_banner_right{
     width:11.65rem;
-    height:1.92rem;
-    background:red;
+    height:1.92rem; 
+}
+.mywealth_banner_right .carousel-control{
+    display:none;
+}
+.mywealth_banner_right img{
+    width:100%;
+    height:1.92rem; 
+}
+.mywealth_banner_right .text-center .carousel-caption{
+    right:.3rem;
+    left:88%;
+    padding-bottom:.15rem;
+}
+.mywealth_banner_right .carousel-indicators{
+    left:95%;
 }
 .mywealth_liwu{
     width:100%;
@@ -74,7 +88,7 @@
     padding-left:.1rem;
 }
 .mywealth_liwu dl{
-    width:2.72rem;
+    width:auto;
     height:1.2rem;
     border-right:1px #3c5159 solid;
     border-bottom:1px #3c5159 solid;
@@ -84,11 +98,12 @@
 }
 .mywealth_liwu dl:last-child{
     margin-bottom:.3rem;
+    border-right:none;
 }
 .mywealth_liwu dl dt{
-    width:.8rem;
+    width:.9rem;
     height:.9rem;
-    margin:0 .1rem 0 0;
+    margin:0 .1rem 0 0rem;
     float:left;
 }
 .mywealth_liwu dl.dl dt{
@@ -106,7 +121,7 @@
     float:left;
 }
 .mywealth_liwu>dl>dd>h1{
-    width:1.6rem;
+    width:1.56rem;
     height:.2rem;
     color:#b8d1dd;
     line-height:.2rem;
@@ -141,7 +156,7 @@
     cursor:not-allowed;
 }
 .mywealth_liwu dl dt:hover{
-    width:.8rem;
+    width:.9rem;
     height:.9rem;
     border:  .01rem #ff671b solid;
     overflow:hidden;
@@ -153,75 +168,59 @@
     width:100%;
     height:auto;
     clear:both;
-    padding-bottom:.7rem;
     margin:0 auto;
     background:#2d424c;
 }
-.mywealth_list ul{
-    width:100%;
-    height:.31rem;
-    background:url('../images/caifu_bg.jpg') repeat-x;
-}
-.mywealth_list ul li{
-    line-height:.3rem;
-    font-size:.14rem;
-    float:left;
-    color:#b8d1dd;
-}
-.mywealth_list ul li a{
-    line-height:.3rem;
-    font-size:.14rem;
-    color:#b8d1dd;
-}
+
 .tab_table1{
     width:100%;
     height:auto;
     background:url('../images/wealth.png') no-repeat right .3rem bottom;
     background-size:2.06rem 2.51rem;
 }
-.nav-tabs{
-    border:none;
+.mywealth_list .nav{
+    height:.3rem;
+    width:100%;
+   
 }
-.nav>li>a{
-    padding:.1rem .2rem;
-    display:inline;
+.mywealth_list .nav-tabs > li >a{
+    border-radius:0 0 0 0;
+
 }
-.nav-tabs>li>a{
+.mywealth_list .nav-tabs > li.active > a{
+   
+    border: none;
+    border-bottom-color: none;
+    border-radius:none;
+    background:#ff671b;
+    color:#fff;
+}
+.mywealth_list .nav-tabs > li.active > a:hover, .mywealth_list .nav-tabs > li.active > a:focus{
+    border: none;
+    border-bottom-color: none;
+    cursor: default;
+    color:#fff;
+    border-radius:none;
+    background:#ff671b;
+}
+.mywealth_list .nav li{
     height:.3rem;
     line-height:.3rem;
-    font-size:.14rem;
-    color:#b8d1dd;
-    border:none;
-    border-radius:0;
 }
-.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus{
-    border:none;
-    background:#ff671b;
-    color:#fff;
-}
-.nav-tabs>li.active>a:hover{
+.mywealth_list .nav>li>a{
     height:.3rem;
-}
-.nav-tabs>li.active>a{
     line-height:.3rem;
-    font-size:.14rem;
+    display:inline-block;
+    padding:0 .1rem;
     color:#b8d1dd;
-    border:none;
-    background:none;
-}
-.mywealth_list ul li:hover,.mywealth_list ul li a:hover{
-    background:#ff671b;
-    color:#fff;
-}
-.nav-tabs>li.active>a{
-    background:#ff671b;
-    color:#fff;
-    border:none;
+    border-radius:none;
 }
 .mywealth_table{
     width:7.7rem;
     border-right:none;
-    border-left:none;
+    border-left:none; 
+    background:#2d424c;
+    padding-bottom:.3rem;
 
 }
 .mywealth_table tbody tr:hover{
@@ -237,6 +236,7 @@
 }
 .mywealth_table tbody tr:last-child{
     border-bottom:1px #344d56 solid;
+    margin-bottom:.5rem;
 }
 .mywealth_table tbody tr td:nth-child(3){
     color:#ffeb62;
@@ -257,6 +257,7 @@
     padding:.15rem 0 .15rem .3rem;
     position:relative;
 }
+
 .mywealth_jilu dl:hover{
     background:#243941;
 }

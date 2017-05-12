@@ -7,10 +7,14 @@ app.component('bondquotationScm', {
 	templateUrl: './bondquotation.scm.html',
 	controller: function ($scope, $state, $stateParams, NetBondquotationService, AlertModalService) {
 		"ngInject";
+
 		$scope.NetBondquotationService = NetBondquotationService;
 		$scope.searchQuery = this.searchQuery;
 		$scope.queryScmList = NetBondquotationService.defaultList;//方案列表
 		this.addScmInfo = {};
+		// if (!$stateParams.queryFlag) {
+		// 	$state.go('home.bondquotation', $scope.searchQuery, {reload: true});
+		// };
 		/**
 		 * 处理搜索框默认值
 		 * @type {[type]}
@@ -31,9 +35,6 @@ app.component('bondquotationScm', {
 				scmEStatus:'1'
 			}).then((res)=>{
 				$scope.queryScmList = $scope.queryScmList.concat(res.data.data);
-				if (!$stateParams.queryFlag) {;
-					$state.go('home.bondquotation', $scope.searchQuery, {reload: true});
-				};
 			});
 		}
 		getQueryScmList();
@@ -59,15 +60,15 @@ app.component('bondquotationScm', {
 			//valtbpMns数值转化
 			if ($scope.$ctrl.addScmInfo['valtbpMns']) {
 				values = $scope.$ctrl.addScmInfo['valtbpMns'].split(',');
-				values[0] = NetBondquotationService.__BP(values[0], true);
-				values[1] = NetBondquotationService.__BP(values[1], true);
+				values[0] = NetBondquotationService.__BP(values[0], true) ;
+				values[1] = NetBondquotationService.__BP(values[1], true) ;
 				$scope.$ctrl.addScmInfo['valtbpMnsSelecteds'] = values;
 			}
 			//yldrto 数值转化
 			if ($scope.$ctrl.addScmInfo['yldrto']) {
 				values = $scope.$ctrl.addScmInfo['yldrto'].split(',');
-				values[0] = NetBondquotationService.__y(values[0], true);
-				values[1] = NetBondquotationService.__y(values[1], true);
+				values[0] = NetBondquotationService.__y(values[0], true) ;
+				values[1] = NetBondquotationService.__y(values[1], true) ;
 				$scope.$ctrl.addScmInfo['yldrtoSelecteds'] = values;
 			}
 			/**
@@ -77,7 +78,8 @@ app.component('bondquotationScm', {
 			 */
 			if ($scope.$ctrl.addScmInfo['rgon']) {
 				values = $scope.$ctrl.addScmInfo['rgon'].split(',');
-				$scope.$ctrl.addScmInfo['rgonSelecteds'] = NetBondquotationService.findLocationById(values);
+				// $scope.$ctrl.addScmInfo['rgonSelecteds'] = NetBondquotationService.findLocationById(values);
+				$scope.$ctrl.addScmInfo['rgonSelecteds'] = values;
 			};
 			/**
 			 * 行业
@@ -86,7 +88,8 @@ app.component('bondquotationScm', {
 			 */
 			if ($scope.$ctrl.addScmInfo['idy']) {
 				values = $scope.$ctrl.addScmInfo['idy'].split(',');
-				$scope.$ctrl.addScmInfo['idySelecteds'] = NetBondquotationService.findLocationById(values);
+				// $scope.$ctrl.addScmInfo['idySelecteds'] = NetBondquotationService.findLocationById(values);
+				$scope.$ctrl.addScmInfo['idySelecteds'] = values;
 			};
 			/**
 			 * 年份
@@ -95,11 +98,9 @@ app.component('bondquotationScm', {
 			 */
 			if ($scope.$ctrl.addScmInfo['yr']) {
 				values = $scope.$ctrl.addScmInfo['yr'].split(',');
-				$scope.$ctrl.addScmInfo['yrSelecteds'] = NetBondquotationService.findLocationById(values);
+				// $scope.$ctrl.addScmInfo['yrSelecteds'] = NetBondquotationService.findLocationById(values);
+				$scope.$ctrl.addScmInfo['yrSelecteds'] = values;
 			};
-			
-
-			console.log($scope.$ctrl.addScmInfo, 'fullScmInfo');
 		}
 		/**
 		 * 保存之前处理数据
@@ -120,41 +121,43 @@ app.component('bondquotationScm', {
 			//valtbpMns数值转化
 			if ($scope.$ctrl.addScmInfo['valtbpMnsSelecteds']) {
 				valueArray = _.values($scope.$ctrl.addScmInfo['valtbpMnsSelecteds']);
-				valueArray[0] = NetBondquotationService.__BP(valueArray[0], false);
-				valueArray[1] = NetBondquotationService.__BP(valueArray[1], false);
-				$scope.$ctrl.addScmInfo['valtbpMns'] = valueArray.join(',');
+				valueArray[0] = NetBondquotationService.__BP(valueArray[0], false) ?  NetBondquotationService.__BP(valueArray[0], false) :'';
+				valueArray[1] = NetBondquotationService.__BP(valueArray[1], false) ?  NetBondquotationService.__BP(valueArray[1], false) :'';
+				$scope.$ctrl.addScmInfo['valtbpMns'] = valueArray.join(',')==',' ? '' : valueArray.join(',');
 			}
 			//yldrto 数值转化
 			if ($scope.$ctrl.addScmInfo['yldrtoSelecteds']) {
 				valueArray = _.values($scope.$ctrl.addScmInfo['yldrtoSelecteds']);
-				valueArray[0] = NetBondquotationService.__y(valueArray[0], false);
-				valueArray[1] = NetBondquotationService.__y(valueArray[1], false);
-				$scope.$ctrl.addScmInfo['yldrto'] = valueArray.join(',');
+				valueArray[0] = NetBondquotationService.__y(valueArray[0], false) ? NetBondquotationService.__y(valueArray[0], false) :'';
+				valueArray[1] = NetBondquotationService.__y(valueArray[1], false) ? NetBondquotationService.__y(valueArray[1], false) :'';
+				$scope.$ctrl.addScmInfo['yldrto'] = valueArray.join(',') == ',' ? "" : valueArray.join(',');
 			};
 
 			if ($scope.$ctrl.addScmInfo['rgonSelecteds']) {
-				valueArray = _.map($scope.$ctrl.addScmInfo['rgonSelecteds'], 'id');
+				// valueArray = _.map($scope.$ctrl.addScmInfo['rgonSelecteds'], 'id');
+				valueArray = $scope.$ctrl.addScmInfo['rgonSelecteds'];
 				$scope.$ctrl.addScmInfo['rgon'] = valueArray.join(',');
 			};
 			if ($scope.$ctrl.addScmInfo['yrSelecteds']) {
-				valueArray = _.map($scope.$ctrl.addScmInfo['yrSelecteds'], 'id');
+				// valueArray = _.map($scope.$ctrl.addScmInfo['yrSelecteds'], 'id');
+				valueArray = $scope.$ctrl.addScmInfo['yrSelecteds'];
 				$scope.$ctrl.addScmInfo['yr'] = valueArray.join(',');
 			}else{
 				$scope.$ctrl.addScmInfo['yr'] = '';
 			};
 			if ($scope.$ctrl.addScmInfo['idySelecteds']) {
-				valueArray = _.map($scope.$ctrl.addScmInfo['idySelecteds'], 'id');
+				// valueArray = _.map($scope.$ctrl.addScmInfo['idySelecteds'], 'id');
+				valueArray = $scope.$ctrl.addScmInfo['idySelecteds'];
 				$scope.$ctrl.addScmInfo['idy'] = valueArray.join(',');
 			};
 
-			console.log($scope.$ctrl.addScmInfo, 'beforSaveScmInfo');
 		}
 
 		/**
 		 * 获取方案详情
 		 */
 		this.getScmDetail = function (scm_id){
-			if(scm_id =='A' || scm_id =='B'){
+			if(scm_id =='A' || scm_id =='B' ){
 				return false
 			}
 			return NetBondquotationService.getScmDetail({'scmid':scm_id})
@@ -170,7 +173,11 @@ app.component('bondquotationScm', {
 				$scope.$ctrl.getScmDetail($scope.searchQuery.queryFlag);
 			};
 		});
-
+		/**
+		 * 初始化 新增
+		 * @type {[type]}
+		 */
+		this.addScmInfo = angular.copy(NetBondquotationService.scmFields);
 		/**
 		 * 打开新增自选方案表单
 		 * @return {[type]} [description]
@@ -180,6 +187,7 @@ app.component('bondquotationScm', {
 				AlertModalService.open('', '最多添加5个自选方案');
 				return false;
 			}
+			this.isCollapsed=!this.isCollapsed
 			this.addScmInfo = angular.copy(NetBondquotationService.scmFields);
 		}
 
@@ -188,13 +196,14 @@ app.component('bondquotationScm', {
 		 * @return {[type]} [description]
 		 */
 		this.updateScm = function(){
+			if(this.addScmInfo.scmid== "A" || this.addScmInfo.scmid=="B" || this.addScmInfo.scmid==undefined){
+				return 
+			}
 			NetBondquotationService.updateScm(this.addScmInfo)
 			.then((res)=>{
 				AlertModalService.open('修改自选方案', '修改自选方案成功');
 				// this.searchQuery.queryFlag = 'A';
 				$state.go($state.current.name, this.searchQuery,{reload:true});
-			}).catch((err)=>{
-				AlertModalService.open('', res.data ? res.data.msg : res.msg);
 			});
 		}
 		/**
@@ -203,13 +212,19 @@ app.component('bondquotationScm', {
 		 * @return {[type]}            [description]
 		 */
 		this.newAddScm = function(addScmInfo){
+			if($scope.queryScmList.length>=7){
+				AlertModalService.open('', '最多添加5个自选方案');
+				return false;
+			}
+			if(!this.addScmInfo['scmNm']){
+				AlertModalService.open('', '请输入自选方案名称');
+				return
+			}
 			NetBondquotationService.addScm(this.addScmInfo)
 			.then((res)=>{
 				AlertModalService.open('新增自选方案', '新增自选方案成功');
 				this.searchQuery.queryFlag = 'A';
-				$state.go($state.current.name, this.searchQuery);
-			}).catch((err)=>{
-				AlertModalService.open('', err.data ? err.data.msg : err.msg);
+				$state.go($state.current.name, this.searchQuery,{reload:true});
 			});
 		}
 		/**
@@ -226,17 +241,21 @@ app.component('bondquotationScm', {
 		}
 		//删除自选方案
 		this.deleteScm = function(id){
-			if(id== "A" || id=="B"){
-				return false
+			if(id== "A" || id=="B" || id==undefined){
+				this.newAddShow();
+				return false;
 			}
-			return NetBondquotationService.deleteScm({scmid :id})
+			AlertModalService.open('删除自选方案', '确定删除自选方案？' ,true)
 			.then((res)=>{
-				AlertModalService.open('删除自选方案', '删除自选方案成功');
-				this.searchQuery.queryFlag = 'A';
-				$state.go($state.current.name, this.searchQuery);
-			}).catch((err)=>{
-				AlertModalService.open('', err.data? err.data.msg : err.msg);
-			});
+				NetBondquotationService.deleteScm({scmid :id})
+				.then((res)=>{
+					AlertModalService.open('删除自选方案', '删除自选方案成功');
+					this.searchQuery.queryFlag = 'A';
+					$state.go($state.current.name, this.searchQuery,{reload:true});
+				},(err)=>{
+					AlertModalService.open('', err.data? err.data.msg : err.msg);
+				})
+			})
 		}
 		/**
 		 * 搜索框下拉菜单模糊搜索
@@ -268,18 +287,10 @@ app.component('bondquotationScm', {
 		this.fullName = function(keyWord){
 			return NetBondquotationService.getIssuerListByFullName({'organizationFullName':keyWord})
 			.then(function(res) {
-				console.log(res)
 				if(res.data.data ){
 					return res.data.data;
 				}
 			});
-			// return NetBondquotationService.searchBondBreed({
-			// 	keyWord: keyWord,
-			// 	queryFlag: this.searchQuery.queryFlag,
-			// 	wthrFcs: this.searchQuery.wthrFcs,
-			// }).then((res)=>{
-			// 	return res.data.data;
-			// });
 		}
 		this.searchFullName = function(selected){
 			$scope.$ctrl.addScmInfo.issuPsn = selected.organizationFullName;
@@ -308,11 +319,14 @@ app.component('bondquotationScm', {
 				}
 			};
 			beforSaveScmInfo();
-			console.log(this.addScmInfo.bondTp);
 		}
 
 		this.allOrNoAll = function(){
 			beforSaveScmInfo();
+		}
+
+		this.refreshList = function(params){
+			$scope.$emit('list:refresh', params);
 		}
 	}
 });

@@ -1,0 +1,22 @@
+<div class="newdebtdialog ">
+    <div class="modal-body ng-scope addApp">
+        <p class="text-center">
+            <img src="../../../../../../resource/images/icon_warn01.png"/>
+        </p>
+        <p class="text-center">{{$ctrl.msg}}</p>
+        <p style="margin-bottom: 20px;"></p>
+        <p class="text-center">
+            <button class="btn btn-default" style="padding: 6px 30px; background: #ff9000; color: #fff; border: none;"
+                    ng-click="$ctrl.close()" ng-if="$ctrl.status == 3">确定
+            </button>
+            <button class="btn btn-default" style="padding: 6px 30px; background: #815323; color: #fff; border: none;"
+                    ng-click="$ctrl.close()" ng-if="$ctrl.status == 4">取消
+            </button>
+
+            <!-- <a href="http://www.alphabond.com.cn/html/register.html"  class="btn btn-default" style="padding: 6px 30px; background: #ff9000;color: #fff; border: none;"
+                    ng-if="$ctrl.status == 4">
+                去注册
+            </a> -->
+        </p>
+    </div>
+</div>

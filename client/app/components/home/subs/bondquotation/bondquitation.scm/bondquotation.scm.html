@@ -1,22 +1,23 @@
-<header id="condition" class="bg">
+<header id="condition"  class="bg">
 	<div class="head">
 		<!-- 自选方案 -->
 		<div
 			class="btn mar_L10  btn-default padR"
 			ng-repeat='item in queryScmList'
 			ng-model='searchQuery.queryFlag'
-			ui-sref="home.bondquotation({queryFlag:item.scmid})"
+			ng-click="$ctrl.refreshList({queryFlag:item.scmid});$ctrl.getScmDetail(searchQuery.queryFlag)"
+			ng-class='{"mar_cen":( item.scmid =="A" || item.scmid == "B")}'
 			uib-btn-radio='item.scmid' >{{item.scmNm}}
 			<span class="myBond pull-right" ng-if="item.scmid!='A' && item.scmid!='B'"  ng-click='$ctrl.deleteScm(item.scmid)'></span>
 		</div>
 		<!-- 添加按钮 -->
 		<div
 			class="padd5"
-			ng-click='$ctrl.newAddShow();$ctrl.isCollapsed=!$ctrl.isCollapsed'>
+			ng-click='$ctrl.newAddShow();'>
 			<span class="plus"></span>
 		</div>
 		<!-- 下拉按钮 -->
-		<span
+		<span()
 			ng-click="$ctrl.isCollapsed=!$ctrl.isCollapsed"
 			ng-class="{'active' : $ctrl.isCollapsed!=true}"
 			class="SelectDownBox">
@@ -35,264 +36,251 @@
 </header>
 
 <div id="_body_"  uib-collapse="!$ctrl.isCollapsed">
-		<div class="btn-group pull-right btnSave">
-			<label
-				class="btn btn-primary pull-right"
-				style="margin:0 10px;"
-				ng-click='$ctrl.deleteScm($ctrl.addScmInfo.scmid)'>
-				删除
-			</label>
-			<label
-				class="btn btn-primary pull-right"
-				ng-click="$ctrl.saveScm()">
-				<span >保存</span>
-			</label>
+	<div class="btn-group pull-right btnSave">
+		<label
+			class="btn btn-primary pull-right"
+			style="margin:0 10px;"
+			ng-click='$ctrl.deleteScm($ctrl.addScmInfo.scmid)'>
+			删除
+		</label>
+		<label
+			class="btn btn-primary pull-right"
+			ng-click="$ctrl.saveScm()">
+			<span >保存</span>
+		</label>
+	</div>
+	<section class=" col-xs-6 wid45 ">
+		<div class="padd10 form-inline">
+			<span class="tit pull-left">自选方案</span>
+			<input  type="text" ng-model='$ctrl.addScmInfo.scmNm' required placeholder="未命名" >
 		</div>
-		<section class=" col-xs-6 wid45 ">
-			<div class="padd10 form-inline">
-				<span class="tit pull-left">自选方案</span>
-				<input  type="text" ng-model='$ctrl.addScmInfo.scmNm' required placeholder="未命名" >
+		<div class="padd10">
+			<span class="tit pull-left">方向</span>
+			<div class="btn-group">
+				<label class="btn btn-default" ng-model="$ctrl.addScmInfo.drc" uib-btn-radio='"-1"' >买入</label>
+				<label class="btn btn-default" ng-model="$ctrl.addScmInfo.drc" uib-btn-radio='"1"' >卖出</label>
 			</div>
-			<div class="padd10">
-				<span class="tit pull-left">方向</span>
-				<div class="btn-group">
-					<label class="btn" ng-model="$ctrl.addScmInfo.drc" uib-btn-radio='"-1"' >买入</label>
-					<label class="btn" ng-model="$ctrl.addScmInfo.drc" uib-btn-radio='"1"' >卖出</label>
-				</div>
+		</div>
+		<div class="padd10 hei53">
+			<span class="tit pull-left">债券类型</span>
+			<label class="btn pull-left" 
+				ng-model="$ctrl.addScmInfo.bondTp"
+				uib-btn-checkbox
+				btn-checkbox-true="''"
+				ng-click='$ctrl.addScmInfo.bondTpSelecteds={}'>全部</label>
+			<div class="btn-group">
+				<label
+					ng-repeat='(key,item) in NetBondquotationService.bondTp.values1' 
+					class="btn test"
+					ng-model="$ctrl.addScmInfo.bondTpSelecteds[key]"
+					uib-btn-checkbox
+					btn-checkbox-true="item.value"
+					ng-click='$ctrl.checkedUpAll(item)'>{{item.name}}
+				</label>
+				<div class="spacePlace"></div><br>
+				<label
+					ng-repeat='(key,item) in NetBondquotationService.bondTp.values2 ' 
+					class="btn"
+					ng-model="$ctrl.addScmInfo.bondTpSelecteds[key]"
+					uib-btn-checkbox
+					btn-checkbox-true="item.value"
+					ng-click='$ctrl.checkedUpAll(item)'>{{item.name}}
+				</label>
 			</div>
-			<div class="padd10">
-				<span class="tit pull-left">债券类型</span>
-				<label class="btn pull-left" 
-					ng-model="$ctrl.addScmInfo.bondTp"
+		</div>
+		<div class="padd10">
+			<span class="tit pull-left">{{NetBondquotationService.sbjRtg.name}}</span>
+			<div class=" btn-group">
+				<label class="btn"
+					ng-model="$ctrl.addScmInfo.sbjRtg"
 					uib-btn-checkbox
 					btn-checkbox-true="''"
-					ng-click='$ctrl.addScmInfo.bondTpSelecteds={}'>全部</label>
-				<div class="btn-group">
-					<label
-						ng-repeat='(key,item) in NetBondquotationService.bondTp.values1' 
-						class="btn test"
-						ng-model="$ctrl.addScmInfo.bondTpSelecteds[key]"
-						uib-btn-checkbox
-						btn-checkbox-true="item.value"
-						ng-click='$ctrl.checkedUpAll(item)'>{{item.name}}
-					</label>
-					<div class="spacePlace"></div><br>
-					<label
-						ng-repeat='(key,item) in NetBondquotationService.bondTp.values2 ' 
-						class="btn"
-						ng-model="$ctrl.addScmInfo.bondTpSelecteds[key]"
-						uib-btn-checkbox
-						btn-checkbox-true="item.value"
-						ng-click='$ctrl.checkedUpAll(item)'>{{item.name}}
-					</label>
-					
-				</div>
+					ng-click='$ctrl.addScmInfo.sbjRtgSelecteds={}' >全部
+				</label>
+				<label class="btn"
+					ng-repeat='(key,item) in NetBondquotationService.sbjRtg.value'
+					ng-model="$ctrl.addScmInfo.sbjRtgSelecteds[key]"
+					uib-btn-checkbox
+					btn-checkbox-true="item.value"
+					ng-click='$ctrl.allOrNoAll()' >{{item.name}}
+				</label>
 			</div>
-			<div class="padd10">
-				<span class="tit pull-left">{{NetBondquotationService.sbjRtg.name}}</span>
-				<div class=" btn-group">
-					<label class="btn"
-						ng-model="$ctrl.addScmInfo.sbjRtg"
-						uib-btn-checkbox
-						btn-checkbox-true="''"
-						ng-click='$ctrl.addScmInfo.sbjRtgSelecteds={}' >全部
-					</label>
-					<label class="btn"
-						ng-repeat='(key,item) in NetBondquotationService.sbjRtg.value'
-						ng-model="$ctrl.addScmInfo.sbjRtgSelecteds[key]"
-						uib-btn-checkbox
-						btn-checkbox-true="item.value"
-						ng-click='$ctrl.allOrNoAll()' >{{item.name}}
-					</label>
-				</div>
-
+		</div>
+		<div class="padd10 mar_T14">
+			<span class="tit pull-left">{{NetBondquotationService.dbtitmRtg.name}}</span>
+			<div class="btn-group">
+				<label class="btn"
+					ng-model="$ctrl.addScmInfo.dbtitmRtg"
+					uib-btn-checkbox
+					btn-checkbox-true="''"
+					ng-click='$ctrl.addScmInfo.dbtitmRtgSelecteds={}' >全部
+				</label>
+				<label class="btn"
+					ng-repeat='(key,item) in NetBondquotationService.dbtitmRtg.value'
+					ng-model="$ctrl.addScmInfo.dbtitmRtgSelecteds[key]"
+					uib-btn-checkbox
+					btn-checkbox-true="item.value"
+					ng-click='$ctrl.allOrNoAll()' >{{item.name}}
+				</label>
 			</div>
-			<div class="padd10 mar_T14">
-				<span class="tit pull-left">{{NetBondquotationService.dbtitmRtg.name}}</span>
-				<div class="btn-group">
-					<label class="btn"
-						ng-model="$ctrl.addScmInfo.dbtitmRtg"
-						uib-btn-checkbox
-						btn-checkbox-true="''"
-						ng-click='$ctrl.addScmInfo.dbtitmRtgSelecteds={}' >全部
-					</label>
-					<label class="btn"
-						ng-repeat='(key,item) in NetBondquotationService.dbtitmRtg.value'
-						ng-model="$ctrl.addScmInfo.dbtitmRtgSelecteds[key]"
-						uib-btn-checkbox
-						btn-checkbox-true="item.value"
-						ng-click='$ctrl.allOrNoAll()' >{{item.name}}
-					</label>
-				</div>
+		</div>
+		<div class="padd10">
+			<span class="tit pull-left">{{NetBondquotationService.wrght.name}}</span>
+			<div class="btn-group">
+				<label class="btn"
+					ng-model="$ctrl.addScmInfo.wrght"
+					uib-btn-checkbox
+					btn-checkbox-true="''"
+					ng-click='$ctrl.addScmInfo.wrghtSelecteds={}' >全部
+				</label>
+				<label class="btn"
+					ng-repeat='(key,item) in NetBondquotationService.wrght.value'
+					ng-model="$ctrl.addScmInfo.wrghtSelecteds[key]"
+					uib-btn-checkbox
+					btn-checkbox-true="item.value"
+					ng-click='$ctrl.allOrNoAll($ctrl.addScmInfo.wrghtSelecteds,key)' >{{item.name}}
+				</label>
 			</div>
-			<div class="padd10">
-				<span class="tit pull-left">{{NetBondquotationService.wrght.name}}</span>
-				<div class="btn-group">
-					<label class="btn"
-						ng-model="$ctrl.addScmInfo.wrght"
-						uib-btn-checkbox
-						btn-checkbox-true="''"
-						ng-click='$ctrl.addScmInfo.wrghtSelecteds={}' >全部
-					</label>
-					<label class="btn"
-						ng-repeat='(key,item) in NetBondquotationService.wrght.value'
-						ng-model="$ctrl.addScmInfo.wrghtSelecteds[key]"
-						uib-btn-checkbox
-						btn-checkbox-true="item.value"
-						ng-click='$ctrl.allOrNoAll($ctrl.addScmInfo.wrghtSelecteds,key)' >{{item.name}}
-					</label>
-				</div>
+		</div>
+		<div class="padd10">
+			<span class="tit pull-left">{{NetBondquotationService.crclMkt.name}}</span>
+			<div class=" btn-group">
+				<label class="btn"
+					ng-model="$ctrl.addScmInfo.crclMkt"
+					uib-btn-checkbox
+					btn-checkbox-true="''"
+					ng-click='$ctrl.addScmInfo.crclMktSelecteds={}' >全部
+				</label>
+				<label class="btn"
+					ng-repeat='(key,item) in NetBondquotationService.crclMkt.value'
+					ng-model="$ctrl.addScmInfo.crclMktSelecteds[key]"
+					uib-btn-checkbox
+					btn-checkbox-true="item.value"
+					ng-click='$ctrl.allOrNoAll($ctrl.addScmInfo.crclMktSelecteds,key)' >{{item.name}}
+				</label>
 			</div>
-			<div class="padd10">
-				<span class="tit pull-left">{{NetBondquotationService.crclMkt.name}}</span>
-				<div class=" btn-group">
-					<label class="btn"
-						ng-model="$ctrl.addScmInfo.crclMkt"
-						uib-btn-checkbox
-						btn-checkbox-true="''"
-						ng-click='$ctrl.addScmInfo.crclMktSelecteds={}' >全部
-					</label>
-					<label class="btn"
-						ng-repeat='(key,item) in NetBondquotationService.crclMkt.value'
-						ng-model="$ctrl.addScmInfo.crclMktSelecteds[key]"
-						uib-btn-checkbox
-						btn-checkbox-true="item.value"
-						ng-click='$ctrl.allOrNoAll($ctrl.addScmInfo.crclMktSelecteds,key)' >{{item.name}}
-					</label>
-				</div>
+		</div>
+		<div class="padd10 form-inline">
+			<span class="tit pull-left">行业</span>
+			<new-select  class='pull-left' ng-model='$ctrl.addScmInfo.idySelecteds' multiple items='NetBondquotationService.section.data'></new-select>
+			<span class="clearSelect " ng-click="$ctrl.addScmInfo.idySelecteds=[]"></span>
+		</div>
+		<div class="padd10 form-inline">
+			<span class="tit pull-left ">年份</span>
+			<new-select  class='pull-left' id='idy'  ng-model='$ctrl.addScmInfo.yrSelecteds' multiple items='NetBondquotationService.year.data'></new-select>
+			<span class="clearSelect" ng-click="$ctrl.addScmInfo.yrSelecteds=[]"></span>
+		</div>
+		<!-- <div style="clear: both;"></div> -->
+	</section>
+	<section class=" col-xs-6 wid55">
+		<div class="padd10 form-inline">
+			<span class="tit pull-left">收益率%</span>
+			<span  ng-repeat='(key,item) in NetBondquotationService.yldrto.value; ' >
+				<input type="text"
+					ng-model='$ctrl.addScmInfo.yldrtoSelecteds[key]'
+					placeholder="请输入大于0 的数">
+				<span ng-if="$index==0">&nbsp;至&nbsp;</span>
+			</span>
+		</div>
+		<div class="padd10 form-inline">
+			<span class="tit pull-left">估值BP差</span>
+			<span  ng-repeat='(key,item) in NetBondquotationService.valtbpMns.value; ' >
+				<input type="text"
+					ng-model='$ctrl.addScmInfo.valtbpMnsSelecteds[key]'
+					placeholder="请输入大于0 的数">
+				<span ng-if="$index==0">&nbsp;至&nbsp;</span>
+			</span>
+		</div>
+		<div class="padd10 form-inline">
+			<span class="tit pull-left">剩余期限</span>
+			<div class=" btn-group">
+				<label class="btn"
+					ng-model="$ctrl.addScmInfo.rsdtrm"
+					uib-btn-checkbox
+					btn-checkbox-true="''"
+					ng-click='$ctrl.addScmInfo.rsdtrmSelecteds={}' >全部
+				</label>
+				<label class="btn"
+					ng-repeat='(key,item) in NetBondquotationService.rsdtrm.value'
+					ng-model="$ctrl.addScmInfo.rsdtrmSelecteds[key]"
+					uib-btn-checkbox
+					btn-checkbox-true="item.value"
+					ng-click='$ctrl.allOrNoAll($ctrl.addScmInfo.rsdtrmSelecteds,key)' >{{item.name}}
+				</label>
 			</div>
-			<div class="padd10 form-inline">
-				<span class="tit pull-left">行业</span>
-				<muti-select ng-class='{className: true}'
-					items="NetBondquotationService.section.data"
-					ng-model ='$ctrl.addScmInfo.idySelecteds'>
-				</muti-select>
-				<span class="clearSelect" ng-click="$ctrl.addScmInfo.idySelecteds=[]"></span>
+		</div>
+		<div class="padd10 mar_T14">
+			<span class="tit pull-left">发行人</span>
+			<!-- 搜索框 -->
+			<div class=" peoplePro pull-left" ng-init ="$ctrl.SearchSelected ='' ">
+				<input type="text"
+					ng-model="$ctrl.SearchSelected"
+					uib-typeahead="list as list.organizationFullName  for list in  $ctrl.fullName($viewValue)"
+					typeahead-on-select='$ctrl.searchFullName($ctrl.SearchSelected)'
+					placeholder="">
 			</div>
-			<div class="padd10 form-inline">
-				<span class="tit pull-left ">年份</span>
-				<muti-select
-					ng-class='{className: true}'
-					items="NetBondquotationService.year.data"
-					ng-model ='$ctrl.addScmInfo.yrSelecteds'>
-				</muti-select>
-				<span class="clearSelect"
-					ng-click="$ctrl.addScmInfo.yrSelecteds=[]">
-				</span>
+			<span class="clearSelect" ng-click='$ctrl.SearchSelected ="";$ctrl.addScmInfo.issuPsn=""'></span>
+		</div>
+		<div class="padd10">
+			<span class="tit pull-left">{{NetBondquotationService.issuEntp.name}}</span>
+			<div class="btn-group">
+				<label class="btn"
+					ng-model="$ctrl.addScmInfo.issuEntp"
+					uib-btn-checkbox
+					btn-checkbox-true="''"
+					ng-click='$ctrl.addScmInfo.issuEntpSelecteds={}' >全部
+				</label>
+				<label class="btn"
+					ng-repeat='(key,item) in NetBondquotationService.issuEntp.value'
+					ng-model="$ctrl.addScmInfo.issuEntpSelecteds[key]"
+					uib-btn-checkbox
+					btn-checkbox-true="item.value"
+					ng-click='$ctrl.allOrNoAll($ctrl.addScmInfo.issuEntpSelecteds,key)' >{{item.name}}
+				</label>
 			</div>
-		</section>
-		<section class=" col-xs-6 wid55">
-			<div class="padd10 form-inline">
-				<span class="tit pull-left">收益率%</span>
-				<span  ng-repeat='(key,item) in NetBondquotationService.yldrto.value; ' >
-					<input type="text"
-						ng-model='$ctrl.addScmInfo.yldrtoSelecteds[key]'
-						placeholder="请输入大于0 的数">
-					<span ng-if="$index==0">&nbsp;至&nbsp;</span>
-				</span>
+		</div>
+		<div class="padd10">
+			<span class="tit pull-left">{{NetBondquotationService.wrnt.name}}</span>
+			<div class="wrap btn-group">
+				<label
+					class="btn"
+					ng-model="$ctrl.addScmInfo.wrnt"
+					uib-btn-checkbox
+					btn-checkbox-true="''"
+					ng-click='$ctrl.addScmInfo.wrntSelecteds={}' >全部
+				</label>
+				<label
+					class="btn"
+					ng-repeat='(key,item) in NetBondquotationService.wrnt.value'
+					ng-model="$ctrl.addScmInfo.wrntSelecteds[key]" uib-btn-checkbox
+					btn-checkbox-true="item.value"
+					ng-click='$ctrl.allOrNoAll($ctrl.addScmInfo.wrntSelecteds,key)' >{{item.name}}
+				</label>
 			</div>
-			<div class="padd10 form-inline">
-				<span class="tit pull-left">估值BP差</span>
-				<span  ng-repeat='(key,item) in NetBondquotationService.valtbpMns.value; ' >
-					<input type="text"
-						ng-model='$ctrl.addScmInfo.valtbpMnsSelecteds[key]'
-						placeholder="请输入大于0 的数">
-					<span ng-if="$index==0">&nbsp;至&nbsp;</span>
-				</span>
+		</div>
+		<div class="padd10">
+			<span class="tit pull-left">{{NetBondquotationService.face.name}}</span>
+			 <div class="btn-group">
+			 	<label class="btn"
+					ng-model="$ctrl.addScmInfo.face"
+					uib-btn-checkbox
+					btn-checkbox-true="''"
+					ng-click='$ctrl.addScmInfo.faceSelecteds={}' >全部
+				</label>
+				<label class="btn"
+					ng-repeat='(key,item) in NetBondquotationService.face.value'
+					ng-model="$ctrl.addScmInfo.faceSelecteds[key]" uib-btn-checkbox
+					btn-checkbox-true="item.value"
+					ng-click='$ctrl.allOrNoAll($ctrl.addScmInfo.faceSelecteds,key)' >{{item.name}}
+				</label>
 			</div>
-			<div class="padd10 form-inline">
-				<span class="tit pull-left">剩余期限</span>
-				<div class=" btn-group">
-					<label class="btn"
-						ng-model="$ctrl.addScmInfo.rsdtrm"
-						uib-btn-checkbox
-						btn-checkbox-true="''"
-						ng-click='$ctrl.addScmInfo.rsdtrmSelecteds={}' >全部
-					</label>
-					<label class="btn"
-						ng-repeat='(key,item) in NetBondquotationService.rsdtrm.value'
-						ng-model="$ctrl.addScmInfo.rsdtrmSelecteds[key]"
-						uib-btn-checkbox
-						btn-checkbox-true="item.value"
-						ng-click='$ctrl.allOrNoAll($ctrl.addScmInfo.rsdtrmSelecteds,key)' >{{item.name}}
-					</label>
-				</div>
-			</div>
-			<div class="padd10 mar_T14">
-				<span class="tit pull-left">发行人</span>
-				<!-- 搜索框 -->
-				<div class=" peoplePro" ng-init ="$ctrl.SearchSelected ='' ">
-					<input type="text"
-						ng-model="$ctrl.SearchSelected"
-						uib-typeahead="list as list.organizationFullName  for list in  $ctrl.fullName($viewValue)"
-						typeahead-on-select='$ctrl.searchFullName($ctrl.SearchSelected)'
-						placeholder="">
-				</div>
-				<span class="clearSelect" ng-click='$ctrl.SearchSelected ="";$ctrl.addScmInfo.issuPsn=""'></span>
-			</div>
-			<div class="padd10">
-				<span class="tit pull-left">{{NetBondquotationService.issuEntp.name}}</span>
-				<div class="btn-group">
-					<label class="btn"
-						ng-model="$ctrl.addScmInfo.issuEntp"
-						uib-btn-checkbox
-						btn-checkbox-true="''"
-						ng-click='$ctrl.addScmInfo.issuEntpSelecteds={}' >全部
-					</label>
-					<label class="btn"
-						ng-repeat='(key,item) in NetBondquotationService.issuEntp.value'
-						ng-model="$ctrl.addScmInfo.issuEntpSelecteds[key]"
-						uib-btn-checkbox
-						btn-checkbox-true="item.value"
-						ng-click='$ctrl.allOrNoAll($ctrl.addScmInfo.issuEntpSelecteds,key)' >{{item.name}}
-					</label>
-				</div>
-			</div>
-			<div class="padd10">
-				<span class="tit pull-left">{{NetBondquotationService.wrnt.name}}</span>
-				<div class="wrap btn-group">
-					<label
-						class="btn"
-						ng-model="$ctrl.addScmInfo.wrnt"
-						uib-btn-checkbox
-						btn-checkbox-true="''"
-						ng-click='$ctrl.addScmInfo.wrntSelecteds={}' >全部
-					</label>
-					<label
-						class="btn"
-						ng-repeat='(key,item) in NetBondquotationService.wrnt.value'
-						ng-model="$ctrl.addScmInfo.wrntSelecteds[key]" uib-btn-checkbox
-						btn-checkbox-true="item.value"
-						ng-click='$ctrl.allOrNoAll($ctrl.addScmInfo.wrntSelecteds,key)' >{{item.name}}
-					</label>
-				</div>
-			</div>
-			<div class="padd10">
-				<span class="tit pull-left">{{NetBondquotationService.face.name}}</span>
-				 <div class="btn-group">
-				 	<label class="btn"
-						ng-model="$ctrl.addScmInfo.face"
-						uib-btn-checkbox
-						btn-checkbox-true="''"
-						ng-click='$ctrl.addScmInfo.faceSelecteds={}' >全部
-					</label>
-					<label class="btn"
-						ng-repeat='(key,item) in NetBondquotationService.face.value'
-						ng-model="$ctrl.addScmInfo.faceSelecteds[key]" uib-btn-checkbox
-						btn-checkbox-true="item.value"
-						ng-click='$ctrl.allOrNoAll($ctrl.addScmInfo.faceSelecteds,key)' >{{item.name}}
-					</label>
-				</div>
-			</div>
-			<div class="padd10 form-inline" ng-init="$ctrl.addScmInfo.rgonSelecteds=[]" >
-				<span class="tit pull-left">地区</span>
-				<muti-select
-					ng-class='{className: true}'
-					items="NetBondquotationService.location.data"
-					ng-model ='$ctrl.addScmInfo.rgonSelecteds'>
-					<span uib-tooltip='{{$ctrl.addScmInfo.rgonSelecteds}}'></span>
-				</muti-select>
-				<span class="clearSelect" ng-click="$ctrl.addScmInfo.rgonSelecteds=[]"></span>
-			</div>
-		</section>
-	</div>
+		</div>
+		<div class="padd10 form-inline" ng-init="$ctrl.addScmInfo.rgonSelecteds=[]" >
+			<span class="tit pull-left">地区</span>
+			<new-select class='pull-left' ng-model='$ctrl.addScmInfo.rgonSelecteds' multiple items='NetBondquotationService.location.data'></new-select>
+			<span class="clearSelect" ng-click="$ctrl.addScmInfo.rgonSelecteds=[]"></span>
+		</div>
+		<!-- <div style="clear: both;"></div> -->
+	</section>
+	<div style="clear: both;"></div>
+</div>

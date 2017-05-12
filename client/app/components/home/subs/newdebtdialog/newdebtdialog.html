@@ -12,75 +12,105 @@
 		</div>
 		<div class="modal-body ng-scope newdebtdialog-body"  >
 			<div class="modal-body_one">
-				<p>联系人：<span>{{$ctrl.allnewdebtobject.instNm}}</span>-<span>{{$ctrl.allnewdebtobject.teamNm}}</span>-<span>{{$ctrl.allnewdebtobject.position}}投资经理</span>- <span>{{$ctrl.allnewdebtobject.userNm}}</span><span class="modal-body_span" ng-click="$ctrl.iWantDstrs()">我要分销</span> </p>
+				<p>联系人：<span>{{$ctrl.allnewdebtobject.instNm | addTwoLine}}</span>-<span>{{$ctrl.allnewdebtobject.teamNm | addTwoLine}}</span>-<span>{{$ctrl.allnewdebtobject.position | addTwoLine}}</span>- <span>{{$ctrl.allnewdebtobject.userNm | addTwoLine}}</span><span class="modal-body_span" >{{$ctrl.allnewdebtobject.roleId | rolefilter }}</span> </p>
+				<!-- ng-click="$ctrl.iWantDstrs()"我要申购方法 -->
 			</div>
 			<div class="modal-body_two">
-				<div class="modal-body_two_lf">{{$ctrl.Infolist_newdebt.bondNm}}</div>
+				<div class="modal-body_two_lf">{{$ctrl.Infolist_newdebt.bondNm | addTwoLine}}</div>
 				<div class="modal-body_two_bot">
-					<p><span>债券期限：{{$ctrl.Infolist_newdebt.trm}}</span><span>发行规模（亿）：{{$ctrl.Infolist_newdebt.issuNum}}</span></p>
+				<!-- <p><span>债券期限：{{$ctrl.Infolist_newdebt.trm | addTwoLine}}<e ng-if="$ctrl.Infolist_newdebt.trm!=0">D</e></span> -->
+				<p><span>债券期限：{{$ctrl.Infolist_newdebt.trmText | addTwoLine}}</span>
+					<span>发行规模(亿)：{{$ctrl.Infolist_newdebt.issuNum | addTwoLine}}</span></p>
 					<p><span>申购利率(%)：
-					<!-- {{$ctrl.Infolist_newdebt.sbrbIntrtLwrLmt}}-{{$ctrl.Infolist_newdebt.sbrbIntrtUpLm}} -->
+					
+					<e ng-if="$ctrl.Infolist_newdebt.sbrbIntrtLwrLmt==0 && $ctrl.Infolist_newdebt.sbrbIntrtUpLm==100.0000">--</e><e ng-if="$ctrl.Infolist_newdebt.sbrbIntrtLwrLmt!=0||$ctrl.Infolist_newdebt.sbrbIntrtUpLm!=100.0000">{{$ctrl.Infolist_newdebt.sbrbIntrtLwrLmt}}-{{$ctrl.Infolist_newdebt.sbrbIntrtUpLm}} </e>
+					<!-- <e ng-show="$ctrl.Infolist_newdebt.sbrbIntrtLwrLmtBoder">[</e>   <e ng-show="!$ctrl.Infolist_newdebt.sbrbIntrtLwrLmtBoder">(</e> 
+					{{$ctrl.Infolist_newdebt.sbrbIntrtLwrLmt | dotFilter}}-{{$ctrl.Infolist_newdebt.sbrbIntrtUpLm | dotFilter }}
+					 <e ng-show="!$ctrl.Infolist_newdebt.sbrbIntrtUpLmBoder">)</e><e ng-show="$ctrl.Infolist_newdebt.sbrbIntrtUpLmBoder">]</e> -->
 
-					<e ng-show="$ctrl.Infolist_newdebt.sbrbIntrtLwrLmtBoder">[</e>   <e ng-show="!$ctrl.Infolist_newdebt.sbrbIntrtLwrLmtBoder">(</e> {{$ctrl.Infolist_newdebt.sbrbIntrtLwrLmt | dotFilter}}-{{$ctrl.Infolist_newdebt.sbrbIntrtUpLm | dotFilter }} <e ng-show="!$ctrl.Infolist_newdebt.sbrbIntrtUpLmBoder">)</e><e ng-show="$ctrl.Infolist_newdebt.sbrbIntrtUpLmBoder">]</e>
-
-					</span><span>主/债评级：{{$ctrl.Infolist_newdebt.sbjRtg}}/{{$ctrl.Infolist_newdebt.dbtItmRtg}}</span></p>
+					</span><span>主/债评级：{{$ctrl.Infolist_newdebt.sbjRtg | addTwoLine}}/{{$ctrl.Infolist_newdebt.dbtItmRtg | addTwoLine}}</span></p>
 				</div>
 			</div>
 			<div class="modal-body_three">
 				<ul>
-					<li>全场倍数：{{$ctrl.Infolist_newdebt.whlTmsNum}}<i></i></li>
-					<li>边际利率：{{$ctrl.Infolist_newdebt.bdyIntrt}}<i></i></li>
-					<li>边际倍数：{{$ctrl.Infolist_newdebt.bdyTmsNum}}<i></i></li>
-					<li class="modal-body_three_li">截标时间：{{$ctrl.Infolist_newdebt.clsbidTm}}</li>
+					<li>全场倍数：{{$ctrl.Infolist_newdebt.whlTmsNum | addTwoLine}}<i></i></li>
+					<li>边际利率：{{$ctrl.Infolist_newdebt.bdyIntrt | addTwoLine}}<i></i></li>
+					<li>边际倍数：{{$ctrl.Infolist_newdebt.bdyTmsNum | addTwoLine}}<i></i></li>
+					<li class="modal-body_three_li">截标时间：{{$ctrl.Infolist_newdebt.clsbidTm | addTwoLine}}</li>
 				</ul>
 			</div>
-			<form action="" name="myForm" ng-submit="$ctrl.addSbrbList()">
-				<div class="modal-body_middle">
+			<form  name="myForm" ng-submit="$ctrl.addSbrbList()">
+				<div class="modal-body_middle" iscroll>
 					<div class="modal-body_four">
-					申购量占发行量的比例(%)：{{addSbrblistInfo_num | dotFilter }}
+					申购量占发行量的比例： <e ng-if="$ctrl.addSbrblistInfo_num>0">{{$ctrl.addSbrblistInfo_num | dotFilter| addTwoLine  }}%</e><e ng-if="$ctrl.addSbrblistInfo_num==0">--</e>
+					<!-- <span class="modal-body_four_sp1"></span> -->
+					<!-- <span  class="modal-body_four_sp1">	11</span> -->
+					<i id="cala" ng-click='$ctrl.healdCalculatorService.open($ctrl.Infolist_newdebt);'></i>
+					<!-- <a href="javascript:0;" class="cala_text">综收计算器</a> -->
+					<span class="cala_text"  ng-click='$ctrl.healdCalculatorService.open($ctrl.Infolist_newdebt);'>综收计算器</span>
 					</div>
-					<div class="modal-body_five">
+					<div class="modal-body_five" >
 
 						 <table  class=" table-responsive  table my_table">
 								<thead>
 									<tr style="background:#273B46;" >
-										<th ></th>
-										<th >利率(%)</th>
-										<th>申购量(万)</th>
+										<th style="width:6px;"></th>
+										<th >票面利率(%)</th>
+										<th>综收利率(%)</th>
+										<th>申购量(亿)</th>
 										<th> 交割方式</th>
 										<th >销售方式</th>	
-										<th >备注</th>
-										
+										<th>返费(元)</th>
+										<th style="width:120px;">备注</th>
 									</tr>
 								</thead >
+								<!-- <input type="text" id="account" name="account" ng-model="$ctrl.account" validation-tooltip="$ctrl.validdationAccount($value)">
+ * -->
 								<tbody style="border: none; "  ng-inint="index == 0">
 									<tr  ng-repeat="item in $ctrl.addSbrblistInfo.bondSbrbVOList track by $index">
-										<td >{{item.num}}</td>
-										<td><input type="text"  ng-model="item.sbrbIntrt"></td>
-										<td><input type="text" ng-model="item.sbrbNum"></td>
-										<td><select name=""  class="td_select" ng-model="item.dlvTp" name= 'dlvTp '>
+										<td style="width:6px;" >{{item.num}}</td>
+										<td>
+										<!-- ng-keyup -->
+										<input type="text" 
+										ng-disabled="item.sellrMod=='1'" 
+										 name="sbrbIntrt"  
+										 ng-model="item.sbrbIntrt" 
+										 ng-change="$ctrl.clcCprsvPftIntrts(item)" validation-tooltip="$ctrl.sbrbIntrtdate($value)">
+										 </td>
+										<td>
+										<input type="text" name="cprsvPftIntrt" 
+										ng-disabled="item.sellrMod=='2'"
+										ng-model="item.cprsvPftIntrt"   ng-change="$ctrl.clcSbrbIntrts(item)"  validation-tooltip="$ctrl.cprsvPftIntrtdate($value)">
+										</td>
+										<td>
+										<input type="text"  name="sbrbNum" ng-model="item.sbrbNum"  ng-change="$ctrl.rateAdd()" validation-tooltip="$ctrl.sbrbNumVdate($value)">
+										</td>
+										<td><select name="" class="td_select" ng-model="item.dlvTp" name= 'dlvTp ' >
 											<option value="1" ng-selected="1">分销</option>
 											<option value="2">上市</option>
 										</select></td>
 										<td>
+										<!-- ng-selected="item.sellrMod" -->
 										<select name=""  class="td_select" ng-model="item.sellrMod" name= 'sellrMod ' >
-											<option value="1" ng-selected="1">折价</option>
-											<option value="2">单反</option>
+											<option value="1" >折价</option>
+											<option value="2" >单反</option>
 										</select>
 										</td>
-										<td><input type="text" ng-model="item.rmrk" class="myfenxiao" maxlength="10"></td>
+										<td><input type="text"   name="retFee"   ng-model="item.retFee "  validation-tooltip="$ctrl.retFeedate($value)"></td>
+										<td><input type="text" ng-model="item.rmrk" class="myfenxiao" name="rmrk"   maxlength="10" placeholder="最多输入10个字.." ></td>
 									</tr> 
 									
 								</tbody>
+								
 					</table>
 					</div>
-					<div class="modal-body_footer">
-						<p> <span class="span_class"><img src="../../../../../resource/images/icon_addlist_hover.png" height="16" width="18" alt=""></span><span ng-click="$ctrl.addnewDebtin($ctrl.addnewDebtinInfo)">增加标位</span><span class="modal-body_footer_sa" ng-click="$ctrl.clearInfo()">清空信息</span></p>
+					<div class="modal-body_footer" >
+						<p> <span class="span_class" ng-click="$ctrl.addnewDebtin($ctrl.addnewDebtinInfo)"><img src="../../../../../resource/images/icon_addlist_hover.png" height="16" width="18" alt=""></span><span ng-click="$ctrl.addnewDebtin($ctrl.addnewDebtinInfo)">增加标位</span><span class="modal-body_footer_sa" ng-click="$ctrl.clearInfo()">清空信息</span></p>
 					</div>
 				</div>
 				<div class="modal_footer_end">
 					<input  type="submit" class="btn  modal_footer_end_button" style="background:#FF671B;" value="申购"/>
-				    <button type="button" class="btn " ng-click="$ctrl.closenewDebt()" >取消</button>
+				    <button type="button" class="btn " ng-click="$ctrl.closenewDebt()" style="background:#677983;">取消</button>
 				</div>
 			</form>
 		</div>

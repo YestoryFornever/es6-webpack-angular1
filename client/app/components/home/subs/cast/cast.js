@@ -2,7 +2,7 @@ app.config(($stateProvider, $urlRouterProvider) => {
         "ngInject";
         $stateProvider
             .state('home.cast', {
-                url: '/cast',
+                url: '/cast?:lid?:state',
                 views: {
                     'main@home': {
                         component: 'cast'

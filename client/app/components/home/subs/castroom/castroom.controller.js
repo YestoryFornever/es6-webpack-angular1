@@ -4,28 +4,21 @@ class CastroomController {
         var that = this;
         this.iconUrl = "";
         this.pagetabService = pagetabService;
-        // this.uname = BONDCONFIG.USERINFO.userName;
-        // // 获取机构
-        // netCastService.userOrg({lid: this.lid}).then(function (data) {
-        //     console.log('用户信息');
-        //     if (data.data.data.userName == null || data.data.data.userName == "" || data.data.data.organizationShortName == null || data.data.data.organizationShortName == "") {
-        //         that.uname = "游客";
-        //         that.iconUrl = "../../../../../resource/images/ico_yk.png";
-        //     }
-        //     else {
-        //         that.uname = BONDCONFIG.USERINFO.userName + " | " + data.data.data.organizationShortName;
-        //         that.iconUrl = BONDCONFIG.USERINFO.iconUrl;
-        //     }
-        //     console.log(data);
-        // });
         this.height = window.innerHeight - 120;
         this.msgScroll = window.innerHeight - 350;
         // 获取uid, lid
-        this.uid = BONDCONFIG.USERINFO.uid + 1000000000;
         this.lid = BONDCONFIG.USERINFO.lid;
         this.live_id = sessionStorage.getItem("lid");
         this.state = sessionStorage.getItem("state");
-
+        this.user_role = sessionStorage.getItem("user_role");
+        if (this.user_role == 1) {
+            this.uid = BONDCONFIG.USERINFO.uid + 1100000000;
+            this.apiUid = BONDCONFIG.USERINFO.uid;
+        }
+        if (this.user_role == 2) {
+            this.uid = BONDCONFIG.USERINFO.uid + 1200000000;
+            this.apiUid = BONDCONFIG.USERINFO.uid;
+        }
         // 自由聊天和提问tab切换
         this.castActive = true;
         this.rightTabActive = true;
@@ -64,10 +57,11 @@ class CastroomController {
         this.showNormal = true;
 
         // 获取直播房间信息
+
         var info = {
             live_id: this.live_id,
-            uid: this.uid - 1000000000,
-            user_role: sessionStorage.getItem("user_role")
+            uid: this.apiUid,
+            user_role: this.user_role
         };
         console.log(info, "直播参数");
         netCastService.costlive(info).then(function (data) {
@@ -75,6 +69,7 @@ class CastroomController {
             if (data.data.status == "0") {
                 console.log(data, "直播间信息");
                 that.uname = data.data.data.user_name;
+                console.log(that.uname, "用户姓名");
                 that.iconUrl = data.data.data.head_url;
                 console.log(that.iconUrl);
                 that.his_id = data.data.data.his_url.split("play-")[1];
@@ -92,6 +87,7 @@ class CastroomController {
             cur_page: 1
         };
         netCastService.endMsg(params).then(function (data) {
+            console.log(data, "点播自由发言");
             that.endMsg = data.data.data.list;
         });
         // 滚动加载点播发言信息
@@ -142,11 +138,11 @@ class CastroomController {
         // 提问列表
         var questionParams = {
             live_id: this.live_id,
-            uid: this.uid - 1000000000,
+            uid: this.apiUid,
             cur_page: 1
         };
         netCastService.questionList(questionParams).then(function (data) {
-            console.log(data);
+            console.log(data, "点播提问列表");
             that.questionList = data.data.data.list;
         });
 
@@ -155,7 +151,7 @@ class CastroomController {
         that.questionMore = function () {
             var questionParams = {
                 live_id: this.live_id,
-                uid: this.uid - 1000000000,
+                uid: this.apiUid,
                 cur_page: n
             };
             netCastService.questionList(questionParams).then(function (data) {
@@ -253,20 +249,33 @@ class CastroomController {
             }
             // 监听公聊信息
             channel.bind("onPublicChat", function (event) {
-                console.log("公聊信息");
-                console.log(event);
-
+                console.log(event.data.senderUid, "公聊用户参数");
                 $timeout(function () {
+                    var id;
+                    console.log(event.data.senderUid, "获取公聊信息的id");
+                    if(event.data.senderUid.substring(0, 2) == 12) {
+                        id = event.data.senderUid - 1200000000
+                    }
+                    if(event.data.senderUid.substring(0, 2) == 11) {
+                        id = event.data.senderUid - 1100000000
+                    }
+                    var params = {
+                        userIdList: [
+                            id
+                        ]
+                    };
                     netCastService.iconUrl(params).then(function (data) {
                         console.log(data.data.data.iconUrl);
+                        var name = event.data.sender.substring(0, 2);
                         if (data.data.data.length > 0) {
-                            // if (event.data.sender == "游客") {
-                            //     event.data.iconUrl = "../../../../../resource/images/ico_yk.png";
-                            // }
-                            // else {
+                            if (name == "游客") {
+                                event.data.iconUrl = "../../../../../resource/images/ico_yk.png";
+                            }
+                            else {
                                 event.data.iconUrl = data.data.data[0].iconUrl;
-                            // }
+                            }
                             that.msgInfo.push(event.data);
+                            console.log(that.msgInfo, "监听公聊信息");
                         }
                         else {
                             that.msgInfo.push(event.data);
@@ -283,25 +292,35 @@ class CastroomController {
                 $timeout(function () {
                     var arr = [];
                     for (var i = 0; i < event.data.list.length; i++) {
-                        arr.push(event.data.list[i].qaownerId - 1000000000);
-                    }
+                        var data;
+                        if (event.data.list[i].qaownerId.substring(0, 2) == 12) {
+                            data = event.data.list[i].qaownerId - 1200000000;
+                        }
+                        if (event.data.list[i].qaownerId.substring(0, 2) == 11) {
+                            data = event.data.list[i].qaownerId - 1100000000;
+                        }
 
+                        // id的数组
+                        arr.push(data);
+                        console.log(arr, "问答id列表");
+                    }
                     netCastService.iconUrl({userIdList: arr}).then(function (data) {
-                        console.log(data);
+                        console.log(data, "问答信息");
                         for (var i = 0; i < data.data.data.length; i++) {
-                            // if (event.data.list[i].submitor == "游客") {
-                            //     event.data.list[i].answer = "../../../../../resource/images/ico_yk.png";
-                            //     that.questInfo.push(event.data.list[i]);
-                            // }
-                            // else {
+                            var name = event.data.list[i].submitor.substring(0, 2);
+                            console.log(name);
+                            if (name == "游客") {
+                                event.data.list[i].answer = "../../../../../resource/images/ico_yk.png";
+                                that.questInfo.push(event.data.list[i]);
+                            }
+                            else {
                                 event.data.list[i].answer = data.data.data[i].iconUrl;
                                 that.questInfo.push(event.data.list[i]);
-                            // }
+                            }
                         }
-                        console.log(event.data.list);
+                        console.log(event.data.list, "问答列表");
                         console.log(that.questInfo);
                     });
-                    console.log(event.data);
                 }, 500);
                 document.getElementById("scroll2").scrollTop = document.getElementById("scroll2").scrollHeight + 50;
             });
@@ -332,7 +351,8 @@ class CastroomController {
                                 "submitChat",
                                 info,
                                 function (result) {
-                                    var sendInfo = {
+                                    var sendInfo = {};
+                                    sendInfo = {
                                         content: result.data.content,
                                         richtext: result.data.content,
                                         senderUid: that.uid - 1000000000,
@@ -383,7 +403,8 @@ class CastroomController {
                                 function (result) {
                                     console.log(result.data);
                                     // 提问的时候
-                                    var questionText = {
+                                    var questionText = {};
+                                    questionText = {
                                         question: result.data.content,
                                         qaownerId: that.uid - 1000000000,
                                         submitor: that.uname,

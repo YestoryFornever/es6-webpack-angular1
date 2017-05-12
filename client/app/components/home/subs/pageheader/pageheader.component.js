@@ -2,10 +2,11 @@ app.component('pageheader', {
 	restrict: 'E',
 	bindings: {},
 	templateUrl: './pageheader.html',
-	controller: function($scope, $state,userStatusService, nowBondService, pagetabService, userStatusAuth, NetBondquotationService){
+	controller: function($scope, $state,userStatusService,healdCalculatorService, nowBondService, pagetabService, userStatusAuth, netBondTrialService){
 		"ngInject";
 		this.nowBondService = nowBondService;
-		$scope.NetBondquotationService = NetBondquotationService;
+		$scope.netBondTrialService = netBondTrialService;
+		$scope.healdCalculatorService = healdCalculatorService;
 		this.someFunction = function(item, model)
 		{
 			console.log(item, model);

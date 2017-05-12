@@ -4,15 +4,10 @@ h1,h2,h3,h4,h5,h6{
 	padding: 0;
 }
 .newdebt{
-	height:100%;
 	width:100%;
-	overflow:hidden;
-	font-size:12px;
-	color:#fff;
-	float:left;
-	position:relative;
-	left:0;
-	top:0;
+	height: 100%;
+	overflow:auto;
+	// color:#fff;
 	.shengoudialog{//申购第一层弹窗
 		display:block;
 		// display:none;
@@ -21,7 +16,7 @@ h1,h2,h3,h4,h5,h6{
 		background: #243841;
 		position:absolute;
 		left:35%;
-		top:0;
+		top:-40px;
 		z-index:500;
 		.shengoudialog-header{
 			width: 3rem;
@@ -82,18 +77,32 @@ h1,h2,h3,h4,h5,h6{
 		width:100%;
 		float:left;
 		background:#253942 ;
+
 		position:relative;
 		left:0;
 		top:0;
 		.newdebt_nav_lf{
-			display:inline-block;
+			// display:inline-block;
 		 	padding-left:.16rem;
 		 	height:.4rem;
-		 	width:auto;
+		 	width:2rem;
+
+		 	// width:28%;
 		 	float:left;
 		 	color:#ffeb62;
 		 	font-size: 18px;
 		 	border:none;
+			// width:100%
+			word-break:break-all;
+			text-overflow:ellipsis;
+			display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+			-webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+			-webkit-line-clamp: 1; /** 显示的行数 **/
+			overflow: hidden;  /** 隐藏超出的内容 **/
+
+
+
+		 	// background:green;
 		 	// font-weight:700;
 		 }
 		 span{
@@ -112,32 +121,87 @@ h1,h2,h3,h4,h5,h6{
 		.newdebt_nav_box{
 			height:.4rem;
 			line-height:.4rem;
-			width:60%;
-
+			width:62%;
+			// background:red ;
 			float:left;
 			li{
 				height: 100px;
 				width: 16%;
-				font-size:12px;
+				font-size:14px;
 				float:left;
 				text-align:center;
 				e{
-					font-size:12px;
+					font-size:14px;
 				}
 			}
+			li:nth-child(2){
+				width: 25%;
+			}
+			li:hover{
+				color:#fff;
+			}
 		}
+		.newdebt_nav_span_span{
+			display: inline-block;
+		    // float: right;
+		    height: .3rem;
+		    width: 1.2rem;
+    		line-height: .3rem;
+    		text-align: center;
+    		background:url("../../../../../resource/images/btn_calculator2_normal.png") no-repeat  left center;
+    		cursor: pointer;
+			position:absolute;
+			right:.1rem;
+			bottom:0;
+			// .calater{
+			// 		 	display:inline-block;
+			// 		 		height:.24rem;
+			// 		 		width:.24rem;
+			// 		 		float:left;
+			// 		 		cursor:pointer;
+			// 		 		background:url("../../../../../resource/images/btn_calculator2_normal.png") no-repeat;
+			// 		 		}
+			// 		.calater:hover{
+			// 		 		background:url("../../../../../resource/images/btn_calculator2_hover.png") no-repeat;
+			// 		 		}
+					//  		.a{
+					// 	display:inline-block;
+					// 	height: .2rem;
+					// 	width: .8rem;
+					// 	 color:#B8D1D7;
+					// 	position:absolute;
+					// 	right:0.1rem;
+					// 	bottom:0.1rem;
+					// }
+					// .a:hover{
+					// 	color:#FF671B;
+					// }
+		}
+		.newdebt_nav_span_span:hover{
+			background:url("../../../../../resource/images/btn_calculator2_hover.png") no-repeat left center;
+			color:#FF671B;
+		}
+
 		.newdebt_nav_span{
 			position:absolute;
-			right:0;
+			right:.2rem;
 			bottom:0;
 			color: #F7EFB5;
 			background:#997E51;
 		}
 		.newdebt_nav_tou{
+			margin-left:.3rem;
 			border:1px solid #4A7C88;
 			background:#1B4960;
 		}
+		.newdebt_nav_tou_tou{
+			margin-left:.3rem;
+			border:1px solid #927650;
+			background:#624A32;
+		}
 		.newdebt_nav_tou_01{
+			margin-top:.05rem;
+			margin-left:.2rem;
 			img{
 				height: 100%;
 				width: 100%;
@@ -149,26 +213,30 @@ h1,h2,h3,h4,h5,h6{
 		height:.4rem;
 		width:100%;
 		font-size: 14px;
-		color:#fff;
 		background: #2D414C;
 			li{
-				height:.4rem;
-				width:1rem;
-				line-height:.4rem;
+				height:100%;
+				width:1.2rem;
+				// line-height:.4rem;
 				text-align: center;
 				float:left;
+				cursor:pointer;
+				// border-radius:4px;
 			}
 			.nav_back{
 				background:#FF671B;
+				color:#fff;
+				
 			}
 		}
 	.newdebt_content{
 		width: 100%;
-		height: 7rem;
+		min-height: 7rem;
 		margin-top:.06rem;
 		overflow:hidden;
 		clear:both;
 		background: #243841;
+		position:relative;
 	}
 	.newdebt_content_lf{
 		width: 49.5%;
@@ -180,15 +248,14 @@ h1,h2,h3,h4,h5,h6{
 			height:.4rem;
 			line-height:.4rem;
 			padding-left:.16rem;
-			font-size:12px;
 			font-weight:700;
-			color:#fff;
+			// color:#fff;
 			background:#2E424D;
 			}
 		.newdebt_content_info{
 			height:2.6rem;
 			clear:both;
-			font-size:12px;
+			font-size:14px;
 			// background:green;
 			position:relative;
 			left:0;
@@ -201,10 +268,16 @@ h1,h2,h3,h4,h5,h6{
 				padding-top:.1rem;
 				ul{
 					list-style:none;
+					cursor:default;
 					}
 				li{
-					font-size:12px;
-					height:.25rem;
+					font-size:14px;
+					height:auto;
+					margin-top:.05rem;
+					// height:.25rem;
+					}
+					li:hover{
+						color:#fff;
 					}
 			}
 			.newdebt_content_info_button{//button按钮(多处用)
@@ -223,12 +296,12 @@ h1,h2,h3,h4,h5,h6{
 				bottom:0rem;
 				ul{
 					background:#1b2f36;
-					color:#fff;
+					// color:#fff;
 				}
 				li{
 					
 					a{
-						color:#fff;
+						// color:#fff;
 						cursor:default;
 					}
 				}
@@ -261,45 +334,50 @@ h1,h2,h3,h4,h5,h6{
 			}
 			
 			.newdebt_content_info_range{//经营范围
-				font-size:12px;
+				font-size:14px;
 				position:absolute;
 				left:0;
 				top:1.9rem;
 				// bottom:0;
 				.newBox{
-					overflow:hidden;
+					
+					height: auto;
 					width:100%;
 					float:left;
+					overflow:hidden;
 					white-space:wrap;
 					.newBox-left{
 					height:100%;
-					width:12%;
+					// width:15%;
+					
+					// background: red;
 					padding-left:.16rem;
 					float:left;
 					span{
 						display:inline-block;
 						height: .2rem;
-						width: .6rem;
+						width: 1.2rem;
 						// background: red;
 					}	
 					}
 					.newBox-right{
 						height:100%;
-						width:88%;
-						float:left;
+						// width:80%;
+						// min-height:.6rem;
+						float:right;
 						.span_a{
 							width:100%;
-							font-size:12px;
+							font-size:14px;
 							word-break:break-all;
 							text-overflow:ellipsis;
 							display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
 					    	-webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
-					    	-webkit-line-clamp: 4; /** 显示的行数 **/
+					    	-webkit-line-clamp: 2; /** 显示的行数 **/
 					    	overflow: hidden;  /** 隐藏超出的内容 **/
 							}
 						.span_b{
 							width:100%;	
-							font-size:12px;
+							font-size:14px;
 							overflow:hidden;	
 							}		    	
 					}
@@ -318,17 +396,18 @@ h1,h2,h3,h4,h5,h6{
 			height:.4rem;
 			line-height:.4rem;
 			padding-left:.16rem;
-			font-size:12px;
+			font-size:14px;
 			font-weight:700;
-			color:#fff;
+			// color:#fff;
 			background:#2E424D;
 			// margin-top:.1rem;
 			}
-		.newdebt_content_rt_content{
+		.newdebt_content_rt_content{//修改height
 			width:98%;
-			height:62%;
+			// height:62%;
+			height:4.1rem;
 			margin:0rem auto;
-			overflow:hidden;
+			overflow:auto;
 			// background:red;
 			.newdebt_content_rt_content_p{
 				display:block;
@@ -340,14 +419,14 @@ h1,h2,h3,h4,h5,h6{
 			}
 			li{
 				width: 100%;
-				height: .6rem;
+				height: .5rem;
 				padding-top:.04rem;
 				float:left;
 				// background:red;
 				border-top:1px solid #36474F;
 				.newdebt_content_rt_title{
-					width:.5rem;
-					height:.5rem;
+					width:.4rem;
+					height:.4rem;
 					float:left;
 					// background:green;
 					img{
@@ -357,28 +436,33 @@ h1,h2,h3,h4,h5,h6{
 				}
 				.newdebt_content_rt_name{
 					width: 80%;
-					height: .5rem;
+					height: .4rem;
 					float:left;
 					span{
 						display:inline-block;
-						height: .25rem;
-						line-height:.25rem;
-
+						height: .2rem;
+						line-height:.2rem;
+						// text-align:center;
 						// width: .4rem;
 						margin: 0rem .08rem;
 					}
 					// background:yellow;
 					.newdebt_content_rt_span{
 						display:block;
-						height:.25rem;
+						height:.2rem;
 						width: 100%;
 						// background: red;
 						.newdebt_content_rt_names{
 							display:inline-block;
-							height:.25rem;
+							height:.2rem;
 							margin:0;
 
 						}
+						// .renzheng{
+						// 	display:inline-block;
+						// 	height:.2rem;
+						// 	margin-top:-0.02rem;
+						// }
 						// line-height:.25rem;
 					}
 					.newdebt_content_rt_friend,.newdebt_content_rt_group{
@@ -390,7 +474,7 @@ h1,h2,h3,h4,h5,h6{
 						border:1px solid #4995CF;	
 					}
 					.newdebt_content_rt_group{
-						width: .8rem;
+						width: .6rem;
 						color:#D9CC98;
 						border:1px solid #D9CC98;
 					}
@@ -403,7 +487,7 @@ h1,h2,h3,h4,h5,h6{
 					border-radius:.05rem;
 					line-height:.3rem;
 					text-align:center;
-					margin:0.1rem .06rem;
+					margin:0.06rem .06rem;
 					cursor:pointer;
 					background:#677983;
 				}
@@ -411,6 +495,9 @@ h1,h2,h3,h4,h5,h6{
 					background:	#FF671B;
 				}
 			}
+			// li:hover{
+			// 	color:#fff;
+			// }
 		}
 		.newdebt_content_rt_footer{
 			width:100%;
@@ -427,6 +514,9 @@ h1,h2,h3,h4,h5,h6{
 					li{
 					height: 25px;
 					width: 100%;
+					}
+					li:hover{
+						color:#fff;
 					}
 				}
 				

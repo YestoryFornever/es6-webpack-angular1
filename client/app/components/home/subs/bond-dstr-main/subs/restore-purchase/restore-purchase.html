@@ -1,0 +1,33 @@
+<div class="modal-header">
+	<h3 class="modal-title">恢复申购</h3>
+	<div class="modal-close" ng-click="$instanceCtrl.cancel()"></div>
+</div>
+<div class="modal-body">
+	<div class="table-responsive table-quote-list">
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+					<td class="td-label label-am">全场</td>
+					<td class="all-multiply">
+						<input type="text" ng-model="$instanceCtrl.subSttstcs.am">
+					</td>
+					<td class="td-label label-mm">边际</td>
+					<td class="marginal-multiply">
+						<input type="text" ng-model="$instanceCtrl.subSttstcs.mm">
+					</td>
+					<td class="td-label label-my">边际利率</td>
+					<td class="marginal-yield">
+						<input type="text" ng-model="$instanceCtrl.subSttstcs.my">%
+					</td>
+					<td class="td-label label-tet">截标时间</td>
+					<td class="tender-end-time">
+						<input type="text" datetimepicker format="YYYY年MM月DD日 HH:mm" ng-model="$instanceCtrl.subSttstcs.tet">
+					</td>
+				</tr>
+			</tbody>
+	 	</table>
+	</div>
+</div>
+<div class="modal-footer" id="pubreportdialogfooter">
+	<button class="btn btn-primary" type="button" ng-click="$instanceCtrl.rsmSbrb()">恢复申购</button>
+</div>

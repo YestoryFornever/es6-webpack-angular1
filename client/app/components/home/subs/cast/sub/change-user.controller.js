@@ -1,11 +1,11 @@
 class ChangeUserController {
-    constructor(netCastService) {
+    constructor(netCastService, warnInfoModel) {
         this.iconUrl = BONDCONFIG.USERINFO.iconUrl;
         this.username = BONDCONFIG.USERINFO.userName;
         console.log(this.iconUrl);
         this.message = "";
         this.netCastService = netCastService;
-
+        this.warnInfoModel = warnInfoModel;
 
         this.uid = BONDCONFIG.USERINFO.uid + 1000000000;
         this.lid = BONDCONFIG.USERINFO.lid;
@@ -13,7 +13,7 @@ class ChangeUserController {
         this.state = sessionStorage.getItem("state");
 
         this.me = false;
-        this.under  = false;
+        this.under = false;
     }
 
     $onInit() {
@@ -21,7 +21,6 @@ class ChangeUserController {
         // 关闭弹出
         this.close = function () {
             this.modalInstance.close();
-            sessionStorage.removeItem("user_role");
         };
         // 我
         this.meClick = function () {
@@ -42,25 +41,32 @@ class ChangeUserController {
                 uid: this.uid - 1000000000,
                 user_role: sessionStorage.getItem("user_role")
             };
-            this.netCastService.costlive(info).then(function (data) {
-                console.log(data, "这里做判断");
-                if (data.data.status == "0") {
-                    if(sessionStorage.getItem("user_role") != undefined || sessionStorage.getItem("user_role") != null) {
-                        that.message = "";
-                        window.location.href = "#/home/castroom";
-                        // 界面必须刷新一下, 要不然<gs:video-live>节点无法解析.
-                        window.location.reload();
+            this.netCastService.costlive(info).then(
+                function (data) {
+                    console.log(data, "这里做判断, 如果状态是0那么可以进入直播,如果不为0,可能房间已满,没有实名/注册等");
+                    if (data.data.status == "0") {
+                        if (sessionStorage.getItem("user_role") != undefined || sessionStorage.getItem("user_role") != null) {
+                            that.message = "";
+                            window.location.href = "#/home/castroom";
+                            // 界面必须刷新一下, 要不然<gs:video-live>节点无法解析.
+                            window.location.reload();
+                        }
+                        else {
+                            that.message = "请先选择角色";
+                        }
                     }
-                    else {
-                        that.message = "请先选择角色";
+                },
+                function (err) {
+                    if (err.data.status == "3") {
+                        that.warnInfoModel.open(err.data);
+                        that.modalInstance.close();
+                    }
+                    if (err.data.status == "4") {
+                        that.warnInfoModel.open(err.data);
+                        that.modalInstance.close();
                     }
                 }
-                else {
-                    that.message = data.data.msg;
-                }
-            });
-
-
+            );
         };
     }
 }

@@ -1,15 +1,22 @@
 class BargainlistController {
-	constructor($rootScope,$scope,$stateParams,bargainlistService,$state) {
+	constructor($rootScope,$scope,$stateParams,bargainlistService,$state,pagetabService) {
 		"ngInject";
 		this.name = 'bargainlist';
 		this.bargainlistService = bargainlistService;
 		this.$rootScope = $rootScope;
+		this.pagetabService = pagetabService;
 		this.$scope = $scope;
 		this.$scope.$on('refresh-bargain-list',(event,args)=>{
 			this.getBarginList();
 		});
 	}
 	$onInit(){
+		this.pagetabService.activeTab({
+			tabKey: 'home.chatroom',
+			routeState:'home.chatroom.bargainlist',
+			routeParams:angular.copy(this.$stateParams),
+			routeLabel:'消息中心',
+		});
 		(!!BONDCONFIG.USERINFO.uid) && (this.curUserId = BONDCONFIG.USERINFO.uid);
 		this.getBarginList();
 	}

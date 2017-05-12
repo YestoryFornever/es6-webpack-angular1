@@ -1,8 +1,10 @@
 app.component("addApplication", {
         restrict: 'E',
         bindings: {
-            state: "="
+            state: "=",
+            retFee: "<",
+            pmod: "="
         },
         templateUrl: "./add-application.html",
-        controller: addApplicationController
+        controller: ApplicationController
     });

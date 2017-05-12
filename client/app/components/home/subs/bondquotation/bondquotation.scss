@@ -1,3 +1,6 @@
+
+
+
 .bondquotation{
 	height:100%;
 	.btn,.btn:hover,.btn.focus,.btn.active,.btn.visited,.btn:focus{
@@ -16,159 +19,29 @@
 		color:$textD;
 		border:none;
 	}
-	$borderColor:#36474f;
 	.bg{
 		background:url('../../../../../resource/images/img_bg_title.png')  center;
-	}
-	$inputPlaceColor:#ccc
-	::-webkit-input-placeholder { /* WebKit browsers */
-	color: $inputPlaceColor;
-	}
-	:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-	color: $inputPlaceColor;
-	}
-	::-moz-placeholder { /* Mozilla Firefox 19+ */
-	color: $inputPlaceColor;
-	}
-	::-ms-input-placeholder { /* Internet Explorer 10+ */
-	color: $inputPlaceColor;
+		background-size: auto 100%;
 	}
 	.btn.active{
 		background-color:$bgGold;
+		color:#F7EFB5;
 	}
 	.btn{
 		font-size: 12px;
 		text-align: center;
 		vertical-align: middle;
 	}
-	.colorH{
-		color:$textH;
-	}
-	.colorI{
-		color:$textI;
-	}
-	.colorF{
-		color:$textF;
-	}
-	.colorN{
-		color:$textN;
-	}
 	input{
 		border:none;
-		background:$bgDefault;
-		font-size: 0.12rem;
+		background:#1B2F36;
 		padding:0.04rem 0.1rem;
-		height:20px;
-		border:1px solid $borderDefault;
-		color:$inputPlaceColor;
-	}
-	$cardW:3.7rem;
-	$tableW:9.6rem;
-	$marginL:0.1rem;
-	$marginR:$cardW+$marginL;
-	$marginW:0.06rem;
-	font-size:0.12rem;
-	margin:$marginW;
-	position:static!important;
-	aside.hallSidebar{
-		width:$cardW;
-		margin-left: $marginL;
-		float:right;
-		div#_body_{
-			section.card{
-				position: relative;
-				$titleH:0.32rem;
-				$titMarL:0.12rem;
-				header.title{
-					height:$titleH;
-					line-height: $titleH;
-					color:$textDefault;
-					span{
-						line-height:$titleH;
-						margin-left:$titMarL;
-					}
-				}
-				// main#settleChart{
-				// 	width:3.7rem;
-				// 	height:2.1rem;
-				// 	background:$primaryBg;
-				// 	position: absolute;
-				// 	top:.3rem;
-				// 	left:0;
-				// 	right:0;
-				// 	bottom:0;
-				// }
-			}
-			section#bondInfo.card{
-				main#BondMain {
-					padding: 0.1rem;
-					height: 2.8rem;
-					.cont_l,.cont_r{
-						width:50% ;
-						float:left;
-					}
-					.tit{
-						line-height: 0.18rem;
-						height: 0.3rem;
-						font-size:0.18rem;
-						color:#ffeb62;
-					}
-					.col{
-						width: 100%;
-						display: inline-block;
-						line-height: 0.22rem;
-						height: 0.22rem;
-						overflow: hidden;
-						span{
-							line-height: 0.22rem;
-						}
-						.tit_l{
-							display: inline-block;
-							float:left;
-						}
-						.textOverHidden{
-							display: inline-block;
-							width: 80%;
-							overflow: hidden;
-							text-overflow: ellipsis;
-							white-space: nowrap;
-						}
-					}
-					.bgMore{
-						float:right;
-						margin-top: 0.05rem;
-						display: inline-block;
-						width:0.44rem;
-						height: 0.16rem;
-						background: url('../../../../../resource/images/btn_more_normal.png') no-repeat center;
-					}
-					.bgMore:hover{
-						background: url('../../../../../resource/images/btn_more_hover.png') no-repeat center;
-					}
-					.mar_T10{
-						text-align: right;
-						display:inline-block;
-						margin-top: 0.1rem;
-						text-align: right;
-						line-height: 0.16rem;
-						height:0.16rem;
-					}
-				}
-			}
-			div#_gap_{
-				height:0.1rem;
-			}
-			section#settlement{
-				height:2.7rem;
-			}
-		}
+		height:.24rem;
 	}
 	div.hallTable{
 		position: relative;
-		margin-right:$marginR;
+		margin-right:3.8rem;
 		height:100%;
-		$headerH:0.32rem;
-		$wrapW:0.1rem;
 		.wid45{
 			width:44%;
 		}
@@ -176,10 +49,10 @@
 			width:56%;
 		}
 		header#condition{
-			height:$headerH;
+			height:0.32rem;
 			.head{
 				position:relative;
-				height: $headerH;
+				height: 0.32rem;
 				padding:0.04rem 0.1rem;
 				.mar_L10{
 					position: relative;
@@ -191,8 +64,12 @@
 					padding:0 0.2rem;
 					border-radius: 0.2rem;
 				}
+
 				.padR{
 					padding:0 0.4rem 0 0.2rem;
+				}
+				.mar_cen{
+					padding:0 0.2rem ;
 				}
 				.padd5{
 					display:inline-block;
@@ -244,9 +121,7 @@
 			}
 			.nowBondAlert{
 				color:$textB;
-				// height: 0.4rem;
 				font-size: 0.14rem;
-				// line-height:0.4rem;
 				position:absolute;
 				top:-0.7rem;
 				right:-1.8rem;
@@ -276,15 +151,13 @@
 					width:100%;
 					border-radius: 0.24rem;
 					padding-right: 0.25rem;
-					height: 0.24rem;
 					color:#667882;
 				}
 			}
 			
 		}
 		div#_body_{
-				$height20:0.2rem;
-				$titMinWidth:0.5rem;
+				background:#253942;
 				padding:0.1rem;
 				section{
 					padding: 0;
@@ -295,13 +168,16 @@
 
 				}
 				.clearSelect{
+					float:left;
 					display: inline-block;
-					width: 0.14rem;
-					height: 0.14rem;
-					background: url('../../../../../resource/images/btn_delete_normal.png') no-repeat center;
+					width: 0.2rem;
+					height: 0.2rem;
+					margin-left:0.1rem;
+					border-radius:0.04rem;
+					background:#526873 url('../../../../../resource/images/btn_delete_normal.png') no-repeat center;
 				}
 				.clearSelect:hover{
-					background: url('../../../../../resource/images/btn_delete_hover.png') no-repeat center;
+					background:#526873 url('../../../../../resource/images/btn_delete_hover.png') no-repeat center;
 				}
 				.mar_T14{
 					margin-top: 0.14rem;
@@ -309,19 +185,28 @@
 				.padd10{
 					margin-bottom: 0.06rem;
 					clear: both;
+					height: 0.24rem;
 					.spacePlace{
 						display: inline-block;
 					}
-					.btn,.spacePlace{
+					.btn{
 						padding:0 0.06rem;
-						height: 0.2rem;
+						// height: 0.24rem;
+						line-height: 0.24rem;
+					}
+					.spacePlace{
+						padding:0 0.06rem;
+						height: 0.24rem;
 					}
 					.tit{
-						min-width: $titMinWidth;
-						line-height: $height20;
+						min-width: 0.6rem;
+						line-height: 0.24rem;
 						text-align: right;
-						margin-right: $height20;
+						margin-right: 0.1rem;
 					}
+				}
+				.hei53{
+					height:0.53rem;
 				}
 				.peoplePro{
 					position: relative;
@@ -354,20 +239,12 @@
 			}
 
 		main{
-			position:absolute;
 			transition:all 0.5s;
-			width:100%;
-			bottom:0.2rem;
-			top:0.32rem;
-			min-height:0.5rem;
-			overflow-y: auto;
-			.my-table{
-				width::100%;
-			}
 			table{
+
 				th,td{
 					text-align: center;
-					white-space:nowrap;
+					font-weight:normal;
 				}
 				td.bondCd,td.bondNm{
 					max-width:0.8rem;
@@ -391,15 +268,6 @@
 						max-width:0.3rem;
 					}
 				}
-				th {
-					padding:0;
-					height: 0.32rem;
-					border-bottom: none;
-					vertical-align: middle;
-				}
-				th i{
-					display: none;
-				}
 				tr.active{
 					background: $bgDefaultLightB;
 					td{
@@ -415,9 +283,9 @@
 				.colorH{
 					color:$textH;
 				}
-				.colorI{
-					color:$textI;
-				}
+				// .colorI{
+				// 	color:$textI;
+				// }
 				.star{
 					display: inline-block;
 					width:0.2rem;
@@ -456,7 +324,7 @@
 				}
 				.chatRoom{
 					background: url('../../../../../resource/images/btn_chat_normal.png') no-repeat center;
-					margin-right: 0.2rem;
+					margin:0 0.2rem;
 				}
 				.chatRoom:hover{
 					background: url('../../../../../resource/images/btn_chat_press.png') no-repeat center;
@@ -467,9 +335,6 @@
 				.calculator:hover{
 					background: url('../../../../../resource/images/btn_calculator_hover.png') no-repeat center;
 				}
-			}
-			thead tr{
-				background:$bgDefaultLightA;
 			}
 			.change,.delete,.send,.addNew{
 				display: inline-block;
@@ -507,31 +372,110 @@
 		.top35{
 			top: 3.5rem;
 		}
-		.myPage{//分页
-				height: 0.4rem;
-				text-align: right;
-				.pagination{
-					margin:0;
-				}
-				span{
-					display: inline-block;
-					padding:0 5px;
-					margin:0 0.1rem;
-					line-height: 0.34rem;
-				}
-			}
 	}
 }
 .bondquotation{
+	aside.hallSidebar{
+		width:3.7rem;
+		margin-left: 0.1rem;
+		float:right;
+		div#_body_{
+			section.card{
+				position: relative;
+				header.title{
+					color:$textDefault;
+					span{
+						line-height:0.32rem;
+						margin-left:0.12rem;
+					}
+				}
+			}
+			section#bondInfo.card{
+				main#BondMain {
+					background:#253942;
+					padding: 0.1rem;
+					height: 2.8rem;
+					.cont_l,.cont_r{
+						width:50% ;
+						float:left;
+					}
+					.tit{
+						height: 0.3rem;
+						font-size:0.18rem;
+						color:#ffeb62;
+					}
+					.col{
+						width: 100%;
+						display: inline-block;
+						line-height: 0.22rem;
+						.tit_l{
+							display: inline-block;
+							float:left;
+						}
+						.textOverHidden{
+							display: inline-block;
+							width: 80%;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							white-space: nowrap;
+						}
+					}
+					.bgMore{
+						float:right;
+						margin-top: 0.05rem;
+						width:0.44rem;
+						height: 0.16rem;
+						background: url('../../../../../resource/images/btn_more_normal.png') no-repeat center;
+					}
+					.bgMore:hover{
+						background: url('../../../../../resource/images/btn_more_hover.png') no-repeat center;
+					}
+					.mar_T10{
+						display:inline-block;
+						margin-top: 0.1rem;
+						text-align: right;
+						line-height: 0.16rem;
+						height:0.16rem;
+					}
+				}
+			}
+			div#_gap_{
+				height:0.1rem;
+			}
+			section#settlement{
+				height:2.7rem;
+				// background:#253942;
+			}
+		}
+	}
 	div#_body_.collapse{
 		height: 3.2rem;
 	}
 	td.care{
 		background: url('../../../../../resource/images/btn_star_select.png') no-repeat center;
-
 	}
 	td.noCare{
 		background: url('../../../../../resource/images/btn_star_normal.png') no-repeat center;
+	}
+	button.btn.dropdown-toggle.selectpicker.btn-default{
+		max-width:2rem;
+		height:0.2rem;
+	}
+	div.btn-group.bootstrap-select.show-tick{
+		width:2rem!important;
+		display:inline-block;
+		.dropdown-menu.open{
+			width:100%;
+		}
+		.dropdown-menu > li > a{
+			display:inline-block;
+			width:100%;
+			text-overflow:ellipsis;
+			overflow:hidden;
+		}
+	}
+	.bootstrap-select.btn-group .dropdown-menu.inner{
+		width:100%;
 	}
 }
 

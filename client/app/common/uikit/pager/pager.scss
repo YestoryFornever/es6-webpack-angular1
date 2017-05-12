@@ -1,0 +1,64 @@
+.uikit-pager-main {
+	display: inline-block;
+	-moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    margin: 0;
+}
+.uikit-pager-main > li {
+	display: inline-block;
+	list-style: none;
+	padding:5px 10px;
+	background:#3a5664;
+	/*border:1px solid #ededed;*/
+	margin-right:2px;
+	border-radius: 2px;
+	text-transform:Capitalize;
+}
+.uikit-pager-main > li > a {
+	color:#fff;
+}
+.uikit-pager-main > li.active{
+	background: #ff671b;
+}
+.uikit-pager-main .active > a {
+	/*color:#f62d29;*/
+}
+.uikit-pager-home a,.uikit-pager-prve a,.uikit-pager-next a,.uikit-pager-end a {
+	color:#353535;
+}
+.newPage1{//分页
+	height: 0.4rem;
+	text-align: right;
+	padding-right:0.1rem;
+	.pagination{
+		margin:0;
+		float:right;
+	}
+	.whichPageLeft{
+		display:inline-block;
+		margin-right: 0.1rem;
+		line-height:0.34rem;
+		.lineLeft{
+			padding-left:0.1rem;
+			border-left:1px solid $borderDefault;
+		}
+		.input{
+			display:inline-block;
+			height:0.3rem;
+			padding:0;
+			background:#111f25;
+			text-align: center;
+		}
+		.border{
+			padding-right: .1rem;
+			border-right:1px solid $borderDefault;
+			margin-right:0.1rem
+		}
+		.button{
+			width:0.4rem;
+			height: 0.25rem;
+			padding:0;
+		}
+	}
+}

@@ -1,5 +1,6 @@
 
 <div class="rial">
+<form name="Nform" ng-submit="golbGiftchangeFun()">
     <div class="modal-wfcontent" > 
         <div class="modal-header ng-scope">
             <p class="modal-title" id="modal-title">兑换商品
@@ -8,17 +9,18 @@
         </div> 
         <div class="modal-body ng-scope clearfix wealth_modal_body">
             <dl> 
-                <dt><img src="tag_img1.png"/></dt>
+                <dt><img ng-src="{{infoGift.imageUrl}}"/></dt>
                 <dd> 
-                    <h1>苹果手机iPhone7 Plus 128G 玫瑰红 三网通手机三网通手机</h1>
-                    <p>礼品价格：<span>68,000金币</span><br/> 礼品类型：实物礼品</p>
+                    <h1>{{infoGift.name}} {{infoGift.description}}</h1>
+                    <p>礼品价格：<span>{{infoGift.priceCoin}}金币</span><br/> 礼品类型：{{infoGift.goodsType}}礼品</p>
                 </dd>
-            </dl>
+            </dl> 
             <div class="yellow">收件信息</div>
-            <div>收件人<input type="text" style="margin-left:.4rem"/></div>
-            <div>联系电话 <input type="text"/></div>
-            <div>收件地址<input type="text"  style="margin-left:.25rem"/></div>
-            <div style="width:2.2rem;margin:0 auto;padding-bottom:.4rem"><button type="button" >确认兑换</button><button type="button">取消</button></div>
-        </div>
+            <div>收件人<input type="text" style="margin-left:.4rem" ng-model="uesrI.userName" required/></div>
+            <div>联系电话 <input type="text" ng-model="getLoginNames" name="numP" required ng-change="numPhone()" validation-tooltip="valid_numP($value,Nform.numP)"/></div>
+            <div>收件地址<input type="text"  style="margin-left:.25rem" ng-model="uesrI.workAddress" required/></div> 
+            <div style="width:2.2rem;margin:0 auto;padding-bottom:.4rem"><button type="submit" ng-disabled="isDisabled">确认兑换</button><button type="button" ng-click="cancel()">取消</button></div>
+        </div> 
     </div>
+    </form>
 </div>

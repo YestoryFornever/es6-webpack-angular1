@@ -111,6 +111,7 @@ div#chatroom{
 				height:$tipsHeaderH;
 				line-height:$tipsHeaderH;
 				background-image:url('../../../../../resource/images/chat_baojia_frame_title_middle.png');
+				background-size: auto 100%;
 				background-repeat:repeat-x;
 			}
 			div.bargain{
@@ -388,6 +389,7 @@ div#chatroom{
 				top:0;
 				height:$fnAreaH;
 				background-image:url('../../../../../resource/images/img_bg_title.png');
+				background-size: auto 100%;
 				background-repeat:repeat-x;
 				>span{
 					display: inline-block;
@@ -533,6 +535,7 @@ div#chatroom.show-chat-history{//chatchat
 			height: $tipsH;
 			line-height: $tipsH;
 			background-image:url('../../../../../resource/images/img_bg_title.png');
+			background-size: auto 100%;
 			background-repeat:repeat-x;
 			padding:0 .06rem;
 			color:$textD;

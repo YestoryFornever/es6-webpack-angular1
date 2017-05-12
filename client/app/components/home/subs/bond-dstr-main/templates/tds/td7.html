@@ -1,0 +1,12 @@
+<!-- 当申购渠道为录入且申购状态为新消息或已读时可编辑 -->
+<span ng-if="(($item.rcptySbrbEStatus!='3')&&($item.rcptySbrbEStatus!='4'))||($item.sbrbChnl=='4')">{{$item.rcptySbrbEStatus|applicationState}}</span>
+<span ng-if="($item.rcptySbrbEStatus=='3'||$item.rcptySbrbEStatus=='4')&&($item.sbrbChnl!='4')">
+	<select 
+		ng-model="$item.rcptySbrbEStatus" 
+		name="rcptySbrbEStatus" 
+		ng-change="items.CUST.updateCustSbrbEstatus($item)">
+		<option value="3" ng-selected="$item.rcptySbrbEStatus=='3'">新消息</option>
+		<option value="4" ng-selected="$item.rcptySbrbEStatus=='4'">已读</option>
+		<option value="7" ng-selected="$item.rcptySbrbEStatus=='7'">已拒绝</option>
+	</select>
+</span>

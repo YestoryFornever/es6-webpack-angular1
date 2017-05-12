@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2017-03-21 19:59:55
  * @Last Modified by:   Administrator
- * @Last Modified time: 2017-04-13 13:31:38
+ * @Last Modified time: 2017-04-14 18:02:06
  */
 /*
  * 资讯
@@ -35,6 +35,23 @@ app.factory('messageService', function($http, $q, ProxyRequestService) {
 			});
 
 		},
+		sweepList(obj) { //扫雷列表
+			return ProxyRequestService.post('e-xpress/sns/sweepList.json', {
+				uid: obj.uid,
+				cur_page: obj.cur_page,
+				// last_id: '0'
+			});
+
+		},
+		// sweepHisList(obj) {//
+		// 	return ProxyRequestService.post('e-xpress/sns/sweepHisList.json', {
+		// 		uid: obj.uid,
+		// 		cur_page: obj.cur_page,
+		// 		bound_org_id: obj.bound_org_id,
+		// 	});
+
+		// },
+
 		// 4.3.2获取3全部4负面 5自选 6自媒体列表
 		messagelist(obj) {
 			return ProxyRequestService.post('e-xpress/sns/infoList.json', {

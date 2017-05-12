@@ -1,0 +1,16 @@
+<p ng-repeat="item in $ctrl.stat track by $index" class="noticeList" style="float: left;">
+    <span ng-click="$ctrl.read(item.sbrbStatId)">
+        <img src="../../../../../../../resource/images/icon_notification_red.png" ng-if="item.rdInd ==2"/>
+        <img src="../../../../../../../resource/images/icon_notification_yellow.png" ng-if="item.rdInd ==1"/>
+        <span class="investorMarginRight">{{item.rcptyInstNm + "-" + item.rcptyTeamNm + "-" + item.rcptyUserNm}}</span>
+        <span class="investorMarginRight">全场: {{item.whlTmsNum}}</span>
+        <span class="investorMarginRight">边际: {{item.bdyTmsNum}}</span>
+        <span class="investorMarginRight">边际利率: {{item.bdyIntrt | yldrtoCopyFilter}}</span>
+        <span class="investorMarginRight">截标时间: {{item.clsbidTm}}</span>
+    </span>
+    <a style="color: #b8d1dd" ng-click="$ctrl.sendToClient(item)" ng-if="$ctrl.show">转发给客户</a>
+</p>
+<p style="float: right" ng-if="$ctrl.show">
+  <a class="applicationBtn cursor" ng-click="$ctrl.transferFriends()" style="color: #fff;">邀请好友申购</a>
+</p>
+<!-- <button class="btn btn-default pull-right" ng-if="$ctrl.show" ng-click="$ctrl.inviteFriendsClick()">邀请好友申购</button> -->

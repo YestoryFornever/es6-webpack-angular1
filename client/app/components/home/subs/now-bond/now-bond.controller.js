@@ -6,22 +6,26 @@ class nowBondController {
 		this.NetBondquotationService = NetBondquotationService;
 		this.$state = $state;
 		this.drc = '1';
-		var mydate = new Date();
-		let mon = mydate.getMonth()*1 + 1;
-		let day = mydate.getDate()*1 ;
+		// var mydate = new Date();
+		// let mon = mydate.getMonth()*1 + 1;
+		// let day = mydate.getDate()*1 ;
 
-		if(mon<10){
-			mon = "0" + mon;
-		}
-		if(day<10){
-			day = "0" + day;
-		}
-		this.tody = mydate.getFullYear() + '-' + mon + '-' + day;
+		// if(mon<10){
+		// 	mon = "0" + mon;
+		// }
+		// if(day<10){
+		// 	day = "0" + day;
+		// }
+		this.tody = moment().format('YYYY-MM-DD');
+		// this.tody = mydate.getFullYear() + '-' + mon + '-' + day;
 		this.searchConditions = {
 			creditType:"",//债券类型
+			creditTypeSelecteds:[],//债券类型
 			creditSymbol:"",//主体评级
+			creditSymbolSelecteds:[],//主体评级
 			dealDate:this.tody,//处理时间
 			rateType:"",//票面
+			rateTypeSelecteds:[],//票面
 			termType:"Y",//期限
 			termStart:"",//期限开始
 			termEnd:"",//期限结束
@@ -31,17 +35,12 @@ class nowBondController {
 			orderDirect:"desc"//desc倒序 asc正序
 		};
 		this.isShow =false;//显示大厅挂牌
-		
 	}
 	$onInit(){
 		this.disabledButton =false;//禁用发送按钮
-		this.face = this.nowBondService.face;
-		console.log(this.face)
 		this.faceList =[];
 		this.bondTpList =[];
 		this.sbjRtgList =[];
-		this.bondTp = this.nowBondService.bondTp;
-		this.sbjRtg = this.nowBondService.sbjRtg;
 		if(this.resolve.modalData){
 			this.isShow = false ;
 			this.quoteList = this.resolve['modalData']['quoteList']  ;
@@ -62,23 +61,35 @@ class nowBondController {
 		this.searchList = [];
 		// 收益
 		this.yieldInfo={
-			bondid:'0',
+			bondid:'',
 			dealDate:this.tody,
 			clearSpeed:'1',
-			dealNum:'0',
-			cleanPrice:'0',
+			dealNum:'',
+			cleanPrice:'',
 			// yield:'0',
 		}
 		// 净价
 		this.netprcInfo={
-			bondid:'0',
+			bondid:'',
 			dealDate:this.tody,
 			clearSpeed:'1',
-			dealNum:'0',
+			dealNum:'',
 			// cleanPrice:'0',
-			yield:'0',
+			yield:'',
 		}
-		this._fields = ['bondTp', 'face', 'sbjRtg'];
+		/**
+		 * 计算净价信息
+		 * @type {Object}
+		 */
+		this.calInfo = {
+			bondid:'',
+			dealDate:this.tody,
+			clearSpeed:'1',
+			dealNum:'',
+			cleanPrice:'',
+			yield:'',
+		}
+		this._fields = ['creditType', 'creditSymbol', 'rateType'];
 	}
 
 	// 计算收益率
@@ -90,19 +101,19 @@ class nowBondController {
 			this.yieldInfo.bondid = searchList.bondid;
 		}
 		if(item.num){
-			// item.num =item.num<0? 0: item.num;
+			item.num =item.num<0? 0: item.num;
 			this.yieldInfo.dealNum = item.num;
 		}
 		if(item.netprc ){//净价
-			// if(item.netprc>200){
-			// 	item.netprc = 200;
-			// 	return false;
-			// }else if(item.netprc<0){
-			// 	item.netprc = 0;
-			// 	return false
-			// }else{
+			if(item.netprc>200){
+				item.netprc = 200;
+				return false;
+			}else if(item.netprc<0){
+				item.netprc = 0;
+				return false
+			}else{
 				this.yieldInfo.cleanPrice = item.netprc  ;
-			// }
+			}
 		}
 		let reg = /\./g;
 		let promise = that.nowBondService.calSettlementAmountCleanPriceForCM(this.yieldInfo);
@@ -126,15 +137,15 @@ class nowBondController {
 			this.netprcInfo.dealNum = item.num;
 		}
 		if(item.yield){//收益
-			// if(item.yield>100){
-			// 	item.yield =100;
-			// 	return false;
-			// }else if(item.yield <0){
-			// 	item.yield =0;
-			// 	return false;
-			// }else{
+			if(item.yield>100){
+				item.yield =100;
+				return false;
+			}else if(item.yield <0){
+				item.yield =0;
+				return false;
+			}else{
 				this.netprcInfo.yield = item.yield/100;
-			// }
+			}
 		}
 		let reg = /\./g;
 		let that = this;
@@ -175,12 +186,9 @@ class nowBondController {
 	ok() {
 		let that = this;
 		let flag = true;
-		
+		debugger
 		if(that.quoteList.length==0){
-			that.AlertModalService.open({
-				'tittle':'',
-				'content':'请输入信息',
-			});
+			that.AlertModalService.open('','请输入信息');
 			flag = false;
 			return false;
 		}
@@ -255,14 +263,11 @@ class nowBondController {
 					that.AlertModalService.open(null,msg);
 				}
 				that.disabledButton =false;
-			},(res)=>{});
+			},(err)=>{
+				let msg =res.data? res.data.msg : res.msg
+				that.AlertModalService.open(null,msg);
+			});
 		}
-		// else{
-		// 	that.AlertModalService.open({
-		// 		'tittle':'',
-		// 		'content':'请输入完整信息',
-		// 	});
-		// }
 	}
 	cancel() {
 		this.modalInstance.dismiss('cancel');
@@ -272,7 +277,7 @@ class nowBondController {
 	}
 	searchBonds(){
 		this.beforSaveScmInfo();
-		this.searchConditions['rateType'] = this.makeSelect(this.face.data);
+		// this.searchConditions['rateType'] = this.makeSelect(this.face.data);
 		let promise = this.nowBondService.searchBonds(this.searchConditions);
 		promise.then((data)=>{
 			if(data.data.status==="0"){
@@ -326,45 +331,6 @@ class nowBondController {
 		this.searchConditions['orderCol'] = orderName;
 		this.searchBonds();
 	}
-	// 获取下拉 信息 年份 地区 行业
-	bondTpFn(val){
-		this.bondTp = val;
-	}
-	faceFn(val){
-		this.face = val;
-	}
-	sbjRtgFn(val){
-		this.sbjRtg['data'] = val;
-	}
-	makeSelect(obj){
-		let newArr =[];
-		for(let item of obj){
-			// debugger
-			if(item['checked']){
-				newArr.push(item['id']);
-				// for(let key2 of key['children']){
-				// 	if(key2['checked']){
-				// 		newArr.push(key2['id'])
-				// 	}
-				// }
-			}
-		}
-		// newArr.join(',');
-		return newArr.join(',');
-	}
-	initSelect(obj){
-		for(let key of obj.data){
-			if(key['checked']){
-				key['checked'] =false;
-				// for(let key2 of key['children']){
-				// 	if(key2['checked']){
-				// 		key2['checked'] = false;
-				// 	}
-				// }
-			}
-		}
-		return obj;
-	}
 	// 债券搜索   模糊查询
 	queryQuote(val){
 		let promise = this.nowBondService.searchBondBreed({'keyword': val});
@@ -380,23 +346,12 @@ class nowBondController {
 	 * @return {[type]} [description]
 	 */
 	beforSaveScmInfo(){
-		var valueArray = [];
-		if (this.searchConditions['rgonSelecteds']) {
-			valueArray = _.map(this.searchConditions['rgonSelecteds'], 'id');
-			this.searchConditions['rgon'] = valueArray.join(',');
-		};
-		if (this.searchConditions['yrSelecteds']) {
-			valueArray = _.map(this.searchConditions['yrSelecteds'], 'id');
-			this.searchConditions['yr'] = valueArray.join(',');
-		}else{
-			this.searchConditions['yr'] = '';
-		};
-		if (this.searchConditions['idySelecteds']) {
-			valueArray = _.map(this.searchConditions['idySelecteds'], 'id');
-			this.searchConditions['idy'] = valueArray.join(',');
-		};
-
-		console.log(this.searchConditions, 'beforSaveScmInfo');
+		angular.forEach(this._fields,(_field)=>{
+			var key = _field +'Selecteds';
+			console.log()
+			let arr = this.searchConditions[key]
+			this.searchConditions[_field] = arr.join(',');
+		})
 	}
 
 	// 期限单位 D Y

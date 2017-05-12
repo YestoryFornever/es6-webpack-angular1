@@ -49,6 +49,7 @@ function htmlPath(file){
 
 var wwwroot = 'build/';
 var build_dir = 'build/alphabond/';
+var cache_dir = 'build/cache/';
 
 var serve = browserSync.create();
 // map of all paths
@@ -66,7 +67,7 @@ let paths = {
 gulp.task("scripts", function() {
 	return gulp.src(paths.scripts)
 	.pipe(plumber({errorHandler: errorHandler}))
-	.pipe(changed(build_dir))
+	// .pipe(changed(cache_dir))
 	.pipe(sourcemaps.init())
 	.pipe(data(htmlPath))
 	.pipe(data(function(file){
@@ -79,37 +80,52 @@ gulp.task("scripts", function() {
         	);
 	  	}
 	}))
+	.pipe(babel({presets:[es2015],compact: false}))
+	// .pipe(gulp.dest(cache_dir))
 	.pipe(concat('app.min.js'))
-	.pipe(babel({presets:[es2015]}))
 	.pipe(ngAnnotate({dynamic: false}))
 	.pipe(wrap('(function(window){<%= contents %>\n})(window);'))
+	// .pipe(uglify({
+	// 	outSourceMap: true,
+	// }))
 	.pipe(sourcemaps.write('./'))
-	.pipe(gulp.dest(build_dir))
-	.pipe(serve.stream());
+	.pipe(gulp.dest(build_dir));
 });
 
 gulp.task("scripts-min", function() {
 	return gulp.src(paths.scripts)
-	.pipe(sourcemaps.init())
+	// .pipe(sourcemaps.init())
 	.pipe(data(htmlPath))
 	.pipe(concat('app.min.js'))
 	.pipe(babel({presets:[es2015]}))
 	.pipe(wrap('(function(window){<%= contents %>\n})(window);'))
 	.pipe(ngAnnotate({dynamic: false}))
-	.pipe(uglify({outSourceMap: true}))
-	.pipe(sourcemaps.write('./'))
+	.pipe(uglify({
+		compress: {
+      		drop_console: true
+	    }
+	}))
+	// .pipe(sourcemaps.write('./'))
 	.pipe(gulp.dest(build_dir));
 });
 
 gulp.task('index', function(){
 	return gulp.src(paths.entrance)
+	.pipe(data(function(file){
+		if (file.isBuffer()) {
+	        file.contents = new Buffer(
+	        	String(file.contents)
+	        	.replace('app.min.css', 'app.min.css?'+(new Date()).getTime())
+	        	.replace('app.min.js', 'app.min.js?'+(new Date()).getTime())
+        	);
+	  	}
+	}))
 	.pipe(wiredep({
       optional: 'configuration',
       goes: 'here',
       ignorePath: /..\/build\/alphabond\//,
     }))
-    .pipe(gulp.dest(build_dir))
-    .pipe(serve.stream());
+    .pipe(gulp.dest(build_dir));
 });
 
 gulp.task('vendor', function(){
@@ -142,7 +158,7 @@ gulp.task('styles', function () {
 	// .pipe(stylus())
 	.pipe(sourcemaps.write('./'))
 	.pipe(gulp.dest(build_dir))
-	.pipe(serve.stream());
+	.pipe(serve.stream({match:'**/*.css'}));
 });
 
 gulp.task('styles-min', function () {
@@ -196,9 +212,7 @@ gulp.task("watch", function() {
     }).on('error', function(err){
     	console.log(err.stack);
     });
-	gulp.watch(paths.templates, ["templates"] ).on('change', ($event)=>{
-    	// serve.reload({stream: true});
-    });
+	gulp.watch(paths.templates, ["templates"] ).on('change',serve.reload);
 	gulp.watch(paths.styles, ['styles']).on('change', ($event)=>{
     	// serve.reload({stream: true});
     });

@@ -1,4 +1,7 @@
 app.component("checkedResult", {
     templateUrl: "./checked-result.html",
-    controller: CheckedResultController
+    controller: CheckedResultController,
+    bindings: {
+        msgClick: "&"
+    }
 });

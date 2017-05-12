@@ -270,6 +270,41 @@
 .userLogoChecked {
   color: #ff900c;
 }
+
 .userLoginBorder {
-  border: 1px solid #ff900c;
+  background: url(../../../../../resource/images/btn_select_selected.png) no-repeat;
+  border-radius: 5px;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.documentPlace {
+  h1, h2, h3, h4, h5, h6 {
+    font-size: medium;
+  }
+}
+.nameLogo {
+  width: 100px;
+  height: 100px;
+  vertical-align: middle;
+  padding-top: 10px;
+  overflow: hidden;
+  text-align: center;
+  margin-left: 100px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.documentPlace {
+  h1, h2, h3, h4, h5, h6 {
+    font-size: medium;
+  }
+}
+
+.documentPlace {
+  h1, h2, h3, h4, h5, h6 {
+    font-size: medium;
+  }
 }

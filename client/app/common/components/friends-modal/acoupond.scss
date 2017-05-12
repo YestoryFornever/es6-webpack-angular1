@@ -1,43 +1,61 @@
 
-h1,h2,h3,h4,h5,h6{
-	margin: 0; 
-	padding: 0;
-}
+.friends-modal{
+	font-size:12px;
+	.modal-body{
+		position: relative;
+		padding:0; 
+		height:550px;
+	}
+	.friends-modal-leftbox {
+		position: relative;
+		width: 30%;
+		height: 100%;
+	}
+	.friends-modal-list {
+		position: absolute; 
+		top: 37px;
+		bottom:0; 
+		left:0;
+		right:0;
+		border:1px solid #666;
+		overflow:auto;
+		background:#2B414C;
+	}
+	.friends-modal-selecteds {
+		position: relative;
+		height:100%;
+		width: 69%; 
+		background:#2B414C;
+	}
+	.modal-footer {
+		position: absolute;
+		bottom:0;
+		width: 100%;
+	}
+
+	.friends-modal-selecteds-main {
+		position: absolute;
+		top: 60px;
+		bottom:60px;
+		width: 100%;
+		overflow-y: auto;
+	}
+	.friends-modal-close-btn{
+		background:url("../../../../resource/images/btn_delete_normal.png") no-repeat;
+	}
+	.friends-modal-close-btn:hover{
+		background:url("../../../../resource/images/btn_delete_hover.png") no-repeat;
+	}
 
 
-	#all_modal{
-	
+
 	#close_11{
-	background:red;
-	background:url("../../../../resource/images/btn_close02_gray.png") no-repeat;
+		background:red;
+		background:url("../../../../resource/images/btn_close02_gray.png") no-repeat;
 	}
 	#close_11:hover{
-	background:url("../../../../resource/images/btn_close_yellow.png") no-repeat;
+		background:url("../../../../resource/images/btn_close_yellow.png") no-repeat;
 	}
-	#img{
-	background:url("../../../../resource/images/btn_delete_normal.png") no-repeat;
-	}
-	#img:hover{
-	background:url("../../../../resource/images/btn_delete_hover.png") no-repeat;
-	}
-
-
-	
-	
-		.modal-content{
-			background: $bgDefault;
-			height: auto;
-			border:0;
-			-webkit-box-sizing: border-box;
-			-moz-box-sizing: border-box;
-			box-sizing: border-box;
-			.modal-body{
-				width: 5rem;
-				height: auto;
-			}
-			
-		}
-	
-
 }
+
 	

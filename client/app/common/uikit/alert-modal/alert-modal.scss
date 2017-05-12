@@ -1,43 +1,35 @@
 .my-alert-modal{
 	.modal-xxx.modal-dialog {
 		width: 3.7rem;
-		
+		background: #243841;
 		.modal-content{
-			width: 3.7rem;
-			background: $bgDefault;
+			margin-top:1rem;
+			font-size:0.14rem;
+			color:$textG;
 			.modal-header{
+				line-height:.32rem;
+				height:0.32rem;
+				padding:0 0.1rem;
+				// color:$textD;
 				border-color:$borderDefault;
+				background:url('./images/img_bg_title.png');
+				background-size: auto 100%;
 			}
 			.modal-body{
-				background: $bgDefault;
-				color:$textG;
-				width: 3.7rem;
+				background: #243841;
 				height: 1.4rem;
+				padding:0.5rem;
 				text-align: center;
-				vertical-align: middle;
 			}
 			.modal-footer{
-				background: $bgDefault;
-				// left: 2.7rem;
-				height: auto;
-			    position: static;
+				background: #243841;
 			    border: none;
 			    text-align: center;
 			}
 		}
-		#modal-title{
-			color:$textG;
-		}
 	}
 }
 .alertModal {
-	color: $textD;
-
-	.btn,.btn:hover,.btn.focus,.btn.active,.btn.visited,.btn:focus{
-		background: $btnPrimary;
-		outline: none;
-		color:$textD;
-	}
-	font-size:0.14rem;
-
+	border-radius:0.05rem;
+	overflow: hidden;
 }

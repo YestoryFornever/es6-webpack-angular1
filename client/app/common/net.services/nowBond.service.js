@@ -1,4 +1,10 @@
-app.factory('nowBondService',['$http','$q',"$uibModal",function($http,$q,$uibModal){
+app.factory('nowBondService',function($http,$q,$uibModal,ProxyRequestService){
+	var resultData = {};
+	//用户基本信息
+    // resultData.essentialService = function(data) {
+    //     var url = "E_project_base/authority/user/getUserInfoPageDetail.json";
+    //     return ProxyRequestService.post(url, data);
+    // };
 	return {
 		/**
 		 * /
@@ -14,7 +20,7 @@ app.factory('nowBondService',['$http','$q',"$uibModal",function($http,$q,$uibMod
 				animation: true,
 				component:'nowBond',
 				windowClass:'my-now-bond',
-				size: 'wfxl',//'lg',//'sm',
+				size: 'wfxl',
 				resolve: {
 					modalData:function(){
 						if(item){
@@ -48,12 +54,23 @@ app.factory('nowBondService',['$http','$q',"$uibModal",function($http,$q,$uibMod
 			return deferred.promise;
 		},
 		searchBonds(obj){
-			console.log(obj)
 			let deferred = $q.defer();
 			$http({
 				method: 'POST',
 				url: BONDCONFIG.getIP()+"ainas/web/queryListForBond",
-				data: JSON.stringify(obj),
+				data: JSON.stringify({
+					creditType:obj.creditType,
+					creditSymbol:obj.creditSymbol,
+					dealDate:obj.dealDate,
+					rateType:obj.rateType,
+					termType:obj.termType,
+					termStart:obj.termStart,
+					termEnd:obj.termEnd,
+					pageNum:obj.pageNum,
+					pageSize:obj.pageSize,
+					orderCol:obj.orderCol,
+					orderDirect:obj.orderDirect,
+				}),
 				headers: BONDCONFIG.JH,
 			}).then((response)=>{
 				deferred.resolve(response);
@@ -125,39 +142,39 @@ app.factory('nowBondService',['$http','$q',"$uibModal",function($http,$q,$uibMod
 		},
 		bondTp:{
 			'data':[
-				{"label": "全部",'checked':true,'id':'', "children": false},
-				{"label": "利率债",'checked':false,'id':'1', "children": false},
-				{"label": "国债",'checked':false,'id':'2', "children": false},
-				{"label": "央票",'checked':false,'id':'3', "children": false},
-				{"label": "金融债",'checked':false,'id':'4', "children": false},
-				{"label": "地方债",'checked':false,'id':'5', "children": false},
-				{"label": "信用债",'checked':false,'id':'6', "children": false},
-				{"label": "短融",'checked':false,'id':'7', "children": false},
-				{"label": "中票",'checked':false,'id':'8', "children": false},
-				{"label": "企业债",'checked':false,'id':'9', "children": false},
-				{"label": "公司债",'checked':false,'id':'10', "children": false},
-				{"label": "同业存单",'checked':false,'id':'11', "children": false},
-				{"label": "其他",'checked':false,'id':'99', "children": false},
+				// {"label": "全部",'checked':true,'id':'', },
+				{"label": "利率债",'id':'1', },
+				{"label": "国债",'id':'2', },
+				{"label": "央票",'id':'3', },
+				{"label": "金融债",'id':'4', },
+				{"label": "地方债",'id':'5', },
+				{"label": "信用债",'id':'6', },
+				{"label": "短融",'id':'7', },
+				{"label": "中票",'id':'8', },
+				{"label": "企业债",'id':'9', },
+				{"label": "公司债",'id':'10', },
+				{"label": "同业存单",'id':'11', },
+				{"label": "其他",'id':'99', },
 			]
 		},
 		face:{
 			'data':[
-				{"label": "全部",'checked':true,'id':'', "children": false},
-				{"label": "浮息",'checked':false,'id':'1', "children": false},
-				{"label": "固息",'checked':false,'id':'2', "children": false},
+				// {"label": "全部",'checked':true,'id':'', },
+				{"label": "浮息",'id':'1', },
+				{"label": "固息",'id':'2', },
 			]
 		},
 		sbjRtg:{
 			'data':[
-				{"label": "全部",'checked':true,'id':'', "children": false},
-				{"label": "AAA",'checked':false,'id':'1', "children": false},
-				{"label": "AA+",'checked':false,'id':'2', "children": false},
-				{"label": "AA",'checked':false,'id':'3', "children": false},
-				{"label": "AA-",'checked':false,'id':'4', "children": false},
-				{"label": "A",'checked':false,'id':'5', "children": false},
-				{"label": "其他",'checked':false,'id':'6', "children": false},
+				// {"label": "全部",'checked':true,'id':'', },
+				{"label": "AAA",'id':'1', },
+				{"label": "AA+",'id':'2', },
+				{"label": "AA",'id':'3', },
+				{"label": "AA-",'id':'4', },
+				{"label": "A",'id':'5', },
+				{"label": "其他",'id':'6', },
 			]
 		},
 	}
 
-}]);
+});

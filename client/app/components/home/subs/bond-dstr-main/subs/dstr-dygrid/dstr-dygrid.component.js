@@ -4,8 +4,11 @@ let dstrDygridComponent = {
 		editabled:"=",
 		diseditabled:"=",
 		ids:"<",
-		confirm:"&",
-		bools:"="
+		bools:"=",
+		trClick:"&",
+		trDbclick:"&",
+		fnList:"&",
+		noPager:"@?"
 	},
 	templateUrl: './dstr-dygrid.html',
 	controller: DstrDygridController

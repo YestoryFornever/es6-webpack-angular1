@@ -1,8 +1,16 @@
 bond-dstr-main{
+	@include absolutePos(0,0,0,0);
 	.table>tbody>tr.active>td, .table>tbody>tr.active>th, .table>tbody>tr>td.active, .table>tbody>tr>th.active, .table>tfoot>tr.active>td, .table>tfoot>tr.active>th, .table>tfoot>tr>td.active, .table>tfoot>tr>th.active, .table>thead>tr.active>td, .table>thead>tr.active>th, .table>thead>tr>td.active, .table>thead>tr>th.active{
 		background-color:#264f63;
 	}
 	label{margin-bottom:0;}
+	div.msgFlag{
+		@include background('images/icon_newmessageBG.png',transparent,.17rem);
+		color:$textD;
+	}
+	div.msgActived{
+		@include background('images/icon_greenpoint.png',transparent,.12rem);
+	}
 	header.bond-statistics{
 		height:.4rem;
 		background-color:#243941;
@@ -107,10 +115,10 @@ bond-dstr-main{
 					display:inline-block;
 				}
 				span.sbrb-t-num{
-					width:.6rem;
+					width:.9rem;
 				}
 				span.sbrb-i-ntrt{
-					width:1rem;
+					width:1.6rem;
 				}
 				span.whl-tms-num{
 					width:.6rem;
@@ -192,16 +200,48 @@ bond-dstr-main{
 					// text-align:center;
 					padding-left:.34rem;
 					padding-top:.1rem;
+					color:$textA;
 					&.tab-msg{
 						left:0;
+						div.msgFlag{
+							position:absolute;
+							right: .16rem;
+							top: .02rem;
+							width: .17rem;
+							height: .17rem;
+							line-height: .12rem;
+							font-size: 1px;
+							text-align: center;
+							color:$textD;
+						}
 					}
 					&.tab-bidding{
 						left:1rem;
 						right:0;
 						width:auto;
+						aside.operate{
+							display:none;
+							float:right;
+							margin-right:.1rem;
+							button{
+								font-size:.12rem;
+								@include mixheight(.2rem);
+								padding:0 .12rem;
+								background-color:$textE;
+								color:$textD;
+								@include radius(.04rem);
+								border:0;
+								margin-left:.02rem;
+							}
+						}
 					}
 					&.actived{
 						background-color:#324751;
+					}
+					&.tab-bidding.actived{
+						aside.operate{
+							display:block;
+						}
 					}
 				}
 			}
@@ -219,10 +259,12 @@ bond-dstr-main{
 							tr{
 								background:url('images/img_bg_title.png');
 								background-repeat: repeat-x;
+								background-size: auto 100%;
 								th{
+									text-align:center;
 									border-bottom:0;
 									@include mixheight(.32rem);
-									padding:0 8px;
+									padding:0;
 									font-weight: normal;
 									display:inline-block;
 								}
@@ -233,14 +275,19 @@ bond-dstr-main{
 								td{
 									@include mixheight(.32rem);
 									display:inline-block;
-									padding:0 0 0 8px;
+									padding:0;
+									text-align:center;
+									border-top-width:0;
 									>span{
 										display:inline-block;
 										width:100%;
 										box-sizing: border-box;
 										-moz-box-sizing: border-box;
 										-webkit-box-sizing: border-box;
-										@include ellipsis();
+										padding-right:.02rem;
+										&.ellipsis{
+											@include ellipsis();
+										}
 										input,select{
 											@include radius();
 											background-color:$bgDefaultDark;
@@ -248,6 +295,7 @@ bond-dstr-main{
 											width:100%;
 											@include mixheight(.24rem);
 											padding-left:.02rem;
+											text-align: center;
 										}
 									}
 								}
@@ -255,29 +303,50 @@ bond-dstr-main{
 						}
 						&{
 							tr{
+								td{
+									button{
+										font-size:.12rem;
+										@include mixheight(.2rem);
+										padding:0 .12rem;
+										background-color:transparent;
+										border:0;
+									}
+								}
 								td.td-class-1,th.th-class-1,{
 									width:3%;
 								}
 								td.td-class-2,th.th-class-2,{
 									width:16%;
+									text-align:left;
+									>span{
+										input{
+											text-align:left;
+										}
+									}
 								}
 								td.td-class-3,th.th-class-3,{
-									width:7%;
+									width:5%;
+								}
+								td.td-class-31,th.th-class-31,{
+									width:5%;
+								}
+								td.td-class-32,th.th-class-32,{
+									width:6%;
 								}
 								td.td-class-4,th.th-class-4,{
-									width:8%;
+									width:7%;
 								}
 								td.td-class-5,th.th-class-5,{
-									width:8%;
+									width:6%;
 								}
 								td.td-class-6,th.th-class-6,{
-									width:8%;
+									width:6%;
 								}
 								td.td-class-7,th.th-class-7,{
-									width:8%;
+									width:6%;
 								}
 								td.td-class-8,th.th-class-8,{
-									width:8%;
+									width:6%;
 								}
 								td.td-class-9,th.th-class-9,{
 									width:10%;
@@ -286,62 +355,110 @@ bond-dstr-main{
 									width:7%;
 								}
 								td.td-class-11,th.th-class-11,{
-									width:14%;
+									width:11%;
+									text-align:left;
+									>span{
+										input{
+											text-align:left;
+										}
+									}
 								}
 								td.td-class-12,th.th-class-12,{
 									width:3%;
+									padding:0;
+									button{
+										height: .2rem;
+										line-height: .2rem;
+										color:#222;
+									}
 								}
-								$per:0.72;
+								td.td-class-13,th.th-class-13,{
+									width:3%;
+									padding:0;
+									input[type='checkbox']{
+										width:auto;
+										height:auto;
+									}
+									div.msgFlag{
+										line-height: .28rem;
+										height: .32rem;
+									}
+									div.msgActived{
+										height: .32rem;
+									}
+								}
+								$per:0.7;
 								td.tdb-class-1,th.thb-class-1,{
-									width:3%*$per;
+									width:($per * 3%);
 								}
 								td.tdb-class-2,th.thb-class-2,{
-									width:16%*$per;
+									width:($per * 16%);
+									text-align:left;
+									>span{
+										input{
+											text-align:left;
+										}
+									}
 								}
 								td.tdb-class-3,th.thb-class-3,{
-									width:7%*$per;
+									width:($per * 6%);
+								}
+								td.tdb-class-31,th.thb-class-31,{
+									width:($per * 6%);
+								}
+								td.tdb-class-32,th.thb-class-32,{
+									width:($per * 7%);
 								}
 								td.tdb-class-4,th.thb-class-4,{
-									width:8%*$per;
+									width:($per * 7%);
 								}
 								td.tdb-class-5,th.thb-class-5,{
-									width:8%*$per;
+									width:($per * 6%);
 								}
 								td.tdb-class-6,th.thb-class-6,{
-									width:8%*$per;
+									width:($per * 6%);
 								}
 								td.tdb-class-7,th.thb-class-7,{
-									width:8%*$per;
+									width:($per * 6%);
 								}
 								td.tdb-class-8,th.thb-class-8,{
-									width:8%*$per;
+									width:($per * 6%);
 								}
 								td.tdb-class-9,th.thb-class-9,{
-									width:10%*$per;
+									width:($per * 10%);
 								}
 								td.tdb-class-10,th.thb-class-10,{
-									width:7%*$per;
+									width:($per * 7%);
 								}
 								td.tdb-class-11,th.thb-class-11,{
-									width:14%*$per;
+									width:($per * 14%);
+									text-align:left;
+									>span{
+										input{
+											text-align:left;
+										}
+									}
+									/* width:70%;
+									background:green; */
 								}
 								td.tdb-class-12,th.thb-class-12,{
-									width:3%*$per;
-								}
-								td.tdb-class-12,th.thb-class-12,{
-									width:6.032%;
+									width:6%;
+									/* background:red;
+									width:30%; */
 								}
 								td.tdb-class-13,th.thb-class-13,{
-									width:6.032%;
+									width:6%;
 								}
 								td.tdb-class-14,th.thb-class-14,{
-									width:6.032%;
+									width:6%;
+									span.positive{color:$textI;}
+									span.negative{color:$textH;}
 								}
 								td.tdb-class-15,th.thb-class-15,{
-									width:6.032%;
+									width:6%;
 								}
 								td.tdb-class-16,th.thb-class-16,{
-									width:6.032%;
+									width:6%;
 								}
 							}
 						}
@@ -391,19 +508,19 @@ bond-dstr-main{
 						tbody{
 							tr{
 								td.tdb-class-12,th.thb-class-12,{
-									width:6.032%;
+									width:6%;
 								}
 								td.tdb-class-13,th.thb-class-13,{
-									width:6.032%;
+									width:6%;
 								}
 								td.tdb-class-14,th.thb-class-14,{
-									width:6.032%;
+									width:6%;
 								}
 								td.tdb-class-15,th.thb-class-15,{
-									width:6.032%;
+									width:6%;
 								}
 								td.tdb-class-16,th.thb-class-16,{
-									width:6.032%;
+									width:6%;
 								}
 							}
 						}

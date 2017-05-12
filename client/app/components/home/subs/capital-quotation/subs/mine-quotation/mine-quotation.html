@@ -1,4 +1,4 @@
-<ul class="mineQuotation " ng-class='{mineCreat:$root.$state.includes("home.capitalQuotation.mineQuotation.create")}' ui-view='mineCreat'>
+<div class="mineQuotation " ng-class='{mineCreat:$root.$state.includes("home.capitalQuotation.mineQuotation.create")}' ui-view='mineCreat'>
 	<header id="mineQuotation">
 		<ul class="head" >
 			<li ng-class='{"active": active==0}'>
@@ -9,8 +9,8 @@
 			</li>
 		</ul>
 	</header>
-	<section id="mineQuotationList" style="height: 100%;width: 100%;">
+	<section id="mineQuotationList" style="width: 100%;">
 		<mineon-list-component ng-if="active==0"></mineon-list-component>
 		<mineoff-list-component ng-if="active==1"></mineoff-list-component>
 	</section>
-</ul>
+</div>

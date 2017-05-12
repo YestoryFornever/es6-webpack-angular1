@@ -1,9 +1,8 @@
-
 /**
  * 用户相关接口 DEMO
  * @type {[type]}
  */
-app.factory('netUserService', function($http,$q, ProxyRequestService){
+app.factory('netUserService', function($http, $q, ProxyRequestService) {
 	return {
 		/**
 		 * 生成UUID
@@ -25,26 +24,26 @@ app.factory('netUserService', function($http,$q, ProxyRequestService){
 		 * @param  [Number] ifSecond
 		 * @return {[type]}
 		 */
-		login: function(account, password, numberOfLanding, pictureAuthkey){
-			return ProxyRequestService.post('/E_project_base/authority/login/loginValidate',{
-				loginName:account,
-				loginPassword:password,
+		login: function(account, password, numberOfLanding, pictureAuthkey) {
+			return ProxyRequestService.post('/E_project_base/authority/login/loginValidate', {
+				loginName: account,
+				loginPassword: password,
 				pictureAuthkey: pictureAuthkey,
-				loginWay:"4",
-				loginTerminalType:"2",
-				equipmentNumber:"WEB-EBASE",
+				loginWay: "4",
+				loginTerminalType: "2",
+				equipmentNumber: "WEB-EBASE",
 				numberOfLanding: numberOfLanding,
 				// auroraID:"",
-				isCarryOn:1
+				isCarryOn: 1
 			});
 		},
 		/**
 		 * 登出
 		 * @return {[type]} [description]
 		 */
-		logout: function(){
-			return ProxyRequestService.post('/E_project_base/authority/login/outlogin',{
-				
+		logout: function() {
+			return ProxyRequestService.post('/E_project_base/authority/login/outlogin', {
+
 			});
 		},
 		/**
@@ -53,16 +52,16 @@ app.factory('netUserService', function($http,$q, ProxyRequestService){
 		 * @param  {[type]} pas [description]
 		 * @return {[type]}     [description]
 		 */
-		register:function(acc,pas){
-			return ProxyRequestService.post('/E_project_base/authority/register/registerValidate',{
-				loginName:acc,
-				shortMessageAuthkey:"1234",
-				loginPassword:pas,
+		register: function(acc, pas) {
+			return ProxyRequestService.post('/E_project_base/authority/register/registerValidate', {
+				loginName: acc,
+				shortMessageAuthkey: "1234",
+				loginPassword: pas,
 				// referralCode:"",
-				loginWay:"4",
-				loginTerminalType:"2",
+				loginWay: "4",
+				loginTerminalType: "2",
 				// auroraID:"",
-				equipmentNumber:"WEB-EBASE"
+				equipmentNumber: "WEB-EBASE"
 			});
 		},
 		/**
@@ -70,33 +69,38 @@ app.factory('netUserService', function($http,$q, ProxyRequestService){
 		 * @param  {[type]} phone [description]
 		 * @return {[type]}       [description]
 		 */
-		generate(phone){
-			return ProxyRequestService.post('/E_project_base/authority/verification/smsExistGeneration',{
-				phone:phone,
+		generate(phone) {
+			return ProxyRequestService.post('/E_project_base/authority/verification/smsExistGeneration', {
+				phone: phone,
 			});
 		},
 		/**
 		 * 获取个人信息页用户信息
 		 */
-		getUserInfoPageDetail()
-		{
+		getUserInfoPageDetail() {
 			return ProxyRequestService.post('/E_project_base/authority/user/getUserInfoPageDetail.json', {
 
 			});
 		},
 		/**
-		 * 验证码URL
+		 * 登录验证码URL
 		 * @return {[type]} [description]
 		 */
-		picGeneration: function(numberOfLanding){
-			return ProxyRequestService._prefix+'E_project_base/authority/verification/picGeneration?numberOfLanding='+numberOfLanding+'&time='+(new Date()).getTime();
+		picGeneration: function(numberOfLanding) {
+			return ProxyRequestService._prefix + 'E_project_base/authority/verification/picGeneration?numberOfLanding=' + numberOfLanding + '&time=' + (new Date()).getTime();
+		},
+		/**
+		 * 更新手机号 验证码URL
+		 * @return {[type]} [description]
+		 */
+		picGenerationV12: function(numberOfLanding) {
+			return ProxyRequestService._prefix + 'E_project_base/authority/verification/picGenerationV12?phone=' + numberOfLanding + '&time=' + (new Date()).getTime();
 		},
 		/**
 		 * 4.4.1	获取名片认证信息
 		 * @return {[type]} [description] realCertifyState 1未认证，2待认证，3通过，4不通过
 		 */
-		getBusinessCardCertify: function()
-		{
+		getBusinessCardCertify: function() {
 			return ProxyRequestService.post('E_project_base/authority/card/getBusinessCardCertify');
 		}
 	}

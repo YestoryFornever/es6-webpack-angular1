@@ -2,82 +2,94 @@
   background-color: #3c3e33;
   height: 35px;
   line-height: 35px;
-  padding: 0 10px;
   color: #fdf6c4;
-  margin: 5px;
+  padding-left: 10px;
 }
+
 .myApplicationTitle .applicationTitleOne {
   color: #fff;
   background: url(../../../../../resource/images/tag_02.png) 0 3px no-repeat;
-  padding: 5px 30px 5px 10px;
+  padding: 5px 10px 5px 10px;
 }
+
 .myApplicationTitle .applicationTitleTwo, .applicationTitleThree {
-  margin-right: 40px;
+  margin-right: 10px;
 }
+
 .applicationTitleSix {
   background-color: #997f55;
   padding: 0 10px;
-  font-size: 12px;
   margin-left: 10px;
   border-radius: 3px;
 }
+
 .applicationBtn {
   color: #ffffff;
   background-color: #627982;
-  padding: 0 20px;
-  font-size: 12px;
+  padding: 3px 20px;
   border-radius: 3px;
   margin-right: 10px;
+  font-size: 12px;
 }
+
 .cursor {
   cursor: pointer;
 }
+
 .applicationColor {
   color: #fdf6c4;
   margin-left: 10px;
 }
+
 .applicationColor:hover {
   color: #fdf6c4;
 }
+
 .investor .table {
-  margin: 5px;
+  margin: 5px 0;
 }
-.investor table tr {
-  background-color: #2d424c;
-}
+
 .investor table tr td, .investor table tr th {
   text-align: center;
 }
-.addApp {
-  font-size: 14px;
-}
+
 .addApp table {
   margin: 10px 0;
 }
+
+.addApp table tr th {
+  background: url(../../../../../resource/images/img_bg_title.png) repeat-x;
+  background-size: auto 100%;
+}
+
 .addApp table tr {
-  background: #1f3a42;
   border-bottom: 1px solid #33474f;
   height: 32px;
-  line-height: 32px;
+  //line-height: 32px;
 }
+
 .addApp table tr.clicked {
   background: #1c4f63;
   border: #205163;
 }
+
 .addApp table tr td, .addApp table tr th {
   text-align: center;
 }
+
 .addApp input, .addApp select {
   height: 20px;
   line-height: 20px;
   background: #153036;
   border: none;
-  width: 80px;
+  width: 50px;
   text-align: center;
 }
+
 .addApp .appUser {
   width: 200px;
 }
+
 .selectUser {
   position: absolute;
   top: 20px;
@@ -87,35 +99,141 @@
   border: 1px solid #205163;
   z-index: 999;
 }
+
 .myTab .nav-tabs {
-  margin-left: 66%;
+  width: 3.8rem;
+  position: absolute;
+  right: 5px;
+  top: 5px;
 }
 
-.myTab .nav-tabs>li>a {
+.myTab .nav-tabs > li > a {
   border: none;
 }
+
 .myTab .nav-tabs {
   border: none;
 }
-.myTab .nav>li>a {
-  padding: 5px 50px;
+
+.myTab .nav > li > a {
+  padding: 10px 50px;
   color: #fdf6c4;
-  -webkit-border-radius:0;
-  -moz-border-radius:0;
-  border-radius:0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
 }
-.myTab .nav-tabs>li.active>a,
-.myTab .nav-tabs>li.active>a:focus,
-.myTab .nav-tabs>li.active>a:hover,
-.myTab .nav-tabs>li>a:hover{
+
+.myTab .nav-tabs > li.active > a,
+.myTab .nav-tabs > li.active > a:focus,
+.myTab .nav-tabs > li.active > a:hover,
+.myTab .nav-tabs > li > a:hover {
   background-color: #193a42;
   color: #fdf6c4;
   cursor: default;
   border: none;
-  -webkit-border-radius:0;
-  -moz-border-radius:0;
-  border-radius:0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
 }
+
 .marginFive {
   margin: 5px;
+}
+
+.noticeList {
+  color: #fef4c2;
+  padding-left: 5px;
+}
+
+.investorMarginRight {
+  margin-right: 50px;
+}
+
+.iMarginRight {
+  margin-right: 23px;
+}
+
+.myAppStyle {
+  .row {
+    margin: 0 -5px;
+  }
+  .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+    position: relative;
+    min-height: 1px;
+    padding: 0 5px;
+  }
+}
+
+.nowrap {
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  word-break: keep-all;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+//navbar
+.investorNav {
+  width: 3.8rem;
+  position: absolute;
+  right: 5px;
+  top: 10px;
+}
+
+.investorNav > .navNews, .investorNav .navResult {
+  color: #fff6bf;
+  text-align: center;
+  padding: 13px 30px;
+}
+
+.bgColor {
+  background: #324751;
+}
+
+.navResult {
+  color: #fff6bf;
+  text-align: left;
+  padding: 13px 212px 14px 30px;
+}
+
+.myAppStyle {
+  bond-dstr-main header.bond-statistics {
+    height: .4rem;
+    background-color: #243941;
+    display: none !important;
+  }
+  bond-dstr-main main.bond-sub {
+    top: 0.6rem;
+  }
+  .otherHide {
+    display: none;
+  }
+}
+
+.newsActive {
+  background: url(../../../../../resource/images/icon_newmessageBG.png) 5px 3px no-repeat;
+  color: #fff;
+  display: block;
+  width: 25px;
+  height: 20px;
+  text-align: center;
+}
+
+.otherColor td {
+  color: #999;
+}
+
+.mouseChange {
+  cursor: pointer;
+}
+.blockOverflow {
+  display:block;/*内联对象需加*/
+  word-break:keep-all;/* 不换行 */
+  white-space:nowrap;/* 不换行 */
+  overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+  text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
 }

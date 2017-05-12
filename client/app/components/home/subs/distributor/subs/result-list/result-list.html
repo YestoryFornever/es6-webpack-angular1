@@ -1,0 +1,88 @@
+<div class="addApp" style="margin-top: 40px;">
+    <div class="row">
+        <div class="col-sm-12">
+            <table width="100%" style="margin-top: 0">
+                <tr>
+                    <th></th>
+                    <th style="text-align: left;">联系人</th>
+                    <th>票面利率(%)</th>
+                    <th>综收利率(%)</th>
+                    <th>返费</th>
+                    <th>申购量(亿)</th>
+                    <th>交割方式</th>
+                    <th>分销方式</th>
+                    <th>申购状态</th>
+                    <th>申购渠道</th>
+                    <th>申购时间</th>
+                    <th>备注</th>
+                    <th>
+                        中标结果
+                    </th>
+                    <th>
+                        中标量(亿)
+                    </th>
+                    <th>
+                        票面利率(%)
+                    </th>
+                </tr>
+                <tr ng-dblclick="$ctrl.outModel(item.sndrTeamId, item.rcptyTeamId)"
+                    ng-repeat="item in $ctrl.dataList track by $index" ng-click="$ctrl.trClick($index)"
+                    ng-class='{clicked: $index==$ctrl.trClicked}'>
+                    <td style="width: 30px"></td>
+                    <td style="text-align: left;">
+                        {{item.rcptyInstNm+"-"+item.rcptyTeamNm+"-"+item.rcptyUserNm}}
+                    </td>
+                    <td>
+                        {{item.sbrbIntrt}}
+                    </td>
+                    <!--综收利率-->
+                    <td>{{item.cprsvPftIntrt}}</td>
+                    <!--返费-->
+                    <td>{{item.retFee}}</td>
+                    <td>
+                        {{item.sbrbNum}}
+                    </td>
+                    <td>
+                        {{item.dlvTp | applicationTransaction}}
+                    </td>
+                    <td>
+                        {{item.sellrMod | applicationSale}}
+                    </td>
+                    <td>
+                        {{item.sndrSbrbEStatus | applicationState}}
+                    </td>
+                    <td>
+                        {{item.sbrbChnl | applicationChanel}}
+                    </td>
+                    <td>
+                        {{item.createTime}}
+                    </td>
+                    <td style="width: 100px">
+                        <span class="nowrap" title="{{item.rmrk}}">{{item.rmrk | addTwoLine}}</span>
+                    </td>
+                    <td>
+                        <span ng-if="item.sbrbChnl!=4">{{item.winbidEStatus | winbidEStatus}}</span>
+                        <select ng-if="item.sbrbChnl==4" ng-model="item.winbidEStatus" name="winbidEStatus"
+                                ng-change="$ctrl.changeSelectWinbid(item)">
+                            <option value="1">中标</option>
+                            <option value="2">部分中标</option>
+                            <option value="3">未中标</option>
+                        </select>
+                    </td>
+                    <td>
+                        <span ng-if="item.sbrbChnl!=4">{{item.winbidNum!=null?item.winbidNum:"--"}}</span>
+                        <input ng-if="item.sbrbChnl==4" ng-model="item.winbidNum" name="winbidNum"
+                               ng-blur="$ctrl.changeSelectWinbid(item)"/>
+                    </td>
+                    <td>
+                        <span ng-if="item.sbrbChnl!=4">{{item.winbidIntrt!=null?item.winbidIntrt:"--"}}</span>
+                        <input ng-if="item.sbrbChnl==4" ng-model="item.winbidIntrt" name="winbidIntrt"
+                               ng-blur="$ctrl.changeSelectWinbid(item)"/>
+                    </td>
+                </tr>
+            </table>
+            <!-- 分页 -->
+            <div uikit-pager="$ctrl.Pager" style="display: inline-block;text-align: right;width: 100%"></div>
+        </div>
+    </div>
+</div>

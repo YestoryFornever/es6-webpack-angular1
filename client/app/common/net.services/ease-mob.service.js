@@ -1,5 +1,7 @@
-app.service('easeMobService',function($rootScope){
-	this.register = function(username,password,nickname){//注册环信
+app.factory('easeMobService', function($rootScope, userStatusService, NetEaseService){
+
+	var exports = {};
+	exports.register = function(username,password,nickname){//注册环信
 		var options = { 
 			username: 'webstar_g',
 			password: 'webstar_g',
@@ -15,12 +17,12 @@ app.service('easeMobService',function($rootScope){
 		}; 
 		this.conn.registerUser(options);
 	};
-	this.login = function(){
+	exports.login = function(){
 		this.init();
 		//登录环信
 		var options = {
 			apiUrl: WebIM.config.apiURL,
-			user:BONDCONFIG.USERINFO.uid,
+			user:userStatusService.uid,
 			pwd:"456123",
 			appKey: WebIM.config.appkey,
 			success: function () {
@@ -32,18 +34,27 @@ app.service('easeMobService',function($rootScope){
 		};
 		this.conn.open(options);
 	};
-	this.sendMsg = function(message,extObj,userid){
+	/**
+	 * [sendMsg description]
+	 * @param  {[String]} message [description]
+	 * @param  {[Object]} extObj  [description]
+	 * @param  {[String]} userid  [description]
+	 * @return {[type]}         [description]
+	 */
+	exports.sendMsg = function(message,extObj,userid){
+		let self = this;
 		var id = this.conn.getUniqueId();		// 生成本地消息id
 		var msg = new WebIM.message('txt', id);	// 创建文本消息
 		let msgBody = {
 			msg: message,					// 消息内容
-			from: BONDCONFIG.USERINFO.uid,
+			from: userStatusService.uid,
 			//接收消息对象（用户id）
 			to: userid,
 			ext: extObj,
 			roomType: false,
-			success: function (id, serverMsgId) {
-				console.log('成功发送个人信息');
+			success(id, serverMsgId){
+				console.log('成功发送个人信息:',msgBody);
+				self.save(msgBody,'o',serverMsgId);
 			}
 		};
 		msg.set(msgBody);
@@ -51,12 +62,39 @@ app.service('easeMobService',function($rootScope){
 		this.conn.send(msg.body);
 		this.setCache(msgBody,'o');
 	};
-	this.sendCmd = function(type,user){
+	/**
+	 * 发送消息到群组
+	 * @param  {[type]} message [description]
+	 * @param  {[type]} extObj  [description]
+	 * @param  {[type]} groupId 环信群组的ringlGroupid
+	 * @return {[type]}         [description]
+	 */
+	exports.sendMsgToGroup = function(message,extObj, groupId){
+		var groupId = groupId||this.conn.getUniqueId();		// 生成本地消息id
+		var msg = new WebIM.message('txt', groupId);	// 创建文本消息
+		let msgBody = {
+			msg: message,					// 消息内容
+			from: userStatusService.uid,
+			//接收消息对象（用户id）
+			to: groupId,
+			ext: extObj,
+			roomType: false,
+			chatType: 'chatRoom',
+			success: function (id, serverMsgId) {
+				console.log('成功发送群聊信息:',msgBody);
+			}
+		};
+		msg.set(msgBody);
+		msg.body.chatType = 'singleChat';
+		msg.setGroup('groupchat');
+		this.conn.send(msg.body);
+	}
+	exports.sendCmd = function(type,user){
 		var id = this.conn.getUniqueId();// 生成本地消息id
 		var msg = new WebIM.message('cmd', id);	// 创建文本消息
 		msg.set({
 			msg: '透传消息',
-			from: BONDCONFIG.USERINFO.uid,
+			from: userStatusService.uid,
 			to: user,//接收消息对象
 			action : '透传消息',//用户自定义，cmd消息必填
 			ext :{
@@ -68,7 +106,7 @@ app.service('easeMobService',function($rootScope){
 		});
 		this.conn.send(msg.body);
 	};
-	this.setCache = function(message,io){
+	exports.setCache = function(message,io){
 		message.iotype = io;
 		function curUser(message,io){
 			return (io==="i"?message.from:message.to);
@@ -96,7 +134,7 @@ app.service('easeMobService',function($rootScope){
 			});
 		}
 	};
-	this.getCache = function(userid){
+	exports.getCache = function(userid){
 		if(this.chatCache&&this.chatCache.length>0){//如果存在聊天缓存，依次弹出
 			let curChatListUn;
 			for(let i=0;i<this.chatCache.length;i++){
@@ -108,10 +146,53 @@ app.service('easeMobService',function($rootScope){
 		}
 		return false;
 	};
-	this.createMsgObj = (ext,msg,flag)=>{
+	exports.save = function(message,io,serverMsgId){
+		let jsonPayload = JSON.stringify({
+				bodies:[
+					{
+						msg:message.msg,
+						type:'txt'
+					}
+				],
+				ext:message.ext
+			});
+		let params = {
+			msg_id:serverMsgId,
+			timestamp:(new Date).getTime(),
+			direction:'outgoing',//io=='o'?'o':'i',
+			to:message.to,
+			from:message.from,
+			chat_type:'chat',
+			payload:jsonPayload
+		}
+		NetEaseService.addMessge(params).then(
+			data=>{
+				console.info('消息存储成功');
+			},
+			err=>{
+				console.warn(err)
+			}
+		);
+	};
+	exports.get = function(userid){
+		return NetEaseService.userChatContent({
+			userTo:userStatusService.uid,
+			userFrom:userid,
+			pageNum:1,
+			pageSize:20
+		}).then(
+			data=>{
+				return data.data.data;
+			},
+			err=>{
+				console.warn(err);
+			}
+		);
+	};
+	exports.createMsgObj = (ext,msg,flag,time)=>{
 		let result = false;
 		if(ext && (ext.ext_msg_type||ext.bond_type)){
-			let type = ext.ext_msg_type||ext.bond_type;
+			let type = String(ext.ext_msg_type||ext.bond_type);
 			switch(type){
 				case "0"://无扩展消息
 					if(msg){
@@ -195,13 +276,12 @@ app.service('easeMobService',function($rootScope){
 				message:msg
 			};
 		}
-		result.time=(new Date().getTime());
-		// debugger;
+		if(result)result.time=time;
 		return result;
 	};
-	this.hasINIT = false;
+	exports.hasINIT = false;
 	/*环信初始化*/
-	this.init = function(){
+	exports.init = function(){
 		if(this.hasINIT)return false;
 		this.conn = new WebIM.connection({
 			isMultiLoginSessions: WebIM.config.isMultiLoginSessions,
@@ -330,8 +410,8 @@ app.service('easeMobService',function($rootScope){
 			onOffline: function () {//本机网络掉线
 				console.log('offline');
 			},
-			onError: function (message) {//失败回调
-				console.log('Error');
+			onError: function (error) {//失败回调
+				console.log('Error:',error);
 			},
 			onBlacklistUpdate: function (list) {// 黑名单变动
 				//查询黑名单，将好友拉黑，将好友从黑名单移除都会回调这个函数，list则是黑名单现有的所有好友信息
@@ -340,4 +420,6 @@ app.service('easeMobService',function($rootScope){
 		});
 		this.hasINIT = true;
 	};
+	exports.login();
+	return exports;
 });

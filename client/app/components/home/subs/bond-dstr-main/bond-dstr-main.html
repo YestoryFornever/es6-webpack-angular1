@@ -2,29 +2,30 @@
 	<ul>
 		<li>
 			<label for="">全场:</label>
-			<span class="all-multiply">{{$ctrl.subSttstcs.am}}</span>
+			<span class="all-multiply">{{$ctrl.subSttstcs.am|addTwoLine}}</span>
 			<!-- <input ng-model="$ctrl.subSttstcs.am" class="all-multiply" type="text"> -->
 		</li>
 		<li>
 			<label for="">边际:</label>
-			<span class="marginal-multiply">{{$ctrl.subSttstcs.mm}}</span>
+			<span class="marginal-multiply">{{$ctrl.subSttstcs.mm|addTwoLine}}</span>
 			<!-- <input ng-model="$ctrl.subSttstcs.mm" class="marginal-multiply" type="text"> -->
 		</li>
 		<li>
 			<label for="">边际利率:</label>
-			<span class="marginal-yield">{{$ctrl.subSttstcs.my}}</span>
+			<span class="marginal-yield">{{$ctrl.subSttstcs.my|addTwoLine}}</span>
 			<!-- <input ng-model="$ctrl.subSttstcs.my" class="marginal-yield" type="text"> -->
 		</li>
 		<li>
 			<label for="">截标时间:</label>
-			<span class="tender-end-time">{{$ctrl.subSttstcs.tet|date:"yyyy年MM月dd日 HH时mm分ss秒"}}</span>
+			<span class="tender-end-time">{{$ctrl.subSttstcs.tet|addTwoLine}}</span>
 			<!-- <input ng-model="$ctrl.subSttstcs.tet" class="tender-end-time" type="text"> -->
 		</li>
 	</ul>
 	<aside>
 		<button type="button" ng-click="$ctrl.publishSubscribe()">发布申购数据</button>
-		<button type="button" ng-click="$ctrl.immClsBid()">立即截标</button>
-		<button type="button">邀请好友申购</button>
+		<button type="button" ng-click="$ctrl.clsbidFn()" ng-if="$ctrl.ids.enqrTp=='1'" ng-disabled="!$ctrl.clsbidbtn.enable">{{$ctrl.clsbidbtn.label}}</button>
+		<button type="button" ng-click="$ctrl.transferFriends()">邀请好友申购</button>
+		<!-- <button type="button" ng-click="$ctrl.test()">test</button> -->
 	</aside>
 </header>
 <header class="bond-subscribe">
@@ -34,7 +35,7 @@
 	<ul>
 		<li>
 			<label for="">申购总量:</label>
-			<span class="sbrb-t-num">{{$ctrl.cusSttstcs.sbrbTnum}}</span>
+			<span class="sbrb-t-num">{{$ctrl.cusSttstcs.sbrbTnum|number:2|changeToMoney}}</span>
 			<!-- <input ng-model="$ctrl.cusSttstcs.sbrbTnum" class="sbrb-t-num" type="text"> -->
 		</li>
 		<li>
@@ -42,50 +43,81 @@
 			<span class="sbrb-i-ntrt">{{$ctrl.cusSttstcs.sbrbIntrt}}</span>
 			<!-- <input ng-model="$ctrl.cusSttstcs.sbrbIntrt" class="sbrb-i-ntrt" type="text"> -->
 		</li>
-		<li>
+		<li class="otherHide">
 			<label for="">全场:</label>
-			<span class="whl-tms-num">{{$ctrl.cusSttstcs.whlTmsNum}}</span>
+			<span class="whl-tms-num">{{$ctrl.cusSttstcs.whlTmsNum|addTwoLine}}</span>
 			<!-- <input ng-model="$ctrl.cusSttstcs.whlTmsNum" class="whl-tms-num" type="text"> -->
 		</li>
-		<li>
+		<li class="otherHide">
 			<label for="">边际:</label>
-			<span class="bdy-tms-num">{{$ctrl.cusSttstcs.bdyTmsNum}}</span>
+			<span class="bdy-tms-num">{{$ctrl.cusSttstcs.bdyTmsNum|addTwoLine}}</span>
 			<!-- <input ng-model="$ctrl.cusSttstcs.bdyTmsNum" class="bdy-tms-num" type="text"> -->
 		</li>
-		<li>
+		<li class="otherHide">
 			<label for="">边际利率:</label>
-			<span class="bdy-intrt">{{$ctrl.cusSttstcs.bdyIntrt}}</span>
+			<span class="bdy-intrt">{{$ctrl.cusSttstcs.bdyIntrt|addTwoLine}}</span>
 			<!-- <input ng-model="$ctrl.cusSttstcs.bdyIntrt" class="bdy-intrt" type="text"> -->
 		</li>
 	</ul>
-	<aside>
+	<aside class="otherHide">
 		<span>当前团队负责人:{{$ctrl.leader.userNm}}</span>
-		<button type="button" ng-click="$ctrl.updatePnp()">我是负责人</button>
+		<button type="button" class="btn" ng-click="$ctrl.updatePnp()" ng-disabled='$ctrl.leader.userId==$ctrl.userStatusService.uid'>我是负责人</button>
 	</aside>
 </header>
 <main class="bond-sub" ng-class="{'tab-m':$ctrl.tabFlag=='m','tab-b':$ctrl.tabFlag=='b'}">
 	<nav class="operate">
 		<section class="list">
 			<label for="">申购列表</label>
-			<aside class="tabs">
+			<aside class="tabs" ng-if="$ctrl.tabFlag=='m'">
 				<button type="button" class="btn" ng-click="$ctrl.mineTableInit()">添加</button>
-				<button type="button" class="btn">导出</button>
-				<button type="button" class="btn">全部已读</button>
+				<a ng-href="{{$ctrl.download}}">
+					<button type="button" class="btn">导出</button>
+				</a>
+				<button type="button" class="btn" ng-click="$ctrl.whlAlrdyRead()">全部已读</button>
 			</aside>
 		</section>
 		<section class="tabs">
-			<div ng-click="$ctrl.toggleMsgTab('m')" class="tab tab-msg" ng-class="{actived:$ctrl.tabFlag=='m'}">消息</div>
-			<div ng-click="$ctrl.toggleMsgTab('b')" class="tab tab-bidding" ng-class="{actived:$ctrl.tabFlag=='b'}">中标分配</div>
+			<div ng-click="$ctrl.toggleMsgTab('m')" class="tab tab-msg" ng-class="{actived:$ctrl.tabFlag=='m'}">
+				<span>消息</span>
+				<div class="msgFlag" ng-if="!!$ctrl.msgStatistics.total">{{$ctrl.msgStatistics.total}}</div>
+			</div>
+			<div ng-click="$ctrl.toggleMsgTab('b')" class="tab tab-bidding" ng-class="{actived:$ctrl.tabFlag=='b'}">
+				<span>中标分配</span>
+				<aside class="operate">
+					<button type="button" class="btn" ng-click="$ctrl.sendAllWinbidList()"
+						ng-disabled='$ctrl.leader.userId!=$ctrl.userStatusService.uid||!$ctrl.listsB.enabledSend'>全部发送</button>
+					<a ng-href="{{$ctrl.download}}">
+						<button type="button" class="btn">导出</button>
+					</a>
+				</aside>
+			</div>
 		</section>
 	</nav>
 	<section id="bondSubList" class="bond-sub-list">
 		<!-- <input type="text" ng-model="$ctrl.single"> -->
 		<div ng-class="{'show-mine-table':$ctrl.bools.showMineTable}" slimscroll="{alwaysVisible:true}" slim-resize="bondSubList">
-			<dstr-dygrid confirm="$ctrl.addCustSbrb()" ng-show="$ctrl.tabFlag=='m'" editabled="$ctrl.mine" diseditabled="$ctrl.lists" ids="$ctrl.ids" bools="$ctrl.bools"></dstr-dygrid>
-			<dstr-dygrid class="dstr-dygrid-b" confirm="$ctrl.addCustSbrb()" ng-show="$ctrl.tabFlag=='b'" editabled="$ctrl.mineB" diseditabled="$ctrl.listsB" ids="$ctrl.ids" bools="$ctrl.bools"></dstr-dygrid>
+			<dstr-dygrid
+				ng-show="$ctrl.tabFlag=='m'"
+				editabled="$ctrl.mine"
+				diseditabled="$ctrl.lists"
+				ids="$ctrl.ids"
+				bools="$ctrl.bools"
+				tr-click="$ctrl.trClick($item,$index)"
+				tr-dbclick="$ctrl.trDbclick($item,$index)"
+				fn-list="$ctrl.getCustSbrbListFn(pageNum,pageSize)"></dstr-dygrid>
+			<dstr-dygrid class="dstr-dygrid-b"
+				ng-show="$ctrl.tabFlag=='b'"
+				diseditabled="$ctrl.listsB"
+				ids="$ctrl.ids"
+				bools="$ctrl.bools"
+				tr-click="$ctrl.trClick($item,$index)"
+				fn-list="$ctrl.bondallocationlistFn(pageNum,pageSize)"
+				no-pager="1"></dstr-dygrid>
+			<!-- tr-dbclick="$ctrl.trDbclick($item,$index)" -->
+			<!-- editabled="$ctrl.mineB" -->
 		</div>
 	</section>
-	<section class="bond-chat">
-		<chat-model chat-option="{}" user-single="$ctrl.single" user-multiple="$ctrl.multiple" quick-info="$ctrl.subSttstcs"></chat-model>
+	<section id="dstrMainChat" class="bond-chat">
+		<chat-model chat-option="{}" user-single="$ctrl.single" user-multiple="$ctrl.multiple" quick-info="$ctrl.subSttstcs" msg-statistics="$ctrl.msgStatistics" is-single="$ctrl.chatSingle" uni-flag="#dstrMainChat"></chat-model>
 	</section>
 </main>

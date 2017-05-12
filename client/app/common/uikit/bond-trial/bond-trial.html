@@ -40,7 +40,7 @@
 					<span class="wfcontent">{{$ctrl.infoList.rateType |addTwoLine}}</span>
 				</div>
 			</div>
-			<div class="cont">
+			<div class="cont bgColorB">
 				<div class="cont_l marT10">
 					<span class="tit">交易日期</span>
 					<input type="text" class="inpWid118" uib-datepicker-popup="{{format}}" ng-model="$ctrl.tody" is-open="isOpen" datepicker-options="dateOptions" ng-change='$ctrl.dateChange()'  close-text="Close" alt-input-formats="altInputFormats" />
@@ -85,7 +85,7 @@
 				</div>
 				<div class="cont_l ">
 					<span class="tit">行权收益率(%)</span>
-					<span class="wfcontent"><input style="background: #ccc" type="text" disabled="true" placeholder="请输入内容"></span>
+					<span class="wfcontent"><input  type="text" ng-disabled='true' placeholder="请输入内容"></span>
 				</div>
 				<div class="cont_r">
 					<span class="tit">应计利息</span>
@@ -108,7 +108,7 @@
 					<span class="wfcontent">{{$ctrl.calcDaysList.execDay |addTwoLine}}</span>
 				</div>
 			</div>
-			<div class="cont marNone">
+			<div class="cont marNone bgColorB">
 				<div class="cont_l marT10">
 					<span class="tit">麦氏久期</span>
 					<span class="wfcontent">{{$ctrl.calcIndicatorsList.rmclDuration  | numPointFourFilter |addTwoLine }}</span>

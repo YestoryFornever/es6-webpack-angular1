@@ -59,7 +59,7 @@ app.config(($stateProvider, $urlRouterProvider) => {
             }
         })
         .state('home.personalcenter.supplementaryInformation', {
-            url: '/supplementary-information', //信息补充
+            url: '/supplementary-information?subobj;', //信息补充
             views: {
                 'person': {
                     component: 'supplementaryInformation'

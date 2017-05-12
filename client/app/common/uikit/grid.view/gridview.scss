@@ -1,4 +1,4 @@
-table#gridview{
+.gridview{
 	border:none;
 	tr{
 		border:none;
@@ -16,4 +16,10 @@ table#gridview{
 	td{
 		border-bottom:1px solid $borderDefault;
 	}
+	tbody{
+		border-width:0;
+	}
+}
+.gridview .loading-body td {
+	width:100%;
 }

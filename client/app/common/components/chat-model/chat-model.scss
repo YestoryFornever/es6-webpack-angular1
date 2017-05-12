@@ -95,4 +95,12 @@ chat-model {
 			background-color:$btnPrimary;
 		}
 	}
+	.hide-quick-info{
+		footer{
+			height:$footerH+0.32rem;
+			textarea{
+				height:.9rem;
+			}
+		}
+	}
 }

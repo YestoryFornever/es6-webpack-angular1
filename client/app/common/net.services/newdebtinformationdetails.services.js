@@ -2,7 +2,7 @@
  * @Author: Administrator
  * @Date:   2017-03-21 19:21:42
  * @Last Modified by:   Administrator
- * @Last Modified time: 2017-04-10 09:53:09
+ * @Last Modified time: 2017-04-27 13:55:16
  */
 /*
  * 债券分销详情
@@ -54,9 +54,20 @@ app.factory('newdebtinformationdetailsService', function($http, $q, ProxyRequest
 				dstrBondId:obj.dstrBondId
 			});
 		},
-
-
-
+		//直播接口e-xlive/livemain/liveBond
+		liveBond(obj) {
+			return ProxyRequestService.post('e-xlive/livemain/liveBond ', {
+				bondID:obj.bondID
+			});
+		},
+		// 4.2.2进入直播
+		enterLive(obj) {
+			return ProxyRequestService.post('e-xlive/livemain/enterLive ', {
+				live_id:obj.live_id,
+				uid:obj.uid,
+				user_role:obj.user_role
+			});
+		},
 	}
 
 });

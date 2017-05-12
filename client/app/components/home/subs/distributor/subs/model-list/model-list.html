@@ -1,0 +1,61 @@
+<div>
+    <div class="modal-header ng-scope">
+        <p class="modal-title newdebtdialog-title">我的全部申购记录
+            <i class="fa fa-times pull-right" aria-hidden="true" ng-click="$ctrl.close()"></i>
+        </p>
+    </div>
+    <div class="modal-body ng-scope addApp">
+        <p>本次申购合计: <span class="applicationColor">利率区间: {{$ctrl.sbrbSmy.sbrbIntrtLwrLmt | yldrtoCopyFilter}} -- {{$ctrl.sbrbSmy.sbrbIntrtUpLm | yldrtoCopyFilter}}</span><span class="applicationColor">申购总量: {{$ctrl.sbrbSmy.sbrbTnum | changeToMoney}} </span></p>
+        <table width="100%">
+            <tr>
+                <th style="text-align: left">联系人</th>
+                <th>票面利率(%)</th>
+                <th>综收利率(%)</th>
+                <th>返费</th>
+                <th>申购量(亿)</th>
+                <th>交割方式</th>
+                <th>销售方式</th>
+                <th>申购状态</th>
+                <th>申购渠道</th>
+                <th>申购时间</th>
+                <th>备注</th>
+            </tr>
+            <tr ng-repeat="item in $ctrl.data track by $index" ng-class="{otherColor: item.sndrSbrbEStatus=='9'}">
+                <td  style="text-align: left; width: 150px">
+                    <span class="nowrap" title='{{item.rcptyInstNm + "-" + item.rcptyTeamNm + "-" + item.rcptyUserNm}}'>{{item.rcptyInstNm + "-" + item.rcptyTeamNm + "-" + item.rcptyUserNm}}</span>
+                </td>
+                <td>
+                    {{item.sbrbIntrt}}
+                </td>
+                <td>
+                    {{item.cprsvPftIntrt}}
+                </td>
+                <!--返费-->
+                <td>{{item.retFee}}</td>
+                <td>
+                    {{item.sbrbNum}}
+                </td>
+                <td>
+                    {{item.dlvTp | applicationTransaction}}
+                </td>
+                <td>
+                    {{item.sellrMod | applicationSale}}
+                </td>
+                <td>
+                    {{item.sndrSbrbEStatus | applicationState}}
+                </td>
+                <td>
+                    {{item.sbrbChnl | applicationChanel}}
+                </td>
+                <td>
+                    {{item.createTime}}
+                </td>
+                <td style="width: 150px">
+                    <span class="nowrap" title="{{item.rmrk}}">{{item.rmrk | addTwoLine}}</span>
+                </td>
+            </tr>
+        </table>
+        <!-- 分页 -->
+        <div uikit-pager="$ctrl.Pager" style="display: inline-block;text-align: right;width: 100%"></div>
+    </div>
+</div>

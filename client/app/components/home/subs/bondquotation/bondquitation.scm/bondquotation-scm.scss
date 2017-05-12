@@ -1,0 +1,8 @@
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus{
+	background:$bgDefaultLightB;
+}
+span.match{
+	display:inline-block;
+	padding:0.05rem 0.1rem;
+	text-align: center;
+}

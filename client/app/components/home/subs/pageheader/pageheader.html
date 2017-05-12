@@ -9,22 +9,24 @@
 			ng-class="{open:trainOpen}">
 				<a class="dropdown-toggle">新债直通车 <span class="caret"></span></a>
 				<ul class="dropdown-menu bondquotation-list">
-					<li><a ui-sref="home.cast">直播</a></li>
-					<li><a ui-sref="home.capitalQuotation">资金报价</a></li>
-					<li><a ui-sref="home.newdebtinformation">债券分销</a></li>
+					<li class="disabled"><a >分销工作台</a></li>
+					<li><a ui-sref="home.cast">债市直播</a></li>
+					<li><a ui-sref="home.newdebtinformation">新债信息</a></li>
+					<li><a ng-click='healdCalculatorService.open()'>综收计算器</a></li>
+					<li class="disabled"><a >新债日历</a></li>
 				</ul>
 			</li>
 			<li class="dropdown" ng-init="bondquotationOpen=false" 
 			ng-mouseover="bondquotationOpen=true" ng-mouseleave="bondquotationOpen=false" 
-			ng-class="{open:bondquotationOpen}"
-			ng-if="$root.userStatusService.realCertifyState==3">
+			ng-class="{open:bondquotationOpen}" certify-state='3'>
 				<a  class="dropdown-toggle">债券报价 <span class="caret"></span></a>
 				<ul class="dropdown-menu bondquotation-list">
 					<li><a ui-sref="home.bondquotation">债券报价</a></li>
 					<li><a ui-sref="home.chatroom.bargainlist">消息中心</a></li>
-					<li><a ng-click="NetBondquotationService.openCalculator()">计算器</a></li>
+					<li><a ng-click="netBondTrialService.openCalculator()">计算器</a></li>
 				</ul>
 			</li>
+			<li certify-state='3'><a ui-sref="home.capitalQuotation.onLineBond">资金报价</a></li>
 			<li class="dropdown" ng-init="discuzeOpen=false" ng-mouseover="discuzeOpen=true" ng-mouseleave="discuzeOpen=false" ng-class="{open:discuzeOpen}">
 				<a  class="dropdown-toggle">社区 <span class="caret"></span></a>
 				<ul class="dropdown-menu discuze-list">
@@ -49,22 +51,23 @@
 
 		<ul class="rightblock">
 			<li id="pageheaderGuapai">
-				<a ng-click="$ctrl.nowBondService.openNowBondModal()"
-				ng-if="$root.userStatusService.realCertifyState==3"><span>挂牌</span></a>
+				<a ng-click="$ctrl.nowBondService.openNowBondModal()" certify-state='3'><span>挂牌</span></a>
 			</li>
 			<li class="dropdown" ng-init="myspaceOpen=false" ng-mouseover="myspaceOpen=true" ng-mouseleave="myspaceOpen=false" ng-class="{open:myspaceOpen}">
 	          <a  class="dropdown-toggle">{{$root.userStatusService.userName}},您好 <span class="caret"></span></a>
 	          <ul class="dropdown-menu my-space-list">
 	          	<li ng-if="$root.userStatusService.realCertifyState==3"><a ui-sref="home.personalcenter.essentialInformationYes">个人中心</a></li>
-	          	<li ng-if="$root.userStatusService.realCertifyState==1"><a ui-sref="home.personalcenter.essentialInformationNo">个人中心</a></li>
+	          	<li ng-if="$root.userStatusService.realCertifyState!=3"><a ui-sref="home.personalcenter.essentialInformationNo">个人中心</a></li>
 	            <li><a ng-click="$ctrl.logout()">注销</a></li> 
 	          </ul> 
 	        </li>
 			<li id="coin">
-				<a>金币</a>
+				<a ng-if="$root.userStatusService.realCertifyState==3" ui-sref="home.personalcenter.myWealth">金币&nbsp;{{$root.userStatusService.coinRemain}}G</a>
+                <a ng-if="$root.userStatusService.realCertifyState!=3" ui-sref="home.personalcenter.essentialInformationNo">金币&nbsp;0G</a>
 			</li>
 			<li id="iWantTucao">
-				<a><span>我要吐槽</span></a>
+				<a ng-if="$root.userStatusService.realCertifyState==3"><span ui-sref="home.personalcenter.makeComplaints">我要吐槽</span></a>
+                <a ng-if="$root.userStatusService.realCertifyState!=3"><span ui-sref="home.personalcenter.essentialInformationNo">我要吐槽</span></a>
 			</li>
 		</ul>
 	</div>

@@ -1,8 +1,8 @@
 
-<table class="table-responsive  table my-table" id="gridview">
+<table class="table-responsive  table my-table gridview">
 	<thead>
 		<tr class="bg">
-			<th ng-repeat="field in fields"  ng-hide="field.thNgHide()"  ng-click="_thClick(field)" class="{{field.thClass}}" ng-class="field.thNgClass($item)">
+			<th ng-repeat="field in fields"  ng-hide="field.thNgHide($item)"  ng-click="_thClick(field)" class="{{field.thClass}}" ng-class="field.thNgClass($item)">
 				<span>{{field.label}}</span>
 				<span style="position: relative;">
 					<i ng-class="{sortDown:$ctrl.searchQuery.desc==2 && $ctrl.searchQuery.order==field.order && field.order!='', sortUp:$ctrl.searchQuery.desc==1 && $ctrl.searchQuery.order==field.order && field.order!=''}"></i>
@@ -10,17 +10,19 @@
 			</th>
 		</tr>
 	</thead>
-
-	<tbody style="border: none; " id="bodyTr" ng-init="$ctrl.tr_active=0">
+	<tbody ng-show="isLoading" class="loading-body">
+		<tr>
+			<td colspan="{{fields.length}}">loading……</td>
+		</tr>
+	</tbody>
+	<tbody ng-init="$ctrl.tr_active=0" ng-show="!isLoading">
 		<tr  ng-repeat='$item in items' ng-dblclick="_trDblclick($item, $index)"  ng-click='_trClick($item, $index);$ctrl.tr_active=$index' ng-class='{"active": $index == $ctrl.tr_active}'>
 
 			<!-- $scope.searchQuery.queryFlag =="B" -->
-			<td ng-repeat="field in $ctrl.fields" ng-hide="field.tdNgHide()"  class="{{field.tdClass}}" ng-class="field.tdNgClass($item)" ng-click="field.tdClick($item, $event)">
+			<td ng-repeat="field in $ctrl.fields" ng-hide="field.tdNgHide($item)"  class="{{field.tdClass}}" ng-class="field.tdNgClass($item)" ng-click="field.tdClick($item, $event)">
 				<div grid-view-td="field.template" ng-if="field.template"></div>
 				<div ng-include="field.templateUrl" ng-if="field.templateUrl"></div>
 			</td>
-
-
 		</tr>
 	</tbody>
 </table>

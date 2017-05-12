@@ -1,0 +1,59 @@
+.lineUp {
+	section#lineUpCont{
+		padding:0.1rem 0.2rem;
+		border-top:1px solid $bgDefaultDarkA;
+		.head{
+			margin-bottom:0.1rem;
+			button.plus{
+				border:none;
+				float:right;
+				height:0.24rem;
+				width:0.24rem;
+				background:$bgDefaultLightC;
+				border-radius:0.24rem;
+				span.bgPlus{
+					display:inline-block;
+					height:0.24rem;
+					width:0.24rem;
+					background:url('./images/btn_plus_normal.png') no-repeat center;
+				}
+				span.bgPlus:hover{
+					background:url('./images/btn_plus_hover.png') no-repeat center;
+				}
+			}
+		}
+		#table{
+			table.table{
+
+				td,th{
+					border:none;
+					text-align:center;
+					white-space:nowrap;
+				}
+				thead>tr{
+					background-size:100%;
+				}
+				tbody{
+					.delete{
+						border:none;
+						display:inline-block;
+						width:0.24rem;
+						height:0.24rem;
+						background:url('./images/btn_delete_normal.png') no-repeat center;
+					}
+					.delete:hover{
+						background:url('./images/btn_delete_hover.png') no-repeat center;
+					}
+				}
+			}
+		}
+		.footer{
+			text-align:center;
+			input.btn{
+				width:1rem;
+				display:inline-block;
+
+			}
+		}
+	}
+}

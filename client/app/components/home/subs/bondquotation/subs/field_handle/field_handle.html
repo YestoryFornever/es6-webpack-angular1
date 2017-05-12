@@ -10,6 +10,6 @@
 	<span title="撤销" class="delete" ng-if='$ctrl.item.ifpresentUser=="1" && $ctrl.item.ofrEStatus=="1" '  ng-click='bondDown($ctrl.item,$event)'></span>
 
 	<span title="发送" class="send" ng-if='$ctrl.item.ifpresentUser=="1" && $ctrl.item.wthrListg=="0"' ng-click='openFirendOrOnLine($ctrl.item)'></span>
-	<span title="发送" class="send" ng-if='$ctrl.item.ifpresentUser=="1" && $ctrl.item.wthrListg=="1"' ng-click='FriendsModalService.open($ctrl.item)'></span>
+	<span title="发送" class="send" ng-if='$ctrl.item.ifpresentUser=="1" && $ctrl.item.wthrListg=="1"' ng-click='sendToFriend($ctrl.item)'></span>
 
 </div>

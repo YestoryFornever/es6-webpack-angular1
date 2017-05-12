@@ -8,7 +8,7 @@ h1,h2,h3,h4,h5,h6{
 		// background-color:$bgDefaultLightC;
 		outline: none;
 		box-shadow:none;
-		color:$textD;
+		// color:$textD;
 		border:none;
 	}
 
@@ -16,16 +16,16 @@ h1,h2,h3,h4,h5,h6{
 		// background-color:$bgDefaultLightC;
 		outline: none;
 		box-shadow:none;
-		color:$textD;
+		// color:$textD;
 		border:none;
 	}
-	color:$textD;
-	font-size:0.12rem;
-	input,textarea{
-		border:$bgDefaultLightA;
-		background: none;
+	// color:$textD;
+	font-size:14px;
+	// input,textarea{
+	// 	border:$bgDefaultLightA;
+	// 	background: none;
 
-	}
+	// }
 	textarea{
 		overflow: visible;
 		height: 0.24rem;
@@ -33,6 +33,7 @@ h1,h2,h3,h4,h5,h6{
 	}
 	.bg{
 		background:url('../../../../../resource/images/img_bg_title.png')  center;
+		background-size: auto 100%;
 	}
 	.btn.active{
 		background-color:$btnPrimary;
@@ -52,26 +53,11 @@ h1,h2,h3,h4,h5,h6{
 		border:none;
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	height:100%;
+	overflow-y:auto;
 	width:100%;
-	font-size:12px;
-	color:#fff;
+	// font-size:12px;
+	// color:#fff;
 	float:left;
 	position:relative;
 	left:0;
@@ -88,11 +74,11 @@ h1,h2,h3,h4,h5,h6{
 		height:.4rem;
 		width:100%;
 		font-size: 14px;
-		color:#fff;
+		// color:#fff;
 		
 			li{
 				height:.4rem;
-				width:.6rem;
+				width:1rem;
 				line-height:.4rem;
 				text-align: center;
 				float:left;
@@ -116,16 +102,19 @@ h1,h2,h3,h4,h5,h6{
 				height:.25rem;
 				width:1rem;
 				line-height:.25rem;
+				color:#fff;
 				border-radius:.08rem;
 				cursor: pointer;
 				float:left;
 				text-align: center;
-				background:#a3c8d9;
+				background:#667882;
+				// background:#a3c8d9;
 				margin:.08rem .1rem;
 
 			}
 			.tab_change_back{
 				background: #FF661B;
+				color:#fff;
 			}
 		}
 		.heightsearch_all{//未来发行或未公告的搜索
@@ -137,7 +126,7 @@ h1,h2,h3,h4,h5,h6{
 			height:.3rem;
 			width:30%;
 			float:left;
-			border-radius:.15rem;
+			border-radius:.06rem;
 			background:#15272E;
 			margin:.15rem .2rem ; 
 			input{
@@ -147,16 +136,18 @@ h1,h2,h3,h4,h5,h6{
 				margin-left: .12rem;
 				background:#15272E;
 				// background:red;
-				color:#fff;
+				// color:#fff;
 				}
 			}
 		.btn_heightsearch{
 			height:.3rem;
 			width:.8rem;
 			line-height:.3rem;
+			// color:#fff;
 			text-align:center;
-			border-radius:.15rem;
-			background:#2E4C57;
+			border-radius:.06rem;
+			background:#667882;
+			// background:#2E4C57;
 			margin-top:.15rem;
 			float:left;
 			cursor:pointer;
@@ -164,7 +155,7 @@ h1,h2,h3,h4,h5,h6{
 				display:block;
 				height:100%;
 				width:100%;
-				border-radius:.15rem;
+				border-radius:.06rem;
 			}
 			.btn_heightsearch_bg{
 				background:#999999;
@@ -192,7 +183,7 @@ h1,h2,h3,h4,h5,h6{
 				height:.3rem;
 				width:50%;
 				float:left;
-				border-right:1px solid #2F434C;
+				border-right:2px solid #2E4553;
 				.span{
 					display:inline-block;
 					height:.3rem;
@@ -211,7 +202,7 @@ h1,h2,h3,h4,h5,h6{
 					label{
 					display: inline-block;
     				// padding: 0px 5px;
-    				font-size: 12px;
+    				font-size: 14px;
     				margin-bottom: 0;
    					font-weight: 400;
     				line-height: 1.42857143;
@@ -219,13 +210,16 @@ h1,h2,h3,h4,h5,h6{
     				white-space: nowrap;
     				vertical-align: middle;
 					}
+					.btn_class{
+						color:#B9D1DD;
+					}
 				}
 			}
 			.mutile_search_last{
 				width:50%;
 			}
 			.mutile_search_one{
-				width:28%;
+				width:33%;
 				border:none;
 			}
 			.packup{
@@ -233,7 +227,7 @@ h1,h2,h3,h4,h5,h6{
 				width:1rem;
 				// background:red;
 				float:left;
-				margin-left:19%;
+				margin-left:14%;
 				position:relative;
 				left:0;
 				top:0;
@@ -257,10 +251,28 @@ h1,h2,h3,h4,h5,h6{
 						background:url("../../../../../resource/images/btn_arrow_packup1_hover.png") no-repeat;
 					}
 					a{
-						color:#fff;
+						color:#B9D1DD;
 					}
 				}
 			}
+.search_for_select{
+	height: .3rem;
+	width: .8rem;
+	// background: green;
+	position:absolute;
+	right:.6rem;
+	top:.32rem;
+	.btn{
+		background:#677983;
+	}
+	.btn:hover{
+		background:	#FF671B;
+	}
+}
+
+
+
+
 		}
 		.table-body{
 			height:auto;
@@ -284,7 +296,7 @@ h1,h2,h3,h4,h5,h6{
 						display:inline-block;
 						height:.2rem;
 						width:.6rem;
-						font-size: 12px;
+						font-size: 14px;
 						line-height:.2rem;
 						text-align: center;
 						border-radius:.08rem;

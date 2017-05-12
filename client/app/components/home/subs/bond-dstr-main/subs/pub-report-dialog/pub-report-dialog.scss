@@ -14,6 +14,8 @@ pub-report-dialog {
 					border:0;
 					input{
 						width:100%;
+						margin-right: -15px;
+    					padding-right: 15px;
 						text-align:center;
 						border:none;
 						@include radius();

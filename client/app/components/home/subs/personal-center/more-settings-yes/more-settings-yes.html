@@ -1,71 +1,92 @@
 <div class="more_setting_html">
     <h1>隐私设置</h1>
     <ul class="more_settings_ul"> 
-        <li> 
-            <div class="more_settings_ul_left">谁可以看我的手机号</div>
+        <li ng-repeat="li_ty in newSeting"> 
+            <div class="more_settings_ul_left" ng-if="li_ty.settingType=='1'">谁可以看我的手机号</div>
+            <div class="more_settings_ul_left" ng-if="li_ty.settingType=='2'">谁可以看我的资料</div>
+            <div class="more_settings_ul_left" ng-if="li_ty.settingType=='3'">谁可以给我发消息</div>
+            <div class="more_settings_ul_left" ng-if="li_ty.settingType=='4'">允许他人搜索到我</div>
+            <div class="more_settings_ul_left" ng-if="li_ty.settingType=='8'">允许系统推荐我给他人</div> 
             <div class="more_settings_ul_right"> 
-                <select class="more_settings_option"> 
-                    <option>仅好友</option>
-                    <option>所有人</option>
+                <select ng-if="li_ty.settingType<4" class="more_settings_option" ng-model="li_ty.settingState " ng-change="phoneLook(li_ty)"> 
+                    <option value="1">仅好友</option>
+                    <option value="2">所有人</option>
                 </select>
+                <input type="checkbox" id="radio+{{li_ty.settingType}}" ng-model="li_ty.settingState" class="radio"  style="display:none" ng-change="inputChange(li_ty)"/>
+                <label for="radio+{{li_ty.settingType}}" ng-if="li_ty.settingType>3"></label>
             </div> 
         </li> 
-        <li>
-            <div class="more_settings_ul_left">谁可以看我的资料</div>
-            <div class="more_settings_ul_right"> 
-                <select class="more_settings_option" > 
-                    <option>仅好友</option>
-                    <option>所有人</option>
-                </select>
-            </div>
-        </li>
-        <li> 
-            <div class="more_settings_ul_left">谁可以给我发消息</div>
-            <div class="more_settings_ul_right"> 
-                <select class="more_settings_option"> 
-                    <option>仅好友</option>
-                    <option>所有人</option>
-                </select>
-            </div>
-        </li>
-        <li>
-            <div class="more_settings_ul_left">允许他人搜索到我</div>
-            <div class="more_settings_ul_right">修改</div>
-        </li>
-        <li>
-            <div class="more_settings_ul_left">允许系统推荐我给他人</div>
-            <div class="more_settings_ul_right">修改</div>
-        </li>
     </ul>
     <h1 style="margin-top:.6rem">安全设置</h1>
      <ul class="more_settings_ul"> 
         <li>
-            <div class="more_settings_ul_left">修改登录密码</div>
-            <div class="more_settings_ul_right" ng-click="isPassward=!isPassward">修改</div>
+            <div class="more_settings_ul_left">修改登录密码 <span style="padding-left:.3rem">********</span></div>
+            <div class="more_settings_ul_right" 
+            ng-click="isPassward=!isPassward;o_pass=2;isAmendPhone=false;isAmendPhone_next=false;login_ph=1"
+            ng-show="o_pass==1">修改</div>
+            <div class="more_settings_ul_right" ng-click="oPassRemove()" ng-show="o_pass==2">取消</div>
         </li>
         <li class="more_settings_amend_input" ng-if="isPassward==true">
-            <div class="settings_amend_input_left"> 
-                <p>原始登录密码<input type="text" placeholder="请输入原始登录密码..." class="amend_input"/></p>
-                <p>新登录密码<input type="passward" class="amend_input amend_input2"/></p>
-                <p>确认新密码<input type="passward" class="amend_input amend_input2"/></p>
-            </div>   
-            <div class="settings_amend_input_right" style="float:right;"> 
-                <button type="button" class="upload_file_cannel">确定</button>
-            </div>
+            <form name="form" ng-submit="updatePassword()">
+                <div class="settings_amend_input_left"> 
+                    <p>原始登录密码<input type="text" placeholder="请输入原始登录密码..." class="amend_input" required ng-model="defaultPassword.oldPassword" minlength="6" maxlength="25"/></p>
+                    <p>新登录密码<input type="password" class="amend_input amend_input2" required ng-model="defaultPassword.newPassword" minlength="6" maxlength="25" placeholder="请输入新登录密码..."/></p> 
+                    <p>确认新密码<input type="password" class="amend_input amend_input2" required ng-model="aa.newPasswordSure" minlength="6" maxlength="25" placeholder="请确认新登录密码..."/></p>
+                </div>   
+                <div class="settings_amend_input_right" style="float:right;"> 
+                    <button type="submit" class="upload_file_cannel" ng-disabled="isDisabled">确定</button>
+                </div>
+            </form>
         </li>
         <li>
-            <div class="more_settings_ul_left">修改注册手机号</div>
-            <div class="more_settings_ul_right" ng-click="isAmendPhone=!isAmendPhone">修改</div>
+            <div class="more_settings_ul_left">修改注册手机号<span style="padding-left:.3rem;">{{getLoginName}}</span></div>
+
+            <div class="more_settings_ul_right" 
+            ng-click="isAmendPhone=!isAmendPhone;login_ph=2;isPassward=false;o_pass=1" 
+            ng-show="login_ph==1">修改</div>
+            <div class="more_settings_ul_right" ng-click="loginPhRemove()" ng-show="login_ph==2">取消</div>
         </li>
-        <li class="more_settings_amend_input" ng-if="isAmendPhone==true">   
-            <div class="settings_amend_input_left"> 
-                <p>原始登录密码<input type="text" placeholder="请输入登录密码..." class="amend_input"/></p>
-                <p>新注册手机号<input type="number" class="amend_input"/></p>
-                <p>短信验证码<input type="number" class="amend_input amend_input2 amend_input3"/><input type="button" class="amend_input amend_input4" value="获取验证码"/></p>
-            </div>  
-            <div class="settings_amend_input_right" style="float:right;"> 
-                <button type="button" class="upload_file_cannel">确定</button>
-            </div>   
-        </li>
+        <li class="more_settings_amend_input" ng-if="isAmendPhone==true" style="height:.8rem;"> 
+             <form role="form" name="Form" ng-submit="nextDept()"> 
+                <div class="settings_amend_input_left" style="height:.75rem;"> 
+                    <p>原始登录密码<input type="text" placeholder="请输入登录密码..." class="amend_input" ng-model="aa.loginPassword" required minlength="6" maxlength="25"/></p>
+                </div>  
+                <div class="settings_amend_input_right" style="float:right;height:.75rem;"> 
+                    <button type="submit" class="upload_file_cannel" style="margin-top: 0rem;">下一步</button> 
+                </div>    
+            </form>  
+        </li> 
+        <li class="more_settings_amend_input" ng-if="isAmendPhone_next==true" style="margin-bottom:.4rem;"> 
+            <form role="NGform" name="myForm" ng-submit="backNewPhone()"> 
+                <div class="settings_amend_input_left"> 
+                    <p>新注册手机号 
+                        <input type="text" class="amend_input"
+                        placeholder="请输入新注册手机号..."
+                        ng-model="newPhone.newLoginphone" 
+                        maxlength="11" required 
+                        style="margin-left:.16rem;" 
+                        name="newP"
+                        validation-tooltip="newPhone($value,NGform.newP)"/> 
+                    </p>
+                    <p ng-if="imgcode==true">图形验证码 
+                        <input type="text" class="amend_input  amend_input5" ng-model="messagePhone.tpyzm" required style="margin-left:.3rem;"/>
+                        <img ng-src="{{imgCodeurl}}"/>
+                        <span ng-click="backImgCode()">换一组</span> 
+                    </p>   
+                    <p>短信验证码
+                        <input type="number" class="amend_input  amend_input3" ng-model="newPhone.phoneCode" required placeholder="请输入短信验证码"/>
+                        <input type="button" class="amend_input amend_input4" value="获取验证码" ng-click="getcode()" ng-show="timeStart==true" /> 
+                        <span ng-show="timestop==true" style="margin-left:.05rem;font-size:.14rem;">重新获取(<count-down format='ss' ctrl="ctrl" init="stop" ></count-down>)秒</span> 
+                    </p>  
+                </div>    
+                <div class="settings_amend_input_right" style="float:right;"> 
+                    <button type="submit" class="upload_file_cannel" ng-disabled="disabled1">确定</button>
+                </div>   
+            </form>  
+        </li> 
     </ul>
+
+    <div class="container">
+        
+    </div>
 </div> 

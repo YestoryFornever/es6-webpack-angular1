@@ -9,6 +9,7 @@ app.directive('gridView', function($compile){
 			searchQuery: '=query',
 			trClick: '&',
 			trDblclick: '&',
+			isLoading: '<',
 		},
 		templateUrl: './gridview.html',
 		link: function(scope, element, attrs, ctrl){
@@ -17,11 +18,11 @@ app.directive('gridView', function($compile){
 			var searchQuery = scope.searchQuery;
 
 			scope._thClick = function(field){
-				field.thClick && field.thClick();
 				if (field.order) {
 					searchQuery.desc = searchQuery.desc==2?1:2;
 					searchQuery.order = field.order;
 				};
+				field.thClick && field.thClick();
 			};
 			scope._trClick = function(item, index){
 				scope.trClick({$item: item, $index: index});
@@ -39,7 +40,14 @@ app.directive('gridView', function($compile){
 			// });
 		}
 	}
-}).directive('gridViewTd', function($compile, $parse){
+});
+/**
+ * 这个指令是实验品请不要使用
+ * @param  {[type]} $compile         [description]
+ * @param  {[type]} $parse){	return {		restrict: 'EA',		replace: true,		link: function(scope, element, attrs, ctrl){			var html [description]
+ * @return {[type]}                  [description]
+ */
+app.directive('gridViewTd', function($compile, $parse){
 	return {
 		restrict: 'EA',
 		replace: true,

@@ -1,10 +1,12 @@
 <div class="alertModal " >
-		<div class="modal-header ng-scope">
-			<p class="modal-title" id="modal-title">{{$ctrl.info.title}}</p>
+		<div class="modal-header ng-scope" ng-if='$ctrl.info.title'>
+			{{$ctrl.info.title}}
 		</div>
-		<div class="modal-body ng-scope clearfix" id="modal-body" >{{$ctrl.info.content}}</div>
+		<div class="modal-body ng-scope clearfix" id="modal-body" >
+			{{$ctrl.info.content}}
+		</div>
 		<div class="modal-footer ">
-			<button class="btn" type="button" ng-click="$ctrl.ok()">确定</button>
-			<button class="btn" type="button" ng-show='$ctrl.info.show' ng-click="$ctrl.cancel()">取消</button>
+			<button class="btn btn-primary" type="button" ng-click="$ctrl.modalInstance.close()">确定</button>
+			<button class="btn btn-default" type="button" ng-show='$ctrl.info.show' ng-click="$ctrl.modalInstance.dismiss('cancel')">取消</button>
 		</div>
 </div>

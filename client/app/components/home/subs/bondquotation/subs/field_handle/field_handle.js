@@ -4,7 +4,7 @@ app.component('fieldHandleComponent', {
 		item:'='
 	},
 	templateUrl: './field_handle.html',
-	controller: function($scope, $state,FriendsModalService, $uibModal, SendAlertService,nowBondService, NetBondquotationService, NetChangeBondService, netBondTrialService){
+	controller: function($scope, $q, $state,FriendsModalService, $uibModal, userStatusService, SendAlertService,nowBondService, NetBondquotationService, NetChangeBondService, NetAcoupondService, netBondTrialService, easeMobService){
 		"ngInject";
 		$scope.netBondTrialService =netBondTrialService;
 		$scope.FriendsModalService =FriendsModalService;
@@ -16,6 +16,22 @@ app.component('fieldHandleComponent', {
 		 */
 		$scope.openFirendOrOnLine = function(item){
 			SendAlertService.open(item);
+		}
+
+		/**
+		 * 发送报价给好友
+		 * @return {[type]} [description]
+		 */
+		$scope.sendToFriend = function(item){
+			var uiModal = FriendsModalService.open(function(friends, groups){
+				console.log(item, friends, groups);
+				$q.all([
+					SendAlertService.sendBargainingToFriend(friends, item),
+					SendAlertService.sendBargainingToGroup(groups, item)
+				]).then((res)=>{
+					uiModal.close();
+				});
+			});
 		}
 
 		$scope.openChange = function(item){//修改报价

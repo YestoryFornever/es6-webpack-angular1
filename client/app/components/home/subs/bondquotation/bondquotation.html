@@ -18,7 +18,7 @@
 						</div>
 						<div class="col">
 							<span>固定利率：</span>
-							<span>{{bondDetail.bondRate | yldrtoFilter}}</span>
+							<span>{{bondDetail.bondRate}}</span>
 						</div>
 						<div class="col">
 							<span>距下一付息日：</span>
@@ -76,42 +76,25 @@
 			<div id="_gap_"></div>
 			<section class="card" id="settlement">
 				<header class="title bg">
-					<span>计算行情</span>
+					<span>结算行情</span>
 				</header>
-				<echarts options="myChart" width="370" height="210"></echarts>
+				<echarts options="myChart" width="3.7rem" height="2rem"></echarts>
 				<div style="clear: both;"></div>
 			</section>
 		</div>
 	</aside>
 	<div class="hallTable" >
-		
 		<bondquotation-scm search-query="searchQuery" is-collapsed="$ctrl.isCollapsed"></bondquotation-scm>
-		
 		<main id='main' ng-class='{"top35":$ctrl.isCollapsed,"top3":!$ctrl.isCollapsed}'  >
-			<!-- <div iscroll> -->
 			<grid-view fields="fields"
 				query="searchQuery"
 				items="QueryQuoteList"
 				tr-click="getDetail($item.bondid)"
+				is-loading='loading'
 				tr-dblclick="toDetail($item.bondid)">
 			</grid-view>
-			<!-- </div> -->
-			<div class="myPage" >
-				<ul  uib-pagination
-					boundary-links="true"
-					total-items="totalItems"
-					ng-model="searchQuery.pageNum"
-					previous-text="&lsaquo;"
-					next-text="&rsaquo;"
-					first-text="&laquo;"
-					last-text="&raquo;"
-					items-per-page='searchQuery.pageSize'
-					num-pages="numPages"
-					></ul>
-				<span style="float: right">{{searchQuery.pageNum}} / {{numPages}}</span>
-			</div>
+			<div uikit-pager="Pager" style="display: inline-block;text-align: right;width: 100%"></div>
 		</main>
-		
 	</div>
 </div>
 

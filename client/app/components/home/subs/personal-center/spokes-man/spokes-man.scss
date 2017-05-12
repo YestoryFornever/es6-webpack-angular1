@@ -4,6 +4,7 @@
     font-size: .16rem;
     background:url('../images/spokes_bg.png') no-repeat right .6rem bottom 0;
     background-size:2.18rem 2.64rem;
+    padding-bottom:.4rem;
     overflow:auto;   
 } 
 .spokes_banner{
@@ -75,6 +76,8 @@
     width:.4rem;
     height:.4rem;
     margin:.1rem;
+    border-radius:.4rem;
+    overflow:hidden;
     float:left;
 }
 .spokes_list dl dt img{
@@ -94,7 +97,7 @@
     width:3.6rem;
     color:#fff; 
 } 
-.spokes_list dl dd div.spokes_list_name_no{
+.spokes_list dl dd div span.spokes_list_name_no{
     color:#667882; 
 }
 .spokes_list dl dd div.spokes_list_glob{

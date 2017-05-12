@@ -3,13 +3,7 @@
 	color:$textDefault;
 	position: relative;
 	min-width: 1300px;
-	min-height: 600px;
 	height: 100%;
-	top:0;
-	left:0;
-	right:0;
-	bottom:0;
-	font-size:.14rem;
 	overflow: hidden;
 	z-index: 1;
 	>div[ui-view]{
@@ -26,14 +20,10 @@ button:focus {outline:0;}
 	color:#eee;
 }
 ::-webkit-selection {
-	background:#c30e2e; 
+	background:#c30e2e;
 	color:#eee;
 }
-a,a:active,a:hover{
-	color:#337ab7;
-	text-decoration: none;
-	cursor: pointer;
-}
+
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus{
 	outline:0;
 }
@@ -88,3 +78,4 @@ div.modal-g.modal-dialog,div.modal-g.modal-dialog.modal-lg,div.modal-g.modal-dia
 		}
 	}
 }
+

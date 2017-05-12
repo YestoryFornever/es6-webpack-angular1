@@ -1,0 +1,79 @@
+.lineDown {
+	input{
+		width:0.5rem;
+		height:0.26rem;
+	}
+	section#lineUpCont{
+		padding:0.1rem 0.2rem;
+		border-top:1px solid $bgDefaultDarkA;
+		.head{
+			margin-bottom:0.1rem;
+			button.plus{
+				float:right;
+				border:none;
+				height:0.24rem;
+				width:0.24rem;
+				background:$bgDefaultLightC;
+				border-radius:0.24rem;
+				span.bgPlus{
+					display:inline-block;
+					height:0.24rem;
+					width:0.24rem;
+					background:url('./images/btn_plus_normal.png') no-repeat center;
+				}
+				span.bgPlus:hover{
+					background:url('./images/btn_plus_hover.png') no-repeat center;
+				}
+			}
+		}
+		#table{
+			table.table{
+				thead>tr{
+					background-size:100%;
+				}
+				th{
+					min-width:0.5rem;
+				}
+				tbody{
+					.delete{
+						border:none;
+						display:inline-block;
+						width:0.24rem;
+						height:0.24rem;
+						background:url('./images/btn_delete_normal.png') no-repeat center;
+					}
+					.delete:hover{
+						background:url('./images/btn_delete_hover.png') no-repeat center;
+					}
+					.uDFTrmList{
+						min-width:2.4rem;
+						max-width:2.7rem;
+						input{
+							width:0.5rem;
+							height:0.26rem;
+						}
+						span.bgPlus{
+							display:inline-block;
+							//position:relative;
+							top:0.05rem;
+							height:0.2rem;
+							width:0.2rem;
+							background:url('./images/btn_plus_normal.png') no-repeat center;
+						}
+						span.bgPlus:hover{
+							background:url('./images/btn_plus_hover.png') no-repeat center;
+						}
+					}
+				}
+			}
+		}
+		.footer{
+			text-align:center;
+			input.btn{
+				height:100%;
+				display:inline-block;
+
+			}
+		}
+	}
+}

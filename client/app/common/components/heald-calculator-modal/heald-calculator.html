@@ -1,0 +1,57 @@
+<!-- 弹窗 -->
+<form class="calculator "  name='myForm' ng-submit='search()'>
+	<div class="modal-header" id="header">
+		综收计算器
+		<span class="cancel" ng-click="$ctrl.modalInstance.dismiss('cancel')"></span>
+	</div>
+	<div class="modal-body" id="modal-body">
+		<div class="row padTB2">
+			<div class="wid11">债券简称</div>
+			<span class="delBox">
+				<input type="text"
+					class="form-control wid15"
+					placeholder="请输入代码或简称"
+					ng-model="searchCont.queryQuote"
+					uib-typeahead="list as list.bondNm for list in  queryQuote($viewValue)"
+					typeahead-template-url="heald_calulator_item.html"
+					typeahead-on-select='selected()' />
+				<div class="bgDel" ng-click='searchCont.queryQuote=""'></div>
+			</span>
+			<div class="wid65">期限</div>
+			<span>{{searchCont.trmText}}</span>
+		</div>
+		<div class="row bgBlack padTB2">
+			<div class="col-xl-12">
+				<div class="wid11">手续费(每100元)</div>
+				<input type="text" class="form-control"  name='retFee' ng-model='searchCont.retFee' ng-focus='flag = "retFee"'  ng-blur='search()' validation-tooltip="validdationAccount($value)">
+				<div class="unit">元</div>
+				<div class="wid65">认购价格</div>
+				<input type="text" class="form-control" ng-model='searchCont.sbsrbPrc' ng-focus='flag = "sbsrbPrc"' ng-blur='search()' >
+				&nbsp;&nbsp;元
+			</div>
+			<div class="col-xl-12">
+				<div class="wid11">申购利率</div>
+				<input type="text" class="form-control" ng-change='checkedValue(vcc)' ng-model='searchCont.sbrbIntrt' ng-focus='flag = "sbrbIntrt"'  ng-blur='search()' >
+				<div class="unit">%</div>
+				<div class="wid65">综收利率</div>
+				<input type="text" class="form-control" ng-model='searchCont.cprsvPftIntrt'  ng-focus='flag = "cprsvPftIntrt"'  ng-blur='search()' >
+				&nbsp;&nbsp;%
+			</div>
+			<div class="col-xl-12 mar0">
+				<div class="wid11">认购数量</div>
+				<input type="text" class="form-control" ng-model='searchCont.sbsrbNum'   ng-focus='flag = "sbsrbNum"' ng-blur='search()' >
+				<div class="unit">万</div>
+			</div>
+		</div>
+		<div class="row padTB2">
+				<div class="wid11 pull-left">缴款金额</div>
+				<div class="wid7 pull-left">{{searchCont.pyAmt |addTwoLine}}&nbsp;</div>
+				<div class="unit pull-left">万</div>
+				<div class="wid65 pull-left">收益金额</div>
+				<div class="wid7 pull-left">{{searchCont.pftAmt |addTwoLine}}&nbsp;</div>
+				<div class="unit pull-left">万</div>
+				<div style="clear: both;"></div>
+		</div>
+	</div>
+	<input type="submit"  style="display: none">
+</form>

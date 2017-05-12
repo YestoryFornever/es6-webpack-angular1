@@ -1,0 +1,22 @@
+<!-- 操作 -->
+<span class="field_handle">
+	<!-- {{$ctrl.item}} -->
+	<span
+		title='成交'
+		class="deal"
+		ng-if='updateInfo.eStatus =="1"'
+		ng-click='alert("2")'>
+	</span>
+	<span
+		title='撤销'
+		class="downline"
+		ng-if='updateInfo.eStatus =="1"'
+		ng-click='alert("3")'>
+	</span>
+	<span
+		title='跳转到 资金报价页面'
+		class="towillbond"
+		ng-if='updateInfo.eStatus !="2"'
+		ng-click='towillquote()'>
+	</span>
+</span>

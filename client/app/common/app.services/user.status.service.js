@@ -3,7 +3,7 @@
  * 注意作为基础服务，不要依赖其它自定义的服务，否则可能冲突
  * @type {[type]}
  */
-app.factory('userStatusService', function($state, $location){
+app.factory('userStatusService', function($state, $location, $rootScope){
 	var service = {
 		lid: null,
 		uid: null,
@@ -24,8 +24,12 @@ app.factory('userStatusService', function($state, $location){
 		clear: function()
 		{
 			window.localStorage.clear();
-			this.lid = null;
-			this.userName = null;
+			this.lid= null;
+			this.uid= null;
+			this.userName= null;
+			this.realCertifyState= null;
+			this.detail = null;
+			$rootScope.$broadcast('userStatus:clear', {});
 			return true;
 		},
 
@@ -34,7 +38,7 @@ app.factory('userStatusService', function($state, $location){
 	            // 记住登录前的URL
 	            // console.log($state.current, $location);
 	            window.localStorage.returnUrl = $location.$$absUrl;
-	            return $state.go('login',{}, {reload: true});
+	            return $state.go('login');
 	        }
 	        return true;
 	    }
@@ -54,16 +58,23 @@ app.factory('userStatusService', function($state, $location){
  * @param  {[type]} netUserService){	return {				login:  function(account, password, numberOfLanding, picGenerationCode)		{			return netUserService.login(account,password, numberOfLanding, picGenerationCode)			.then((res) [description]
  * @return {[type]}                          [description]
  */
-app.factory('userStatusAuth', function($state, $location, userStatusService, netUserService){
-	netUserService.getUserInfoPageDetail()
-	.then(function(res){
-		userStatusService.detail = res.data.data;
-	}).catch(function(err){
-		console.log(err);
-		if (err.data.status==990002) {
-			$state.go('login');
-		};
-	});
+app.factory('userStatusAuth', function($state, $location, userStatusService, netUserService,netPersonalCenterService){
+	if (userStatusService.lid) {
+		netUserService.getUserInfoPageDetail()
+		.then(function(res){
+			userStatusService.detail = res.data.data;
+		}).catch(function(err){
+			if (err.data && err.data.status==990002) {
+				return $state.go('login');
+			}else{
+				
+			}
+		});
+        netPersonalCenterService.mySummary()
+        .then(function(res){
+            userStatusService.coinRemain = res.data.data.coinRemain;
+        });
+	};
 	return {
 		/**
 		 * 用户登录
@@ -75,6 +86,7 @@ app.factory('userStatusAuth', function($state, $location, userStatusService, net
 		 */
 		login: function(account, password, numberOfLanding, picGenerationCode)
 		{
+			userStatusService.clear();
 			return netUserService.login(account,password, numberOfLanding, picGenerationCode)
 			.then((res)=>{
 				userStatusService.setUserInfo(res.data.data);
@@ -92,7 +104,7 @@ app.factory('userStatusAuth', function($state, $location, userStatusService, net
 				return err;
 			}).then((res)=>{
 				userStatusService.clear();
-				$state.go('login');
+				return $state.go('login');
 			});
 		},
 	};

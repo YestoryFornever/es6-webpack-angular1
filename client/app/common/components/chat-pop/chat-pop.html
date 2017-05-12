@@ -6,7 +6,7 @@
 	ng-class="{'text-dialog':$ctrl.popType=='text','i-dialog':$ctrl.popDrc=='i'}">
 	<div class="text-dialog-head">
 		<div class="text-dialog-time">{{$ctrl.popTime|date:"HH:mm"}}</div>
-		<img ng-src="{{$ctrl.icono}}" alt="">
+		<img ng-src="{{$ctrl.popUserIcon}}" alt="">
 	</div>
 	<div class="arrow"><div class="cutoff"></div></div>
 	<span class="text-dialog-message">
@@ -31,7 +31,7 @@
 	ng-class="{'quote-dialog':$ctrl.popType=='text','i-dialog':$ctrl.popDrc=='i'}">
 	<div class="text-dialog-head">
 		<div class="text-dialog-time">{{$ctrl.popTime|date:"HH:mm"}}</div>
-		<img ng-src="{{$ctrl.icono}}" alt="">
+		<img ng-src="{{$ctrl.popUserIcon}}" alt="">
 	</div>
 	<div class="arrow"><div class="cutoff"></div></div>
 	<div class="quote-dialog-pop" ng-click="$ctrl.showCurBargain(chat)">

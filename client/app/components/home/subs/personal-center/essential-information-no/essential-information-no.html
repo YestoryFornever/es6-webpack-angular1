@@ -1,1 +1,39 @@
-未认证基本信息
+<div class="personal_ess_no_html">
+    <ul class="personal_ess_no_ul"> 
+        <li class="style_height">
+            <div class="ess_ul_no_left">我的头像</div>
+            <div class="ess_ul_no_right ess_ul_no_right_img"><img ng-src="{{uesrDetail.iconUrl}}"></div>
+        </li> 
+        <li>
+            <div class="ess_ul_no_left">注册手机</div>
+            <div class="ess_ul_middle">{{getLoginName}}</div>
+        </li>
+        <li>  
+            <div class="ess_ul_no_left">实名认证</div>
+            <div class="ess_ul_middle juhong">{{userStatusCurrent.realCertifyState | realNameStateFilter}}</div> 
+        </li>
+        <li class="ess_amend_dl">   
+            <dl ng-if="userStatusCurrent.realCertifyState == 1">
+                <dt><img src="../images/wrz.png"/></dt> 
+                <dd>
+                    <p>您可以通过上传名片的方式完成实名认证，也可以联系客服人员 在后台帮您完成认证</p> 
+                    <h1>客服电话：400-658-6610</h1> 
+                    <a  href="{{$root.window.officialnUrl}}/html/real_name.html">实名认证</a>
+                </dd>
+            </dl> 
+            <dl ng-if="userStatusCurrent.realCertifyState != 1">
+                <dt class="cardBg">
+                    <img ng-src="{{userStatusCurrent.businessCardAnnexUrl}}"/>
+                    <img src="../images/card_sta.png" class="status_img" ng-if="userStatusCurrent.realCertifyState ==2"/>
+                    <img src="../images/card_sta2.png" class="status_img" ng-if="userStatusCurrent.realCertifyState ==4"/>
+                </dt> 
+                <dd> 
+                    <p class="juhong" style="padding:.1rem;font-size: .14rem" ng-if="userStatusCurrent.realCertifyState == 4">失败原因：{{userStatusCurrent.auditResultOut}}</p>
+                    <button type="btton" style="color:#667882;background:#2e4c57;margin-top:.2rem" ng-if="userStatusCurrent.realCertifyState == 2">认证中</button>
+                    <a  style="width: 1rem;margin-top:0rem" ng-if="userStatusCurrent.realCertifyState == 4" href="{{$root.window.officialnUrl}}/html/real_name.html">重新实名认证</a>
+                </dd> 
+            </dl>
+        </li>
+    </ul> 
+
+</div> 

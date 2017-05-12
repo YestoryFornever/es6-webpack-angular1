@@ -1,9 +1,17 @@
 class FriendslistController {
-	constructor(friendRelationshipService) {
+	constructor(friendRelationshipService,$stateParams,pagetabService) {
 		"ngInject";
 		this.friendRelationshipService = friendRelationshipService;
+		this.$stateParams = $stateParams;
+		this.pagetabService = pagetabService;
 	}
 	$onInit(){
+		this.pagetabService.activeTab({
+			tabKey: 'home.chatroom',
+			routeState:'home.chatroom.friendslist',
+			routeParams:angular.copy(this.$stateParams),
+			routeLabel:'消息中心',
+		});
 		this.getFriendList();
 		this.deleteTag = {
 			show:false,

@@ -2,4 +2,7 @@ dstr-dygrid {
 	display:block;
 	color: $textF;
 	font-size:.12rem;
+	.table > tbody + tbody{
+		border-top:none;
+	}
 }

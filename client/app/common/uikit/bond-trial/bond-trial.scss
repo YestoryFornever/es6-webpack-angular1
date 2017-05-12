@@ -3,11 +3,16 @@
 		margin:auto;
 	}
 }
+
 .my-bond-trial{
 	.modal-xs.modal-dialog {
 		width: 5rem;
 		.modal-header{
 			border-color:$borderDefault;
+			color:#fff;
+			padding:0.08rem 0.1rem;
+			background:url('./images/img_bg_title.png')  100%;
+			background-size: auto 100%;
 		}
 		.modal-content{
 			background: $bgDefault;
@@ -30,36 +35,35 @@
 .bondTrial {
 	margin-top:0.5rem;
 	background: $bgDefault;
-	font-size:0.12rem;
-	color:$textD;
+	font-size:0.13rem;
+	color:$textF;
 	input{
 		width:1rem;
-		background: $bgDefault;
+		background: #1B2F36;
 		outline: none;
 		border:none;
-		border:1px solid $borderDefault;
 	}
 	#modal-body{
-		padding:  0.1rem 0.05rem 0 0.1rem;
+		padding:0.1rem 0 0;
 		background: $bgDefault;
+
 		.cont{
 			width:100%;
-			border-top:1px solid $borderDefault;
+			padding:0 0.1rem;
 			.wfcontent label{
 				line-height: 0.14rem;
 			}
 			label {
 				font-weight:500;
-				.choice{
+				.choice,.unChoice{
 					display: inline-block;
 					width:0.14rem;
 					height: 0.14rem;
+				}
+				.choice{
 					background: url('./images/btn_selectbox_round_select.png') no-repeat center;
 				}
 				.unChoice{
-					display: inline-block;
-					width:0.14rem;
-					height: 0.14rem;
 					background: url('./images/btn_selectbox_round_normal.png') no-repeat center;
 				}
 			}
@@ -84,12 +88,15 @@
 				top:-0.2rem;
 				background: url('./images/btn_calculate_normal.png') no-repeat center;
 			}
+			.date:hover{
+				background:url('./images/btn_calculate_hover.png') no-repeat center;
+			}
 			.inpWid118{
 				width:1.1rem;
 			}
 			.tit{
 				display:inline-block;
-				width:.8rem;
+				width:.9rem;
 				text-align: right;
 				margin-right: .2rem;
 			}
@@ -117,6 +124,9 @@
 		}
 		.marNone{
 			margin-bottom: 0;
+		}
+		.bgColorB{
+			background:#20333A;
 		}
 	}
 }

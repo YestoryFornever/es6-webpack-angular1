@@ -1,29 +1,59 @@
-<!--我的申购-->
-<div class="myApplicationTitle">
-    <div class="row">
-        <div class="col-sm-8">
-            <span class="applicationTitleOne">我的申购</span>
-            <span class="applicationTitleTwo">利率区间: {{$ctrl.myapp.sbrbIntrtLwrLmt}}%-{{$ctrl.myapp.sbrbIntrtUpLm}}%</span>
-            <span class="applicationTitleThree">申购总数: {{$ctrl.myapp.sbrbTnum}}E</span>
-            <span class="applicationTitleFour">中标总量: {{$ctrl.myapp.winbidTnum!=null?$ctrl.myapp.winbidTnum:0}}E</span>
+<div class="myAppStyle">
+    <div class="container" style="width: 100%; padding: 5px; overlfow-x: hidden">
+        <!--我的申购开始-->
+        <div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <stat-app show="false"></stat-app>
+                </div>
+            </div>
+            <div class="myApplicationTitle">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <span class="applicationTitleOne">我的申购</span>
+                        <span
+                                class="applicationTitleTwo">利率区间: {{$ctrl.myapp.sbrbIntrtLwrLmt | yldrtoCopyFilter}}--{{$ctrl.myapp.sbrbIntrtUpLm | yldrtoCopyFilter}}</span>
+                        <span class="applicationTitleThree">申购总数: {{$ctrl.myapp.sbrbTnum | changeToMoney}}</span>
+                        <span class="applicationTitleFour">中标总量: {{$ctrl.myapp.winbidTnum | changeToMoney}}</span>
+                    </div>
+                    <div class="col-sm-4 text-right">
+                        <p style="margin-right: 10px">
+                            <span class="applicationTitleFive">当前团队负责人: {{$ctrl.admin.userNm}}</span>
+                            <a class="applicationTitleSix" style="color: #fff"
+                               ng-if="$ctrl.admin.userNm != $ctrl.username" ng-click="$ctrl.gotoAdmin()">我是负责人</a>
+                            <span class="applicationTitleSix" style="background: #627982; color: #fff;"
+                                  ng-if="$ctrl.admin.userNm == $ctrl.username">我是负责人</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-xs-12 myTab">
+                        <p class="investorNav">
+                            <a class="navNews" ng-click="$ctrl.newsClick()"
+                               ng-class="{'bgColor': $ctrl.navBarShow}">消息
+                                <span ng-show="$ctrl.msgStatistics.total>0"
+                                      style="padding:2px 8px 2px 7px; background: url(../../../../../resource/images/icon_newmessageBG.png) 5px 3px no-repeat;
+  color: #fff;">{{$ctrl.msgStatistics.total>9?"9+":$ctrl.msgStatistics.total}}</span>
+                            </a>
+                            <a class="navResult" ng-click="$ctrl.resultClick()"
+                               ng-class="{'bgColor': !$ctrl.navBarShow}">中标结果</a>
+                            <a ng-show="!$ctrl.navBarShow" class="applicationBtn cursor" target="_blank"
+                               href="{{$ctrl.downLoadUrl}}"
+                               style="color: #fff; text-decoration: none; float: right; position: relative; z-index: 999">导出</a>
+                        </p>
+                        <div class="news" ng-show="$ctrl.navBarShow">
+                            <application-msg items="$ctrl.items" pages="$ctrl.pages"
+                                             msg-statistics="$ctrl.msgStatistics" msg-click="$ctrl.updateClick()"></application-msg>
+                        </div>
+                        <div class="result" ng-show="!$ctrl.navBarShow">
+                            <checked-result msg-click="$ctrl.updateClick()"></checked-result>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-4 text-right">
-            <span class="applicationTitleFive">当前团队负责人: {{$ctrl.admin.userNm}}</span>
-            <span class="applicationTitleSix" ng-if="$ctrl.admin.userNm != $ctrl.username" ng-click="$ctrl.gotoAdmin()">我是负责人</span>
-        </div>
-    </div>
-</div>
-<div class="marginFive">
-    <div class="row">
-        <div class="col-xs-12 myTab">
-            <uib-tabset active="active">
-                <uib-tab index="1" heading="消息">
-                    <application-msg></application-msg>
-                </uib-tab>
-                <uib-tab index="2" heading="中标结果">
-                    <checked-result></checked-result>
-                </uib-tab>
-            </uib-tabset>
-        </div>
+        <!--我的申购-->
     </div>
 </div>

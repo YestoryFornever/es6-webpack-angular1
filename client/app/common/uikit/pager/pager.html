@@ -1,7 +1,26 @@
-<ul class="uikit-pager-main" ng-if="pageModel.is_shown">
-	<li class="uikit-pager-home" ng-click="pageModel.setPage(1)" ng-disabled="pageModel.cur_page<2"><a>{{'first'|translate}}</a></li>
-	<li class="uikit-pager-prve" ng-click="pageModel.setPage(pageModel.cur_page-1)"><a> {{'prev'|translate}} </a></li>
-	<li ng-repeat="item in pageModel.page_items" ng-class="{active:item.number==pageModel.cur_page}" ng-click="pageModel.setPage(item.number)"><a> {{item.number}} </a></li>
-	<li class="uikit-pager-next" ng-click="pageModel.setPage(pageModel.cur_page+1)"><a> {{'next'|translate}} </a></li>
-	<li class="uikit-pager-last" ng-click="pageModel.setPage(pageModel.max_page)" ng-disabled="pageModel.cur_page>=pageModel.max_page"><a>{{'end'|translate}}</a></li>
-</ul>
+
+<form class="newPage1" ng-submit="pageModel.setPage(toWhichPage)">
+	<div class="whichPageLeft">
+		<span class="Span">共{{pageModel.max_page}}页，{{pageModel.total}}条数据</span>
+		<span class="Span lineLeft">跳转至&nbsp;&nbsp;</span>
+		<input type="text" class="form-control input" style="width:50px;height: 100%; " ng-model='toWhichPage'>
+		&nbsp;&nbsp;页&nbsp;&nbsp;
+		<button type='submit' class="btn btn-default button ">GO</button>&nbsp;&nbsp;
+		<span class="border">&nbsp;</span>
+	</div>
+
+	<ul class="uikit-pager-main" ng-if="pageModel.is_shown || showPage=='true'">
+		<li class="uikit-pager-home" ng-if='pagerHome=="true"' ng-click="pageModel.setPage(1)" ng-disabled="pageModel.cur_page<2"><a>{{'first'}}</a></li>
+		<li class="uikit-pager-prve" ng-disabled="pageModel.cur_page<=0"  ng-click="pageModel.setPage(pageModel.cur_page-1)"><a> &lt; </a></li>
+		
+		<li class="uikit-pager-prve" ng-if='nextShow == "true"' ng-click="pageModel.setPage(pageModel.cur_page-1)"><a> {{'prev'}} </a></li>
+		
+		<li ng-repeat="item in pageModel.page_items" ng-class="{active:item.number==pageModel.cur_page}" ng-click="pageModel.setPage(item.number)"><a> {{item.number}} </a></li>
+		
+		<li class="uikit-pager-next" ng-click="pageModel.setPage(pageModel.cur_page+1)"><a> &gt; </a></li>
+		
+		<li class="uikit-pager-next"  ng-disabled="pageModel.cur_page>=pageModel.max_page"  ng-if='nextShow == "true"' ng-click="pageModel.setPage(pageModel.cur_page+1)"><a> {{'next'}} </a></li>
+		
+		<li class="uikit-pager-last"  ng-if='pagerHome=="true"' ng-click="pageModel.setPage(pageModel.max_page)" ng-disabled="pageModel.cur_page>=pageModel.max_page"><a>{{'end'}}</a></li>
+	</ul>
+</form>

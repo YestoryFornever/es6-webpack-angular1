@@ -1,19 +1,21 @@
-app.factory('mywealthModalService', function($uibModal) {
+app.factory('mywealthModalService', function($q,$uibModal) {
 	return {
 		open: function(item) {
 			let that = this;
-			return $uibModal.open({
+            that.info =item;
+            let deferred = $q.defer();
+			$uibModal.open({
 				animation: true,
 				component: 'mywealthModal',
 				windowClass: "mywealthModalCss",
 				size: 'lg', //'',//'sm',
 				resolve: {
-					friendModal: function() {
-						//that.dataFriendModal.friendObj = item ? item :{};
-						return that.dataFriendModal;
-					}
+                        info:that.info//取open函数传的值
 				}
-			}).result.then(function(selectedItem) {}, that);
+			}).result.then(function(selectedItem) {
+                deferred.resolve(that.info);
+            });
+            return deferred.promise;
 		}
 	}
 });

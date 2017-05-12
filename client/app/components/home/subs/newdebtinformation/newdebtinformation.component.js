@@ -2,7 +2,7 @@ let newdebtinformationComponent = {
 	restrict: 'E',
 	bindings: {},
 	templateUrl: './newdebtinformation.html',
-	controller: function(newdebtinformationService, $state, $stateParams, pagetabService, $scope,Pager){
+	controller: function(newdebtinformationService,$state, $stateParams, pagetabService, $scope,UikitPager){
 		"ngInject";
 		$scope.tabkey_li = 0;
 		// $scope.tabkey_ls =$stateParams.tag||0;
@@ -12,7 +12,7 @@ let newdebtinformationComponent = {
 		$scope.bondTp = newdebtinformationService.bondType;
 		$scope.rsdtrm = newdebtinformationService.endtime;
 		$scope.dbtitmRtg = newdebtinformationService.all;
-
+		$scope.enqrTp_tp=$stateParams.enqrTp;
 		if (!$stateParams.enqrTp) {
 			return $state.go('home.newdebtinformation', {enqrTp:1, pageNum:1}, {reload: true});
 		};
@@ -76,7 +76,7 @@ let newdebtinformationComponent = {
 					$scope.issuelists_info[_field] = valueArray;
 				};
 			});
-			console.log($scope.issuelists_info);
+			// console.log($scope.issuelists_info);
 			
 		}
 		$scope.fullScmInffunction();
@@ -107,43 +107,45 @@ let newdebtinformationComponent = {
 		{
 			label: '截标时间',
 			order: false,
-			template: '{{$item.clsbidTm}}',
+			template: '{{$item.clsbidTm | addTwoLine }}',
 			
 		},{
 			label: '债券简称',
 			order: false,
-			template: '{{$item.bondNm }}'+'<span>&nbsp;</span><span  class="hhh{{$item.alrdySbrbInd}}">{{$item.alrdySbrbInd | spanfilter}}</span>',
+			template: '{{$item.bondNm  | addTwoLine }}'+'<span>&nbsp;</span><span  class="hhh{{$item.alrdySbrbInd}}">{{$item.alrdySbrbInd | spanfilter}}</span>',
 			// templateUrl: 'newdebtin_one.html',
 		},{
 			label: '我的角色',
 			order:false,
 			template: '{{$item.roleId |rolefilter}}',
 		},{
-			label: '申购利率',
+			label: '申购利率(%)',
 			order: false,
-			template: '{{$item.sbrbIntrtLwrLmt | dotFilter}}-{{$item.sbrbIntrtLwrLmt | dotFilter }} ',
+			//template:'{{$item.sbrbIntrtLwrLmt }}-{{$item.sbrbIntrtUpLm  }}'
+			template: '<span ng-If="$item.sbrbIntrtLwrLmt==0.0000 && $item.sbrbIntrtUpLm==100.0000">--</span><span ng-If="$item.sbrbIntrtLwrLmt!=0 && $item.sbrbIntrtUpLm!=100.0000">{{$item.sbrbIntrtLwrLmt | addTwoLine}}-{{$item.sbrbIntrtUpLm | addTwoLine }} </span>',
 			// templateUrl: 'newdebtin_one.html'
 			
 		},{
 			label: '发行量(亿)',
 			order: false,
-			template: '{{$item.issuNum}}',
+			template: '{{$item.issuNum  | addTwoLine }}',
 		},{
 			label: '主承销商',
 			order: false,
-			template: '{{	$item.primUdwr}}',
+			template: '{{	$item.primUdwr  | addTwoLine }}',
 		},{
 			label: '期限',
 			order: false,
-			template: '{{$item.trm}}',
+			template: '{{$item.trmText  | addTwoLine }}',
+			// template: '{{$item.trm  | addTwoLine }}'+'<span ng-if="$item.trm>=0">D</span>',
 		},{
 			label: '企业类型',
 			order: false,
-			template: '{{$item.entpTp |entpTpfilter}}',
+			template: '{{$item.entpTp  |entpTpfilter| addTwoLine }}',
 		},{
 			label: '主/债评级',
 			order: false,
-			template: '<span class="fenxiao">{{$item.sbjRtg}}/{{$item.dbtItmRtg}}</span>',
+			template: '<span class="fenxiao">{{$item.sbjRtg  | addTwoLine }}/{{$item.dbtItmRtg | addTwoLine}}</span>',
 
 		}];
 		/**
@@ -161,167 +163,89 @@ let newdebtinformationComponent = {
 		}
 		$scope.shengou_flag = false;
 		$scope.fenxixao_flag = false;
+		/**
+		 * 分页
+		 * @param {[number]}  var onTotalPage = res.data.data.page.totalResult;//总tiao数
+		 * $scope.issuelists_info.pageSize 为向服务传参中设置的参数
+		 * @param {[type]} $state.go通过路由跳转或者调用方法
+		 */
+		$scope.Pager = new UikitPager($scope.issuelists_info.pageSize, 5);
+		$scope.Pager.onSelected = function(page){
+			$scope.issuelists_info.pageNum = page;
+			$state.go($state.$current.name, $scope.issuelists_info);
+			// $scope.issuelists();
+		}
 		$scope.issuelists = function () {
-			// debugger;
+			$scope.is_loading = true;
 			console.log($scope.issuelists_info);
+			// debugger;
 			let promise = newdebtinformationService.issuelist($scope.issuelists_info).then((res) => {
 				if ($scope.issuelists_pageNum==1) {
 					$scope.issue = [];
 				};
-				for (var i = 0, len = res.data.data.list.length; i < len; i++) {
-					// $scope.issue.push(res.data.data[i]);
-					// if(res.data.data.list[i].roleId==1){
-					// 	res.data.data.list[i].roleId='主承';
-					// }else if(res.data.data.list[i].roleId==2){
-					// 	res.data.data.list[i].roleId='联承';
-					// }else if(res.data.data.list[i].roleId==3){
-					// 	res.data.data.list[i].roleId='在团';
-					// }else if(res.data.data.list[i].roleId==4){
-					// 	res.data.data.list[i].roleId='不在团';
-					// }else if(res.data.data.list[i].roleId==5){
-					// 	res.data.data.list[i].roleId='投资';
+				// for (var i = 0, len = res.data.data.list.length; i < len; i++) {
+				// 	if(res.data.data.list[i].sbrbIntrtLwrLmt||res.data.data.list[i].sbrbIntrtUpLm){
+				// 		res.data.data.list[i].sbrbIntrtLwrLmt = res.data.data.list[i].sbrbIntrtLwrLmt*100 ;
+				// 		res.data.data.list[i].sbrbIntrtUpLm = res.data.data.list[i].sbrbIntrtUpLm*100 ;
+		
+				// 	}
+					// if(res.data.data.list[i].issuNum){
+					// 	res.data.data.list[i].issuNum = (res.data.data.list[i].issuNum/100000000);
 					// }
-					// 利率
-					if(res.data.data.list[i].sbrbIntrtLwrLmt||res.data.data.list[i].sbrbIntrtUpLm){
-						res.data.data.list[i].sbrbIntrtLwrLmt = res.data.data.list[i].sbrbIntrtLwrLmt*100 +'-'+res.data.data.list[i].sbrbIntrtUpLm*100;
-					}
-					// 企业类型
-					// if(res.data.data.list[i].entpTp==1){
-					// 	res.data.data.list[i].entpTp='央企';
-					// }else if(res.data.data.list[i].entpTp==2){
-					// 	res.data.data.list[i].entpTp='国企';
-					// }else if(res.data.data.list[i].entpTp==3){
-					// 	res.data.data.list[i].entpTp='民企';
-					// }else if(res.data.data.list[i].entpTp==4){
-					// 	res.data.data.list[i].entpTp='其他';
-					// }
-					// 分销还是在团
-					// if(res.data.data.list[i].alrdySbrbInd==1){
-					// 	$scope.shengou_flag = true;
-					// 	$scope.fenxixao_flag = false;
-					// 	console.log($scope.shengou_flag);
-					// }else if(res.data.data.list[i].alrdySbrbInd==2){
-					// 	$scope.shengou_flag = false;
-					// 	$scope.fenxixao_flag = true;
-					// }
-				}
+					
+				// }
 				$scope.issue = res.data.data.list;
-				$scope.pageAll= res.data.data.page;
+				var totalPage = res.data.data.page.totalResult;//总页数
+				$scope.Pager.setTotal(totalPage);
+				$scope.Pager.setPage($scope.issuelists_info.pageNum );
+				// $scope.pageAll= res.data.data.page;
 				console.log($scope.issue);
 				console.log($scope.pageAll);
-				
+				$scope.is_loading = false;
 				return res;
-			});
+			}).catch(function(err) { //除去状态0的状态码 
+                alert(err.data.msg);
+            });
 		};
 		$scope.issuelists();
-
-		
-
-
-
-
-
 
 		/**
 		 * 初始化
 		 * 点击表格列跳转到详情页
 		 * @return {[type]}                     [description]
 		 */
-	$scope.toNewDebtin = function(dstrBondId,issuId,roleId,alrdySbrbInd){
+	$scope.toNewDebtin = function(dstrBondId,issuId,roleId,alrdySbrbInd,trm,enqrTp,issuNum){
+		console.log(roleId,alrdySbrbInd);
 		if(roleId=='1'){//则进入申购助手-”主承商“页面；
-			$state.go('home.newdebtinformationdetails',{dstrBondId:dstrBondId,issuId:issuId});
+			$state.go('home.newdebtinformationdetails.bond-dstr-main',{dstrBondId:dstrBondId,issuId:issuId,trm:trm,enqrTp:enqrTp,roleId:roleId,issuNum:issuNum});
+			return ;
 		}else if(roleId=='2'||roleId=='3'||roleId=='4'){//则进入申购助手-”分销商页面；
-			$state.go('home.newdebtinformationdetails',{dstrBondId:dstrBondId,issuId:issuId,roleId:roleId,alrdySbrbInd:alrdySbrbInd});
+			$state.go('home.newdebtinformationdetails.distributor',{dstrBondId:dstrBondId,issuId:issuId,roleId:roleId,enqrTp:enqrTp,alrdySbrbInd:alrdySbrbInd,trm:trm,issuNum:issuNum});
+			return ;
 		}else if(roleId=='5'){
 				if(alrdySbrbInd){//已申购标识存在 进入投资者页面
-					$state.go('home.investor',{dstrBondId:dstrBondId,issuId:issuId});
+					$state.go('home.newdebtinformationdetails.investor',{dstrBondId:dstrBondId,issuId:issuId,trm:trm,enqrTp:enqrTp,roleId:roleId,issuNum:issuNum});
 				}else{//默认进入债券详情页面
-					$state.go('home.newdebtinformationdetails',{dstrBondId:dstrBondId,issuId:issuId});
+					$state.go('home.newdebtinformationdetails',{dstrBondId:dstrBondId,issuId:issuId,trm:trm,enqrTp:enqrTp,roleId:roleId,issuNum:issuNum});
 				}
+				return ;
 			
 		}
 			// $state.go('home.newdebtinformationdetails',{dstrBondId:dstrBondId,issuId:issuId});
 		}
-
-		
-
-
-
-
-		/**
-		 * 负面新闻
-		 * @param {[number]} catagory 3全部 4负面 6自媒体
-		 * @param {[type]} set_init_page 设置初始页
-		 */
-		
-		/**
-		 * 收藏
-		 */
-		
-
-		/**
-		 * 收藏数
-		 */
-		
-		/**
-		 * 搜索
-		 */
 		
 		
-
-		/**
-		 * 判断底部加载哪一类数据
-		 * @return {Function} [description]
-		 */
-		// $scope.fn = function(){
-		// 	if($scope.tabkey==0){
-		// 		$scope.getrecommendedLists(1);
-		// 	}else if($scope.tabkey==1){
-		// 		$scope.messagelists(4);
-		// 	}else if($scope.tabkey==2){
-		// 		$scope.messagelists(6);
-		// 	}else if($scope.tabkey==3){
-		// 		$scope.messagelists(3);
-		// 	}else if($scope.tabkey==4){
-
-		// 	}
-		// }
-
-		/**
-		 * 初始化
-		 * @param  {[type]} $stateParams.search [description]
-		 * @return {[type]}                     [description]
-		 */
-		// var page = $stateParams.page;
-		// 	if($scope.params.tag== 0){
-		// 		$scope.issuelists(1,page);
-		// 	}else if($scope.params.tag== 1){
-		// 		$scope.issuelists(2,page);
-		// 	}else if($scope.params.tag== 2){
-		// 		$scope.issuelists(3,page);
-		// 	} else if($scope.params.tag== 3){
-		// 		$scope.issuelists(4,page);
-		// 	}
-		
-
-		
-	// 	if ($stateParams.search) {
-	// 		$scope.search_page = 1;
-	// 		$scope.tabkey=5;
-	// 		$scope.searchInfoLists();
-	// 	}else{//没有搜索默认到推荐页
-	// 		$scope.getrecommendedLists(1);
-	// 	}
+// **********************页签
 	
-	// 参数：每页条数，显示页码个数
-		$scope.Pager = new Pager(10, 5);
-		// $scope.Pager.onSelected;//页码被选择事件
-		$scope.Pager.setPage==$scope.pageAll.currentPage; //主动设置页码
-		$scope.Pager.setTotal==$scope.pageAll.totalResult; //设置总记录数，必须，不传则无法计算页数
-		$scope.pagelistdemo = [];
-		$scope.Pager.onSelected = function (page){
+		pagetabService.activeTab({
+			tabKey: 'home.newdebtinformation',
+			routeState: "home.newdebtinformation",
+			routeParams: angular.copy($stateParams),
+			routeLabel: '新债信息'
 			
-		}
+		});
+	
+	
 
 
 

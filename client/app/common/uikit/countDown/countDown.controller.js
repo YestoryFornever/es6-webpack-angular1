@@ -10,7 +10,6 @@ class countDownController {
 		});
 		
 	}
-
 	$onInit(){
 		var ths = this;
 		var time = undefined!==this.ctrl.time?this.ctrl.time:60*5*1000;
@@ -24,8 +23,10 @@ class countDownController {
 		this.ctrl.reduction = function(stamp){
 			ths.reduction(stamp);
 		};
-
-		this.start();
+        if(this.init!='stop'){
+            this.start();
+        };
+		
 	}
 
 	reduction(stamp){
@@ -36,7 +37,7 @@ class countDownController {
 	start(){
 		this.$interval.cancel(this.process);
 		this.process = this.$interval(()=>{
-			console.log(this.time);
+			// console.log(this.time);
 			if (this.time>=1000) {
 				this.time -= 1000;
 			}else{

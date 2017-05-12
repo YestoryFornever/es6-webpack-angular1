@@ -1,9 +1,9 @@
 app.config(($stateProvider, $urlRouterProvider) => {
         $stateProvider
-            .state('home.investor', {
-                url: '/investor/?:dstrBondId?:issuId',
+            .state('home.newdebtinformationdetails.investor', {
+                url: '/investor',
                 views: {
-                    'main@home': {
+                    'main@home.newdebtinformationdetails': {
                         component: 'applicationList'
                     }
                 }

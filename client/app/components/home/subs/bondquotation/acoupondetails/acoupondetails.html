@@ -14,8 +14,8 @@
 				    	
 				    	<input type="text"  ng-model="$ctrl.searchBondBreedInfo.keyword" placeholder="输入债券代码或简称" ng-keyup="$ctrl.queryQuoteList()">
 				    	<div id="box_search"  ng-if="$ctrl.dics==true">
-				    		<ul ng-repeat=" list in $ctrl.bads">
-				    			<li ng-click='$ctrl.search(list)' >  {{list.name}}  </li>
+				    		<ul >
+				    			<li ng-repeat=" list in $ctrl.bads" ng-click='$ctrl.search(list)' >  {{list.name}}  </li>
 				    		</ul>
 				    	</div>
 

@@ -1,0 +1,139 @@
+.personal_ess_no_html{
+    width:100%;
+    height:100%;
+    font-size: .16rem;
+    overflow:auto;
+    background:url('../images/dbg.png') no-repeat right .3rem bottom .3rem;
+    background-size: 2.2rem 2.7rem;
+}
+.personal_ess_no_html .personal_ess_no_ul{
+    width:5.1rem;
+    height:100%;
+
+}
+.personal_ess_no_html .personal_ess_no_ul>li{
+    width:100%;
+    height:.6rem;
+    border-top:1px solid #344d56; 
+    line-height: .6rem;
+    margin-left: .2rem;
+}
+.personal_ess_no_html .personal_ess_no_ul>li:last-child{
+    margin-bottom:.5rem;
+}
+.personal_ess_no_html .personal_ess_no_ul>li.style_height{
+    height:1rem;
+    line-height: 1rem;
+    border:none;
+}
+.personal_ess_no_html .personal_ess_no_ul>li div{
+    float:left;
+}
+.personal_ess_no_html .personal_ess_no_ul>li div.ess_ul_no_left{
+    width:.85rem;
+    height:.6rem;
+    line-height: .6rem;
+    text-align: left;
+}
+.personal_ess_no_html .personal_ess_no_ul>li div.ess_ul_middle{
+    width:3.7rem;
+    height:.6rem;
+    line-height: .6rem;
+    text-align: left;
+}
+.personal_ess_no_html .personal_ess_no_ul>li .juhong{
+    color:#fb6300;
+}
+.personal_ess_no_html .personal_ess_no_ul>li .huibai{
+    color:#667882;
+}
+.personal_ess_no_html .personal_ess_no_ul>li div.ess_ul_no_right{
+    width:.45rem;
+    height:.6rem;
+    line-height: .6rem;
+    text-align: right;
+}
+.personal_ess_no_html .personal_ess_no_ul>li div.ess_ul_no_right_img{
+    width:.7rem;
+    height: .7rem;
+    border-radius: .7rem;
+    border:1px #344d56 solid;
+    float:right;
+    position:relative;
+    
+}
+.personal_ess_no_html .personal_ess_no_ul>li div.ess_ul_no_right_img img{
+    width:.7rem;
+    height: .7rem;
+    border-radius: .7rem;
+}
+.personal_ess_no_html .personal_ess_no_ul>li.ess_amend_dl{
+    height:3.69rem; 
+    background: #1f353d;
+    border-top: 3px #1c2f36 solid;
+    border-bottom: 2px #1c2f36 solid;
+    padding:.4rem;
+    color:#667882;
+} 
+.personal_ess_no_html .personal_ess_no_ul>li.ess_amend_dl dl{ 
+    width:4.12rem;
+}
+.personal_ess_no_ul>li.ess_amend_dl dt{
+    width:1.1rem;
+    height:.9rem;
+    margin:0 auto;
+}
+.personal_ess_no_ul>li.ess_amend_dl dt img{
+    width:100%;
+    height:100%;
+}
+.personal_ess_no_ul>li.ess_amend_dl dt.cardBg{
+    width:4.2rem;
+    height:2.38rem;
+    background:url("../images/card_sta.png") no-repeat right top;
+    background-size: .96rem .96rem;
+    position: relative;
+}
+.personal_ess_no_ul>li.ess_amend_dl dt img.status_img{
+    width: .96rem;
+    height: .96rem;
+    position: absolute;
+    right:0;
+    top:0;
+}
+.personal_ess_no_ul>li.ess_amend_dl dd p{
+    text-align: center;
+    font-size: .16rem;
+    color:#b8d1dd;
+    padding-top: .4rem;
+}
+.personal_ess_no_ul>li.ess_amend_dl dd h1{
+    color:#fff6bf;
+    font-size: .14rem;
+    padding-top:.25rem;
+    text-align: center;
+}
+.personal_ess_no_ul>li.ess_amend_dl dd button{
+    width:.9rem;
+    height:.3rem;
+    color:#fff;
+    font-size: .14rem;
+    background:#fb6300;
+    border-radius: .06rem;
+    border:none;
+    text-align: center;
+    margin:.25rem 1.6rem;
+} 
+.personal_ess_no_ul>li.ess_amend_dl dd a{
+    width:.9rem;
+    height:.3rem;
+    color:#fff;
+    font-size: .14rem;
+    background:#fb6300;
+    border-radius: .06rem;
+    text-align: center;
+    margin:.25rem 1.6rem;
+    display:block;
+    line-height:.3rem;
+} 
+

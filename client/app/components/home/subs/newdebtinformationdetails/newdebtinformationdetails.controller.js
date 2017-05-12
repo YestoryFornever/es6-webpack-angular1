@@ -1,12 +1,14 @@
 class NewdebtinformationdetailsController {
-	constructor(newdebtinformationdetailsService, $state, $stateParams, $uibModal, $mdDialog, pagetabService, NewdebtdialogModalService, netCastService) {
+	constructor(newdebtinformationdetailsService, $scope, $state, $stateParams,healdCalculatorService, $uibModal, $mdDialog, pagetabService, NewdebtdialogModalService, netCastService) {
 		"ngInject";
 		this.name = 'newdebtinformationdetails';
 		this.newdebtinformationdetailsService = newdebtinformationdetailsService;
+		this.healdCalculatorService = healdCalculatorService;
 		this.NewdebtdialogModalService = NewdebtdialogModalService;
 		this.$stateParams = $stateParams;
 		this.$uibModal = $uibModal;
 		this.$mdDialog = $mdDialog;
+		this.$state= $state;
 		this.netCastService = netCastService;
 		this.pagetabService = pagetabService;
 		// 4.1.2获取债券横条信息(发行信息)
@@ -34,7 +36,18 @@ class NewdebtinformationdetailsController {
 		};
 		this.debtinfriendList = [];
 		this.yeqian_header='';
+		this.liveBond_info={
+			bondID: this.$stateParams.dstrBondId
+		}
+		this.liveBond_id={};
+		this.liveBond_lid = '';
 
+		this.pagetabService.activeTab({
+			tabKey: 'home.newdebtinformationdetails',
+			routeState: this.$state.$current.name,
+			routeParams: angular.copy(this.$stateParams),
+			routeLabel: '……'
+		});
 	}
 
 	$onInit() {
@@ -54,7 +67,8 @@ class NewdebtinformationdetailsController {
 			this.getIssuerInfos();
 			this.getBondCdrs();
 			this.getDstrFriendLists();
-			// this.activeTab1();
+			this.liveBonds();
+
 		}
 		//调用弹窗
 	openNewdebtdialog(list) {
@@ -66,19 +80,77 @@ class NewdebtinformationdetailsController {
 			promise.then((res) => {
 				if (res.data) {
 					this.newobj_one = res.data.data;
+					// if(this.newobj_one.bondNm){
+					// 	if(this.newobj_one.bondNm.length>14){
+					// 		this.newobj_one.bondNm = this.newobj_one.bondNm.substring(0,14);
+					// 	}
+					// }
+					// if(this.newobj_one.issuNum){
+					// 	this.newobj_one.issuNum = this.newobj_one.issuNum/100000000;
+					// }
+
 					this.yeqian_header = this.newobj_one.bondNm;
-					this.activeTab1();
+					this.pagetabService.activeTab({
+						tabKey: 'home.newdebtinformationdetails',
+						routeLabel: this.newobj_one.bondNm
+					});
 				}
-				console.log(this.newobj_one);
 			});
 		}
+		//直播接口
+	liveBonds() {
+		// if(this.getBondBarInfos_info.bondID){
+			let promise = this.newdebtinformationdetailsService.liveBond(this.liveBond_info);
+			promise.then((res) => {
+				if (res.data) {
+					this.liveBond_lid = res.data.data;
+					console.log(this.liveBond_lid);
+					if(this.liveBond_lid!=0){
+						this.enterLives();
+					}
+					
+				}
+			});
+		// }
+		
+	}
+		// 4.2.2进入直播
+	enterLives() {
+		// if(this.liveBond_lid){
+			let promise = this.newdebtinformationdetailsService.enterLive({
+			live_id:this.liveBond_lid,
+			uid:BONDCONFIG.USERINFO.uid,
+			user_role:1
+			});
+			promise.then((res) => {
+				if (res.data) {
+					this.liveBond_id = res.data.data;
+					console.log(this.liveBond_id);
+
+				}
+			});
+		// }
+		
+	}
+
+		clickEnterLive(){
+			// this.liveBonds();
+			// ui-sref="home.cast({lid:$ctrl.liveBond_id.lid,state:$ctrl.liveBond_id.state})"
+			this.$state.go('home.cast',{lid:this.liveBond_id.lid,state:this.liveBond_id.state});
+	
+		}
+
 		//获取债券基本信息
 	getBondDetails() {
 		let promise = this.newdebtinformationdetailsService.getBondDetail(this.getBondBarInfos_info);
 		promise.then((res) => {
 			if (res.data) {
 				// console.log(res);
+				// if(res.data.data.issuNum){
+				// 	res.data.data.issuNum = res.data.data.issuNum/100000000;
+				// }
 				this.newobj_two = res.data.data;
+				
 			}
 			// console.log(this.newobj_two);
 		});
@@ -158,20 +230,35 @@ class NewdebtinformationdetailsController {
 		// $('.shengoudialog').hide();
 		this.aaaaa=false;
 	}
-
-
-
-	// **********************页签
-	activeTab1() {
-		this.pagetabService.activeTab({
-			tabKey: 'home.newdebtinformationdetails',
-			routeState: "home.newdebtinformationdetails",
-			routeParams: {
-				iid: this.$stateParams.iid
-			},
-			routeLabel: this.newobj_one.bondNm
-			// 
-		});
+	//申购助手跳转
+			//1:主承
+			// 2:联承
+			// 3:在团
+			// 4:不在团
+			// 5:投资
+	jumpTo(roleId){
+		// debugger;
+		if(roleId=='1'){//则进入申购助手-”主承商“页面；
+			this.$state.go('home.newdebtinformationdetails.bond-dstr-main',{dstrBondId:this.$stateParams.dstrBondId,issuId:this.$stateParams.issuId,trm:this.newobj_one.trm});
+			return;
+		}else if(roleId=='2'||roleId=='3'||roleId=='4'){//则进入申购助手-”分销商页面；
+			this.$state.go('home.newdebtinformationdetails.distributor',{dstrBondId:this.$stateParams.dstrBondId,issuId:this.$stateParams.issuId,roleId:roleId,trm:this.newobj_one.trm});
+			return;
+		}else if(roleId=='5'){
+			this.$state.go('home.newdebtinformationdetails.investor',{dstrBondId:this.$stateParams.dstrBondId,issuId:this.$stateParams.issuId,trm:this.newobj_one.trm});
+			return;
+				// if(alrdySbrbInd){//已申购标识存在 进入投资者页面
+				// 	$state.go('home.investor',{dstrBondId:this.$stateParams.dstrBondId,issuId:this.$stateParams.issuId,trm:this.newobj_one.trm});
+				// }else{//默认进入债券详情页面
+				// 	$state.go('home.newdebtinformationdetails',{dstrBondId:this.$stateParams.dstrBondId,issuId:this.$stateParams.issuId,trm:this.newobj_one.trm});
+				// }
+			
+		}
 	}
+	//资料详情跳转
+	jumpTodetail(){
+		this.$state.go('home.newdebtinformationdetails',{dstrBondId:this.$stateParams.dstrBondId,issuId:this.$stateParams.issuId,roleId:this.newobj_one.roleId,trm:this.newobj_one.trm,enqrTp:this.$stateParams.enqrTp,});
+	}
+
 
 }

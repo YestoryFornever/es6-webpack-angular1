@@ -171,7 +171,7 @@
 				<!-- 聊天内容 -->
 				<ul id="chat_content" ng-class="{'fold-list-h0':$ctrl.foldListH0,'fold-list-h1':$ctrl.foldListH1}">
 					<li ng-repeat="chat in $ctrl.state.chat.chatList" ng-class="{itext:chat.type=='itext',otext:chat.type=='otext',iquote:chat.type=='iquote',oquote:chat.type=='oquote'}">
-						<chat-pop pop-drc="chat.drc" pop-type="chat.type" pop-message="chat.message" pop-time="chat.time"></chat-pop>
+						<chat-pop pop-drc="chat.drc" pop-type="chat.type" pop-message="chat.message" pop-time="chat.time" pop-user-icon="$ctrl.state.curFriend.userIcon"></chat-pop>
 					</li>
 				</ul>
 			</div>

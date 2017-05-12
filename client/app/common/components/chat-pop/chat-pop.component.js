@@ -4,7 +4,8 @@ let chatPopComponent = {
 		popDrc:'<',
 		popType:'<',
 		popTime:'<',
-		popMessage:'<'
+		popMessage:'<',
+		popUserIcon:'<'
 	},
 	templateUrl: './chat-pop.html',
 	controller: ChatPopController

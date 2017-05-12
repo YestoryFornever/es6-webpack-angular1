@@ -1,0 +1,23 @@
+<!-- <div style="height:400px; width:800px;">
+<li ui-sref="home.calendar-week()">周</li>
+<li ui-sref="home.calendar-month()">月</li>
+</div> --> 
+<div class="calendar_main">
+	<div class="calendar_nav">
+		<div class="calendar_nav_left ">
+			<!-- 左 -->
+		</div>
+		<div class="btn-group calendar_nav_middle " role="group"  >
+		  <button type="button" class="btn btn-default "  ng-class="{'btn_bg':tack_flag==1}" ui-sref="home.calendar()">日</button>
+		  <button type="button" class="btn btn-default"  ng-class="{'btn_bg':tack_flag==2}">周</button>
+		  <button type="button" class="btn btn-default"  ng-class="{'btn_bg':tack_flag==3}">月</button>
+		</div>
+		<div class="calendar_nav_right">
+			<span>今日</span>
+			<div class="calendar_nav_right_input">
+				<input type="text" ng-disabled= "true" value="2017年5月">
+			</div>
+			<!-- <input type="text"> -->
+		</div>
+	</div>
+</div>

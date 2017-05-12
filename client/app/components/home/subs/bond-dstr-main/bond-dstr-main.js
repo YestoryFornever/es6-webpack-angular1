@@ -2,18 +2,18 @@ app.config(($stateProvider, $urlRouterProvider) => {
 	"ngInject";
 
 	$stateProvider
-		.state('home.bond-dstr-main', {
-			url: '/bond-dstr-main/?:dstrBondId?:issuId',
+		.state('home.newdebtinformationdetails.bond-dstr-main', {
+			url: '/bond-dstr-main/',//?:dstrBondId?:issuId',
 			views: {
-				'main@home': {
+				'main@home.newdebtinformationdetails': {
 					component: 'bondDstrMain'
 				}
 			},
 			onEnter:function(){
-				console.log('enter');
+				console.log('bond-dstr-main enter');
 			},
 			onExit:function(){
-				console.log('exit');
+				console.log('bond-dstr-main exit');
 			}
 		});
 })

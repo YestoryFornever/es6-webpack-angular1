@@ -3,7 +3,12 @@
 		<div class="col">
 			<span class="tit">方向</span>
 			<div class="btn-group">
-				<label class="btn-default "
+				<label class="btn btn-default "
+					uib-btn-radio="''"
+					ng-model="searchConditions.drc">
+					全部
+				</label>
+				<label class="btn btn-default "
 					ng-repeat= "(key,item) in drc.value"
 					uib-btn-radio="item.value"
 					ng-model="searchConditions.drc">
@@ -23,7 +28,6 @@
 				<label class="btn "
 					ng-repeat= "(key,item) in ctlg.value"
 					ng-model="searchConditions.ctlgSelecteds[key]"
-					ng-hide='item.value==0'
 					uib-btn-checkbox
 					btn-checkbox-true="item.value"
 					ng-click='allOrNoAll()'>
@@ -35,10 +39,10 @@
 			<span class="tit">利率</span>
 			<div class="btn-group">
 				<label class="btn active">全部</label>&nbsp;
-				<input type="text"
+				<input class="form-control" type="text"
 					ng-model='searchConditions.intRtStrtVal'>
 					&nbsp;&nbsp; 至&nbsp;&nbsp;
-				<input type="text"
+				<input class="form-control" type="text"
 					ng-model='searchConditions.intRtEndVal'>
 				&nbsp;{{ 1 | percentOrBpFilter}}&nbsp;<!-- 百分号 -->
 			</div>
@@ -47,35 +51,35 @@
 			<span class="tit">期限</span>
 			<div class="btn-group">
 				<label class="btn "
-					ng-model="searchConditions.trmTp"
+					ng-model="searchConditions.trmTpBtn"
 					uib-btn-radio="''"
-					ng-click='searchConditions.trmTpSelecteds={}'>
+					ng-click='searchConditions.trmTpBtnSelecteds={}'>
 					全部
 				</label>
 				<label class="btn "
 					ng-repeat= "(key,item) in  trmTp.value"
-					ng-model="searchConditions.trmTpSelecteds[key]"
+					ng-model="searchConditions.trmTpBtnSelecteds[key]"
 					uib-btn-checkbox
 					btn-checkbox-true="item.value"
-					ng-hide='item.value==11 ||  item.value==0'
+					ng-hide='item.value==11 '
 					ng-click='allOrNoAll()'>
 					{{item.name}}
 				</label>&nbsp;&nbsp;
-				<input type="text" ng-model="searchConditions.trmLwrLmtVal">
-				<select ng-model='searchConditions.trmLwrLmtUnit'>
+				<input class="form-control" type="text" ng-model="searchConditions.trmLwrLmtVal">
+				<select class="form-control" ng-model='searchConditions.trmLwrLmtUnit'>
 					<option value="1">天</option>
 					<option value="2">月</option>
 					<option value="3">年</option>
 				</select>&nbsp;&nbsp; 至&nbsp;&nbsp;
-				<input type="text" ng-model="searchConditions.trmUpLmVal">
-				<select ng-model='searchConditions.trmUpLmUnit'>
+				<input class="form-control" type="text" ng-model="searchConditions.trmUpLmVal">
+				<select class="form-control" ng-model='searchConditions.trmUpLmUnit'>
 					<option value="1">天</option>
 					<option value="2">月</option>
 					<option value="3">年</option>
 				</select>
 			</div>
 		</div>
-		<button class="btn btn-primary" ng-click='getList()'>查询</button>
+		<button class="btn btn-primary pull-right" ng-click='getList()'>查询</button>
 	</header>
 	<section id='lineDownQuotation'>
 		<grid-view
@@ -83,20 +87,6 @@
 			query = "searchConditions"
 			items = "infoList">
 		</grid-view>
-		<div class="myPage1" >
-			<ul  uib-pagination
-				boundary-links="true"
-				total-items="totalPage"
-				ng-model="searchConditions.pageNum"
-				previous-text="&lsaquo;"
-				next-text="&rsaquo;"
-				first-text="&laquo;"
-				last-text="&raquo;"
-				ng-change='getList()'
-				items-per-page='searchConditions.pageSize'
-				num-pages="numPages"
-				></ul>
-			<span style="float: right">{{searchConditions.pageNum}} / {{numPages}}</span>
-		</div>
+		<div uikit-pager="Pager" style="display: inline-block;text-align: right;width: 100%"></div>
 	</section>
 </div>

@@ -5,5 +5,12 @@ app.component('alertModal', {
 		resolve: "<",
 	},
 	templateUrl: './alert-modal.html',
-	controller: AlertModalController
-})
+	controller: function($scope,AlertModalService){
+		'ngInject';
+		var info = this.resolve.info;
+		info.title = info.title||'';
+		info.content = info.content||'操作成功';
+		this.info = info;
+	}
+});
+

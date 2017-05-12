@@ -1,15 +1,23 @@
+<!--申购列表-->
 <div class="row">
-    <div class="col-sm-8">
+    <div style="position: relative; top: 10px; margin-right: 3.95rem; left: 5px;">
         <!--申购列表-->
-        <div class="row">
+        <div style="position: relative;">
             <div class="applicationList">
                 <div class="col-sm-8">
                     <span class="applicationColor">申购列表</span>
                 </div>
                 <div class="col-sm-4 text-right">
-                    <span class="applicationBtn cursor" ng-click="$ctrl.addModel()">添加</span>
-                    <span class="applicationBtn cursor">导出</span>
-                    <span class="applicationBtn cursor" ng-click="$ctrl.sendApp()">发送</span>
+                    <span ng-if="$ctrl.admin.userNm==$ctrl.userName" class="applicationBtn cursor"
+                          ng-click="$ctrl.addModel()">添加</span>
+                    <a ng-if="$ctrl.admin.userNm!=$ctrl.userName" style="cursor: not-allowed; color: #fff"
+                       class="applicationBtn cursor">添加</a>
+                    <a class="applicationBtn cursor" target="_blank" href="{{$ctrl.downLoadUrl}}"
+                       style="color: #fff; text-decoration: none;">导出</a>
+                    <span ng-if="$ctrl.admin.userNm==$ctrl.userName" class="applicationBtn cursor"
+                          ng-click="$ctrl.sendApp()">发送</span>
+                    <a ng-if="$ctrl.admin.userNm!=$ctrl.userName" style="cursor: not-allowed; color: #fff"
+                       class="applicationBtn cursor">发送</a>
                 </div>
             </div>
         </div>
@@ -21,12 +29,14 @@
         <div class="row addApp">
             <div class="col-sm-12 investor">
                 <table width="100%">
-                    <tr>
-                        <th></th>
-                        <th>申购人</th>
-                        <th>利率(%)</th>
+                    <tr ng-show="!$ctrl.addState">
+                        <th width="30"></th>
+                        <th style="text-align: left;">联系人</th>
+                        <th>票面利率(%)</th>
+                        <th>综收利率(%)</th>
+                        <th>返费(元)</th>
                         <th>申购量(亿)</th>
-                        <th>交易方式</th>
+                        <th>交割方式</th>
                         <th>销售方式</th>
                         <th>申购状态</th>
                         <th>申购渠道</th>
@@ -34,70 +44,181 @@
                         <th>备注</th>
                         <th></th>
                     </tr>
-                    <tr ng-dblclick="$ctrl.outModel(item.sndrTeamId, item.rcptyTeamId)" ng-click="$ctrl.trClick($index)" ng-class='{clicked: $index==$ctrl.trClicked}'
+                    <tr ng-dblclick="$ctrl.outModel(item.sndrTeamId, item.rcptyTeamId)"
+                        ng-click="$ctrl.trClick($index, item.sbrbId, item.sndrNewMsgInd, item)"
+                        ng-class='{clicked: $index==$ctrl.trClicked}'
                         ng-repeat="item in $ctrl.items track by $index">
-                        <td>
-                            <img src="../../../../../../../resource/images/new.png" width="20" ng-click="$ctrl.readNews(item.sbrbId)"/>
+                        <td width="30">
+                            <img src="../../../../../../../resource/images/new.png" width="20"
+                                 ng-if="item.sndrNewMsgInd == '1'"/>
                         </td>
-                        <td>
-                            {{item.rcptyUserNm}}
+                        <!--申购人-->
+                        <td style="text-align: left;">
+                            <span ng-if="item.sndrSbrbEStatus != 1 && item.sbrbChnl != 4" class="nowrap"
+                                  style="width: 150px;"
+                                  title='{{item.rcptyNm}}'>{{item.rcptyNm}}
+                            </span>
+                            <input type="text"
+                                   ng-if="item.sndrSbrbEStatus == 1 || item.sbrbChnl == 4"
+                                   placeholder="请输入申请人"
+                                   ng-model="item.rcptyNm"
+                                   uib-typeahead="list as list.name for list in $ctrl.getUserList($viewValue)"
+                                   typeahead-template-url="add-user-list.html"
+                                   typeahead-show-hint="false"
+                                   style="width: 150px"
+                                   ng-blur="$ctrl.userClick(item)"
+                                   ng-disabled="$ctrl.userName!=$ctrl.admin.userNm"
+                            >
                         </td>
-                        <td>
-                            {{item.sbrbIntrt}}
+                        <!--票面利率-->
+                        <td width="8%">
+                            <input type="text" ng-model="item.sbrbIntrt"
+                                   name="sbrbIntrt"
+                                   ng-disabled="item.sellrMod=='1' || $ctrl.userName!=$ctrl.admin.userNm"
+                                   ng-change="$ctrl.cprChange(item)"
+                                   ng-blur="$ctrl.webSend(item)"
+
+                            />
                         </td>
-                        <td>
-                            {{item.sbrbNum}}
+                        <!--综收利率-->
+                        <td width="8%">
+                            <input type="text" name="cprsvPftIntrt" ng-model="item.cprsvPftIntrt" required
+                                   ng-disabled="item.sellrMod=='2' || $ctrl.userName!=$ctrl.admin.userNm"
+                                   ng-change="$ctrl.clcChange(item)"
+                                   ng-blur="$ctrl.webSend(item)"
+
+                            />
                         </td>
-                        <td>
-                            {{item.dlvTp | applicationTransaction}}
+                        <!--返费-->
+                        <td width="8%">
+                            <input type="text" name="retFee" ng-model="item.retFee" required
+                                   ng-change="$ctrl.changeSend(item)"
+                                   ng-disabled="$ctrl.userName!=$ctrl.admin.userNm"
+                                   ng-blur="$ctrl.webSend(item)"/>
                         </td>
-                        <td>
-                            {{item.sellrMod | applicationSale}}
+                        <!--认购量-->
+                        <td width="8%">
+                            <input type="text" ng-model="item.sbrbNum"
+                                   name="sbrbNum"
+                                   ng-change="$ctrl.changeSend(item)"
+                                   ng-disabled="$ctrl.userName!=$ctrl.admin.userNm"
+                                   ng-blur="$ctrl.webSend(item)"/>
                         </td>
-                        <td>
-                            <select ng-model="item.sndrSbrbEStatus">
-                                <option value='1'>未发送</option>
-                                <option value='2'>已发送</option>
-                                <option value='3'>新消息</option>
-                                <option value='4'>已读</option>
-                                <option value='5'>已撤销</option>
-                                <option value='6'>对方撤销</option>
-                                <option value='7'>已拒绝</option>
-                                <option value='8'>对方拒绝</option>
-                                <option value='9'>已失效</option>
+                        <!--交割方式-->
+                        <td width="8%">
+                            <select ng-model="item.dlvTp"
+                                    ng-change="$ctrl.changeSend(item)"
+                                    ng-disabled="$ctrl.userName!=$ctrl.admin.userNm"
+                                    ng-blur="$ctrl.webSend(item)">
+                                <option value="1">上市</option>
+                                <option value="2">分销</option>
                             </select>
                         </td>
-                        <td>
-                            {{item.sbrbChnl | applicationChanel}}
+                        <!--销售方式-->
+                        <td width="8%">
+                            <select ng-model="item.sellrMod"
+                                    ng-change="$ctrl.changeSend(item)"
+                                    ng-disabled="$ctrl.userName!=$ctrl.admin.userNm"
+                                    ng-blur="$ctrl.webSend(item)">
+                                <option value="1">折价</option>
+                                <option value="2">单返</option>
+                            </select>
                         </td>
-                        <td>
+                        <!--申购状态-->
+                        <td width="8%">
+                            <select ng-if="!item.editList || item.sbrbChnl==4" ng-model="item.sndrSbrbEStatus"
+                                    ng-disabled="item.sndrSbrbEStatus=='1' || item.sndrSbrbEStatus=='5' || item.sbrbChnl == '4' || $ctrl.userName!=$ctrl.admin.userNm"
+                                    ng-change="$ctrl.changeState(item.sbrbId)"
+                                    ng-blur="$ctrl.webSend(item)"
+                            >
+                                <option value='1' ng-if="item.sndrSbrbEStatus=='1'">
+                                    未发送
+                                </option>
+                                <option value='2' ng-if="item.sndrSbrbEStatus=='2'">
+                                    已发送
+                                </option>
+                                <option value='4' ng-if="item.sndrSbrbEStatus == '4'">
+                                    已读
+                                </option>
+                                <option value='5'
+                                        ng-if="item.sndrSbrbEStatus == '5' || item.sndrSbrbEStatus == '2' || item.sndrSbrbEStatus == '4'">
+                                    已撤销
+                                </option>
+                                <option value='8' ng-if="item.sndrSbrbEStatus == '8'">
+                                    对方拒绝
+                                </option>
+                            </select>
+                            <select ng-if="item.editList && item.sbrbChnl!=4" ng-disabled="true">
+                                <option value="1">未发送</option>
+                            </select>
+                        </td>
+                        <!--渠道-->
+                        <td width="8%">
+                            <span ng-if="item.sndrSbrbEStatus != 1">{{item.sbrbChnl | applicationChanel}}</span>
+                            <select ng-if="item.sndrSbrbEStatus == 1" ng-model="item.sbrbChnl"
+                                    ng-change="$ctrl.changeSend(item)"
+                                    ng-blur="$ctrl.webSend(item)"
+                                    ng-disabled="$ctrl.userName!=$ctrl.admin.userNm || item.sbrbChnl==4"
+
+                            >
+                                <option value="1">平台</option>
+                                <option value="4">录入</option>
+                            </select>
+                        </td>
+                        <td width="8%">
                             {{item.createTime}}
                         </td>
-                        <td>
-                            {{item.mark}}
+                        <td style="width: 10%">
+                            <input type="text" ng-model="item.rmrk" name="rmrk"
+                                   ng-change="$ctrl.changeSend(item)"
+                                   ng-blur="$ctrl.webSend(item)"
+                                   style="width: 80px"
+                                   maxlength="10"
+                                   ng-disabled="$ctrl.userName!=$ctrl.admin.userNm"
+                            />
                         </td>
-                        <td>
-                            <input type="checkbox" name="sendMsg" style="width: 20px" ng-model="$ctrl.checkMsg[$index]" />
+                        <td width="5%">
+                            <div class="col-xs-6">
+                                <span
+                                        ng-if="item.sndrSbrbEStatus == '5' || item.sndrSbrbEStatus == '8' || (item.sbrbChnl == 4 && item.sndrSbrbEStatus == '4')"
+                                        ng-click="$ctrl.delApp(item.sbrbId)"><i class="fa fa-remove"></i>
+                                </span>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="newsActive"
+                                     ng-show="$ctrl.changeSingMul && !item.readMsg && $ctrl.msgStatistics['_'+item.rcptyUserId]>0">
+                                    {{$ctrl.msgStatistics["_"+item.rcptyUserId]>9?"9+":$ctrl.msgStatistics["_"+item.rcptyUserId]}}
+                                </div>
+                                <p ng-if="$ctrl.changeSingMul"
+                                   style="width: 15px; height: 15px; background: #66b047; border-radius: 50%"
+                                   ng-show="item.readMsg"></p>
+                                <input ng-if="!$ctrl.changeSingMul" type="checkbox" style="width: 15px; height: 15px;"
+                                       ng-checked="item.readMulMsg"/>
+                            </div>
                         </td>
                     </tr>
                 </table>
                 <!-- 分页 -->
-                <ul
-                        uib-pagination
-                        boundary-links="true"
-                        total-items="$ctrl.pages.totalResult"
-                        ng-model="$ctrl.pages.currentPage"
-                        class="pagination-sm"
-                        previous-text="&lsaquo;"
-                        next-text="&rsaquo;"
-                        first-text="&laquo;"
-                        last-text="&raquo;"
-                        ng-change="$ctrl.pageChange($ctrl.pages.currentPage)"
-                ></ul>
+                <div uikit-pager="$ctrl.Pager" style="display: inline-block;text-align: right;width: 100%"></div>
             </div>
         </div>
     </div>
-    <div class="col-sm-4 myTab">
+    <!--
+        1. chat-option: 宽高
+        2. 单条信息
+        3.多条信息
+        4. 我的申购信息
+    -->
+    <div class="myTab" style="position: absolute; right: 5px; width: 3.8rem; top: 40px">
+        <div style="min-height: 400px;">
+            <section class="bond-chat" id="dstrWind">
+                <chat-model chat-option="{}" user-single="$ctrl.single" user-multiple="$ctrl.multiple"
+                            is-single="$ctrl.changeSingMul"
+                            msg-statistics="$ctrl.msgStatistics"
+                            uni-flag="#dstrWind"
+                ></chat-model>
+            </section>
+        </div>
 
     </div>
 </div>

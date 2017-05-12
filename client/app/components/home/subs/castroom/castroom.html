@@ -4,13 +4,17 @@
 <!--</div>-->
 <!--
 	开发：张旭超
-	site：不包括http://
+	site：不包括http://np
 	ownerid="直播编号" 生产直播连接的join后面的编码
 	authcode 普通参加者口令，如果为空可选。
 -->
 <div>
     <div class="content">
-        <p class="exchange"><a ng-click="$ctrl.exchange()"><img src="../../../../../resource/images/exchange.png"/></a>
+        <p class="exchange" ng-if="$ctrl.state != 4"><span change-video-doc="#zVideo, #zDoc"><img
+                src="../../../../../resource/images/exchange.png"/></span>
+        </p>
+        <p class="exchange" ng-if="$ctrl.state == 4"><span change-video-doc="#dVideo, #dDoc"><img
+                src="../../../../../resource/images/exchange.png"/></span>
         </p>
         <p class="trailer">
             <span>{{$ctrl.live.state | caststate}}
@@ -25,8 +29,8 @@
             <tr valign="top">
                 <!--聊天视频模块-->
                 <td width="350" ng-style="{'background': '#26292e', 'height': '300px'}">
-                    <div ng-show="$ctrl.showNormal">
-                        <div ng-if="$ctrl.state != 4" ng-style="{'height': '300px'}">
+                    <div ng-if="$ctrl.state != 4" ng-style="{'height': '300px'}">
+                        <div style="height: 100%" id="zVideo">
                             <gs:video-live
                                     site="ylzx.gensee.com"
                                     ownerid={{$ctrl.live.live_id}}
@@ -35,70 +39,36 @@
                                     bar="true"
                             />
                         </div>
-                        <div ng-if="$ctrl.state == 4" ng-style="{'height': '300px'}">
-                            <gs:doc
-                                    site="ylzx.gensee.com"
-                                    ownerid={{$ctrl.his_id}}
-                                    bgcolor="#2222222"
-                            />
-                        </div>
                     </div>
-
-                    <div ng-show="!$ctrl.showNormal">
-                        <div ng-if="$ctrl.state != 4" ng-style="{'height':'300px'}">
+                    <div ng-if="$ctrl.state == 4" ng-style="{'height': '300px'}">
+                        <div style="height: 100%" id="dDoc">
                             <gs:doc
                                     site="ylzx.gensee.com"
-                                    ownerid={{$ctrl.live.live_id}}
-                                    bgcolor="#2222222"
-                            />
-                        </div>
-                        <div ng-if="$ctrl.state == 4" ng-style="{'height':'300px'}">
-                            <gs:video-vod
-                                    site="ylzx.gensee.com"
                                     ownerid={{$ctrl.his_id}}
-                                    uid={{$ctrl.uid}}
-                                    uname={{$ctrl.uname}}
-                                    bar=true
+                                    bgcolor="#2222222"
                             />
                         </div>
                     </div>
                 </td>
                 <!--聊天文档模块-->
                 <td rowspan="2" class="castDocument">
-                    <div ng-show="$ctrl.showNormal">
-                        <div ng-if="$ctrl.state != 4" ng-style="{'height':'{{$ctrl.height-40}}px'}">
+                    <div ng-if="$ctrl.state != 4" ng-style="{'height':'{{$ctrl.height-40}}px'}">
+                        <div id="zDoc" style="height: 100%">
                             <gs:doc
                                     site="ylzx.gensee.com"
                                     ownerid={{$ctrl.live.live_id}}
                                     bgcolor="#2222222"
                             />
                         </div>
-                        <div ng-if="$ctrl.state == 4" ng-style="{'height':'{{$ctrl.height-40}}px'}">
+                    </div>
+                    <div ng-if="$ctrl.state == 4" ng-style="{'height':'{{$ctrl.height-40}}px'}">
+                        <div id="dVideo" style="height: 100%">
                             <gs:video-vod
                                     site="ylzx.gensee.com"
                                     ownerid={{$ctrl.his_id}}
                                     uid={{$ctrl.uid}}
                                     uname={{$ctrl.uname}}
                                     bar=true
-                            />
-                        </div>
-                    </div>
-
-                    <div ng-show="!$ctrl.showNormal">
-                        <div ng-if="$ctrl.state != 4" ng-style="{'height':'{{$ctrl.height-40}}px'}">
-                            <gs:video-live
-                                    site="ylzx.gensee.com"
-                                    ownerid={{$ctrl.live.live_id}}
-                                    uid={{$ctrl.uid}}
-                                    uname={{$ctrl.uname}}
-                                    bar="true"
-                            />
-                        </div>
-                        <div ng-if="$ctrl.state == 4" ng-style="{'height':'{{$ctrl.height-40}}px'}">
-                            <gs:doc
-                                    site="ylzx.gensee.com"
-                                    ownerid={{$ctrl.his_id}}
-                                    bgcolor="#2222222"
                             />
                         </div>
                     </div>
@@ -167,11 +137,14 @@
 
                     <div class="oneTab" ng-show="$ctrl.castActive">
                         <!--直播聊天-->
-                        <ul class="freePlace" id="scroll" ng-if="$ctrl.state != 4"
-                            ng-style="{'height':'{{$ctrl.height-438}}px'}">
+                        <ul class="freePlace"
+                            id="scroll"
+                            ng-if="$ctrl.state != 4"
+                            ng-style="{'height':'{{$ctrl.height-438}}px'}"
+                        >
                             <li ng-repeat="item in $ctrl.msgInfo track by $index" class="castUser"
                                 ng-style="{'background': 'url({{item.iconUrl | unurl}}) no-repeat', 'background-size': '35px 35px'}">
-                                <p class="pBottom">{{item.sender==$ctrl.uname?"我":item.sender}}</p>
+                                <p class="pBottom">{{item.sender==$ctrl.uname?item.sender+"(我)":item.sender}}</p>
                                 <p class="pDown" ng-class="{'msgBg': item.sender==$ctrl.uname}"
                                    ng-bind-html="item.richtext | icochange">
                                 </p>
@@ -205,7 +178,7 @@
                             <li ng-repeat="item in $ctrl.questInfo track by $index"
                                 class="castUser"
                                 ng-style="{'background': 'url({{item.answer}}) no-repeat', 'background-size': '35px 35px'}">
-                                <p class="pBottom">{{item.submitor==$ctrl.uname?"我":item.submitor}}</p>
+                                <p class="pBottom">{{item.submitor==$ctrl.uname?item.submitor+"(我)":item.submitor}}</p>
                                 <p ng-class="{'msgBg': item.submitor==$ctrl.uname}" class="pDown"><span
                                         style="color: #d0a45e">提问: </span>{{item.question}}</p>
                             </li>

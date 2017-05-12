@@ -1,17 +1,18 @@
-<div class="newdebtdialog " >
+<div>
     <!-- <div class="modal-wfcontent"  > -->
     <div class="modal-header ng-scope">
         <p class="modal-title newdebtdialog-title">我的全部申购记录
-            <i class="fa fa-times cancal-right" aria-hidden="true" ng-click="$ctrl.close()"></i>
+            <i class="fa fa-times pull-right" aria-hidden="true" ng-click="$ctrl.close()"></i>
         </p>
     </div>
     <div class="modal-body ng-scope addApp">
-        <p>本次申购合计: <span class="applicationColor">利率区间: 3.5-4.3</span><span class="applicationColor">申购总量: 5亿</span></p>
+        <p>本次申购合计: <span class="applicationColor">利率区间: {{$ctrl.sbrbSmy.sbrbIntrtLwrLmt | yldrtoCopyFilter}}--{{$ctrl.sbrbSmy.sbrbIntrtUpLm | yldrtoCopyFilter}}</span><span class="applicationColor">申购总量: {{$ctrl.sbrbSmy.sbrbTnum | changeToMoney}} </span></p>
         <table width="100%">
             <tr>
-                <th>机构</th>
-                <th>联系人</th>
-                <th>利率(%)</th>
+                <th style="text-align: left;">联系人</th>
+                <th>票面利率(%)</th>
+                <th>综收利率(%)</th>
+                <th>返费</th>
                 <th>申购量(亿)</th>
                 <th>交割方式</th>
                 <th>销售方式</th>
@@ -20,16 +21,17 @@
                 <th>申购时间</th>
                 <th>备注</th>
             </tr>
-            <tr ng-repeat="item in $ctrl.data track by $index">
-                <td>
-                    {{item.rcptyInstNm + "-" + item.rcptyTeamNm}}
-                </td>
-                <td>
-                    {{item.rcptyUserNm}}
+            <tr ng-repeat="item in $ctrl.data track by $index" ng-class="{otherColor: item.sndrSbrbEStatus=='9'}">
+                <td style="text-align: left;">
+                    <span>{{item.rcptyInstNm + "-" + item.rcptyTeamNm + "-" + item.rcptyUserNm}}</span>
                 </td>
                 <td>
                     {{item.sbrbIntrt}}
                 </td>
+                <!--综收利率-->
+                <td>{{item.cprsvPftIntrt}}</td>
+                <!--返费-->
+                <td>{{item.retFee}}</td>
                 <td>
                     {{item.sbrbNum}}
                 </td>
@@ -40,17 +42,7 @@
                     {{item.sellrMod | applicationSale}}
                 </td>
                 <td>
-                    <select ng-model="item.sndrSbrbEStatus">
-                        <option value='1'>未发送</option>
-                        <option value='2'>已发送</option>
-                        <option value='3'>新消息</option>
-                        <option value='4'>已读</option>
-                        <option value='5'>已撤销</option>
-                        <option value='6'>对方撤销</option>
-                        <option value='7'>已拒绝</option>
-                        <option value='8'>对方拒绝</option>
-                        <option value='9'>已失效</option>
-                    </select>
+                    {{item.sndrSbrbEStatus | applicationState}}
                 </td>
                 <td>
                     {{item.sbrbChnl | applicationChanel}}
@@ -58,10 +50,12 @@
                 <td>
                     {{item.createTime}}
                 </td>
-                <td>
-                    {{item.mark}}
+                <td style="width: 150px">
+                    <span class="nowrap" title="{{item.rmrk}}">{{item.rmrk | addTwoLine}}</span>
                 </td>
             </tr>
         </table>
+        <!-- 分页 -->
+        <div uikit-pager="$ctrl.Pager" style="display: inline-block;text-align: right;width: 100%"></div>
     </div>
 </div>

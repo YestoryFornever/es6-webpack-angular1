@@ -1,4 +1,4 @@
-app.component('nowBond', {
+app.component('nowBondComponent', {
 	restrict: 'E',
 	bindings: {
 		modalInstance: "<",

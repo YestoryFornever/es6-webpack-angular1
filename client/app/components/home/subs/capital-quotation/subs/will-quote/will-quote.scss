@@ -1,9 +1,5 @@
 
 .willQuote {
-	input,textarea,select{
-		background:$bgDefaultDarkA;
-		border:none;
-	}
 	input{
 		width:1rem;
 	}
@@ -14,34 +10,12 @@
 		line-height: 0.4rem;
 		background:$bgDefaultDarkA;
 	}
-	height:100%;
 	color: $textF;
 	.bg{
 		background:url(../../../../../../../resource/images/img_bg_title.png) center;
+		background-size: auto 100%;
 	}
 	background: $bgDefault;
-	.btn,.btn:hover,.btn.focus,.btn.active,.btn.visited,.btn:focus{
-		outline: none;
-		color:$textD;
-		border:none;
-
-	}
-	.btn-default,.btn-default:hover,.btn-default:focus,.btn-default.focus,.btn-default.active,.btn-default.visited,.btn-default:visited{
-		background-color:$bgDefaultLightC;
-		color:$textD;
-		border:none;
-		width: 0.7rem;
-		height: 0.2rem;
-		vertical-align: middle;
-		text-align: center;
-	}
-	.btn-default.active{
-		background: $bgGold;
-	}
-	.btn-primary,.btn-primary:hover,.btn-primary:focus,.btn-primary.focus,.btn-primary.active,.btn-primary.visited,.btn-primary:visited{
-		background-color:$bgGold;
-		border:none;
-	}
 	header#top{
 		padding:0.1rem 0.2rem;
 		textarea.cont{
@@ -54,6 +28,18 @@
 		}
 
 	}
+	#secondList{
+		.form-control{
+			display:inline-block;
+		}
+		input{
+			background:$bgDefaultDarkC;
+			border:none;
+		}
+		.typeBtn{
+			background:#ff671b;
+		}
+	}
 	section{
 		.bgStar{
 			background: url(../../../../../../../resource/images/btn_star_normal.png) no-repeat center;
@@ -61,8 +47,9 @@
 		.bgStar:hover,.bgStar.active{
 			background: url(../../../../../../../resource/images/btn_star_select.png) no-repeat center;
 		}
-	}
-	.myPage1{
-		height:0.4rem;
+		div.btn-group.bootstrap-select.show-tick{
+			width:1rem!important;
+			display:inline-block;
+		}
 	}
 }

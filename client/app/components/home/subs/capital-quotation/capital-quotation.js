@@ -7,11 +7,8 @@ app.config(($stateProvider, $urlRouterProvider) => {
 				'main@home': {
 					component: 'capitalQuotation',
 				},
-				'list@home.capitalQuotation': {
-					component: 'onLineBond'
-				}
 			}
 		})
 })
-.component('capitalQuotation',CapitalQuotationComponent )
+
 

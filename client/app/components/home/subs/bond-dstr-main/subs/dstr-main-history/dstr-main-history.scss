@@ -1,0 +1,16 @@
+dstr-main-history {
+	display:block;
+	color: $textF;
+	font-size:.12rem;
+	table{
+		tr{
+			th.rmrk,td.rmrk{
+				max-width:1rem;
+				@include ellipsis();
+			}
+			&.noneffective td{
+				color:#999;
+			}
+		}
+	}
+}

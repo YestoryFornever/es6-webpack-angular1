@@ -1,0 +1,104 @@
+.healdCalculatorCss{
+	.modal-xl.modal-dialog {
+		width: 4.87rem;
+		.modal-content{
+			margin-top:1rem;
+			background: $bgDefault;
+			.modal-header{
+				border:none;
+			}
+			.modal-body{
+			}
+			.modal-footer{
+			}
+		}
+	}
+}
+.calculator{
+	font-size:.14rem;
+	.modal-header#header{
+		color:$textD;
+		padding: 0 0 0 .1rem;
+		line-height:0.32rem;
+		height:0.32rem;
+		// font-size:.14rem;
+		background:url('./images/img_bg_title.png');
+		span.cancel{
+			float:right;
+			display:inline-block;
+			width:0.32rem;
+			height:0.32rem;
+			background:url('./images/btn_delete_normal.png') no-repeat center ;
+		}
+		span.cancel:hover{
+			background:url('./images/btn_delete_hover.png') no-repeat center ;
+		}
+	}
+	#modal-body.modal-body{
+		padding:0;
+		background: #233840;
+		.row{
+			margin:0;
+		}
+		div.wid11,div.wid65{
+			margin-right:0.2rem;
+			text-align: right;
+			display:inline-block;
+		}
+		span.delBox{
+			position: relative;
+			.bgDel{
+				position: absolute;
+				width:0.2rem;
+				height:0.2rem;
+				top:0;
+				right:0.1rem;
+				background:url('./images/btn_delete2_normal.png') no-repeat center;
+			}
+			.bgDel:hover{
+				background:url('./images/btn_delete2_hover.png') no-repeat center;
+			}
+		}
+		div.wid11{
+			width:1.2rem;
+		}
+		div.wid65{
+			width:0.65rem;
+		}
+		.form-control{
+			display:inline-block;
+			width:0.7rem;
+			padding:0;
+		}
+		.row.padTB2{
+			padding:0.2rem 0;
+		}
+		input.wid15{
+			width:1.4rem;
+			padding:0 0.2rem 0 0;
+		}
+		.row.bgBlack{
+			background: #20333B;
+		}
+		div.unit{
+			display:inline-block;
+			width:0.3rem;
+			text-align: center;
+			margin-right:0.2rem;
+		}
+		.col-xl-12{
+			margin-bottom:0.2rem;
+		}
+		.mar0.col-xl-12{
+			margin:0;
+		}
+		.wid7{
+			width:0.7rem;
+			display:inline-block;
+			overflow: hidden;
+			white-space:nowrap;
+			text-overflow:ellipsis;
+			margin:0 0.04rem;
+		}
+	}
+}

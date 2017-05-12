@@ -18,18 +18,27 @@
     line-height: .6rem;
     margin-left: .2rem;
 }
+.personal_ess_html .personal_ess_ul>li:last-child{
+    margin-bottom:.5rem;
+}
 .personal_ess_html .personal_ess_ul>li.style_height{
     height:1rem;
-    line-height: 1rem;
+    line-height: 1rem; 
     border:none;
 }
-.personal_ess_html .personal_ess_ul>li div{
+.personal_ess_html .personal_ess_ul>li .ess_ul_left{
+    float:left;
+}
+.personal_ess_html .personal_ess_ul>li .ess_ul_right{
+    float:left;
+}
+.personal_ess_html .personal_ess_ul>li .ess_ul_middle{
     float:left;
 }
 .personal_ess_html .personal_ess_ul>li div.ess_ul_left{
-    width:.85rem;
+    width:.85rem; 
     height:.6rem;
-    line-height: .6rem;
+    line-height: .6rem;  
     text-align: left;
 }
 .personal_ess_html .personal_ess_ul>li div.ess_ul_middle{
@@ -44,17 +53,30 @@
     line-height: .6rem;
     text-align: right;
 }
+
 .personal_ess_html .personal_ess_ul>li div.ess_ul_right_img{
     width:.7rem;
     height: .7rem;
     border-radius: .7rem;
     border:1px #344d56 solid;
     float:right;
-    overflow:hidden;
-    .ess_ul_right_img img{
-        width:100%;
-        height:100%;
-    }
+    position:relative;
+   
+}
+.personal_ess_html .personal_ess_ul>li div.ess_ul_right .chacha{
+    width:.21rem;
+    height:.21rem;
+    background:url('../images/chacha2.png') no-repeat center;
+    background-size: .15rem .15rem;
+    position: absolute;
+    top:-.02rem;
+    right:-.12rem;
+    z-index:100;
+}
+.personal_ess_html .personal_ess_ul>li div.ess_ul_right_img img{
+    width:100%;
+    height:100%;
+    border-radius: .7rem;
 }
 .personal_ess_html .personal_ess_ul>li.upload_img{
     width:5.5rem;
@@ -114,6 +136,15 @@
     line-height: .7rem;
     color:#667882;
 } 
+.personal_ess_html .personal_ess_ul>li.depm_position,.personal_ess_html .personal_ess_ul>li.org_position{
+    position:relative;
+}
+.personal_ess_html .personal_ess_ul>li.depm_position .dropdown-menu{
+    width:2.78rem;
+}
+.personal_ess_html .personal_ess_ul>li.org_position .dropdown-menu{
+    width:2.78rem;
+}
 .personal_ess_ul>li.ess_amend_input .amend_input{
     width:2.8rem;
     height:.3rem;

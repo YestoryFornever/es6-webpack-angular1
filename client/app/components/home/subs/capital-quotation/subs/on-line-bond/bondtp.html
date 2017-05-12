@@ -1,0 +1,6 @@
+<span>
+	
+	<span>{{$item.intrtTpNm | intrtTpFilter }}</span>
+	<span ng-if='$item.intrtVal'>{{$item.intrtVal |amtFilter }}</span>
+	<span ng-if='$item.intrtVal'>{{$item.intrtTpNm | intrtTpFilter:true }}</span>
+</span>

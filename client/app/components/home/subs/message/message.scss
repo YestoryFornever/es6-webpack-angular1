@@ -121,26 +121,19 @@ h1,h2,h3,h4,h5,h6{
 				}
 			}
 		}
+	}
 //清除浮动
-		.clearfix:after{
-		clear:both;
-		content:' ';
-		display:block;
-		width: 0;
-		height: 0;
-		visibility:hidden;
-		}
-		.clearfix {zoom:1;} 
+		
 //table切换
-.table_all{
-		// background:red;
+.all_main .table_all{
+		
 		position:absolute;
 		left:0;
 		top:0.6rem;
 		right:0;
 		bottom:0;
-	
-	.table{
+}
+.all_main .table_all .table{
 		height:100%;
 		width:70%;
 		float:left;
@@ -150,36 +143,41 @@ h1,h2,h3,h4,h5,h6{
 		position:relative;
 			left:0;
 			top:0;
-		//border:.01rem solid green;
-		.clear{
-			zoom:1;
-		}
-		.list{
+}
+		
+.all_main .table_all .table	.list{
 			 height:100%; 
 			 width:100%;
-		}
+}
 
-		.introduced{
+.all_main .table_all .table	.introduced{
 		float:left;
-		margin-bottom: .1rem;
-		.introduced_center{
+		// margin-bottom: .1rem;
+	}
+.all_main .table_all .table	.introduced	.introduced_center{
 			height:100%;
 			width:100%;
 			float:left;
 			// background: yellow;
-			overflow:hidden;
+			// overflow:hidden;
+			overflow:auto;
 			font-size:12px;
 			position: relative;
 			left:0;
 			top:0;
-			.introduced_center_ul{
+		}
+.all_main .table_all .table	.introduced	.introduced_center .introduced_center_ul{
 				height: 90%;
 				width: 100%;
 				clear:both;
+			}
 				// position:absolute;
 				// left:0;
 				// top:0;
-				.headerTime_ribao{
+.all_main .table_all .table	.introduced	.introduced_center .introduced_center_ul ul>li{
+					height: 100%;
+					width: 100%;
+					.headerTime_ribao{
 					height: .6rem;
 					width: 100%;
 					border-bottom:1px solid #DAD9DE;
@@ -189,14 +187,15 @@ h1,h2,h3,h4,h5,h6{
 						span{
 							display:inline-block;
 							height: .4rem;
+							width: 3r;
 							line-height:.4rem;
 							text-align: center;
 							float:left;
-							// background: blue;
+							
 						}
 						.headerTime_ribao_one{
 							width: .6rem;
-							background: blue;
+							// background: blue;
 							margin-left: .2rem;
 							// background:url('../../../../../resource/images/icon_mylogo.png') no-repeat right .2rem center;
 						}
@@ -207,54 +206,300 @@ h1,h2,h3,h4,h5,h6{
 							font-size: 16px;
 						}		
 					}
-				.headerTime{
+				}
+.introduced_center_ul li:hover{
+color:#FD671A;
+}
+
+
+.all_main .table_all .table	.introduced	.introduced_center .introduced_center_ul >ul>li>ul{
+	height: 100%;
+	width: 100%;
+	clear:both;
+}
+.all_main .table_all .table	.introduced	.introduced_center .introduced_center_ul >ul>li>ul>li{
+	height: 100%;
+	width: 100%;
+	clear:both;
+}
+.all_main .table_all .table	.introduced	.introduced_center .introduced_center_ul >ul>li>ul>li .ribao_class{
+					height: .3rem;
+					width: 100%;
+					clear:both;
+					margin-top:.1rem;
+					// background: red;
+					span{
+						display:inline-block;
+						 // background: red;
+						width: auto;
+						height: .3rem;
+						line-height:.3rem;
+						text-align: center;
+						font-size: 18px;
+						color: #FF671B;
+						margin-left: .25rem;
+					}
+		}
+
+
+				
+			
+		
+#introduced_shaoul{
+	height:auto;
+width: 100%;
+clear:both;
+}
+#introduced_shaoul>ul{
+	height:auto;
+	width: 100%;
+	clear:both;
+	// background: green;
+
+}
+#introduced_shaoul>ul>li{
+	height: auto;
+	// height:2rem;
+	clear:both;
+	width:100%;
+}
+#introduced_shaoul>ul>li .headerTime{
 					height: .45rem;
 					width: 100%;
 					span{
-						display:inline-block;
-						width: .6rem;
-						height: .25rem;
-						line-height:.25rem;
-						text-align: center;
+						display:block;
+						width: auto;
+						height: .45rem;
+						line-height:.45rem;
 						color:#439EC9 ;
 						font-size: 14px;
 						margin-left: .25rem;
 					}
 				}
-				.ribao_class{
-					height: .8rem;
-					width: 100%;
-					span{
-						display:inline-block;
-						width: auto;
-						height: .25rem;
-						line-height:.25rem;
-						text-align: center;
-						font-family: PingFangSC-Regular;
-						font-size: 18px;
-						color: #FF671B;
-						margin-left: .25rem;
+#introduced_shaoul>ul >li .messagelist_right_list{
+	width: 100%;
+	height:auto;
+	// clear:both;
+	// position:relative;
+	li{
+		// height:2.4rem;
+		// height: 100%;
+		height: auto;
+		width: 100%;
+		// clear:both;
+	}
+	
+}
+	// 左侧88888888888888888888
+.messagelist_right_list_ul{
+height: 100%;
+width: 100%;
+li{
+	height: 100%;
+	width: 100%;
+	position:relative;
+	}
+}
+
+ .messagelist_right_list_ul>li .li_right{
+	height:auto;
+	float:right;
+	width: 85%;
+	clear:both;
+	// position:absolute;
+	right:0;
+	top:0;
+	.introduced_center_bb_filter{
+							word-break:break-all;
+							text-overflow:ellipsis;
+							display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+    						-webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+    						-webkit-line-clamp: 2; /** 显示的行数 **/
+    						overflow: hidden;  /** 隐藏超出的内容 **/
+							font-size:12px;
+							cursor:default;
+							text-indent: 0em;	
+
+	}
+}
+
+ .messagelist_right_list_ul>li .messagelist_left_time{						    
+				width: 15%;
+				height: 100%;
+				// float:left;
+				// clear:both;
+				position:absolute;
+				left:0;
+				top:0;
+				// background:  url('../../../../../resource/images/timeline');
+				// float:left;
+				// margin-left: 5%;
+				// position:relative;
+				// 时间轴
+				.bg_tu{
+					display:block;
+					height: 100%;
+					width: 2px;
+					float:left;
+					margin-left: .5rem;
+					background: #D8D8D8;
+					// position:relative;
+					i{
+						display:block;
+						height: 8px;
+						width: 8px;
+						border-radius:4px;
+						margin-left: -.026rem;
+						background:  #D8D8D8;
+						
 					}
 				}
-				li{
-					float:left;
-					// height:1rem;
-					width:100%;
-				// background:red;
-				// margin-bottom:.1rem;
+				
+				span{
+					display:block;
+					height: .3rem;
+					width:.8rem;
+					float:right;
+				
+				}
+	}
+
+
+.li_right .introduced_center_bb_filter02 >ul {
+	height: auto;
+	width: 100%;
+	clear:both;
+	margin-top:.1rem;
+	.introduced_center_bb_filter02_one{
+								display:inline-block;
+								height: .2rem !important;
+								width:1.4rem !important;
+								text-align: center;
+								border-radius:.08rem;
+								cursor:pointer;
+								margin-right:.08rem;
+								
+	}
+  
+}
+
+.messagelist_right_list>ul>li>.introduced_center_bb_filter{
+							word-break:break-all;
+							text-overflow:ellipsis;
+							display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+    						-webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+    						-webkit-line-clamp: 2; /** 显示的行数 **/
+    						overflow: hidden;  /** 隐藏超出的内容 **/
+							font-size:12px;
+							cursor:default;
+							text-indent: 0em;					
+}
+ .messagelist_right_list>ul>li> .introduced_center_bb_filter02{
+							display:block;
+							width: 100%;
+							float:left;
+							clear:both;
+							margin-top:.04rem;
+			}
+.messagelist_right_list>ul>li> .introduced_center_bb_filter02>ul{
+	height: 100%;
+	width: 100%;
+}
+
+
+
+							.introduced_center_bb_filter02_one{
+								border:1px solid #FA9494 ;
+							}
+							.introduced_center_bb_filter02_two{
+								border:1px solid #F0C17B ;
+							}
+							.introduced_center_bb_filter02_three{
+								border:1px solid #88DB66;
+							}
+							.introduced_center_bb_filter02_four{
+								border:1px solid #66DBD1;
+							}
+							.introduced_center_bb_filter02_five{
+								border:1px solid #A0A4EE;
+							}
+
+ .li_right>.lishu{
+	height: .3rem;
+	width: 100%;
+	clear:both;
+	p{
+		display:block;
+		height:.3rem;
+		float:left;
+		width:100%;
+		color:#A7A7A7;
+
+		span{
+							display:block;
+							padding:0;
+							height:.3rem;
+							line-height:.3rem;
+							float:left;
+							margin-right:.1rem;
+							}
+	}
+}					
+
+#introduced_shaoul ul li.messagelist_right_list .introduced_center_bb_filter02 .introduced_center_bb_pp{
+							display:block;
+							height:.3rem;
+							float:left;
+							width:100%;
+							color:#A7A7A7;
+							//background:green;
+							// position:absolute;
+							// left:0;
+							// bottom:0;
+							.introduced_center_bb_span_img,.introduced_center_bb_span_img02{
+								display:block;
+								height:.25rem;
+								width:.25rem;
+								// padding:0;
+								// border-radius:.15rem;
+								// background-size:cover;
+								float:left;
+								img{
+									height:91%;
+									width:91%;
+									
+								}
+							}
+							.introduced_center_bb_span_img02{
+								 background: url('../../../../../resource/images/icon_dilei1.png') no-repeat center  center;
+							}
+							span{
+							display:block;
+							padding:0;
+							height:.25rem;
+							line-height:.25rem;
+							float:left;
+							margin-left:.1rem;
+							}
+						}
+
+
+.introduced_center_ul >ul>li, .all_main .table_all .table	.introduced	.introduced_center .introduced_center_ul >ul>li>ul>li >ul>li{
+				height: 1rem;
+				clear:both;
+				// border:1px solid blue;
+				margin-top: .1rem;
 				.introduced_lf{
 					height:100%;
 					width:98%;
 					float:left;
 					clear:both;
-					// margin:.1rem auto;
-
 						.introduced_center_timeline{
 							height:.9rem;
 							width:8%;
 							margin-left:20px;
 							float:left;
-							background:green;
+							
 							.introduced_center_timeline_sp1,.introduced_center_timeline_sp2{
 								display: block;
 								height: 50%;
@@ -265,9 +510,10 @@ h1,h2,h3,h4,h5,h6{
 							}
 						}
 						.introduced_center_pp{
-							height:.9rem;
+							height:.95rem;
 							width:15%;
 							margin-left:20px;
+							margin-top: .02rem;
 							background-size:cover;
 							float:left;
 						// background:green;
@@ -276,13 +522,14 @@ h1,h2,h3,h4,h5,h6{
 								width:100%;
 							}
 						}
+						
 						.messagelist_left{
-						    width:1rem;
-						    height:1rem;
+						    width:20%;
+						    height:100%;
 						    margin-left:.5rem;
 						    float:left;
 						  	clear:both;
-						    background:#fff url('../../../../../resource/images/timeline.png') repeat-y left  center;
+						    // background:#fff url('../../../../../resource/images/timeline.png') repeat-y left  center;
 						    background-size:.12rem 1.5rem;
 						    font-size:14px;
 						    color:#b7bbcb;
@@ -301,12 +548,15 @@ h1,h2,h3,h4,h5,h6{
 								top:0rem;
 							}
 						}
+						
 
-						.introduced_center_bb{
-							height:1rem;
+						.introduced_center_bb,.introduced_center_b01{
+							// height:1rem;
 							width:80%;
+							height:auto;
 							float:left;
 							margin-left:.2rem;
+							// background: red;
 							position:relative;
 								left:0;
 								top:0;
@@ -335,40 +585,6 @@ h1,h2,h3,h4,h5,h6{
 							text-indent: 0em;
 						}
 
-						.introduced_center_bb_filter02{
-							display:block;
-							height:.2rem;
-							float:left;
-							width:100%;
-							span{
-								display:inline-block;
-								height:.2rem;
-								line-height:.2rem;
-								width:1rem;
-								// width:auto;
-								text-align: center;
-								border-radius:.08rem;
-								cursor:pointer;
-								float:left;
-								margin-left:.1rem;
-								}
-							.introduced_center_bb_filter02_one{
-								border:1px solid #FA9494 ;
-							}
-							.introduced_center_bb_filter02_two{
-								border:1px solid #F0C17B ;
-							}
-							.introduced_center_bb_filter02_three{
-								border:1px solid #88DB66;
-							}
-							.introduced_center_bb_filter02_four{
-								border:1px solid #66DBD1;
-							}
-							.introduced_center_bb_filter02_five{
-								border:1px solid #A0A4EE;
-							}
-
-						}
 						.introduced_center_bb_pp{
 							display:block;
 							height:.3rem;
@@ -378,14 +594,14 @@ h1,h2,h3,h4,h5,h6{
 							//background:green;
 							position:absolute;
 							left:0;
-							bottom:0;
+							bottom:.06rem;
 							.introduced_center_bb_span_img,.introduced_center_bb_span_img02{
 								display:block;
-								height:.3rem;
-								width:.3rem;
-								padding:0;
-								border-radius:.15rem;
-								background-size:cover;
+								height:.25rem;
+								width:.25rem;
+								// padding:0;
+								// border-radius:.15rem;
+								// background-size:cover;
 								float:left;
 								img{
 									height:91%;
@@ -406,28 +622,22 @@ h1,h2,h3,h4,h5,h6{
 							}
 						}
 						}
-						.introduced_center_b01{
-
+						.introduced_center_bb{
+							height:1rem;
 						}
-
 					}
 				}
-				li:hover{
-				color:#FD671A;
-				}
+				// li:hover{
+				// color:#FD671A;
+				// }
 			
-			}
-			.introduced_center_ul02>li{
-				height:1.4rem;
-			}	
-				
 				//背景图片
 				.img_img{
 					height:.4rem;
 					width:1rem;
 					margin:2rem auto;
 				}
-				.jiazhai{
+	.jiazhai{
 					height:.5rem;
 					width:1.5rem;
 					text-align: center;
@@ -453,17 +663,15 @@ h1,h2,h3,h4,h5,h6{
 					}
 				}
 				
-		}
+	
 
-	}
-
-}		
-	.introduced_rt{
+	
+.introduced_rt{
 	height:100%;
 	width:30%;
 	float:left;
-	overflow:hidden;
-	// overflow-y: auto;
+	// overflow:hidden;
+	overflow-y: auto;
 	background:#fff;
 	margin-top:-.1rem;
 	.introduced_rt_top{
@@ -481,7 +689,8 @@ h1,h2,h3,h4,h5,h6{
 
 	}
 
-	.introduced_rt_center{
+}
+.introduced_rt_center{
 		//height:1rem;
 		height:auto;
 		width:96%;
@@ -492,7 +701,17 @@ h1,h2,h3,h4,h5,h6{
 			display:block; 
 			height:100%;
 			width:100%;
-			
+			h4{
+				padding-left:.1rem;
+				clear:both;
+				word-break:break-all;
+				text-overflow:ellipsis;
+				display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+    			-webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+    			-webkit-line-clamp: 2; /** 显示的行数 **/
+    			overflow: hidden;  /** 隐藏超出的内容 **/
+				cursor:pointer;
+			}
 			.span_a{
 				width:100%;
 				//height:.6rem;
@@ -512,6 +731,19 @@ h1,h2,h3,h4,h5,h6{
 				overflow:hidden;
 				text-overflow:hidden;
 		    }
+		   .span_c{
+		   		width:100%;
+				//height:.6rem;
+				font-size:12px;
+				padding-left:.1rem;
+				word-break:break-all;
+				text-overflow:ellipsis;
+				display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+				-webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+				-webkit-line-clamp: 3; /** 显示的行数 **/
+				overflow: hidden;  
+		   }
+
 		p{
 			display:block;
 			height:.3rem;
@@ -559,6 +791,19 @@ h1,h2,h3,h4,h5,h6{
 
 		
 		}
+
+
+
+
+
+
+
+
+
+
+
+
+
 	.introduced_rt_center_daily,.introduced_rt_center_daily02{
 		height: .4rem;
 		width: 96%;
@@ -596,9 +841,9 @@ h1,h2,h3,h4,h5,h6{
 			font-size: 16px;
 		}
 		.introduced_rt_center_daily_four{
-			width:.6rem;
+			width:.3rem;
 			float:right;
-			background:url('../../../../../resource/images/youjiantou.png') no-repeat right .17rem center;
+			background:url('../../../../../resource/images/youjiantou.png') no-repeat right .06rem center;
 		}
 	}
 	.jiazhai{
@@ -626,9 +871,9 @@ h1,h2,h3,h4,h5,h6{
 						margin-left:.15rem;
 					}
 				}
-	}
-}
-}
+	
+
+
 
 
 

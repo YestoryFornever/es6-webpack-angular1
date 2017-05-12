@@ -3,8 +3,7 @@
  * 弹出框  == alert
  * @type {[type]}
  */
-app.factory('AlertModalService',['$http','$q','$uibModal',function($http,$q, $uibModal){
-	
+app.factory('AlertModalService',function($http,$q, $uibModal){
 	return {
 		/**
 		 * 
@@ -35,4 +34,4 @@ app.factory('AlertModalService',['$http','$q','$uibModal',function($http,$q, $ui
 			return deferred.promise;
 		}
 	}
-}]);
+});

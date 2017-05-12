@@ -23,6 +23,17 @@
     font-size:.16rem;
     line-height:.25rem;
     padding:.1rem;
+    resize:none;
+
+}
+.make_com_html .text_span{
+    width:.4rem;
+    height:.16rem;
+    font-size:.16rem;
+    position:absolute; 
+    right:3.98rem;
+    bottom:.16rem;
+    z-index:100;
 }
 .make_com_html h2{
     height:.64rem;
@@ -31,6 +42,7 @@
     font-size:.16rem;
     margin-top:.2rem;
 }
+/* 图片上传 */
 .addimg{
     width:7.6rem;
     height:1.1rem;
@@ -40,10 +52,21 @@
     width:1.1rem;
     height:1.1rem;
     float:left;
+    margin-right:.2rem;
+    position:relative;
 }
 .addimg div img{
     width:1.1rem;
     height:1.1rem;
+}
+.addimg>div>div.chacha{
+    width:.15rem;
+    height:.15rem;
+    background:url('../images/chacha.png') no-repeat center;
+    background-size: .15rem .15rem;
+    position: absolute;
+    top:-.1rem;
+    right:-.3rem;
 }
 .make_com_btn{
     width:.9rem;

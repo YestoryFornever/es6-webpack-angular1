@@ -145,25 +145,26 @@ app.factory('netCapitalQuoteService',['$http','$q', 'userStatusService', 'ProxyR
 		 *4.2.7	更新报价
 		 */
 		onlineUpdateOfr(obj){
-			return ProxyRequestService.post('/e-bondquote/capitalQuote/online/updateOfr',{
-				ofrid :obj.ofrid,
-				drc	:obj.drc,
-				trmTp :obj.trmTp,
-				trmLwrLmtVal :obj.trmLwrLmtVal,
-				trmUpLmVal :obj.trmUpLmVal,
-				trmUnit :obj.trmUnit,
-				amt :obj.amt,
-				amtUnit :obj.amtUnit,
-				mode:obj.mode,
-				intrtTp:obj.intrtTp,
-				intrtVal:obj.intrtVal,
-				txnRst:obj.txnRst,
-				rmrk:obj.rmrk,
-				eStatus:obj.eStatus,
-				pageNum:obj.pageNum,
-				pageSize:obj.pageSize,
-
-			});
+			console.log(obj)
+			return ProxyRequestService.post('e-bondquote/capitalQuote/online/updateOfr',{
+							ofrid :obj.ofrid,
+							drc	:obj.drc,
+							trmTp :obj.trmTp,
+							trmLwrLmtVal :obj.trmLwrLmtVal,
+							trmUpLmVal :obj.trmUpLmVal,
+							trmUnit :obj.trmUnit,
+							amt :obj.amt,
+							amtUnit :obj.amtUnit,
+							mode:obj.mode,
+							intrtTp:obj.intrtTp,
+							intrtVal:obj.intrtVal,
+							txnRst:obj.txnRst,
+							rmrk:obj.rmrk,
+							eStatus:obj.eStatus,
+							pageNum:obj.pageNum,
+							pageSize:obj.pageSize,
+			
+						});
 		},
 		/**线上
 		 * 根据 ID 获取详细信息 填充列表
@@ -350,7 +351,7 @@ app.factory('netCapitalQuoteService',['$http','$q', 'userStatusService', 'ProxyR
 		drc:{
 			name:'方向',
 			value:{
-					0:{name:'全部',value:''},
+					// 0:{name:'全部',value:''},
 					1:{name:'融入',value:'1'},
 					2:{name:'融出',value:'2'},
 				}
@@ -362,7 +363,7 @@ app.factory('netCapitalQuoteService',['$http','$q', 'userStatusService', 'ProxyR
 		trmTp:{
 			name:'期限',
 			value:{
-					0:{name:'全部',value:''},
+					// 0:{name:'全部',value:''},
 					1:{name:'隔夜',value:'1'},
 					2:{name:'7天',value:'2'},
 					3:{name:'14天',value:'3'},
@@ -394,7 +395,7 @@ app.factory('netCapitalQuoteService',['$http','$q', 'userStatusService', 'ProxyR
 		mode:{
 			name:'模式',
 			value:{
-					0:{name:'全部',value:''},
+					// 0:{name:'全部',value:''},
 					1:{name:'押利率',value:'1'},
 					2:{name:'押信用',value:'2'},
 					3:{name:'押中债',value:'3'},
@@ -409,7 +410,7 @@ app.factory('netCapitalQuoteService',['$http','$q', 'userStatusService', 'ProxyR
 		intrtTp:{
 			name:'利率',
 			value:{
-					0:{name:'全部',value:''},
+					// 0:{name:'全部',value:''},
 					1:{name:'加权',value:'1'},
 					2:{name:'加点',value:'2'},
 					3:{name:'减点',value:'3'},
@@ -439,10 +440,10 @@ app.factory('netCapitalQuoteService',['$http','$q', 'userStatusService', 'ProxyR
 		ctlg:{
 			name:'种类',
 			value:{
-					0:{name:'全部',value:''},
+					// 0:{name:'全部',value:''},
 					1:{name:'资金',value:'1'},
 					2:{name:'结构性存款',value:'2'},
-					3:{name:'银行存款',value:'3'},
+					3:{name:'银行同存',value:'3'},
 					4:{name:'非银同存',value:'4'},
 					5:{name:'协议存款',value:'5'},
 				}
@@ -456,6 +457,67 @@ app.factory('netCapitalQuoteService',['$http','$q', 'userStatusService', 'ProxyR
 				4:{name:'限存款机构',value:'4'},
 				5:{name:'其他',value:'5'},
 			}
-		}
+		},
+		/*期限  */
+		trmTpSelect:[
+			{label:'隔夜',id:'1'},
+			{label:'7天',id:'2'},
+			{label:'14天',id:'3'},
+			{label:'21天',id:'4'},
+			{label:'1个月',id:'5'},
+			{label:'2个月',id:'6'},
+			{label:'3个月',id:'7'},
+			{label:'6个月',id:'8'},
+			{label:'9个月',id:'9'},
+			{label:'1年',id:'10'},
+			{label:'自定义',id:'11'},
+		],
+		/*模式  */
+		modeSelect:[
+			{label:'押利率',id:'1'},
+			{label:'押信用',id:'2'},
+			{label:'押中债',id:'3'},
+			{label:'押上清',id:'4'},
+			{label:'押存单',id:'5'},
+		],
+		/*下拉 利率*/
+		intrtTpSelect:[
+			{label:'加权',id:'1'},
+			{label:'加点',id:'2'},
+			{label:'减点',id:'3'},
+			{label:'自定义',id:'4'},
+		],
+		/*下拉 种类数据*/
+		ctlgSelect:[
+			{label:'资金',id:'1'},
+			{label:'结构性存款',id:'2'},
+			{label:'银行同存',id:'3'},
+			{label:'非银同存',id:'4'},
+			{label:'协议存款',id:'5'},
+		],
+		/*下拉 复选数据*/
+		txnRstSelect:[
+			{label:'限银行',id:'1'},
+			{label:'限农信',id:'2'},
+			{label:'限直连',id:'3'},
+			{label:'限存款机构',id:'4'},
+			{label:'其他',id:'5'},
+		],
+		/*下拉 方向*/
+		drcSelect:[
+			{label:'融入',id:'1'},
+			{label:'融出',id:'2'},
+		],
+		/*下拉 天 月 年*/
+		dayMonSelect:[
+			{label:'天',id:'1'},
+			{label:'月',id:'2'},
+			{label:'年',id:'3'},
+		],
+		/*下拉 万  亿*/
+		MoneySelect:[
+			{label:'万',id:'1'},
+			{label:'亿',id:'2'},
+		]
 	}
 }]);

@@ -11,11 +11,12 @@ app.component('mineQuotation', {
 		}
 		$scope.tolist =function(index){
 			$scope.active = index;
-			$state.go($state.$current,{active:$scope.active})
+			$state.go($state.$current,{active:$scope.active,pageNum:1})
 		}
 		pagetabService.activeTab({
 			tabKey: 'home.capitalQuotation',
-			routeState: $state.$current.name,
+			routeState: 'home.capitalQuotation.mineQuotation',
+			routeParams:{active:$scope.active},
 			routeLabel:"资金报价",
 		});
 	}

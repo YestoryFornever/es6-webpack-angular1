@@ -8,6 +8,8 @@ let messageComponent = {
 		$scope.flashKey =  $stateParams.tag;
 		$scope.one = [];
 		$scope.params = $stateParams;
+		this.msgScroll = window.innerHeight - 350;
+		$scope.scollbar_y = $scope.msgScroll;
 		if (!$stateParams.tag) {
 			return $state.go('home.message', {tag:0, page:1}, {reload: true});
 		};
@@ -21,7 +23,6 @@ let messageComponent = {
 		 */
 		$scope.upload = function(){
 			$scope.reload(true);
-			// alert(11);
 		}
 		$scope.recommended_page = $stateParams.page||1;
 		$scope.data_type = '1';
@@ -62,17 +63,21 @@ let messageComponent = {
 		/**
 		 * 推荐要闻
 		 */
+		$scope.importantListsarray_time = '';
 		$scope.importantListsarray = [];
 		$scope.importantLists = function(){
 			let promise = messageService.importantList({
 				uid:BONDCONFIG.USERINFO.uid,
 			}).then((res) => {
+				console.log(res);
 				
+				// $scope.importantListsarray_time = res.data.data[0].info_time;
 				$scope.importantListsarray = res.data.data;
+				console.log($scope.importantListsarray_time);
 				return res;
 			});
 		}
-		$scope.importantLists();
+		// $scope.importantLists();
 		/**
 		 * 快讯
 		 */
@@ -92,7 +97,90 @@ let messageComponent = {
 				return res;
 			});
 		};
-		$scope.qinfoLists();
+		// $scope.qinfoLists();
+		/**
+		 * 扫雷
+		 */
+		// $scope.sweepLists_page =  1;
+		// $scope.sweepLists = function(set_init_page){
+		// 		if(set_init_page){
+		// 		$scope.sweepLists_page = set_init_page;
+		// 	}
+		// 	let promise = messageService.sweepList({
+		// 		uid:BONDCONFIG.USERINFO.uid,
+		// 		cur_page: $scope.sweepLists_page,
+		// 	}).then((res) => {
+		// 		if ($scope.sweepLists_page==1) {
+		// 			$scope.flash_one_sweepLists= [];
+		// 		};
+		// 		for (var i = 0, len = res.data.data.length; i < len; i++) {
+		// 			$scope.flash_one_sweepLists.push(res.data.data[i]);
+		// 		}
+		// 		$scope.sweepList_page++;
+		// 		return res;
+		// 	});
+		// }
+		
+		/**
+		 * 扫雷列表
+		 * @param {[number]} bound_org_id 个债机构ID
+		 * @param {[type]} set_init_page 设置初始页
+		 */
+		$scope.one_sweepLists = [];
+		$scope.sweepLists_page = $stateParams.page || 1;
+		$scope.sweepLists = function(set_init_page) {
+			if (set_init_page) {
+				$scope.sweepHisLists_page = set_init_page;
+			}
+
+			return messageService.sweepList({
+				uid: BONDCONFIG.USERINFO.uid,
+				cur_page: $scope.sweepLists_page,
+			}).then((res) => {
+				console.log(res);
+				if ($scope.sweepLists_page == 1) {
+					$scope.one_sweepLists = [];
+				};
+				// $scope.dataTime = res.data.list.date_str;
+				console.log(res.data.data.list.length);
+				var len = res.data.data.list.length
+				for (var i = 0; i < len; i++) {
+
+					if (res.data.data.list[i].data) {
+						var _len = res.data.data.list[i].data.length
+						for (var j = 0; j < _len; j++) {
+							if (res.data.data.list[i].data[j].bond_tags) {
+								res.data.data.list[i].data[j].bond_tags = JSON.parse(res.data.data.list[i].data[j].bond_tags);
+
+							}
+						}
+					}
+					// debugger;
+					$scope.one_sweepLists.push(res.data.data.list[i]);
+
+				}
+				console.log($scope.one_sweepLists);
+
+				$scope.sweepLists_page++;
+				console.log($scope.sweepLists_page)
+			});
+		}
+		/**
+		 * 
+		 * @param {[number]} 扫雷页面跳转函数
+		 * @param {[type]} 
+		 */
+		 $scope.changeFn = function(_iid,is_important){
+		 	// debugger;
+		 	if(is_important!=1&&_iid!=0){
+		 		return $state.go('home.messagedetail', {iid: _iid}, {reload: true});
+		 	} 
+		 	// if(_iid!=0&&(is_important!=1||is_important==1)){
+		 	// 	return $state.go('home.messagedetail', {iid: _iid}, {reload: true});
+		 	// }
+
+		 }
+
 
 
 		/**
@@ -125,6 +213,7 @@ let messageComponent = {
 		 * @param {[number]} 
 		 * @param {[type]} set_init_page 设置初始页
 		 */
+		$scope.ribaolist_all = [];
 		 $scope.dayInfoLists_page = $stateParams.page;
 		$scope.dayInfoLists = function(set_init_page) {
 			if(set_init_page){
@@ -135,19 +224,37 @@ let messageComponent = {
 				cur_page: $scope.dayInfoLists_page,
 				// cur_page: collections_page_collections
 			}).then((res) => {
+				console.log(res);
 				if ($scope.dayInfoLists_page==1) {
-					$scope.one = [];
+					$scope.ribaolist = [];
 				};
-				for (var i = 0, len = res.data.data.length; i < len; i++) {
-					$scope.one.push(res.data.data[i]);
-				}
+				$scope.ribaolist_all = res.data.data.list;
+				// var len_01=res.data.data.list.length;
+
+				// for (var i = 0; i < len_01; i++) {
+				// 	$scope.ribaolist_all.push(res.data.data.list[i]);
+					// $scope.ribaolist.push(res.data.data.list[i]);
+				// }
+				$scope.ribaolist[0] = $scope.ribaolist_all[0];
+				console.log($scope.ribaolist);
 				$scope.dayInfoLists_page++;
 
 			});
 		}
 		$scope.dayInfoLists();
-
-
+		
+		/**
+		 * 点击左侧日报列表，右边展示
+		 * @param {[number]} S
+		 * @param {[type]} set_init_page 设置初始页
+		 */
+		
+		$scope.msgScroll = window.innerHeight;
+		 $scope.change_ribao = function(index){
+		 	$('#table_id').scrollTop(0);
+		 	$scope.ribaolist[0]=$scope.ribaolist_all[index];
+		 	// $state.reload(true);
+		 }
 		/**
 		 * 收藏
 		 */
@@ -233,7 +340,11 @@ let messageComponent = {
 			}else if($scope.tabkey==3){
 				$scope.messagelists(3);
 			}else if($scope.tabkey==4){
-
+				$scope.collections();
+			} else if($scope.tabkey==6){
+				$scope.sweepLists();
+			}else if($scope.tabkey==7){
+				$scope.dayInfoLists();
 			}
 		}
 
@@ -242,24 +353,43 @@ let messageComponent = {
 		 * @param  {[type]} $stateParams.search [description]
 		 * @return {[type]}                     [description]
 		 */
-		var page = $stateParams.page;
-		if ($stateParams.search) {
-			$scope.search_page = 1;
-			$scope.tabkey=5;
-			$scope.searchInfoLists();
-		}else{//没有搜索默认到推荐页
-			if($scope.params.tag== 0){
-				$scope.getrecommendedLists(1,page);
-			}else if($scope.params.tag== 1){
-				$scope.messagelists(4,page);
-			}else if($scope.params.tag== 2){
-				$scope.messagelists(6,page);
-			} else if($scope.params.tag== 3){
-				$scope.messagelists(3,page);
-			}else if($scope.params.tag== 4){
-				$scope.collections(page);
+		$scope.initload = function(){
+			$scope.qinfo_page =  1;
+			$scope.importantLists();
+			// $scope.importantLists();
+			$scope.qinfoLists();
+				var page = $stateParams.page;
+			if ($stateParams.search) {
+				$scope.search_page = 1;
+				$scope.tabkey=5;
+				$scope.searchInfoLists();
+			}else{//没有搜索默认到推荐页
+				if($scope.params.tag== 0){
+					$scope.getrecommendedLists(1,page);
+					
+				}else if($scope.params.tag== 1){
+					$scope.messagelists(4,page);
+				}else if($scope.params.tag== 2){
+					$scope.messagelists(6,page);
+				} else if($scope.params.tag== 3){
+					$scope.messagelists(3,page);
+				}else if($scope.params.tag== 4){
+					$scope.collections(page);
+				}else if($scope.params.tag== 6){//扫雷
+					$scope.sweepLists(page);
+				}else if($scope.params.tag== 7){//日报
+					$scope.dayInfoLists(page);
+				}
 			}
 		}
+		$scope.initload();
+
+		/**
+		 * 显示评论的梨数
+		 * @return {Function} [description]
+		 */
+		
+
 
 		pagetabService.activeTab({
 			tabKey: 'home.message',

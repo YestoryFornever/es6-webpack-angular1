@@ -13,6 +13,7 @@ app.component('countDown', {
 	bindings: {
 		format: '@',
 		ctrl: '=',
+        init:"@",
 	},
 	templateUrl: './countDown.html',
 	controller: countDownController

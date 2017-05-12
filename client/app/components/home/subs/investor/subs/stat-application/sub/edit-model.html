@@ -1,0 +1,21 @@
+<div class="newdebtdialog ">
+    <!-- <div class="modal-wfcontent"  > -->
+    <div class="modal-header ng-scope">
+        <p class="modal-title newdebtdialog-title">发布债券申购数据给我的客户
+            <i class="fa fa-times cancal-right" aria-hidden="true" ng-click="$ctrl.close()"></i>
+        </p>
+    </div>
+    <div class="modal-body ng-scope addApp">
+        <p>
+            <span>全场</span> <input type="text" class="iMarginRight" ng-model="$ctrl.data.whlTmsNum" name="whlTmsNum"/>
+            <span>边际</span> <input type="text" class="iMarginRight" ng-model="$ctrl.data.bdyTmsNum" name="bdyTmsNum"/>
+            <span>边际利率</span> <input type="text" ng-model="$ctrl.data.bdyIntrt" name="bdyIntrt"/> %<span class="iMarginRight"></span>
+            <span>截标时间</span> <input type="text" style="width: 230px;" format="YYYY年MM月DD日 HH:mm"  ng-model="$ctrl.data.clsbidTm" name="clsbid" datetimepicker/>
+            <!--<span>截标时间</span><input style="width: 230px;" type="datetime-local" class="iMarginRight" ng-model="$ctrl.data.clsbidTm" name="clsbidTmL" />-->
+        </p>
+        <p></p>
+        <p class="text-center">
+            <button ng-click="$ctrl.sendToClient()" class="btn btn-primary">转发至申购客户</button>
+        </p>
+    </div>
+</div>

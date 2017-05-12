@@ -2,282 +2,70 @@
     <div class="mywealth_banner"> 
         <div class="mywealth_banner_left"> 
             <h1>我的金币</h1>
-            <h2>922,098</h2>
-            <div><button type="button">金币记录</button><button type="button" style="margin-left:.2rem">兑换记录</button></div>
-        </div>
+            <h2>{{coinRemain}}</h2> 
+            <div><button type="button" ng-click="goldFun()">金币记录</button><button type="button" style="margin-left:.2rem" ng-click="giftFun()">兑换记录</button></div>
+        </div> 
+        <!--轮播图-->
         <div class="mywealth_banner_right"> 
-        轮播图
+            <div uib-carousel interval="2000" active="active1" style='height:100%'>
+                <div uib-slide ng-repeat="aa in slidesBanner track by aa.index" index="aa.index">
+                    <img ng-src="{{aa.imageUrl}}" />
+                </div>
+            </div>
         </div>
     </div>
     <div class="mywealth_liwu"> 
         <h1 class="h1">商城礼品</h1>
-        <dl class="dl"> 
-            <dt><img src="../images/lipin.png"/></dt>
+        <dl class="dl" ng-repeat="g_list in golbExchangeList"> 
+            <dt><img ng-src="{{g_list.imageUrl}}"/></dt>
             <dd> 
-                <h1>苹果手机iPhone7 Plus</h1>
-                <h1>128G 玫瑰红 全网通</h1>
-                <p>7200金币</p>
-                <button type="button" ng-click="mywealthModalService.open()">兑换商品</button>
-            </dd>
-        </dl>
-        <dl> 
-            <dt><img src="../images/lipin.png"/></dt>
-            <dd> 
-                <h1>苹果手机iPhone7 Plus</h1>
-                <h1>128G 玫瑰红 全网通</h1>
-                <p>7200金币</p>
-                <button type="button" disabled="disabled">兑换商品</button>
-            </dd>
-        </dl>
-        <dl> 
-            <dt><img src="../images/lipin.png"/></dt>
-            <dd> 
-                <h1>苹果手机iPhone7 Plus</h1>
-                <h1>128G 玫瑰红 全网通</h1>
-                <p>7200金币</p>
-                <button type="button">兑换商品</button>
-            </dd>
-        </dl>
-        <dl> 
-            <dt><img src="../images/lipin.png"/></dt>
-            <dd> 
-                <h1>苹果手机iPhone7 Plus</h1>
-                <h1>128G 玫瑰红 全网通</h1>
-                <p>7200金币</p>
-                <button type="button">兑换商品</button>
-            </dd>
-        </dl>
-        <dl class="dl"> 
-            <dt><img src="../images/lipin.png"/></dt>
-            <dd> 
-                <h1>苹果手机iPhone7 Plus</h1>
-                <h1>128G 玫瑰红 全网通</h1>
-                <p>7200金币</p>
-                <button type="button">兑换商品</button>
-            </dd>
-        </dl>
-        <dl> 
-            <dt><img src="../images/lipin.png"/></dt>
-            <dd> 
-                <h1>苹果手机iPhone7 Plus</h1>
-                <h1>128G 玫瑰红 全网通</h1>
-                <p>7200金币</p>
-                <button type="button">兑换商品</button>
-            </dd>
-        </dl>
-        <dl> 
-            <dt><img src="../images/lipin.png"/></dt>
-            <dd> 
-                <h1>苹果手机iPhone7 Plus</h1>
-                <h1>128G 玫瑰红 全网通</h1>
-                <p>7200金币</p>
-                <button type="button">兑换商品</button>
-            </dd>
-        </dl>
-        <dl> 
-            <dt><img src="../images/lipin.png"/></dt>
-            <dd> 
-                <h1>苹果手机iPhone7 Plus</h1>
-                <h1>128G 玫瑰红 全网通</h1>
-                <p>7200金币</p>
-                <button type="button">兑换商品</button>
-            </dd>
-        </dl>
-        <dl> 
-            <dt><img src="../images/lipin.png"/></dt>
-            <dd> 
-                <h1>苹果手机iPhone7 Plus</h1>
-                <h1>128G 玫瑰红 全网通</h1>
-                <p>7200金币</p>
-                <button type="button">兑换商品</button>
-            </dd>
-        </dl>
-        <dl> 
-            <dt><img src="../images/lipin.png"/></dt>
-            <dd> 
-                <h1>苹果手机iPhone7 Plus</h1>
-                <h1>128G 玫瑰红 全网通</h1>
-                <p>7200金币</p>
-                <button type="button">兑换商品</button>
-            </dd>
-        </dl>
-        <dl> 
-            <dt><img src="../images/lipin.png"/></dt>
-            <dd> 
-                <h1>苹果手机iPhone7 Plus</h1>
-                <h1>128G 玫瑰红 全网通</h1>
-                <p>7200金币</p>
-                <button type="button">兑换商品</button>
-            </dd>
-        </dl>
-        <dl> 
-            <dt><img src="../images/lipin.png"/></dt>
-            <dd> 
-                <h1>苹果手机iPhone7 Plus</h1>
-                <h1>128G 玫瑰红 全网通</h1>
-                <p>7200金币</p>
-                <button type="button">兑换商品</button>
-            </dd>
-        </dl>
-        <dl>  
-            <dt><img src="../images/lipin.png"/></dt>
-            <dd> 
-                <h1>苹果手机iPhone7 Plus</h1>
-                <h1>128G 玫瑰红 全网通</h1>
-                <p>7200金币</p>
-                <button type="button">兑换商品</button>
+                <h1>{{g_list.name}}</h1>
+                <h1>{{g_list.description}}</h1>
+                <p>{{g_list.priceCoin}}金币</p>
+                <button type="button" ng-click="open(g_list)">兑换商品</button>
             </dd>
         </dl>
     </div>
     <div class="mywealth_list">
-        <!--<ul> 
-            <li>金币记录</li> 
-            <li>兑换记录</li>
-        </ul>-->
-        <uib-tabset  active='active'>
-            <uib-tab index="0"  heading="金币记录"  >
+        <uib-tabset ng-init='active=0' active='active' id="jilu" >
+            <uib-tab index="0" class="ulTab" heading="金币记录" ng-click="goldShuaXin()">
                 <div class="tab_table1"> 
                     <table class="table mywealth_table">
                         <tbody>
-                            <tr> 
-                                <td>2017-03-09 21:23:12</td>
-                                <td>登录奖励</td>
-                                <td>+5金币</td>
-                                <td>余额：3,500金币</td>
+                            <tr ng-repeat="list in goldRecord"> 
+                                <td>{{list.createTime}}</td>
+                                <td>{{list.detailTypeStr}}</td>
+                                <td>{{list.coinChange}}金币</td>
+                                <td>余额：{{list.coinRemain}}金币</td>
                             </tr>
-                            <tr>
-                                <td>2017-03-09 21:23:12</td>
-                                <td>登录奖励</td>
-                                <td>+5金币</td>
-                                <td>余额：3,500金币</td>
-                            </tr> 
-                            <tr>
-                                <td>2017-03-09 21:23:12</td>
-                                <td>登录奖励</td>
-                                <td>+5金币</td>
-                                <td>余额：3,500金币</td>
-                            </tr> 
-                            <tr>
-                                <td>2017-03-09 21:23:12</td>
-                                <td>登录奖励</td>
-                                <td>+5金币</td>
-                                <td>余额：3,500金币</td>
-                            </tr> 
-                            <tr>
-                                <td>2017-03-09 21:23:12</td>
-                                <td>登录奖励</td>
-                                <td>+5金币</td>
-                                <td>余额：3,500金币</td>
-                            </tr> 
-                            <tr>
-                                <td>2017-03-09 21:23:12</td>
-                                <td>登录奖励</td>
-                                <td>+5金币</td>
-                                <td>余额：3,500金币</td>
-                            </tr>
-                            <tr>
-                                <td>2017-03-09 21:23:12</td>
-                                <td>登录奖励</td>
-                                <td>+5金币</td>
-                                <td>余额：3,500金币</td>
-                            </tr> 
-                            <tr>
-                                <td>2017-03-09 21:23:12</td>
-                                <td>登录奖励</td>
-                                <td>+5金币</td>
-                                <td>余额：3,500金币</td>
-                            </tr> 
-                            <tr>
-                                <td>2017-03-09 21:23:12</td>
-                                <td>登录奖励</td>
-                                <td>+5金币</td>
-                                <td>余额：3,500金币</td>
-                            </tr> 
-                            <tr>
-                                <td>2017-03-09 21:23:12</td>
-                                <td>登录奖励</td>
-                                <td>+5金币</td>
-                                <td>余额：3,500金币</td>
-                            </tr>   
                         </tbody>
                     </table>
                 </div> 
-                
+                <div uikit-pager="Pager1" style="display: inline-block;text-align: right;width: 100%"></div>
             </uib-tab>
-            <uib-tab index="1"  heading="兑换记录" >
+            <uib-tab index="1"  heading="兑换记录" id="duihuan">
                 <div class="mywealth_jilu"> 
-                    <dl class="top_line"> 
-                        <dt><img src="../images/lipin.png"/></dt>
+                    <dl class="top_line" ng-repeat="Cv_list in recordConversion"> 
+                        <dt><img ng-src="{{Cv_list.imageUrl}}"/></dt>
                         <dd class="dd1"> 
                             <div class="mywealth_list_name">
-                                <span>兑换</span>苹果手机iPhone7 Plus 128G 玫瑰红 全网通<br/>
-                                <span style="font-size:.14rem">订单号：18577873876</span><br/>
+                                <span>兑换</span>{{Cv_list.name}}{{Cv_list.description}}<br/>
+                                <span style="font-size:.14rem">订单号：{{Cv_list.orderNumber}}</span><br/>
+                                <span class="jujue" ng-if="Cv_list.status==103">被拒原因：{{Cv_list.remarks}}</span> 
                             </div>
                             <div class="mywealth_list_status"> 
-                                <span>花费金币：</span><span style="color:#ffeb62">39883</span><br/>
-                                <span style="color:#6b838e;font-size:.14rem;">兑换时间：2017.04.01</span>                           
-                            </div>
+                                <span>花费金币：</span><span style="color:#ffeb62">{{Cv_list.totalCoin}}</span><br/>
+                                <span style="color:#6b838e;font-size:.14rem;">兑换时间：{{Cv_list.requestTime}}</span>                           
+                            </div> 
                         </dd>
-                        <dd class="dd2"><img src="../images/jl_bg1.png"/></dd>
-                    </dl>
-                    <dl> 
-                        <dt><img src="../images/lipin.png"/></dt>
-                        <dd class="dd1"> 
-                            <div class="mywealth_list_name">
-                                <span>兑换</span>苹果手机iPhone7 Plus 128G 玫瑰红 全网通<br/>
-                                <span style="font-size:.14rem">订单号：18577873876</span><br/>
-                                <span class="jujue">被拒原因：18577873876</span> 
-                            </div>
-                            <div class="mywealth_list_status"> 
-                                <span>花费金币：</span><span style="color:#ffeb62">39883</span><br/>
-                                <span style="color:#6b838e;font-size:.14rem;">兑换时间：2017.04.01</span>                           
-                            </div>
-                        </dd>
-                        <dd class="dd2"><img src="../images/jl_bg2.png"/></dd>
-                    </dl>
-                    <dl> 
-                        <dt><img src="../images/lipin.png"/></dt>
-                        <dd class="dd1"> 
-                            <div class="mywealth_list_name">
-                                <span>兑换</span>苹果手机iPhone7 Plus 128G 玫瑰红 全网通<br/>
-                                <span style="font-size:.14rem">订单号：18577873876</span><br/>
-                            </div>
-                            <div class="mywealth_list_status"> 
-                                <span>花费金币：</span><span style="color:#ffeb62">39883</span><br/>
-                                <span style="color:#6b838e;font-size:.14rem;">兑换时间：2017.04.01</span>                           
-                            </div>
-                        </dd>
-                        <dd class="dd2"><img src="../images/jl_bg3.png"/></dd>
-                    </dl>
-                    <dl> 
-                        <dt><img src="../images/lipin.png"/></dt>
-                        <dd class="dd1"> 
-                            <div class="mywealth_list_name">
-                                <span>兑换</span>苹果手机iPhone7 Plus 128G 玫瑰红 全网通<br/>
-                                <span style="font-size:.14rem">订单号：18577873876</span><br/>
-                            </div>
-                            <div class="mywealth_list_status"> 
-                                <span>花费金币：</span><span style="color:#ffeb62">39883</span><br/>
-                                <span style="color:#6b838e;font-size:.14rem;">兑换时间：2017.04.01</span>                           
-                            </div>
-                        </dd>
-                        <dd class="dd2"><img src="../images/jl_bg4.png"/></dd>
-                    </dl>
-                    <dl> 
-                        <dt><img src="../images/lipin.png"/></dt>
-                        <dd class="dd1"> 
-                            <div class="mywealth_list_name">
-                                <span>兑换</span>苹果手机iPhone7 Plus 128G 玫瑰红 全网通<br/>
-                                <span style="font-size:.14rem">订单号：18577873876</span><br/>
-                            </div>
-                            <div class="mywealth_list_status"> 
-                                <span>花费金币：</span><span style="color:#ffeb62">39883</span><br/>
-                                <span style="color:#6b838e;font-size:.14rem;">兑换时间：2017.04.01</span>                           
-                            </div>
-                        </dd>
-                        <dd class="dd2"><img src="../images/jl_bg5.png"/></dd>
+                        <dd class="dd2" ng-if="Cv_list.status==102"><img src="../images/jl_bg1.png"/></dd>
+                        <dd class="dd2" ng-if="Cv_list.status==103"><img src="../images/jl_bg2.png"/></dd>
+                        <dd class="dd2" ng-if="Cv_list.status==101"><img src="../images/jl_bg3.png"/></dd>
+                        <dd class="dd2" ng-if="Cv_list.status==104"><img src="../images/jl_bg4.png"/></dd>
+                        <dd class="dd2" ng-if="Cv_list.status==105"><img src="../images/jl_bg5.png"/></dd>
                     </dl>
                 </div> 
+                <div uikit-pager="Pager2" style="display: inline-block;text-align: right;width: 100%"></div>
             </uib-tab>
         </uib-tabset>
         

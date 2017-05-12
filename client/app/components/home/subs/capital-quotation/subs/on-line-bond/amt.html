@@ -1,0 +1,4 @@
+<span>
+	{{$item.amt |amtFilter | addTwoLine}}
+	<span ng-if='$item.amt!="0.00"'> {{$item.amtUnitNm | addTwoLineAmt:$item.amt }}</span>
+</span>

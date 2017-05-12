@@ -6,53 +6,60 @@ class PubReportDialogController {
 			whlTmsNum:this.subSttstcs.am,
 			bdyTmsNum:this.subSttstcs.mm,
 			bdyIntrt:this.subSttstcs.my,
-			clsbidTm:this.subSttstcs.tet
+			clsbidTm:this.transferService.dater(this.subSttstcs.tet).getTime()
 		})
 		.then(
-			data=>console.info(data),
-			err=>console.warn(err)
+			data=>{
+				console.info(data);
+				this.ok();
+			},
+			err=>{
+				console.warn(err);
+				if(err.data.status!='0'){
+					alert(err.data.msg);
+				}
+			}
 		);
-		this.ok();
 	}
 	getBondSbrbStat(){//获取债券申购统计
 		this.BondDstrMainService.getBondSbrbStat({
-			issuId:this.ids.issuId
+			issuId:this.ids.issuId,
+			dstrBondId:this.ids.dstrBondId
 		})
 		.then(
 			data=>{
 				let rslt = data.data.data;
-				// debugger;
 				this.subSttstcs = {
 					am:rslt.whlTmsNum,
 					mm:rslt.bdyTmsNum,
 					my:rslt.bdyIntrt,
-					tet:new Date(rslt.clsbidTmL)
+					tet:this.transferService.dater(new Date(rslt.clsbidTmL)),
 				};
 			},
 			err=>console.warn(err)
 		);
 	}
 	ok() {
-		this.modalInstance.close('close');
+		this.modalInstance.close(this.subSttstcs);
 	}
 	cancel() {
 		this.modalInstance.dismiss('cancel');
 	}
-	constructor($scope,$rootScope,$uibModal,BondDstrMainService) {
+	constructor($scope,$rootScope,$uibModal,BondDstrMainService,transferService) {
 		"ngInject";
 		this.name = 'pub-report-dialog';
 		this.$scope = $scope;
 		this.$rootScope = $rootScope;
 		this.$uibModal = $uibModal;
 		this.BondDstrMainService = BondDstrMainService;
-
+		this.transferService = transferService;
 		console.log(this.resolve.modalData);
 
 		this.subSttstcs = {
-			am:'3.3',
-			mm:'2.1',
-			my:'0.044',
-			tet:new Date().getTime()
+			am:'',
+			mm:'',
+			my:'',
+			tet:''
 		};
 	}
 	$onInit(){

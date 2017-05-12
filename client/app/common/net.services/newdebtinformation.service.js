@@ -2,7 +2,7 @@
 * @Author: Administrator
 * @Date:   2017-03-21 19:59:55
 * @Last Modified by:   Administrator
-* @Last Modified time: 2017-04-08 13:07:01
+* @Last Modified time: 2017-04-21 15:08:27
 */
 /*
 * 资讯
@@ -18,13 +18,13 @@ app.factory('newdebtinformationService', function($http,$q ,ProxyRequestService)
 			bondType:
 			{
 				// 0:{name:'全部',truthy:true,value:''},
-				7:{name:'短融',truthy:false,value:'7'},
-				2:{name:'超短',truthy:false,value:'2'},
-				8:{name:'中票',truthy:false,value:'8'},
-				9:{name:'企业债',truthy:false,value:'9'},
-				10:{name:'公司债',truthy:false,value:'10'},
-				11:{name:'同业存单',truthy:false,value:'11'},
-				'其他':{name:'其他',truthy:false,value:'其他'},
+				3:{name:'短融',truthy:false,value:'3'},
+				4:{name:'超短融',truthy:false,value:'4'},
+				2:{name:'中票',truthy:false,value:'2'},
+				1:{name:'PPN',truthy:false,value:'1'},
+				5:{name:'公司债',truthy:false,value:'5'},
+				6:{name:'非公开',truthy:false,value:'6'}
+				
 			},
 		// 期限
 			endtime:
@@ -45,18 +45,19 @@ app.factory('newdebtinformationService', function($http,$q ,ProxyRequestService)
 			all: 
 			{
 				// 0:	{name:'全部',truthy:true,value:''},
-				1:	{name:'AAA',truthy:false,value:'AAA',},
-				2:	{name:'AA+',truthy:false,value:'AA+'},
-				3:	{name:'AA',truthy:false,value:'AA'},
-				4:	{name:'AA-',truthy:false,value:'AA-'},
-				5:	{name:'A',truthy:false,value:'A'},
-				99:	{name:'其他',truthy:false,value:'其他'},
+				1:	{name:'AAA',truthy:false,value:'1',},
+				2:	{name:'AA+',truthy:false,value:'2'},
+				3:	{name:'AA',truthy:false,value:'3'},
+				4:	{name:'AA-',truthy:false,value:'4'},
+				5:	{name:'A+',truthy:false,value:'5'},
+				99:	{name:'其他',truthy:false,value:'99'},
 			},
 			//发行中
 		issuelist(obj){
 				return ProxyRequestService.post('e-bonddstr/bonddstr/queryBondList',{
 					userId:obj.userId,
 					enqrTp:obj.enqrTp,
+					value:obj.value,
 					dstrBondId:obj.dstrBondId,
 					creditTypeList:obj.creditTypeList,
 					issueTermList:obj.issueTermList,

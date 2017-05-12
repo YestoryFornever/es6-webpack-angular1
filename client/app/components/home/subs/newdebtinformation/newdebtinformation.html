@@ -1,10 +1,10 @@
-<div id="newAll_info" iscroll>
+<div id="newAll_info" >
 	<div class="header_nav_info ">
 		<ul>
 			<li  ng-class="{'nav_back':tabkey_li==0}" ng-click="getrecommendedLists();tabkey_li=0">信用债</li>
 			<li>利率债</li>
 			<!-- <li  ng-class="{'nav_back':tabkey_li==1}" ng-click="tabkey_li=1" >利率债</li> -->
-			<li ui-sref="home.investor()">111</li>
+			<!-- <li ui-sref="home.investor()">111</li><li ui-sref="home.newdebtinformationdetails()">222</li> -->
 		</ul>
 	</div>
 	<div class="new_content">
@@ -20,7 +20,8 @@
 		<div class="heightsearch_all" ng-If="issuelists_info.enqrTp==3||issuelists_info.enqrTp==4">
 			<div class="inp_heightsearch">
 				<input type="text" placeholder="债券全称/发行主体/主承" ng-model="issuelists_info.value">
-				<i ng-click="issuelists()"><img src="../../../../../resource/images/icon_search.png" alt=""></i>
+				<!-- <i ng-click="issuelists()"><img src="../../../../../resource/images/icon_search.png" alt=""></i> -->
+				<i ><img src="../../../../../resource/images/icon_search.png" alt=""></i>
 			</div>
 			
 			<div class="btn_heightsearch"  ><span ng-class="{'btn_heightsearch_bg':openheightsearch_flg,'btn_heightsearch_bg2':!openheightsearch_flg}" ng-click="openheightsearch();tablekey=0 ">高级搜索</span></div>
@@ -30,13 +31,13 @@
 			<div class="mutile_search">
 				<span class="span">债券类型:</span>
 				<div class="btn-group" >
-						<label class="btn"
+						<label class="btn btn_class"
 						ng-model="issuelists_info.creditTypeList"
 						uib-btn-radio=[]
 						 class="btn  drc"
 						ng-click='issuelists_info.creditTypeListSelecteds=[];' >全部
 						</label>
-						<label class="btn" ng-repeat='(key,item) in bondTp' 
+						<label class="btn btn_class" ng-repeat='(key,item) in bondTp' 
 								ng-model="issuelists_info.creditTypeListSelecteds[key]"
 								uib-btn-checkbox
 								btn-checkbox-true="item.value" 
@@ -50,13 +51,13 @@
 				<span class="span">期限:</span>
 				
 				<div class="btn-group" >
-						<label class="btn"
+						<label class="btn btn_class"
 						ng-model="issuelists_info.issueTermList"
 						uib-btn-radio=[]
 						 class="btn  drc"
 						ng-click='issuelists_info.issueTermListSelecteds=[]' >全部
 						</label>
-						<label class="btn" ng-repeat='(key,item) in rsdtrm' 
+						<label class="btn btn_class" ng-repeat='(key,item) in rsdtrm' 
 								ng-model="issuelists_info.issueTermListSelecteds[key]"
 								uib-btn-checkbox
 								btn-checkbox-true="item.value" 
@@ -69,7 +70,7 @@
 			<div class="mutile_search  mutile_search_one" >
 				<span class="span">主体评级:</span>
 				<div class="btn-group" >
-						<label class="btn"
+						<label class="btn btn_class"
 						ng-model="issuelists_info.currIssuerCreditList"
 						uib-btn-radio=[]
 						ng-click='issuelists_info.currIssuerCreditListSelecteds=[]'
@@ -77,7 +78,7 @@
 						</label>
 						
 						<!-- btn-checkbox-true="[]" -->
-						<label class="btn" ng-repeat='(key,item) in dbtitmRtg' 
+						<label class="btn btn_class" ng-repeat='(key,item) in dbtitmRtg' 
 								ng-model="issuelists_info.currIssuerCreditListSelecteds[key]"
 								uib-btn-checkbox
 								btn-checkbox-true="item.value" 
@@ -87,7 +88,7 @@
 						</label>
 				</div>
 			</div>
-			<div class="packup">
+			<div class="packup" >
 				<!-- <i>
 			         <img src="../../../../../resource/images/btn_arrow_unfold.png" alt="">
 			    </i>   --> 
@@ -98,20 +99,26 @@
 			    </span>				
 			   
 			</div>
+			<div class="search_for_select" >
+				<button class="btn " ng-click="issuelists()" >查询</button>
+			</div>
 		</div>
 		<div class="table-body"  >
 		<!-- tr-click="getDetail($item.dstrBondId)" -->
 				<grid-view fields="fields"
 					query="searchQuery"
 					items="issue"
-					tr-dblclick="toNewDebtin($item.dstrBondId,$item.issuId,$item.roleId,$item.alrdySbrbInd)">
+					is-loading="is_loading"
+					tr-dblclick="toNewDebtin($item.dstrBondId,$item.issuId,$item.roleId,$item.alrdySbrbInd,$item.trm,enqrTp_tp,$item.issuNum)">
 				</grid-view>
 				
 		</div>
 		
 	</div>
+
 	<div class="myPage" >
-					 <ul
+	<div uikit-pager="Pager" style="display: inline-block;text-align: right;width: 100%"></div>
+					<!--  <ul
 	                    uib-pagination
 	                    boundary-links="true"
 	                    total-items="pageAll.totalResult"
@@ -121,27 +128,9 @@
 	                    next-text="&rsaquo;"
 	                    first-text="&laquo;"
 	                    last-text="&raquo;"
-	                    ng-change="$ctrl.pageChange(pageAll.currentPage)"
-	            	></ul>
+	                    ng-change="pageChange(pageAll.currentPage)"
+	            	></ul> -->
         </div>
-	<!-- <div class="myPage" >
-		<ul  uib-pagination
-					boundary-links="true"
-					total-items="totalItems"
-					ng-model="$ctrl.currentPage"
-					previous-text="&lsaquo;"
-					next-text="&rsaquo;"
-					first-text="&laquo;"
-					last-text="&raquo;"
-					items-per-page='$ctrl.sendQueryQuoteListInfo.pageSize'
-					num-pages="$ctrl.numPages"
-					ng-change='$ctrl.pageNumChange($ctrl.currentPage)'
-					>
-		</ul>
-		<span style="float: right">{{$ctrl.currentPage}} / {{$ctrl.numPages}}</span>
-	</div> -->
-	<!-- <div uikit-pager="Pager"></div> -->
 </div>
-
 
 

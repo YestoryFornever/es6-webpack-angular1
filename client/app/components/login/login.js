@@ -2,7 +2,7 @@ app.component('login', {
 	restrict: 'E',
 	bindings: {},
 	templateUrl: './login.html',
-	controller: function($state,$stateParams,userStatusService,netUserService, userStatusAuth) {
+	controller: function($scope, $state,$stateParams,userStatusService,netUserService, userStatusAuth) {
 		"ngInject";
 		this.$state = $state;
 		this.$stateParams = $stateParams;
@@ -16,15 +16,21 @@ app.component('login', {
 			//this.login();
 		}
 		this.login = function(){
-			this.loginLabel = '正在登录……';
-			userStatusAuth.login(this.account,this.password, this.numberOfLanding, this.picGenerationCode)
-			.then((res)=>{
-				this.loginLabel = '登录';
-				return $state.go('home.message');
-			}).catch((err)=>{
-				console.log('login Fail:', err);
-				this.loginLabel = err.data.msg||'登录失败';
-			});
+			if ($scope.loginForm.$valid) {
+				this.loginLabel = '正在登录……';
+				userStatusAuth.login(this.account,this.password, this.numberOfLanding, this.picGenerationCode)
+				.then((res)=>{
+					this.loginLabel = '登录';
+					return $state.go('home.message');
+				}).catch((err)=>{
+					console.log('login Fail:', err);
+					if (err.data) {
+						this.loginLabel = err.data.msg
+					}else{
+						this.loginLabel = '登录失败';
+					}
+				});
+			};
 		}
 		this.register = function(){
 			this.userStatusService.register(this.acc,this.pas);
@@ -37,5 +43,21 @@ app.component('login', {
 			this.picGenerationUrl = netUserService.picGeneration(this.numberOfLanding);
 		}
 		this.reloadPicGenerationUrl();
+
+		this.validdationAccount = function(value){
+			if((_.trim(value)).length<=0){
+				// return '用户名不能为空';
+			}
+		}
+		this.validdationPassword = function(value){
+			if((_.trim(value)).length<=0){
+				// return '密码不能为空';
+			}
+		}
+		this.validdationCode = function(value){
+			if((_.trim(value)).length<=0){
+				// return '验证码不能为空';
+			}
+		}
 	}
 });
